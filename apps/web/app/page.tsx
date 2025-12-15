@@ -1,7 +1,25 @@
-export default async function Home() {
+import { Button } from '@repo/ui/components/button';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@repo/ui/components/card';
+
+import { Hero } from '../components/hero';
+import { Services } from '../components/services';
+import { News } from '../components/news';
+import { Events } from '../components/events';
+import { Cta } from '../components/cta';
+
+export default function HomePage() {
   return (
-    <div>
-      <h1>Welcome to G-Stadtt</h1>
-    </div>
+    <main className="flex flex-col">
+      <Hero />
+      <Services />
+      <News />
+      <Events />
+      <Cta />
+    </main>
   );
 }

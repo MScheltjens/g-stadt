@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import '@repo/ui/globals.css';
+
 export const metadata: Metadata = {
   title: 'G-Stadtt',
   description: "A city built for the G's.",
