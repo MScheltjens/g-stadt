@@ -1,4 +1,7 @@
-import { nextJsConfig } from "@repo/eslint-config/next-js";
+import { nextJsConfig } from '@repo/eslint-config/next-js';
+import { defineConfig, globalIgnores } from 'eslint/config';
 
-/** @type {import("eslint").Linter.Config} */
-export default nextJsConfig;
+export default defineConfig([
+    ...nextJsConfig,
+    globalIgnores(['.prettierrc.mjs', 'eslint.config.mjs'])
+]);
