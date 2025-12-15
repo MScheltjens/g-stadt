@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "g-stadtt",
   "version": "0.0.0",
   "private": true,
   "description": "",
@@ -24,7 +24,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
-      "pnpm format",
+      "prettier --write",
       "pnpm -w exec eslint --fix --cache --cache-location .cache/eslint --"
     ]
   },
