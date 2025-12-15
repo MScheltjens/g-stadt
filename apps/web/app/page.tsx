@@ -1,11 +1,3 @@
-import { Button } from '@repo/ui/components/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@repo/ui/components/card';
-
 import { Hero } from '../components/hero';
 import { Services } from '../components/services';
 import { News } from '../components/news';
