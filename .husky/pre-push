@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 . "$(dirname "$0")/_/husky.sh"
 
-# If PUSH_FAST is set, run a quick smoke test instead of full tests
-if [ "$PUSH_FAST" = "1" ]; then
-	echo "PUSH_FAST detected: running smoke test..."
-	pnpm test:smoke || { echo "Smoke test failed; aborting push." >&2; exit 1; }
-	exit 0
-fi
-
 # Run tests only for packages changed since origin/main to keep pushes fast
 # Ensure we have the latest origin/main for since calculation (ignore errors)
 git fetch --quiet origin main || true
