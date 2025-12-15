@@ -25,7 +25,7 @@
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
       "pnpm format",
-      "pnpm -w exec eslint --fix"
+      "pnpm -w exec eslint --fix --cache --cache-location .cache/eslint --"
     ]
   },
   "packageManager": "pnpm@8.15.5",
