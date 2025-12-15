@@ -1,1 +1,5 @@
-pnpm dlx lint-staged
+#!/usr/bin/env bash
+. "$(dirname "$0")/_/husky.sh"
+
+# Run lint-staged (configured in package.json)
+pnpm -w exec lint-staged
