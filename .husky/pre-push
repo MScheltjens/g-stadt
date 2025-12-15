@@ -5,6 +5,18 @@
 # Ensure we have the latest origin/main for since calculation (ignore errors)
 git fetch --quiet origin main || true
 
+# Run lint for changed packages; fall back to full lint if needed
+pnpm -w exec turbo run lint -- --since origin/main || {
+	echo "Changed-packages lint failed; running full lint..."
+	pnpm -w lint || { echo "Lint failed; aborting push." >&2; exit 1; }
+}
+
+# Run build for changed packages; fall back to full build if needed
+pnpm -w exec turbo run build -- --since origin/main || {
+	echo "Changed-packages build failed; running full build..."
+	pnpm -w build || { echo "Build failed; aborting push." >&2; exit 1; }
+}
+
 # Run tests only for changed packages; fall back to full test if turbo returns non-zero
 pnpm -w exec turbo run test -- --since origin/main || {
 	echo "Changed-packages tests failed; running full test suite..."
