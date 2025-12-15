@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 . "$(dirname "$0")/_/husky.sh"
 
-# Run workspace tests before pushing
-pnpm -w test
+# Run tests only for packages changed since origin/main to keep pushes fast
+# Ensure we have the latest origin/main for since calculation (ignore errors)
+git fetch --quiet origin main || true
+
+# Run tests only for changed packages; fall back to full test if turbo returns non-zero
+pnpm -w exec turbo run test --since origin/main || {
+	echo "Changed-packages tests failed; running full test suite..."
+	pnpm -w test || {
+		echo "Tests failed; aborting push." >&2
+		exit 1
+	}
+}
