@@ -1,8 +1,8 @@
-import { Hero } from '../components/hero';
-import { Services } from '../components/services';
-import { News } from '../components/news';
-import { Events } from '../components/events';
-import { Cta } from '../components/cta';
+import { Hero } from '@/components/hero';
+import { Services } from '@/components/services';
+import { News } from '@/components/news';
+import { Events } from '@/components/events';
+import { Cta } from '@/components/cta';
 
 export default function HomePage() {
   return (
