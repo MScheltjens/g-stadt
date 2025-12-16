@@ -8,7 +8,6 @@
         "build": "tsc -b"
     },
     "devDependencies": {
-        "typescript": "workspace:*",
         "@repo/typescript-config": "workspace:*",
         "@repo/eslint-config": "workspace:*"
     },
@@ -25,16 +24,6 @@
             "import": "./dist/user.schema.js",
             "require": "./dist/user.schema.js",
             "types": "./dist/user.schema.d.ts"
-        },
-        "./nest": {
-            "import": "./dist/nest.js",
-            "require": "./dist/nest.js",
-            "types": "./dist/nest.d.ts"
-        },
-        "./next": {
-            "import": "./dist/next.js",
-            "require": "./dist/next.js",
-            "types": "./dist/next.d.ts"
         }
     }
 }
