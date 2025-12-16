@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "prisma": {
     "schema": "prisma/schema.prisma"
   },
