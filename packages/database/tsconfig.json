@@ -1,13 +1,22 @@
 {
-    "extends": "@repo/typescript-config/base.json",
     "compilerOptions": {
-        "outDir": "dist",
-        "rootDir": "src",
-        "composite": true,
-        "incremental": true,
+        "target": "ES2022",
+        "lib": [
+            "es2022"
+        ],
         "module": "commonjs",
         "moduleResolution": "node",
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "dist",
+        "rootDir": "src",
+        "composite": false,
+        "incremental": true,
         "esModuleInterop": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true
     },
     "include": [
         "src"
