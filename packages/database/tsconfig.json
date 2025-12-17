@@ -5,8 +5,8 @@
         "rootDir": "src",
         "composite": true,
         "incremental": true,
-        "module": "esnext",
-        "moduleResolution": "bundler",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "esModuleInterop": true,
     },
     "include": [
