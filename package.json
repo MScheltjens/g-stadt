@@ -14,6 +14,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db:generate": "turbo run db:generate",
     "db:migrate:dev": "turbo run db:migrate:dev",
+    "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
     "prepare": "husky install"
   },
