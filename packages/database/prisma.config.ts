@@ -9,8 +9,8 @@ export default defineConfig({
   },
 
   datasource: {
-    url: env('DATABASE_URL')
-      ? env('DATABASE_URL')
-      : 'postgresql://placeholder:placeholder@localhost:5432/placeholder',
+    url:
+      env('DATABASE_URL') ||
+      'postgresql://placeholder:placeholder@localhost:5432/placeholder',
   },
 });
