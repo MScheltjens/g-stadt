@@ -4,7 +4,9 @@
  * Simple fetch wrappers for calling the NestJS API
  */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+import { Event, News, Service } from '@repo/types';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * Base fetch wrapper with error handling
@@ -34,75 +36,39 @@ async function fetchAPI<T>(
 // Events API
 // ============================================================================
 
-export interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  category: string;
-  imageUrl?: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export async function getEvents(): Promise<Event[]> {
-  return fetchAPI<Event[]>('/api/events');
+  return fetchAPI<Event[]>('/events');
 }
 
 export async function getEvent(id: string): Promise<Event> {
-  return fetchAPI<Event>(`/api/events/${id}`);
+  return fetchAPI<Event>(`/events/${id}`);
 }
 
 // ============================================================================
 // News API
 // ============================================================================
 
-export interface News {
-  id: string;
-  title: string;
-  content: string;
-  excerpt: string;
-  category: string;
-  imageUrl?: string | null;
-  published: boolean;
-  publishedAt?: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export async function getNews(published = true): Promise<News[]> {
   const query = published ? '?published=true' : '';
-  return fetchAPI<News[]>(`/api/news${query}`);
+  return fetchAPI<News[]>(`/news${query}`);
 }
 
 export async function getNewsById(id: string): Promise<News> {
-  return fetchAPI<News>(`/api/news/${id}`);
+  return fetchAPI<News>(`/news/${id}`);
 }
 
 // ============================================================================
 // Services API
 // ============================================================================
 
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  icon: string;
-  link?: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export async function getServices(): Promise<Service[]> {
-  return fetchAPI<Service[]>('/api/services');
+  return fetchAPI<Service[]>('/services');
 }
 
 export async function getServicesByCategory(
   category: string,
 ): Promise<Service[]> {
   return fetchAPI<Service[]>(
-    `/api/services?category=${encodeURIComponent(category)}`,
+    `/services?category=${encodeURIComponent(category)}`,
   );
 }
