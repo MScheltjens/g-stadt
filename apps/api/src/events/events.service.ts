@@ -5,27 +5,45 @@ import type { Event } from '@repo/types';
 @Injectable()
 export class EventsService {
   async findAll(): Promise<Event[]> {
-    return db.event.findMany({
-      orderBy: { date: 'asc' },
-    });
+    try {
+      console.log('Fetching all events...');
+      const events = await db.event.findMany({
+        orderBy: { date: 'asc' },
+      });
+      console.log(`Found ${events.length} events`);
+      return events;
+    } catch (error) {
+      console.error('Error fetching events:', error);
+      throw error;
+    }
   }
 
   async findOne(id: string): Promise<Event> {
-    const event = await db.event.findUnique({
-      where: { id },
-    });
+    try {
+      const event = await db.event.findUnique({
+        where: { id },
+      });
 
-    if (!event) {
-      throw new NotFoundException(`Event with ID ${id} not found`);
+      if (!event) {
+        throw new NotFoundException(`Event with ID ${id} not found`);
+      }
+
+      return event;
+    } catch (error) {
+      console.error(`Error fetching event ${id}:`, error);
+      throw error;
     }
-
-    return event;
   }
 
   async findByCategory(category: string): Promise<Event[]> {
-    return db.event.findMany({
-      where: { category },
-      orderBy: { date: 'asc' },
-    });
+    try {
+      return await db.event.findMany({
+        where: { category },
+        orderBy: { date: 'asc' },
+      });
+    } catch (error) {
+      console.error(`Error fetching events by category ${category}:`, error);
+      throw error;
+    }
   }
 }
