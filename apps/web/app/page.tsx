@@ -3,11 +3,10 @@ import { Services } from '@/components/services';
 import { News } from '@/components/news';
 import { Events } from '@/components/events';
 import { Cta } from '@/components/cta';
-import { getEvents } from '@/lib/api';
+
+export const revalidate = 60;
 
 export default async function HomePage() {
-  const events = await getEvents();
-  console.log('Events:', events);
   return (
     <main className="flex flex-col">
       <Hero />
