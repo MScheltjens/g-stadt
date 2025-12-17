@@ -4,7 +4,8 @@
     "**/.env.*local"
   ],
   "globalEnv": [
-    "NODE_ENV"
+    "NODE_ENV",
+    "DATABASE_URL"
   ],
   "tasks": {
     "dev": {
@@ -23,7 +24,8 @@
     },
     "lint": {
       "env": [
-        "NODE_ENV"
+        "NODE_ENV",
+        "DATABASE_URL"
       ]
     },
     "test": {},
