@@ -1,15 +1,7 @@
-import type { CreateUserDto, UserResponse } from '@repo/types/user';
-
-import { Body, Controller, Post } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  @Post()
-  create(@Body() dto: CreateUserDto): UserResponse {
-    return {
-      id: crypto.randomUUID(),
-      email: dto.email,
-      createdAt: new Date(),
-    };
-  }
+  constructor(private readonly usersService: UsersService) {}
 }
