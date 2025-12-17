@@ -1,9 +1,7 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    // ...existing code...
     "module": "ESNext",
     "moduleResolution": "Bundler"
-    // ...existing code...
   }
 }

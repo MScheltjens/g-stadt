@@ -12,6 +12,9 @@
     "test:e2e": "turbo run test:e2e",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "turbo run db:generate",
+    "db:migrate:dev": "turbo run db:migrate:dev",
+    "db:studio": "turbo run db:studio",
     "prepare": "husky install"
   },
   "devDependencies": {
