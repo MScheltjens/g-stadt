@@ -48,12 +48,12 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.0
         version: 11.1.9(@nestjs/common@11.1.9)(@nestjs/core@11.1.9)
-      '@repo/api':
-        specifier: workspace:*
-        version: link:../../packages/api
       '@repo/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       nestjs-zod:
         specifier: ^5.0.1
         version: 5.0.1(@nestjs/common@11.1.9)(rxjs@7.8.2)(zod@3.25.76)
@@ -82,9 +82,6 @@ importers:
       '@repo/jest-config':
         specifier: workspace:*
         version: link:../../packages/jest-config
-      '@repo/types':
-        specifier: workspace:*
-        version: link:../../packages/types
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -170,31 +167,6 @@ importers:
       typescript:
         specifier: 5.8.2
         version: 5.8.2
-
-  packages/api:
-    dependencies:
-      '@nestjs/mapped-types':
-        specifier: '*'
-        version: 2.1.0(@nestjs/common@11.1.9)(reflect-metadata@0.2.2)
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@types/node':
-        specifier: ^22.10.7
-        version: 22.19.3
-      ts-loader:
-        specifier: ^9.4.3
-        version: 9.5.4(typescript@5.5.4)(webpack@5.103.0)
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.19.3)(typescript@5.5.4)
-      typescript:
-        specifier: 5.5.4
-        version: 5.5.4
 
   packages/database:
     dependencies:
