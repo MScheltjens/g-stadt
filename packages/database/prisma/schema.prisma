@@ -1,3 +1,14 @@
+generator zod {
+    provider                         = "zod-prisma-types"
+    output                           = "../../../packages/types/src/generated"
+    useMultipleFiles                 = false
+    createInputTypes                 = false
+    addInputTypeValidation           = false
+    createRelationValuesTypes        = false
+    createPartialTypes               = false
+    createOptionalDefaultValuesTypes = false
+}
+
 generator client {
     provider   = "prisma-client-js"
     engineType = "library"

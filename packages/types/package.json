@@ -5,11 +5,12 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc -b"
+        "build": "tsc -b",
+        "fix:generated": "node -e \"const fs=require('fs');const file='src/generated/index.ts';let content=fs.readFileSync(file,'utf8');content=content.replace(/z\\.uuid\\(\\)/g,'z.string().uuid()');fs.writeFileSync(file,content);\""
     },
     "devDependencies": {
-        "@repo/typescript-config": "workspace:*",
-        "@repo/eslint-config": "workspace:*"
+        "@repo/eslint-config": "workspace:*",
+        "@repo/typescript-config": "workspace:*"
     },
     "files": [
         "dist"
@@ -25,5 +26,9 @@
             "require": "./dist/user.schema.js",
             "types": "./dist/user.schema.d.ts"
         }
+    },
+    "dependencies": {
+        "@prisma/client": "^7.1.0",
+        "zod": "^3.25.76"
     }
 }
