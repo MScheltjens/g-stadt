@@ -7,10 +7,10 @@ export default defineConfig({
     path: 'prisma/migrations',
     seed: 'tsx prisma/seed.ts',
   },
+
   datasource: {
-    url: env('DATABASE_URL', {
-      default:
-        'postgresql://placeholder:placeholder@localhost:5432/placeholder',
-    }),
+    url: env('DATABASE_URL')
+      ? env('DATABASE_URL')
+      : 'postgresql://placeholder:placeholder@localhost:5432/placeholder',
   },
 });
