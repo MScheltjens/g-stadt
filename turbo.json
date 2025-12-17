@@ -3,7 +3,9 @@
   "globalDependencies": [
     "**/.env.*local"
   ],
-  "globalEnv": ["NODE_ENV"],
+  "globalEnv": [
+    "NODE_ENV"
+  ],
   "tasks": {
     "dev": {
       "cache": false,
@@ -19,7 +21,11 @@
         "dist/**"
       ]
     },
-    "lint": {},
+    "lint": {
+      "env": [
+        "NODE_ENV"
+      ]
+    },
     "test": {},
     "test:e2e": {},
     "db:generate": {
