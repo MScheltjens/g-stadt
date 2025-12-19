@@ -1,4 +1,4 @@
-import { config as baseConfig } from "./base.js";
+import { config as baseConfig } from './base.js';
 import globals from 'globals';
 
 /**
@@ -16,20 +16,20 @@ export const libraryConfig = [
         ...globals.node,
       },
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
     },
     settings: {
-      "import/resolver": {
+      'import/resolver': {
         typescript: {
-          project: "./tsconfig.json",
+          project: './tsconfig.json',
         },
       },
     },
   },
   {
-    ignores: [".*.js", "node_modules/", "dist/"],
+    ignores: ['.*.js', 'node_modules/', 'dist/'],
   },
 ];
 

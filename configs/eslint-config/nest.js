@@ -23,27 +23,22 @@ export const nestJsConfig = defineConfig([
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest
+        ...globals.jest,
       },
       parserOptions: {
         ecmaVersion: 2021,
         projectService: true, // keeps project-level TS rules
-        tsconfigRootDir: fileURLToPath(new URL('.', import.meta.url))
+        tsconfigRootDir: fileURLToPath(new URL('.', import.meta.url)),
       },
-      sourceType: 'module'
+      sourceType: 'module',
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'off'
-    }
+      '@typescript-eslint/no-unsafe-argument': 'off',
+    },
   },
 
   // Ignore build/output folders globally
-  globalIgnores([
-    'dist/**',
-    'build/**',
-    'node_modules/**',
-    'coverage/**'
-  ])
+  globalIgnores(['dist/**', 'build/**', 'node_modules/**', 'coverage/**']),
 ]);

@@ -14,10 +14,10 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:packages/eslint-config
+        version: link:configs/eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:packages/typescript-config
+        version: link:configs/typescript-config
       husky:
         specifier: ^8.0.3
         version: 8.0.3
@@ -59,7 +59,7 @@ importers:
         version: 17.2.3
       nestjs-zod:
         specifier: ^5.0.1
-        version: 5.0.1(@nestjs/common@11.1.9)(rxjs@7.8.2)(zod@4.2.1)
+        version: 5.0.1(@nestjs/common@11.1.9)(rxjs@7.8.2)(zod@3.25.76)
       reflect-metadata:
         specifier: ^0.2.0
         version: 0.2.2
@@ -81,13 +81,13 @@ importers:
         version: 11.1.9(@nestjs/common@11.1.9)(@nestjs/core@11.1.9)(@nestjs/platform-express@11.1.9)
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../configs/eslint-config
       '@repo/jest-config':
         specifier: workspace:*
-        version: link:../../packages/jest-config
+        version: link:../../configs/jest-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../configs/typescript-config
       '@types/express':
         specifier: ^4.17.17
         version: 4.17.25
@@ -148,7 +148,7 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../configs/eslint-config
       '@repo/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -157,7 +157,7 @@ importers:
         version: link:../../packages/types
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../configs/typescript-config
       '@types/node':
         specifier: ^22.15.3
         version: 22.19.3
@@ -174,50 +174,7 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
 
-  packages/database:
-    dependencies:
-      '@libsql/client':
-        specifier: ^0.15.15
-        version: 0.15.15
-      '@prisma/adapter-libsql':
-        specifier: ^7.1.0
-        version: 7.1.0
-      '@prisma/adapter-pg':
-        specifier: ^7.1.0
-        version: 7.1.0
-      '@prisma/client':
-        specifier: ^7.1.0
-        version: 7.1.0(prisma@7.1.0)(typescript@5.9.3)
-      dotenv:
-        specifier: ^17.2.3
-        version: 17.2.3
-      pg:
-        specifier: ^8.16.3
-        version: 8.16.3
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@types/node':
-        specifier: ^25.0.2
-        version: 25.0.2
-      '@types/pg':
-        specifier: ^8.16.0
-        version: 8.16.0
-      prisma:
-        specifier: ^7.1.0
-        version: 7.1.0(@types/react@19.2.7)(react-dom@19.2.3)(react@19.2.3)(typescript@5.9.3)
-      tsx:
-        specifier: ^4.19.2
-        version: 4.21.0
-      zod-prisma-types:
-        specifier: ^3.3.10
-        version: 3.3.10(@prisma/client@7.1.0)(prisma@7.1.0)(zod@4.2.1)
-
-  packages/eslint-config:
+  configs/eslint-config:
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.2
@@ -256,6 +213,66 @@ importers:
         specifier: ^8.37.0
         version: 8.50.0(eslint@9.39.2)(typescript@5.9.3)
 
+  configs/jest-config:
+    devDependencies:
+      '@jest/types':
+        specifier: ^29.6.3
+        version: 29.6.3
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0
+      next:
+        specifier: 16.0.10
+        version: 16.0.10(@babel/core@7.28.5)(react-dom@19.2.3)(react@19.2.3)
+      typescript:
+        specifier: ^5.8.2
+        version: 5.9.3
+
+  configs/typescript-config: {}
+
+  packages/database:
+    dependencies:
+      '@libsql/client':
+        specifier: ^0.15.15
+        version: 0.15.15
+      '@prisma/adapter-libsql':
+        specifier: ^7.1.0
+        version: 7.1.0
+      '@prisma/adapter-pg':
+        specifier: ^7.1.0
+        version: 7.1.0
+      '@prisma/client':
+        specifier: ^7.1.0
+        version: 7.1.0(prisma@7.1.0)(typescript@5.9.3)
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
+      pg:
+        specifier: ^8.16.3
+        version: 8.16.3
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript-config
+      '@types/node':
+        specifier: ^25.0.2
+        version: 25.0.2
+      '@types/pg':
+        specifier: ^8.16.0
+        version: 8.16.0
+      prisma:
+        specifier: ^7.1.0
+        version: 7.1.0(@types/react@19.2.7)(react-dom@19.2.3)(react@19.2.3)(typescript@5.9.3)
+      tsx:
+        specifier: ^4.19.2
+        version: 4.21.0
+      zod-prisma-types:
+        specifier: ^3.3.10
+        version: 3.3.10(@prisma/client@7.1.0)(prisma@7.1.0)(zod@3.25.76)
+
   packages/i18n:
     dependencies:
       next:
@@ -273,10 +290,10 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../../configs/eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../../configs/typescript-config
       '@types/node':
         specifier: ^25.0.3
         version: 25.0.3
@@ -293,21 +310,6 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  packages/jest-config:
-    devDependencies:
-      '@jest/types':
-        specifier: ^29.6.3
-        version: 29.6.3
-      jest:
-        specifier: ^29.7.0
-        version: 29.7.0
-      next:
-        specifier: 16.0.10
-        version: 16.0.10(@babel/core@7.28.5)(react-dom@19.2.3)(react@19.2.3)
-      typescript:
-        specifier: ^5.8.2
-        version: 5.9.3
-
   packages/types:
     dependencies:
       '@prisma/client':
@@ -317,14 +319,15 @@ importers:
         specifier: ^3.25.76
         version: 3.25.76
     devDependencies:
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../database
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../../configs/eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../typescript-config
-
-  packages/typescript-config: {}
+        version: link:../../configs/typescript-config
 
   packages/ui:
     dependencies:
@@ -367,10 +370,10 @@ importers:
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../../configs/eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../../configs/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.18
@@ -3718,13 +3721,13 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 6.0.0
-      '@types/node': 20.19.27
+      '@types/node': 25.0.3
     dev: true
 
   /@types/graceful-fs@4.1.9:
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
     dependencies:
-      '@types/node': 22.19.3
+      '@types/node': 25.0.3
     dev: true
 
   /@types/http-errors@2.0.5:
@@ -6955,7 +6958,7 @@ packages:
       '@jest/expect': 29.7.0
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.19.3
+      '@types/node': 25.0.3
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.0
@@ -7148,7 +7151,7 @@ packages:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.19.3
+      '@types/node': 25.0.3
       jest-mock: 29.7.0
       jest-util: 29.7.0
     dev: true
@@ -7399,7 +7402,7 @@ packages:
     resolution: {integrity: sha512-eIz2msL/EzL9UFTFFx7jBTkeZfku0yUAyZZZmJ93H2TYEiroIx2PQjEXcwYtYl8zXCxb+PAmA2hLIt/6ZEkPHw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 22.19.3
+      '@types/node': 25.0.3
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -8076,7 +8079,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /nestjs-zod@5.0.1(@nestjs/common@11.1.9)(rxjs@7.8.2)(zod@4.2.1):
+  /nestjs-zod@5.0.1(@nestjs/common@11.1.9)(rxjs@7.8.2)(zod@3.25.76):
     resolution: {integrity: sha512-IjK99tpK+04UobLJJA5tlHv94Ml3wNWiRr7pRVDFJ62Jy/c/aYhMQa90WKiy7qUcmIDMWyPHQpHQN/MehESOmw==}
     peerDependencies:
       '@nestjs/common': ^10.0.0 || ^11.0.0
@@ -8090,7 +8093,7 @@ packages:
       '@nestjs/common': 11.1.9(reflect-metadata@0.2.2)(rxjs@7.8.2)
       deepmerge: 4.3.1
       rxjs: 7.8.2
-      zod: 4.2.1
+      zod: 3.25.76
     dev: false
 
   /netmask@2.0.2:
@@ -10666,7 +10669,7 @@ packages:
     dependencies:
       grammex: 3.1.12
 
-  /zod-prisma-types@3.3.10(@prisma/client@7.1.0)(prisma@7.1.0)(zod@4.2.1):
+  /zod-prisma-types@3.3.10(@prisma/client@7.1.0)(prisma@7.1.0)(zod@3.25.76):
     resolution: {integrity: sha512-JvgW7XhajDPhnq9yR7dZwPQvD8rdWX2JRNmSxaYghXBb5o2G1XIgayOjKTmxEsZ72bhXegpmca5dcWz9olzS7w==}
     hasBin: true
     peerDependencies:
@@ -10680,7 +10683,7 @@ packages:
       code-block-writer: 13.0.3
       lodash: 4.17.21
       prisma: 7.1.0(@types/react@19.2.7)(react-dom@19.2.3)(react@19.2.3)(typescript@5.9.3)
-      zod: 4.2.1
+      zod: 3.25.76
     dev: true
 
   /zod-validation-error@4.0.2(zod@3.25.76):
@@ -10694,6 +10697,3 @@ packages:
 
   /zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
-
-  /zod@4.2.1:
-    resolution: {integrity: sha512-0wZ1IRqGGhMP76gLqz8EyfBXKk0J2qo2+H3fi4mcUP/KtTocoX08nmIAHl1Z2kJIZbZee8KOpBCSNPRgauucjw==}
