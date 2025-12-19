@@ -1,0 +1,37 @@
+{
+  "name": "@repo/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/i18n.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./i18n.d.ts": "./src/i18n.d.ts",
+    "./plugin": "./src/plugin.ts",
+    "./middleware": "./src/middleware.ts",
+    "./routing": "./src/routing.ts",
+    "./navigation": "./src/navigation.ts",
+    "./server": "./src/server.ts",
+    "./messages/*": "./src/messages/*.json"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^25.0.3",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "next-intl": "^4.6.1"
+  },
+  "peerDependencies": {
+    "next": "^15.3.5 || ^16.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

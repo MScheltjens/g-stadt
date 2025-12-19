@@ -35,6 +35,18 @@ export class EventsService {
     }
   }
 
+  async create(eventData: Event): Promise<Event> {
+    try {
+      const newEvent = await db.event.create({
+        data: eventData,
+      });
+      return newEvent;
+    } catch (error) {
+      console.error('Error creating event:', error);
+      throw error;
+    }
+  }
+
   async findByCategory(category: string): Promise<Event[]> {
     try {
       return await db.event.findMany({

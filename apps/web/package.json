@@ -19,6 +19,7 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@repo/i18n": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
