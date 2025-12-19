@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { hasLocale, Locale } from '@repo/i18n';
 import { getTranslations } from '@repo/i18n/server';
 import { Providers } from '@/components/providers';
-import { PathParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from '@repo/i18n/server';

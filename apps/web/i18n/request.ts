@@ -1,4 +1,4 @@
-import { hasLocale, messages, type Locale } from '@repo/i18n';
+import { hasLocale, messages } from '@repo/i18n';
 import { routing } from '@repo/i18n/routing';
 import { getRequestConfig } from '@repo/i18n/server';
 
