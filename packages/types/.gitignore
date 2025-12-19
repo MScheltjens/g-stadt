@@ -1,2 +1,4 @@
 # Generated files
-src/generated/
+src/generated/*
+!src/generated/.gitkeep
+!src/generated/index.stub.ts

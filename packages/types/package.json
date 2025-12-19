@@ -5,10 +5,12 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
+        "prebuild": "node -e \"const fs=require('fs');const stub='src/generated/index.stub.ts';const target='src/generated/index.ts';if(!fs.existsSync(target)){fs.copyFileSync(stub,target);console.log('Created stub index.ts');}\"",
         "build": "tsc -b",
         "fix:generated": "node -e \"const fs=require('fs');const file='src/generated/index.ts';let content=fs.readFileSync(file,'utf8');content=content.replace(/z\\.uuid\\(\\)/g,'z.string().uuid()');fs.writeFileSync(file,content);\""
     },
     "devDependencies": {
+        "@repo/database": "workspace:*",
         "@repo/eslint-config": "workspace:*",
         "@repo/typescript-config": "workspace:*"
     },
