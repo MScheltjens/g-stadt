@@ -29,8 +29,8 @@ export class AuthenticationService {
     if (!isPasswordValid) {
       return null;
     }
-
-    const { passwordHash: _passwordHash, ...result } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { passwordHash, ...result } = user;
     return result;
   }
 
