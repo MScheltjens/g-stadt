@@ -18,10 +18,28 @@ datasource db {
 }
 
 model User {
+    id           String   @id @default(uuid())
+    email        String   @unique
+    passwordHash String
+    role         Role     @default(CITIZEN)
+    isVerified   Boolean  @default(false)
+    createdAt    DateTime @default(now())
+
+    refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
     id        String   @id @default(uuid())
-    email     String   @unique
-    password  String
-    createdAt DateTime @default(now())
+    tokenHash String
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    expiresAt DateTime
+}
+
+enum Role {
+    CITIZEN
+    STAFF
+    ADMIN
 }
 
 model Event {

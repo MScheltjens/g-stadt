@@ -25,14 +25,26 @@ async function main() {
   const users = await Promise.all([
     prisma.user.create({
       data: {
-        email: 'admin@g-stadt.de',
-        password: '$2a$10$YourHashedPasswordHere', // Remember to hash passwords in production
+        email: 'citizen@g-stadt.de',
+        passwordHash: '$2a$10$YourHashedPasswordHere', // Remember to hash passwords in production
+        role: 'CITIZEN',
+        isVerified: true,
       },
     }),
     prisma.user.create({
       data: {
-        email: 'redaktion@g-stadt.de',
-        password: '$2a$10$YourHashedPasswordHere',
+        email: 'staff@g-stadt.de',
+        passwordHash: '$2a$10$YourHashedPasswordHere',
+        role: 'STAFF',
+        isVerified: true,
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'admin@g-stadt.de',
+        passwordHash: '$2a$10$YourHashedPasswordHere',
+        role: 'ADMIN',
+        isVerified: true,
       },
     }),
   ]);
