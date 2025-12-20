@@ -8,11 +8,9 @@
         "build": "tsc -b",
         "fix:generated": "node -e \"const fs=require('fs');const file='src/generated/index.ts';let content=fs.readFileSync(file,'utf8');content=content.replace(/z\\.uuid\\(\\)/g,'z.string().uuid()');fs.writeFileSync(file,content);\""
     },
-    "dependencies": {
-        "@prisma/client": "^7.2.0",
-        "zod": "^3.23.8"
-    },
+    "dependencies": {},
     "devDependencies": {
+        "@prisma/client": "^7.2.0",
         "@repo/typescript-config": "workspace:*",
         "typescript": "^5.9.3"
     }
