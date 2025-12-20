@@ -1,6 +1,7 @@
 import { checkUserRole } from '@/lib/auth';
 import { Locale } from '@repo/i18n/index';
 import { redirect } from '@repo/i18n/navigation';
+import { setRequestLocale } from '@repo/i18n/server';
 import { RoleEnum } from '@repo/types';
 
 export default async function DashboardLayout({
@@ -14,11 +15,12 @@ export default async function DashboardLayout({
   staff: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const paramsResolved = await params;
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
   const role = await checkUserRole();
 
-  if (!role)
-    redirect({ href: '/register', locale: paramsResolved.locale as Locale });
+  if (!role) redirect({ href: '/register', locale: locale as Locale });
 
   return (
     <>

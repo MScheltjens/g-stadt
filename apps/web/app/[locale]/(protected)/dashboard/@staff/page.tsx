@@ -1,3 +1,13 @@
-export default function AdminDashboardPage() {
-  return <h1>Admin Dashboard</h1>;
+import { Locale } from '@repo/i18n/index';
+import { setRequestLocale } from '@repo/i18n/server';
+
+export default async function StaffDashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
+  return <h1>Staff Dashboard</h1>;
 }

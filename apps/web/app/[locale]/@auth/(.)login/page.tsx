@@ -7,8 +7,17 @@
 
 import { Modal } from '@/components/modal';
 import { LoginForm } from '@/components/auth/login-form';
+import { setRequestLocale } from '@repo/i18n/server';
+import { Locale } from '@repo/i18n/index';
 
-export default function LoginModal() {
+type LoginModalProps = Readonly<{
+  params: Promise<{ locale: string }>;
+}>;
+
+export default async function LoginModal({ params }: LoginModalProps) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
   return (
     <Modal>
       <div className="p-6">
