@@ -1,42 +1,27 @@
 {
   "name": "@repo/database",
-  "private": true,
   "version": "0.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "prisma": {
-    "schema": "prisma/schema.prisma",
-    "seed": "tsx prisma/seed.ts"
-  },
+  "private": true,
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
     "build": "prisma generate && pnpm --filter @repo/types fix:generated && tsc",
-    "db:generate": "prisma generate && pnpm --filter @repo/types fix:generated",
-    "db:migrate:dev": "prisma migrate dev",
-    "db:studio": "prisma studio",
-    "db:seed": "tsx prisma/seed.ts"
+    "dev": "prisma studio",
+    "lint": "eslint . --max-warnings 0",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
+    "db:reset": "prisma migrate reset"
   },
   "dependencies": {
-    "@libsql/client": "^0.15.15",
-    "@prisma/adapter-libsql": "^7.1.0",
-    "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.2.0",
-    "dotenv": "^17.2.3",
-    "pg": "^8.16.3"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^25.0.2",
-    "@types/pg": "^8.16.0",
+    "@types/node": "^22.12.0",
     "prisma": "^7.2.0",
-    "tsx": "^4.19.2",
-    "zod-prisma-types": "^3.3.10"
+    "prisma-zod-generator": "^0.8.13",
+    "typescript": "^5.9.3"
   }
 }
