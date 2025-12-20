@@ -10,7 +10,6 @@ generator zod {
     createPartialTypes               = false
     useDefaultValidators             = false
     coerceDate                       = false
-    prismaClientPath                 = "@prisma/client/runtime/library"
 }
 
 generator client {
