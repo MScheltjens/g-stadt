@@ -92,7 +92,6 @@ export const RegisterForm = () => {
                     autoComplete="email"
                     {...field}
                   />
-                  P
                 </FormControl>
                 <FormMessage />
               </FormItem>
