@@ -35,16 +35,20 @@ export class EventsService {
     }
   }
 
-  async create(eventData: Event): Promise<Event> {
-    try {
-      const newEvent = await db.event.create({
-        data: eventData,
-      });
-      return newEvent;
-    } catch (error) {
-      console.error('Error creating event:', error);
-      throw error;
-    }
+  async create(createEventDto: CreateEventDto) {
+    const eventData = {
+      title: createEventDto.title, // Make sure title is provided
+      description: createEventDto.description,
+      date: createEventDto.date,
+      location: createEventDto.location,
+      category: createEventDto.category,
+      imageUrl: createEventDto.imageUrl,
+      // Don't include optional fields like id, createdAt, updatedAt - Prisma handles these
+    };
+
+    return db.event.create({
+      data: eventData,
+    });
   }
 
   async findByCategory(category: string): Promise<Event[]> {
