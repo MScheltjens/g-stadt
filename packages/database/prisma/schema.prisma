@@ -1,12 +1,16 @@
 generator zod {
     provider                         = "zod-prisma-types"
-    output                           = "../../../packages/types/src/generated"
+    output                           = "../../types/src/generated"
     useMultipleFiles                 = false
     createInputTypes                 = false
     addInputTypeValidation           = false
+    createModelTypes                 = true
+    createOptionalDefaultValuesTypes = true
     createRelationValuesTypes        = false
     createPartialTypes               = false
-    createOptionalDefaultValuesTypes = false
+    useDefaultValidators             = false
+    coerceDate                       = false
+    prismaClientPath                 = "@prisma/client/runtime/library"
 }
 
 generator client {
