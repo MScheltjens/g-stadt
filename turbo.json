@@ -20,16 +20,23 @@
         "dist/**"
       ]
     },
-    "lint": {
+    "@repo/types#build": {
       "dependsOn": [
-        "^lint"
+        "@repo/database#build"
+      ],
+      "outputs": [
+        "dist/**",
+        "src/generated/**"
       ]
     },
-    "test": {
-      "dependsOn": [
-        "^test"
+    "@repo/database#build": {
+      "outputs": [
+        "dist/**",
+        "../types/src/generated/**"
       ]
     },
+    "lint": {},
+    "test": {},
     "dev": {
       "cache": false,
       "persistent": true
