@@ -21,6 +21,7 @@
       ]
     },
     "@repo/types#build": {
+      "cache": false,
       "dependsOn": [
         "@repo/database#build"
       ],
@@ -30,6 +31,7 @@
       ]
     },
     "@repo/database#build": {
+      "cache": false,
       "outputs": [
         "dist/**",
         "../types/src/generated/**"
