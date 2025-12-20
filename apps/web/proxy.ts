@@ -41,7 +41,9 @@ export function proxy(req: NextRequest) {
 
   // Extract locale and pathname without locale prefix
   const segments = pathname.split('/').filter(Boolean);
-  const locale = routing.locales.includes(segments[0] as any)
+  const locale = routing.locales.includes(
+    segments[0] as (typeof routing.locales)[number],
+  )
     ? segments[0]
     : routing.defaultLocale;
   const pathnameWithoutLocale = '/' + segments.slice(1).join('/') || '/';

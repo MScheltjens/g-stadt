@@ -2,7 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   ConflictException,
-  BadRequestException,
+  // BadRequestException, // Remove if not used
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthResponse, LoginDto, RegisterDto } from '@repo/types';
@@ -30,7 +30,7 @@ export class AuthenticationService {
       return null;
     }
 
-    const { passwordHash, ...result } = user;
+    const { passwordHash: _passwordHash, ...result } = user;
     return result;
   }
 
@@ -142,7 +142,8 @@ export class AuthenticationService {
         },
       };
     } catch (error) {
-      throw new UnauthorizedException('Invalid or expired refresh token');
+      console.error('Token validation error:', error); // Use the error variable
+      throw new UnauthorizedException('Invalid token');
     }
   }
 

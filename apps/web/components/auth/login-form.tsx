@@ -7,7 +7,6 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from '@repo/i18n';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,7 +26,6 @@ import {
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
 
 export const LoginForm = () => {
-  const router = useRouter();
   const t = useTranslations('auth');
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();

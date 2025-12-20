@@ -2,10 +2,9 @@ import {
   Controller,
   Post,
   Body,
-  Get,
-  UseGuards,
   HttpCode,
   HttpStatus,
+  Get,
 } from '@nestjs/common';
 import { AuthenticationService } from './authentication.service';
 import {
@@ -15,7 +14,6 @@ import {
 } from '@repo/types';
 import { Public } from './decorators/public.decorator';
 import { CurrentUser } from './decorators/current-user.decorator';
-import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller('auth')
 export class AuthenticationController {
