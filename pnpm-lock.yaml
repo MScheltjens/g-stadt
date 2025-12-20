@@ -302,6 +302,10 @@ importers:
       typescript:
         specifier: ^5.8.2
         version: 5.9.3
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   configs/typescript-config: {}
 

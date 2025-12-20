@@ -36,6 +36,9 @@
     "next": "16.0.10",
     "typescript": "^5.8.2"
   },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*"
+  },
   "scripts": {
     "build": "tsc"
   }
