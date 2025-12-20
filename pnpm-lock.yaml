@@ -23,6 +23,9 @@ importers:
       zod:
         specifier: ^3.25.76
         version: 3.25.76
+      zod-prisma-types:
+        specifier: ^3.1.8
+        version: 3.3.10(@prisma/client@7.2.0)(prisma@7.2.0)(zod@3.25.76)
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -2409,7 +2412,6 @@ packages:
 
   /@prisma/dmmf@7.2.0:
     resolution: {integrity: sha512-w+hAFGH34+Ed+y7AhK3FL6ExwPu5Ym2uyadqlTEn8yyXereHRD8qO9tQfgTIJuUqF0G2JZXBVrNuqvRVVvSZdg==}
-    dev: true
 
   /@prisma/driver-adapter-utils@7.1.0:
     resolution: {integrity: sha512-AlVLzeXkw81+47MvQ9M8DvTiHkRfJ8xzklTbYjpskb0cTTDVHboTI/OVwT6Wcep/bNvfLKJYO0nylBiM5rxgww==}
@@ -2448,11 +2450,9 @@ packages:
       '@prisma/debug': 7.2.0
       '@prisma/dmmf': 7.2.0
       '@prisma/generator': 7.2.0
-    dev: true
 
   /@prisma/generator@7.2.0:
     resolution: {integrity: sha512-EucIFLF/aGmXB2qrjPhjGnL2E0urFuYg1o1+DzFLecoJzZtpRD+nJQt9ZbxKSU6a7PjX3KROOzAEPb3ItaAATA==}
-    dev: true
 
   /@prisma/get-platform@6.8.2:
     resolution: {integrity: sha512-vXSxyUgX3vm1Q70QwzwkjeYfRryIvKno1SXbIqwSptKwqKzskINnDUcx85oX+ys6ooN2ATGSD0xN2UTfg6Zcow==}
@@ -4597,7 +4597,6 @@ packages:
 
   /code-block-writer@13.0.3:
     resolution: {integrity: sha512-Oofo0pq3IKnsFtuHqSF7TqBfr71aeyZDVJ0HpmqB7FBM2qEigL0iPONSCZSO9pE9dZTAxANe5XHG9Uy0YMv8cg==}
-    dev: true
 
   /collect-v8-coverage@1.0.3:
     resolution: {integrity: sha512-1L5aqIkwPfiodaMgQunkF1zRhNqifHBmtbbbxcr6yVxxBnliw4TDOW6NxpO8DJLgJ16OT+Y4ztZqP6p/FtXnAw==}
@@ -10325,7 +10324,6 @@ packages:
       lodash: 4.17.21
       prisma: 7.2.0(@types/react@18.3.27)(react-dom@19.2.3)(react@19.2.3)(typescript@5.9.3)
       zod: 3.25.76
-    dev: true
 
   /zod-validation-error@4.0.2(zod@3.25.76):
     resolution: {integrity: sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==}
