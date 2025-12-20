@@ -22,7 +22,7 @@
     "prettier": "^3.7.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "turbo": "^2.6.3"
+    "turbo": "^2.7.0"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
@@ -38,7 +38,8 @@
     "@prisma/client": "^7.2.0",
     "prisma": "^7.2.0",
     "zod": "^4.2.1",
-    "zod-prisma-types": "^3.1.8"
+    "zod-prisma-types": "^3.1.8",
+    "typescript": "^5.9.3"
   },
   "resolutions": {
     "@types/react": "^18.2.0",
