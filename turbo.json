@@ -1,17 +1,15 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
+  "$schema": "https://turbo.build/schema.json",
   "globalDependencies": [
     "**/.env.*local"
   ],
   "globalEnv": [
+    "NODE_ENV",
+    "DATABASE_URL",
     "JWT_SECRET",
     "JWT_REFRESH_SECRET"
   ],
   "tasks": {
-    "dev": {
-      "cache": false,
-      "persistent": true
-    },
     "build": {
       "dependsOn": [
         "^build"
@@ -23,23 +21,16 @@
       ]
     },
     "lint": {
-      "env": [
-        "NODE_ENV",
-        "DATABASE_URL"
+      "dependsOn": [
+        "^lint"
       ]
     },
-    "test": {},
-    "test:e2e": {},
-    "db:generate": {
-      "cache": false
+    "test": {
+      "dependsOn": [
+        "^test"
+      ]
     },
-    "db:migrate:dev": {
-      "cache": false
-    },
-    "db:seed": {
-      "cache": false
-    },
-    "db:studio": {
+    "dev": {
       "cache": false,
       "persistent": true
     }
