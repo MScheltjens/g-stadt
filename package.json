@@ -15,15 +15,15 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "^3.7.4",
-    "turbo": "^2.6.3",
-    "typescript": "^5.8.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "turbo": "^2.6.3",
+    "typescript": "^5.8.2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
@@ -36,6 +36,7 @@
     "node": ">=18"
   },
   "dependencies": {
+    "prisma": "^7.2.0",
     "zod": "^3.25.76"
   },
   "resolutions": {
