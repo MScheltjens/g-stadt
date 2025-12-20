@@ -16,7 +16,8 @@
     "db:migrate:dev": "turbo run db:migrate:dev",
     "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "turbo run build --filter=@repo/database"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
