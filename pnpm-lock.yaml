@@ -364,21 +364,18 @@ importers:
   packages/types:
     dependencies:
       '@prisma/client':
-        specifier: ^7.1.0
-        version: 7.1.0(typescript@5.9.3)
+        specifier: ^7.2.0
+        version: 7.2.0(prisma@7.2.0)(typescript@5.9.3)
       zod:
-        specifier: ^3.25.76
+        specifier: ^3.23.8
         version: 3.25.76
     devDependencies:
-      '@repo/database':
-        specifier: workspace:*
-        version: link:../database
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../configs/eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/ui:
     dependencies:
@@ -2798,28 +2795,8 @@ packages:
       - pg-native
     dev: false
 
-  /@prisma/client-runtime-utils@7.1.0:
-    resolution: {integrity: sha512-39xmeBrNTN40FzF34aJMjfX1PowVCqoT3UKUWBBSP3aXV05NRqGBC3x2wCDs96ti6ZgdiVzqnRDHtbzU8X+lPQ==}
-    dev: false
-
   /@prisma/client-runtime-utils@7.2.0:
     resolution: {integrity: sha512-dn7oB53v0tqkB0wBdMuTNFNPdEbfICEUe82Tn9FoKAhJCUkDH+fmyEp0ClciGh+9Hp2Tuu2K52kth2MTLstvmA==}
-
-  /@prisma/client@7.1.0(typescript@5.9.3):
-    resolution: {integrity: sha512-qf7GPYHmS/xybNiSOpzv9wBo+UwqfL2PeyX+08v+KVHDI0AlSCQIh5bBySkH3alu06NX9wy98JEnckhMHoMFfA==}
-    engines: {node: ^20.19 || ^22.12 || >=24.0}
-    peerDependencies:
-      prisma: '*'
-      typescript: '>=5.4.0'
-    peerDependenciesMeta:
-      prisma:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@prisma/client-runtime-utils': 7.1.0
-      typescript: 5.9.3
-    dev: false
 
   /@prisma/client@7.2.0(prisma@7.2.0)(typescript@5.9.3):
     resolution: {integrity: sha512-JdLF8lWZ+LjKGKpBqyAlenxd/kXjd1Abf/xK+6vUA7R7L2Suo6AFTHFRpPSdAKCan9wzdFApsUpSa/F6+t1AtA==}
