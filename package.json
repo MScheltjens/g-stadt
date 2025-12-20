@@ -22,8 +22,7 @@
     "prettier": "^3.7.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "turbo": "^2.6.3",
-    "typescript": "^5.9.3"
+    "turbo": "^2.6.3"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
@@ -37,7 +36,8 @@
   },
   "dependencies": {
     "prisma": "^7.2.0",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "typescript": "^5.9.3"
   },
   "resolutions": {
     "@types/react": "^18.2.0",
