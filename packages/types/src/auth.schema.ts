@@ -18,6 +18,21 @@ export const RegisterSchema = z.object({
   role: RoleEnum.optional().default('CITIZEN'),
 });
 
+// Register Schema with confirmation (for forms)
+export const RegisterWithConfirmSchema = z
+  .object({
+    email: z.string().email('Invalid email address'),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(100, 'Password is too long'),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
+
 // // Refresh Token Schema
 // export const RefreshTokenSchema = z.object({
 //     refreshToken: z.string().min(1, 'Refresh token is required'),
@@ -44,6 +59,7 @@ export const ResetPasswordSchema = z.object({
 export type LoginDto = z.infer<typeof LoginSchema>;
 export type RefreshTokenDto = z.infer<typeof RefreshTokenSchema>;
 export type RegisterDto = z.infer<typeof RegisterSchema>;
+export type RegisterWithConfirmDto = z.infer<typeof RegisterWithConfirmSchema>;
 export type ChangePasswordDto = z.infer<typeof ChangePasswordSchema>;
 export type ForgotPasswordDto = z.infer<typeof ForgotPasswordSchema>;
 export type ResetPasswordDto = z.infer<typeof ResetPasswordSchema>;

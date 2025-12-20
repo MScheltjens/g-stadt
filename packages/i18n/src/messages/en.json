@@ -2,5 +2,82 @@
   "metadata": {
     "title": "G-Stadtt",
     "description": "A city built for the G's."
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in to your account",
+      "subtitle": "Or",
+      "registerLink": "create a new account",
+      "email": "Email address",
+      "emailPlaceholder": "Email address",
+      "password": "Password",
+      "passwordPlaceholder": "Password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in..."
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Or",
+      "loginLink": "sign in to existing account",
+      "email": "Email address",
+      "emailPlaceholder": "Email address",
+      "password": "Password",
+      "passwordPlaceholder": "Password (min. 8 characters)",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Confirm password",
+      "createAccount": "Create account",
+      "creatingAccount": "Creating account...",
+      "passwordMismatch": "Passwords do not match"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome to your Dashboard",
+    "loading": "Loading...",
+    "logout": "Logout",
+    "loggingOut": "Logging out...",
+    "userInfo": "User Information",
+    "userId": "User ID",
+    "email": "Email",
+    "role": "Role",
+    "info": "You are successfully authenticated. This is a protected page."
+  },
+  "home": {
+    "hero": {
+      "badge": "Official City Site",
+      "title": "Welcome to",
+      "cityName": "G-Stadt",
+      "description": "Live. Work. Shape the future – all information and services from your city in one place.",
+      "signIn": "Sign In",
+      "register": "Register"
+    },
+    "services": {
+      "title": "Our Services",
+      "viewAll": "All Services",
+      "citizenServices": "Citizen Services",
+      "events": "Events",
+      "transportation": "Public Transport & Mobility",
+      "waste": "Waste & Recycling",
+      "administration": "City Administration",
+      "news": "News",
+      "description": "All information and services about"
+    },
+    "news": {
+      "title": "Current News",
+      "viewAll": "View All",
+      "festivalTitle": "City Festival This Weekend",
+      "festivalDescription": "Information about road closures and program overview."
+    },
+    "events": {
+      "title": "Upcoming Events",
+      "viewAll": "All Events",
+      "tourTitle": "G-Stadt City Tour",
+      "date": "October 12",
+      "location": "Downtown"
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Create your account today and discover all the features we have to offer.",
+      "button": "Get Started"
+    }
   }
 }

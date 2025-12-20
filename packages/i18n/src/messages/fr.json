@@ -2,5 +2,82 @@
   "metadata": {
     "title": "G-Stadtt",
     "description": "Une ville construite pour les G's."
+  },
+  "auth": {
+    "login": {
+      "title": "Connectez-vous à votre compte",
+      "subtitle": "Ou",
+      "registerLink": "créer un nouveau compte",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "Adresse e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Mot de passe",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion en cours..."
+    },
+    "register": {
+      "title": "Créer votre compte",
+      "subtitle": "Ou",
+      "loginLink": "se connecter à un compte existant",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "Adresse e-mail",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Mot de passe (min. 8 caractères)",
+      "confirmPassword": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmer le mot de passe",
+      "createAccount": "Créer un compte",
+      "creatingAccount": "Création du compte...",
+      "passwordMismatch": "Les mots de passe ne correspondent pas"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bienvenue sur votre tableau de bord",
+    "loading": "Chargement...",
+    "logout": "Se déconnecter",
+    "loggingOut": "Déconnexion...",
+    "userInfo": "Informations utilisateur",
+    "userId": "ID utilisateur",
+    "email": "E-mail",
+    "role": "Rôle",
+    "info": "Vous êtes authentifié avec succès. Ceci est une page protégée."
+  },
+  "home": {
+    "hero": {
+      "badge": "Site officiel de la ville",
+      "title": "Bienvenue à",
+      "cityName": "G-Stadt",
+      "description": "Vivre. Travailler. Façonner l'avenir – toutes les informations et services de votre ville en un seul endroit.",
+      "signIn": "Se connecter",
+      "register": "S'inscrire"
+    },
+    "services": {
+      "title": "Nos Services",
+      "viewAll": "Tous les services",
+      "citizenServices": "Services aux citoyens",
+      "events": "Événements",
+      "transportation": "Transports publics & Mobilité",
+      "waste": "Déchets & Recyclage",
+      "administration": "Administration municipale",
+      "news": "Actualités",
+      "description": "Toutes les informations et services sur"
+    },
+    "news": {
+      "title": "Actualités récentes",
+      "viewAll": "Tout afficher",
+      "festivalTitle": "Fête de la ville ce week-end",
+      "festivalDescription": "Informations sur les fermetures de routes et aperçu du programme."
+    },
+    "events": {
+      "title": "Événements à venir",
+      "viewAll": "Tous les événements",
+      "tourTitle": "Visite de la ville de G-Stadt",
+      "date": "12 octobre",
+      "location": "Centre-ville"
+    },
+    "cta": {
+      "title": "Prêt à commencer ?",
+      "description": "Créez votre compte dès aujourd'hui et découvrez toutes les fonctionnalités que nous avons à offrir.",
+      "button": "Commencer"
+    }
   }
 }

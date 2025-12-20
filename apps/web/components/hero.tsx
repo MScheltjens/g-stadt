@@ -1,26 +1,33 @@
 import { Badge } from '@repo/ui/components/badge';
 import { Button } from '@repo/ui/components/button';
+import { Link } from '@repo/i18n/navigation';
+import { getTranslations } from '@repo/i18n/server';
 
-export const Hero = () => (
-  <section className="relative bg-secondary py-28">
-    <div className="max-w-6xl mx-auto px-6">
-      <Badge className="mb-4">Offizielle Stadtseite</Badge>
+export const Hero = async () => {
+  const t = await getTranslations('home.hero');
 
-      <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
-        Willkommen in <span className="text-primary">G-Stadt</span>
-      </h1>
+  return (
+    <section className="relative bg-secondary py-28">
+      <div className="max-w-6xl mx-auto px-6">
+        <Badge className="mb-4">{t('badge')}</Badge>
 
-      <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-        Leben. Arbeiten. Zukunft gestalten – alle Informationen und
-        Dienstleistungen Ihrer Stadt an einem Ort.
-      </p>
+        <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
+          {t('title')} <span className="text-primary">{t('cityName')}</span>
+        </h1>
 
-      <div className="mt-10 flex flex-wrap gap-4">
-        <Button size="lg">Bürgerdienste</Button>
-        <Button size="lg" variant="outline">
-          Aktuelle Meldungen
-        </Button>
+        <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+          {t('description')}
+        </p>
+
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Button size="lg" asChild>
+            <Link href="/login">{t('signIn')}</Link>
+          </Button>
+          <Button size="lg" variant="outline" asChild>
+            <Link href="/register">{t('register')}</Link>
+          </Button>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};

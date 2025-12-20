@@ -5,6 +5,7 @@ import { Providers } from '@/components/providers';
 import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
+import { getUser } from '@/lib/auth';
 
 import '@repo/ui/globals.css';
 
@@ -32,9 +33,11 @@ export const generateStaticParams = () => {
 export default async function LocaleLayout({
   children,
   params,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
+  auth?: React.ReactNode;
 }>) {
   const lang = (await params).locale as Locale;
 
@@ -44,10 +47,16 @@ export default async function LocaleLayout({
   // Enable static rendering for this page
   setRequestLocale(lang);
 
+  // Get current user for auth context
+  const user = await getUser();
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <body>
-        <Providers locale={lang}>{children}</Providers>
+        <Providers locale={lang} initialUser={user}>
+          {children}
+          {auth}
+        </Providers>
       </body>
     </html>
   );

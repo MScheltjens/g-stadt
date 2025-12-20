@@ -49,12 +49,13 @@ export function proxy(req: NextRequest) {
   // Redirect authenticated users away from auth pages to dashboard
   if (accessToken && matchesLocalizedRoute(pathnameWithoutLocale, authRoutes)) {
     const dashboardPath = routing.pathnames['/dashboard'];
-    const localizedDashboard =
+    const localizedDashboardPath =
       typeof dashboardPath === 'string'
         ? dashboardPath
         : dashboardPath[locale as keyof typeof dashboardPath];
+
     return NextResponse.redirect(
-      new URL(`/${locale}${localizedDashboard}`, req.url),
+      new URL(`/${locale}${localizedDashboardPath}`, req.url),
     );
   }
 

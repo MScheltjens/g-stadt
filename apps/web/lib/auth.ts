@@ -10,13 +10,7 @@
 
 import { cookies } from 'next/headers';
 import { jwtDecode } from 'jwt-decode';
-import type { JwtPayload } from '@repo/types';
-
-/**
- * Base API URL for backend authentication endpoints
- * Falls back to localhost:3001 if NEXT_PUBLIC_API_URL is not set
- */
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+import type { JwtPayload, RoleType } from '@repo/types';
 
 /**
  * Sets authentication tokens in HTTP-only cookies
@@ -139,4 +133,25 @@ export async function getUser(): Promise<JwtPayload | null> {
   } catch {
     return null;
   }
+}
+
+/**
+ * Retrieves the role of the currently authenticated user
+ *
+ * This function extracts the user's role from the JWT access token.
+ * Returns null if the user is not authenticated or the token is invalid.
+ *
+ * @returns The user's role ('ADMIN', 'STAFF', or 'CITIZEN') or null if not authenticated
+ *
+ * @example
+ * ```typescript
+ * const role = await checkUserRole();
+ * if (role === 'ADMIN') {
+ *   // Show admin content
+ * }
+ * ```
+ */
+export async function checkUserRole(): Promise<RoleType | null> {
+  const user = await getUser();
+  return user ? (user.role as RoleType) : null;
 }

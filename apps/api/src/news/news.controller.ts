@@ -1,7 +1,9 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { NewsService } from './news.service';
 import type { News } from '@repo/types';
+import { Public } from '../authentication/decorators/public.decorator';
 
+@Public()
 @Controller('news')
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}

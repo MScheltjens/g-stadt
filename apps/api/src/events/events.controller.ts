@@ -1,7 +1,9 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
 import type { Event } from '@repo/types';
+import { Public } from '../authentication/decorators/public.decorator';
 
+@Public()
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}

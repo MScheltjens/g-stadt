@@ -13,19 +13,22 @@ import {
   Newspaper,
 } from '@repo/ui/components/icons';
 import { PageSectionWrapper } from './page-section-wrapper';
+import { getTranslations } from '@repo/i18n/server';
 
-export const Services = () => {
+export const Services = async () => {
+  const t = await getTranslations('home.services');
+
   const services = [
-    { title: 'Bürgerdienste', icon: Landmark },
-    { title: 'Veranstaltungen', icon: Calendar },
-    { title: 'ÖPNV & Mobilität', icon: Bus },
-    { title: 'Abfall & Recycling', icon: Trash2 },
-    { title: 'Stadtverwaltung', icon: Building2 },
-    { title: 'Neuigkeiten', icon: Newspaper },
+    { title: t('citizenServices'), icon: Landmark },
+    { title: t('events'), icon: Calendar },
+    { title: t('transportation'), icon: Bus },
+    { title: t('waste'), icon: Trash2 },
+    { title: t('administration'), icon: Building2 },
+    { title: t('news'), icon: Newspaper },
   ];
 
   return (
-    <PageSectionWrapper title="Unsere Services" actionBtnText="Alle Services">
+    <PageSectionWrapper title={t('title')} actionBtnText={t('viewAll')}>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 mx-auto">
         {services.map(({ title, icon: Icon }) => (
           <Card
@@ -37,7 +40,7 @@ export const Services = () => {
               <CardTitle className="text-base">{title}</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Alle Informationen und Services rund um {title}.
+              {t('description')} {title}.
             </CardContent>
           </Card>
         ))}

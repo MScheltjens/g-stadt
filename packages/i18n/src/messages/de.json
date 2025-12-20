@@ -2,5 +2,82 @@
   "metadata": {
     "title": "G-Stadtt",
     "description": "Eine Stadt für die G's."
+  },
+  "auth": {
+    "login": {
+      "title": "Bei Ihrem Konto anmelden",
+      "subtitle": "Oder",
+      "registerLink": "neues Konto erstellen",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "E-Mail-Adresse",
+      "password": "Passwort",
+      "passwordPlaceholder": "Passwort",
+      "signIn": "Anmelden",
+      "signingIn": "Anmeldung läuft..."
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Oder",
+      "loginLink": "bei bestehendem Konto anmelden",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "E-Mail-Adresse",
+      "password": "Passwort",
+      "passwordPlaceholder": "Passwort (mind. 8 Zeichen)",
+      "confirmPassword": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Passwort bestätigen",
+      "createAccount": "Konto erstellen",
+      "creatingAccount": "Konto wird erstellt...",
+      "passwordMismatch": "Passwörter stimmen nicht überein"
+    }
+  },
+  "dashboard": {
+    "welcome": "Willkommen zu Ihrem Dashboard",
+    "loading": "Lädt...",
+    "logout": "Abmelden",
+    "loggingOut": "Abmeldung läuft...",
+    "userInfo": "Benutzerinformationen",
+    "userId": "Benutzer-ID",
+    "email": "E-Mail",
+    "role": "Rolle",
+    "info": "Sie sind erfolgreich authentifiziert. Dies ist eine geschützte Seite."
+  },
+  "home": {
+    "hero": {
+      "badge": "Offizielle Stadtseite",
+      "title": "Willkommen in",
+      "cityName": "G-Stadt",
+      "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Dienstleistungen Ihrer Stadt an einem Ort.",
+      "signIn": "Anmelden",
+      "register": "Registrieren"
+    },
+    "services": {
+      "title": "Unsere Services",
+      "viewAll": "Alle Services",
+      "citizenServices": "Bürgerdienste",
+      "events": "Veranstaltungen",
+      "transportation": "ÖPNV & Mobilität",
+      "waste": "Abfall & Recycling",
+      "administration": "Stadtverwaltung",
+      "news": "Neuigkeiten",
+      "description": "Alle Informationen und Services rund um"
+    },
+    "news": {
+      "title": "Aktuelle Meldungen",
+      "viewAll": "Alle anzeigen",
+      "festivalTitle": "Stadtfest am Wochenende",
+      "festivalDescription": "Informationen zu Straßensperrungen und Programmübersicht."
+    },
+    "events": {
+      "title": "Kommende Veranstaltungen",
+      "viewAll": "Alle Veranstaltungen",
+      "tourTitle": "Stadtführung G-Stadt",
+      "date": "12. Oktober",
+      "location": "Innenstadt"
+    },
+    "cta": {
+      "title": "Bereit loszulegen?",
+      "description": "Erstellen Sie noch heute Ihr Konto und entdecken Sie alle Funktionen, die wir zu bieten haben.",
+      "button": "Jetzt starten"
+    }
   }
 }
