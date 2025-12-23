@@ -54,8 +54,7 @@ export const RegisterForm = () => {
       if ('error' in result) {
         setError(result.error);
       } else {
-        router.push('/dashboard');
-        router.refresh();
+        window.location.href = '/dashboard';
       }
     });
   }

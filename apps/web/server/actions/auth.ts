@@ -53,20 +53,8 @@ type RegisterResult = ActionSuccess | ActionError;
  * @param data - Login credentials (email and password)
  * @returns Success response with user data or error message
  *
- * @example
- * ```typescript
- * const result = await login({
- *   email: 'user@example.com',
- *   password: 'password123'
- * });
- *
- * if ('error' in result) {
- *   console.error(result.error);
- * } else {
- *   console.log('Logged in as:', result.user?.email);
- * }
- * ```
  */
+
 export async function login(data: LoginDto): Promise<LoginResult> {
   try {
     const res = await fetch(`${API_URL}/auth/login`, {
@@ -100,20 +88,6 @@ export async function login(data: LoginDto): Promise<LoginResult> {
  * @param data - Registration data (email, password, and optional role)
  * @returns Success response with user data or error message
  *
- * @example
- * ```typescript
- * const result = await register({
- *   email: 'newuser@example.com',
- *   password: 'securepass123',
- *   role: 'CITIZEN'
- * });
- *
- * if ('error' in result) {
- *   console.error(result.error);
- * } else {
- *   console.log('Account created:', result.user?.email);
- * }
- * ```
  */
 export async function register(data: RegisterDto): Promise<RegisterResult> {
   try {
@@ -146,13 +120,6 @@ export async function register(data: RegisterDto): Promise<RegisterResult> {
  *
  * @param redirectTo - Optional redirect path after logout (defaults to /login)
  *
- * @example
- * ```typescript
- * // In a form or button click handler
- * <form action={logout}>
- *   <button type="submit">Logout</button>
- * </form>
- * ```
  */
 export async function logout(redirectTo: string = '/login') {
   try {
@@ -179,14 +146,6 @@ export async function logout(redirectTo: string = '/login') {
  *
  * @returns Success boolean and new tokens or error message
  *
- * @example
- * ```typescript
- * const result = await refreshToken();
- * if ('error' in result) {
- *   // Redirect to login
- *   redirect('/login');
- * }
- * ```
  */
 export async function refreshToken(): Promise<ActionSuccess | ActionError> {
   try {

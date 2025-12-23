@@ -20,6 +20,24 @@
         "dist/**"
       ]
     },
+    "db:seed": {
+      "dependsOn": [
+        "^db:seed"
+      ],
+      "outputs": []
+    },
+    "db:migrate": {
+      "dependsOn": [
+        "^db:migrate"
+      ],
+      "outputs": []
+    },
+    "db:generate": {
+      "dependsOn": [
+        "^db:generate"
+      ],
+      "outputs": []
+    },
     "@repo/types#build": {
       "dependsOn": [
         "@repo/database#build"

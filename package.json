@@ -7,6 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "turbo run build",
+    "db:seed": "turbo run db:seed",
+    "db:migrate": "turbo run db:migrate",
+    "db:generate": "turbo run db:generate",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
@@ -15,15 +18,16 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "^3.7.4",
-    "turbo": "^2.6.3",
-    "typescript": "^5.8.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "tsx": "^4.21.0",
+    "turbo": "^2.6.3",
+    "typescript": "^5.8.2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
