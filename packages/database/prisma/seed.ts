@@ -61,6 +61,7 @@ async function main() {
         date: new Date('2025-10-12T14:00:00'),
         location: 'Innenstadt, Treffpunkt Marktplatz',
         category: 'Kultur',
+        slug: 'stadtfuehrung-durch-g-stadt',
       },
     }),
     prisma.event.create({
@@ -71,6 +72,7 @@ async function main() {
         date: new Date('2025-10-15T08:00:00'),
         location: 'Marktplatz',
         category: 'Markt',
+        slug: 'wochenmarkt',
       },
     }),
     prisma.event.create({
@@ -81,6 +83,7 @@ async function main() {
         date: new Date('2025-11-05T12:00:00'),
         location: 'Innenstadt',
         category: 'Fest',
+        slug: 'stadtfest-2025',
       },
     }),
     prisma.event.create({
@@ -91,6 +94,7 @@ async function main() {
         date: new Date('2025-10-20T18:00:00'),
         location: 'Rathaus, großer Sitzungssaal',
         category: 'Politik',
+        slug: 'buergerversammlung',
       },
     }),
     prisma.event.create({
@@ -101,6 +105,7 @@ async function main() {
         date: new Date('2025-10-25T16:00:00'),
         location: 'Stadtpark, Musikpavillon',
         category: 'Kultur',
+        slug: 'herbstkonzert-im-park',
       },
     }),
     prisma.event.create({
@@ -111,6 +116,7 @@ async function main() {
         date: new Date('2025-11-28T17:00:00'),
         location: 'Marktplatz',
         category: 'Fest',
+        slug: 'weihnachtsmarkt-eroeffnung',
       },
     }),
   ]);
@@ -139,6 +145,7 @@ async function main() {
         category: 'Veranstaltungen',
         published: true,
         publishedAt: new Date(),
+        slug: 'stadtfest-am-wochenende-strassensperrungen-beachten',
       },
     }),
     prisma.news.create({
@@ -160,6 +167,7 @@ async function main() {
         category: 'Verwaltung',
         published: true,
         publishedAt: new Date(),
+        slug: 'neues-buergerbuero-eroeffnet',
       },
     }),
     prisma.news.create({
@@ -186,6 +194,7 @@ async function main() {
         category: 'Verkehr',
         published: true,
         publishedAt: new Date(),
+        slug: 'bauarbeiten-am-hauptbahnhof',
       },
     }),
     prisma.news.create({
@@ -210,6 +219,7 @@ async function main() {
         category: 'Bildung',
         published: true,
         publishedAt: new Date(),
+        slug: 'stadtbibliothek-mit-neuen-oeffnungszeiten',
       },
     }),
     prisma.news.create({
@@ -234,6 +244,7 @@ async function main() {
         category: 'Verkehr',
         published: true,
         publishedAt: new Date(),
+        slug: 'neuer-radweg-entlang-der-stadtgrenze',
       },
     }),
   ]);
@@ -250,6 +261,7 @@ async function main() {
         category: 'Bürgerdienste',
         icon: 'Landmark',
         link: '/services/personalausweis',
+        slug: 'personalausweis-beantragen',
       },
     }),
     prisma.service.create({
@@ -260,6 +272,7 @@ async function main() {
         category: 'Bürgerdienste',
         icon: 'Landmark',
         link: '/services/fuehrerschein',
+        slug: 'fuehrerschein-umschreiben',
       },
     }),
     prisma.service.create({
@@ -270,6 +283,7 @@ async function main() {
         category: 'Bürgerdienste',
         icon: 'Landmark',
         link: '/services/wohnsitz',
+        slug: 'wohnsitz-anmelden',
       },
     }),
     prisma.service.create({
@@ -280,6 +294,7 @@ async function main() {
         category: 'Veranstaltungen',
         icon: 'Calendar',
         link: '/events',
+        slug: 'veranstaltungskalender',
       },
     }),
     prisma.service.create({
@@ -290,6 +305,7 @@ async function main() {
         category: 'ÖPNV & Mobilität',
         icon: 'Bus',
         link: '/services/oepnv',
+        slug: 'oepnv-fahrplaene',
       },
     }),
     prisma.service.create({
@@ -300,6 +316,7 @@ async function main() {
         category: 'ÖPNV & Mobilität',
         icon: 'Bus',
         link: '/services/fahrradverleih',
+        slug: 'fahrradverleih',
       },
     }),
     prisma.service.create({
@@ -310,6 +327,7 @@ async function main() {
         category: 'Abfall & Recycling',
         icon: 'Trash2',
         link: '/services/muellabfuhr',
+        slug: 'muellabfuhr-termine',
       },
     }),
     prisma.service.create({
@@ -320,6 +338,7 @@ async function main() {
         category: 'Abfall & Recycling',
         icon: 'Trash2',
         link: '/services/sperrmuell',
+        slug: 'sperrmuell-anmelden',
       },
     }),
     prisma.service.create({
@@ -330,6 +349,7 @@ async function main() {
         category: 'Stadtverwaltung',
         icon: 'Building2',
         link: '/contact',
+        slug: 'rathaus-kontakt',
       },
     }),
     prisma.service.create({
@@ -340,6 +360,7 @@ async function main() {
         category: 'Stadtverwaltung',
         icon: 'Building2',
         link: '/services/stadtrat',
+        slug: 'stadtrat-und-politik',
       },
     }),
     prisma.service.create({
@@ -350,6 +371,7 @@ async function main() {
         category: 'Neuigkeiten',
         icon: 'Newspaper',
         link: '/news',
+        slug: 'pressemitteilungen',
       },
     }),
     prisma.service.create({
@@ -360,6 +382,7 @@ async function main() {
         category: 'Neuigkeiten',
         icon: 'Newspaper',
         link: '/newsletter',
+        slug: 'newsletter-abonnieren',
       },
     }),
   ]);
