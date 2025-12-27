@@ -9,7 +9,7 @@ type ServicesPageProps = {
 };
 export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
-  const t = await getTranslations('home.services');
+  const t = await getTranslations('services');
   setRequestLocale(locale as Locale);
   const services = await getServices();
 

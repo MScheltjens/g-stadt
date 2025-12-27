@@ -49,35 +49,56 @@
       "description": "Vivre. Travailler. Façonner l'avenir – toutes les informations et services de votre ville en un seul endroit.",
       "signIn": "Se connecter",
       "register": "S'inscrire"
-    },
-    "services": {
-      "title": "Nos Services",
-      "viewAll": "Tous les services",
-      "citizenServices": "Services aux citoyens",
-      "events": "Événements",
-      "transportation": "Transports publics & Mobilité",
-      "waste": "Déchets & Recyclage",
-      "administration": "Administration municipale",
-      "news": "Actualités",
-      "description": "Toutes les informations et services sur"
-    },
-    "news": {
-      "title": "Actualités récentes",
-      "viewAll": "Tout afficher",
-      "festivalTitle": "Fête de la ville ce week-end",
-      "festivalDescription": "Informations sur les fermetures de routes et aperçu du programme."
-    },
-    "events": {
-      "title": "Événements à venir",
-      "viewAll": "Tous les événements",
-      "tourTitle": "Visite de la ville de G-Stadt",
-      "date": "12 octobre",
-      "location": "Centre-ville"
-    },
-    "cta": {
-      "title": "Prêt à commencer ?",
-      "description": "Créez votre compte dès aujourd'hui et découvrez toutes les fonctionnalités que nous avons à offrir.",
-      "button": "Commencer"
     }
+  },
+  "services": {
+    "title": "Nos Services",
+    "description": "Découvrez les différents services proposés par G-Stadt à ses habitants.",
+    "viewAll": "Voir tous les services"
+  },
+  "news": {
+    "title": "Dernières actualités",
+    "description": "Restez informé des dernières nouvelles et annonces de G-Stadt.",
+    "viewAll": "Voir toutes les actualités"
+  },
+  "events": {
+    "title": "Événements à venir",
+    "description": "Découvrez les événements à G-Stadt et participez aux activités communautaires.",
+    "viewAll": "Voir tous les événements"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Contactez l'administration de la ville.",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "hours": "Heures d'ouverture",
+    "form": {
+      "name": "Votre nom",
+      "email": "Votre e-mail",
+      "message": "Votre message",
+      "submit": "Envoyer le message"
+    },
+    "success": "Votre message a été envoyé !",
+    "error": "Une erreur s'est produite lors de l'envoi de votre message."
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacy": "Confidentialité",
+    "terms": "Conditions"
+  },
+  "notFound": {
+    "title": "Page non trouvée",
+    "description": "La page que vous recherchez n'existe pas.",
+    "back": "Retour à l'accueil"
+  },
+  "loading": {
+    "title": "Chargement…",
+    "description": "Veuillez patienter pendant le chargement de la page."
+  },
+  "error": {
+    "title": "Une erreur s'est produite",
+    "description": "Une erreur inattendue s'est produite.",
+    "retry": "Réessayer"
   }
 }

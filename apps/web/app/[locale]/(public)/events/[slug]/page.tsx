@@ -18,7 +18,7 @@ export default async function EventPage({ params }: EventPageProps) {
       <p>{new Date(event.date).toLocaleDateString(locale)}</p>
       <p>{event.location}</p>
       <p>{event.category}</p>
-      {event.imageUrl && <img src={event.imageUrl} alt={event.title} />}
+      {/* {event.imageUrl && <img src={event.imageUrl} alt={event.title} />} */}
     </main>
   );
 }

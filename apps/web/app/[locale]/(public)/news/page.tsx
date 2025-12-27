@@ -2,7 +2,7 @@ import { PageSectionWrapper } from '@/components/page-section-wrapper';
 import { getNews } from '@/lib/api';
 import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
-import { Card, CardDescription, CardHeader } from '@repo/ui/components/card';
+import { Card, CardHeader } from '@repo/ui/components/card';
 
 type NewsPageProps = {
   params: Promise<{ locale: string }>;
@@ -10,7 +10,7 @@ type NewsPageProps = {
 export default async function NewsPage({ params }: NewsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations('home.news');
+  const t = await getTranslations('news');
   const news = await getNews();
 
   return (

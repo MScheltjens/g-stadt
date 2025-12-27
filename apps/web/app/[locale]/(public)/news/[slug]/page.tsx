@@ -1,4 +1,4 @@
-import { getEventBySlug, getNewsBySlug } from '@/lib/api';
+import { getNewsBySlug } from '@/lib/api';
 import { Locale } from '@repo/i18n/index';
 import { setRequestLocale } from '@repo/i18n/server';
 
@@ -16,9 +16,9 @@ export default async function NewsItemPage({ params }: NewsItemPageProps) {
       <h1>{newsItem.title}</h1>
       {/* <p>{new Date(newsItem.).toLocaleDateString(locale)}</p> */}
       <p>{newsItem.category}</p>
-      {newsItem.imageUrl && (
-        <img src={newsItem.imageUrl} alt={newsItem.title} />
-      )}
+      {/* {newsItem.imageUrl && (
+                <img src={newsItem.imageUrl} alt={newsItem.title} />
+            )} */}
     </main>
   );
 }

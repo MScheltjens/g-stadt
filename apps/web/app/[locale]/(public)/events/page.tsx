@@ -11,7 +11,7 @@ type EventsPageProps = {
 export default async function EventsPage({ params }: EventsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const t = await getTranslations('home.events');
+  const t = await getTranslations('events');
 
   const events = await getEvents();
   return (

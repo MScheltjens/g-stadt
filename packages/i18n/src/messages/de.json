@@ -49,35 +49,56 @@
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Dienstleistungen Ihrer Stadt an einem Ort.",
       "signIn": "Anmelden",
       "register": "Registrieren"
-    },
-    "services": {
-      "title": "Unsere Services",
-      "viewAll": "Alle Services",
-      "citizenServices": "Bürgerdienste",
-      "events": "Veranstaltungen",
-      "transportation": "ÖPNV & Mobilität",
-      "waste": "Abfall & Recycling",
-      "administration": "Stadtverwaltung",
-      "news": "Neuigkeiten",
-      "description": "Alle Informationen und Services rund um"
-    },
-    "news": {
-      "title": "Aktuelle Meldungen",
-      "viewAll": "Alle anzeigen",
-      "festivalTitle": "Stadtfest am Wochenende",
-      "festivalDescription": "Informationen zu Straßensperrungen und Programmübersicht."
-    },
-    "events": {
-      "title": "Kommende Veranstaltungen",
-      "viewAll": "Alle Veranstaltungen",
-      "tourTitle": "Stadtführung G-Stadt",
-      "date": "12. Oktober",
-      "location": "Innenstadt"
-    },
-    "cta": {
-      "title": "Bereit loszulegen?",
-      "description": "Erstellen Sie noch heute Ihr Konto und entdecken Sie alle Funktionen, die wir zu bieten haben.",
-      "button": "Jetzt starten"
     }
+  },
+  "services": {
+    "title": "Unsere Services",
+    "description": "Entdecken Sie die verschiedenen Services, die G-Stadt seinen Bürgern bietet.",
+    "viewAll": "Alle Services anzeigen"
+  },
+  "news": {
+    "title": "Neueste Nachrichten",
+    "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Ankündigungen aus G-Stadt.",
+    "viewAll": "Alle Nachrichten anzeigen"
+  },
+  "events": {
+    "title": "Bevorstehende Veranstaltungen",
+    "description": "Entdecken Sie Veranstaltungen in G-Stadt und nehmen Sie an Gemeinschaftsaktivitäten teil.",
+    "viewAll": "Alle Veranstaltungen anzeigen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Nehmen Sie Kontakt mit der Stadtverwaltung auf.",
+    "address": "Adresse",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "hours": "Öffnungszeiten",
+    "form": {
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail",
+      "message": "Ihre Nachricht",
+      "submit": "Nachricht senden"
+    },
+    "success": "Ihre Nachricht wurde gesendet!",
+    "error": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten."
+  },
+  "footer": {
+    "contact": "Kontakt",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht.",
+    "back": "Zurück zur Startseite"
+  },
+  "loading": {
+    "title": "Lädt…",
+    "description": "Bitte warten Sie, während die Seite geladen wird."
+  },
+  "error": {
+    "title": "Etwas ist schiefgelaufen",
+    "description": "Ein unerwarteter Fehler ist aufgetreten.",
+    "retry": "Erneut versuchen"
   }
 }
