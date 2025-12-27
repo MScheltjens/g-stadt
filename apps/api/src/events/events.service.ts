@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { db } from '@repo/database';
 import type { Event } from '@repo/types';
 import { CreateEventDto } from '@repo/types';
+import { slugify } from 'lib/utils';
 
 @Injectable()
 export class EventsService {
@@ -35,6 +36,20 @@ export class EventsService {
       throw error;
     }
   }
+  async findOneBySlug(slug: string): Promise<Event> {
+    try {
+      const event = await db.event.findUnique({
+        where: { slug },
+      });
+      if (!event) {
+        throw new NotFoundException(`Event with slug ${slug} not found`);
+      }
+      return event;
+    } catch (error) {
+      console.error(`Error fetching event with slug ${slug}:`, error);
+      throw error;
+    }
+  }
 
   async create(createEventDto: CreateEventDto) {
     const eventData = {
@@ -44,6 +59,7 @@ export class EventsService {
       location: createEventDto.location,
       category: createEventDto.category,
       imageUrl: createEventDto.imageUrl,
+      slug: slugify(createEventDto.title),
       // Don't include optional fields like id, createdAt, updatedAt - Prisma handles these
     };
 

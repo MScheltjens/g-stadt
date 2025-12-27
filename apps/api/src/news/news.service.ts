@@ -23,6 +23,16 @@ export class NewsService {
     return news;
   }
 
+  async findOneBySlug(slug: string): Promise<News> {
+    const news = await db.news.findUnique({
+      where: { slug },
+    });
+    if (!news) {
+      throw new NotFoundException(`News with slug ${slug} not found`);
+    }
+    return news;
+  }
+
   async findByCategory(category: string, published = true): Promise<News[]> {
     return db.news.findMany({
       where: { category, published },

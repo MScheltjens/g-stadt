@@ -1,3 +1,10 @@
+export async function getNewsBySlug(slug: string): Promise<News> {
+  return fetchAPI<News>(`/news/slug/${slug}`);
+}
+
+export async function getServiceBySlug(slug: string): Promise<Service> {
+  return fetchAPI<Service>(`/services/slug/${slug}`);
+}
 /**
  * API Client for G-Stadt Backend
  *
@@ -42,6 +49,10 @@ export async function getEvents(): Promise<Event[]> {
 
 export async function getEvent(id: string): Promise<Event> {
   return fetchAPI<Event>(`/events/${id}`);
+}
+
+export async function getEventBySlug(slug: string): Promise<Event> {
+  return fetchAPI<Event>(`/events/slug/${slug}`);
 }
 
 // ============================================================================

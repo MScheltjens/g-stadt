@@ -26,4 +26,9 @@ export class NewsController {
   async findOne(@Param('id') id: string): Promise<News> {
     return this.newsService.findOne(id);
   }
+
+  @Get('/slug/:slug')
+  async findOneBySlug(@Param('slug') slug: string): Promise<News> {
+    return this.newsService.findOneBySlug(slug);
+  }
 }

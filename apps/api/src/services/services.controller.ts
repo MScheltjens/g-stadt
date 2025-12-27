@@ -20,4 +20,9 @@ export class ServicesController {
   async findOne(@Param('id') id: string): Promise<Service> {
     return this.servicesService.findOne(id);
   }
+
+  @Get('/slug/:slug')
+  async findOneBySlug(@Param('slug') slug: string): Promise<Service> {
+    return this.servicesService.findOneBySlug(slug);
+  }
 }

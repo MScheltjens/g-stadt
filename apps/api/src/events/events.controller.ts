@@ -20,4 +20,9 @@ export class EventsController {
   async findOne(@Param('id') id: string): Promise<Event> {
     return this.eventsService.findOne(id);
   }
+
+  @Get('/slug/:slug')
+  async findOneBySlug(@Param('slug') slug: string): Promise<Event> {
+    return this.eventsService.findOneBySlug(slug);
+  }
 }

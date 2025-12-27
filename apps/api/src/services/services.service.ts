@@ -22,6 +22,16 @@ export class ServicesService {
     return service;
   }
 
+  async findOneBySlug(slug: string): Promise<Service> {
+    const service = await db.service.findUnique({
+      where: { slug },
+    });
+    if (!service) {
+      throw new NotFoundException(`Service with slug ${slug} not found`);
+    }
+    return service;
+  }
+
   async findByCategory(category: string): Promise<Service[]> {
     return db.service.findMany({
       where: { category },
