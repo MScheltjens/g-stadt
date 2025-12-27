@@ -2,7 +2,6 @@ import { getServices } from '@/lib/api';
 import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
 import { Card, CardHeader } from '@repo/ui/components/card';
-import { get } from 'http';
 
 type ServicesPageProps = {
   params: Promise<{ locale: string }>;
