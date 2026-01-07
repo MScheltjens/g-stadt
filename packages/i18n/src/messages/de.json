@@ -100,5 +100,11 @@
     "title": "Etwas ist schiefgelaufen",
     "description": "Ein unerwarteter Fehler ist aufgetreten.",
     "retry": "Erneut versuchen"
+  },
+  "navbar": {
+    "home": "Startseite",
+    "news": "Nachrichten",
+    "events": "Veranstaltungen",
+    "contact": "Kontakt"
   }
 }

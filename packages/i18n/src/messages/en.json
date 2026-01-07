@@ -100,5 +100,11 @@
     "title": "Something went wrong",
     "description": "An unexpected error occurred.",
     "retry": "Try again"
+  },
+  "navbar": {
+    "home": "Home",
+    "news": "News",
+    "events": "Events",
+    "contact": "Contact"
   }
 }

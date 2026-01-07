@@ -6,6 +6,7 @@ import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
 import { getUser } from '@/lib/auth';
+import { Navbar } from '@/components/navbar';
 
 import '@repo/ui/globals.css';
 
@@ -15,10 +16,6 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
 
   const t = await getTranslations({
     locale: locale as Locale,
@@ -59,6 +56,7 @@ export default async function LocaleLayout({
     <html lang={lang} suppressHydrationWarning>
       <body>
         <Providers locale={lang} initialUser={user}>
+          <Navbar locale={lang} />
           {children}
           {auth}
         </Providers>
