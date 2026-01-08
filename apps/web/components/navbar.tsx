@@ -8,10 +8,6 @@ import { MobileSidebarNav } from './mobile-sidebar-nav';
 import { useState } from 'react';
 import { Menu } from '@repo/ui/components/icons';
 import { cn } from '@repo/ui/lib/utils';
-import {
-  useSelectedLayoutSegment,
-  useSelectedLayoutSegments,
-} from 'next/navigation';
 import { NavigationLink } from './navigation-link';
 
 export const Navbar = ({ locale }: { locale: Locale }) => {

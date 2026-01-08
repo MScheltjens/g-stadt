@@ -17,7 +17,7 @@ export const NavigationLink = ({
     <Link
       aria-current={isActive ? 'page' : undefined}
       className={cn(
-        'inline-block bg-blue-500 px-2 py-3 transition-colors',
+        'inline-block px-2 py-3 transition-colors',
         isActive ? 'text-foreground' : 'text-gray-400 hover:text-gray-200',
       )}
       href={href}
