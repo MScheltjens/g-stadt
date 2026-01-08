@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@repo/i18n/navigation';
+import { Link, usePathname } from '@repo/i18n/navigation';
 import { type Locale, useTranslations } from '@repo/i18n';
 import {
   NavigationMenu,
@@ -12,10 +12,26 @@ import {
 import { NAVIGATION_LINKS } from '@repo/types';
 import { MobileSidebarNav } from './mobile-sidebar-nav';
 import { useState } from 'react';
+import { Menu } from '@repo/ui/components/icons';
+import { cn } from '@repo/ui/lib/utils';
+import {
+  useSelectedLayoutSegment,
+  useSelectedLayoutSegments,
+} from 'next/navigation';
+import { NavigationLink } from './navigation-link';
 
 export const Navbar = ({ locale }: { locale: Locale }) => {
   const t = useTranslations('navbar');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
+  console.log('Current pathname:', pathname);
+  const normalizedPathname = pathname?.split('/')[1];
+  console.log('Normalized pathname:', normalizedPathname);
+  const segments = useSelectedLayoutSegments();
+  console.log('Selected layout segment:', segments);
+  const activeSegment = segments[1];
+  console.log('Active segment:', activeSegment);
+
   return (
     <>
       {/* Mobile hamburger button */}
@@ -24,7 +40,9 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
         aria-label="Open menu"
         onClick={() => setSidebarOpen(true)}
       >
-        <span aria-hidden="true">☰</span>
+        <span aria-hidden="true">
+          <Menu className="text-secondary" />
+        </span>
       </button>
       <MobileSidebarNav
         locale={locale}
@@ -32,23 +50,24 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
         onClose={() => setSidebarOpen(false)}
       />
       {/* Desktop nav */}
-      <NavigationMenu className="py-2 hidden md:block">
-        <NavigationMenuList>
-          {NAVIGATION_LINKS.map((item) => (
-            <NavigationMenuItem key={item.href}>
-              <NavigationMenuLink asChild>
-                <Link
-                  href={item.href}
-                  locale={locale}
-                  className="px-4 py-2 text-gray-800 hover:text-primary-600"
-                >
-                  {t(item.label)}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+      <nav className="py-2 hidden md:block">
+        {NAVIGATION_LINKS.length > 0 &&
+          NAVIGATION_LINKS.map((item) => (
+            <NavigationLink
+              key={item.href}
+              href={item.href}
+              locale={locale}
+              className={cn(
+                'inline-block px-4 py-3 transition-colors',
+                normalizedPathname === item.href.replace('/', '')
+                  ? 'text-white'
+                  : 'text-gray-400 hover:text-gray-200',
+              )}
+            >
+              {t(item.label)}
+            </NavigationLink>
           ))}
-        </NavigationMenuList>
-      </NavigationMenu>
+      </nav>
     </>
   );
 };

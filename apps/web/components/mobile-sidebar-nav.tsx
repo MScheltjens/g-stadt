@@ -15,8 +15,7 @@ export function MobileSidebarNav({
   const t = useTranslations('navbar');
   return (
     <div
-      className={`fixed inset-0 z-40 transition-transform duration-300 bg-black/40 ${open ? '' : 'pointer-events-none'}`}
-      style={{ display: open ? 'block' : 'none' }}
+      className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       onClick={onClose}
     >
       <nav

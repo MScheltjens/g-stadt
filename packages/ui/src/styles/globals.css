@@ -62,7 +62,7 @@
   /* dark neutral */
 
   /* Radius */
-  --radius: 0.625rem;
+  --radius: 0rem;
 
   /* Sidebar */
   --sidebar: oklch(0.975 0.01 70);

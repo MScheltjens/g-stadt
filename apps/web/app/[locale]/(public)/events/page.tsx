@@ -12,8 +12,8 @@ export default async function EventsPage({ params }: EventsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
   const t = await getTranslations('events');
-
   const events = await getEvents();
+
   return (
     <main className="container mx-auto py-8 max-w-6xl">
       <PageSectionWrapper title={t('title')}>

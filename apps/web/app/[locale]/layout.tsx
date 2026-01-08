@@ -6,7 +6,8 @@ import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
 import { getUser } from '@/lib/auth';
-import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 
 import '@repo/ui/globals.css';
 
@@ -41,24 +42,24 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
   auth?: React.ReactNode;
 }>) {
-  const lang = (await params).locale as Locale;
+  const { locale } = await params;
 
-  if (!hasLocale(routing.locales, lang)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
   // Enable static rendering for this page
-  setRequestLocale(lang);
-
-  // Get current user for auth context
+  setRequestLocale(locale);
   const user = await getUser();
 
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body>
-        <Providers locale={lang} initialUser={user}>
-          <Navbar locale={lang} />
+        <Providers locale={locale} initialUser={user}>
+          <Header locale={locale} />
           {children}
           {auth}
+          {/* Footer for all public pages */}
+          <Footer />
         </Providers>
       </body>
     </html>
