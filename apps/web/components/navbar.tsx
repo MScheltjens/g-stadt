@@ -1,13 +1,7 @@
 'use client';
 
-import { Link, usePathname } from '@repo/i18n/navigation';
+import { usePathname } from '@repo/i18n/navigation';
 import { type Locale, useTranslations } from '@repo/i18n';
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from '@repo/ui/components/navigation-menu';
 
 import { NAVIGATION_LINKS } from '@repo/types';
 import { MobileSidebarNav } from './mobile-sidebar-nav';
@@ -24,14 +18,7 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
   const t = useTranslations('navbar');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  console.log('Current pathname:', pathname);
   const normalizedPathname = pathname?.split('/')[1];
-  console.log('Normalized pathname:', normalizedPathname);
-  const segments = useSelectedLayoutSegments();
-  console.log('Selected layout segment:', segments);
-  const activeSegment = segments[1];
-  console.log('Active segment:', activeSegment);
-
   return (
     <>
       {/* Mobile hamburger button */}
@@ -58,9 +45,9 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
               href={item.href}
               locale={locale}
               className={cn(
-                'inline-block px-4 py-3 transition-colors',
+                'inline-block px-4 py-1 transition-colors',
                 normalizedPathname === item.href.replace('/', '')
-                  ? 'text-white'
+                  ? 'text-white border-b-2 border-white'
                   : 'text-gray-400 hover:text-gray-200',
               )}
             >
