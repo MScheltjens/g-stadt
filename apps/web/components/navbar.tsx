@@ -2,23 +2,24 @@
 
 import { usePathname } from '@repo/i18n/navigation';
 import { type Locale, useTranslations } from '@repo/i18n';
-
 import { NAVIGATION_LINKS } from '@repo/types';
 import { MobileSidebarNav } from './mobile-sidebar-nav';
 import { useState } from 'react';
 import { Menu } from '@repo/ui/components/icons';
 import { cn } from '@repo/ui/lib/utils';
 import { NavigationLink } from './navigation-link';
+import { Button } from '@repo/ui/components/button';
 
 export const Navbar = ({ locale }: { locale: Locale }) => {
   const t = useTranslations('navbar');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  const normalizedPathname = pathname?.split('/')[1];
+  const normalizedPathname = pathname?.slice(1) || '';
+
   return (
     <>
       {/* Mobile hamburger button */}
-      <button
+      <Button
         className="md:hidden p-2 text-2xl focus:outline-none"
         aria-label="Open menu"
         onClick={() => setSidebarOpen(true)}
@@ -26,12 +27,13 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
         <span aria-hidden="true">
           <Menu className="text-secondary" />
         </span>
-      </button>
+      </Button>
       <MobileSidebarNav
         locale={locale}
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
       />
+
       {/* Desktop nav */}
       <nav className="py-2 hidden md:block">
         {NAVIGATION_LINKS.length > 0 &&
@@ -42,7 +44,7 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
               locale={locale}
               className={cn(
                 'inline-block px-4 py-1 transition-colors',
-                normalizedPathname === item.href.replace('/', '')
+                normalizedPathname === item.href.slice(1)
                   ? 'text-white border-b-2 border-white'
                   : 'text-gray-400 hover:text-gray-200',
               )}

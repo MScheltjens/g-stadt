@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { db } from '@repo/database';
 import type { Event } from '@repo/types';
 import { CreateEventDto } from '@repo/types';
-import { slugify } from 'lib/utils';
+import { slugify } from '../../lib/utils';
 
 @Injectable()
 export class EventsService {
