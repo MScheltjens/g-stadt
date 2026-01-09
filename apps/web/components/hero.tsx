@@ -1,7 +1,7 @@
 import { Badge } from '@repo/ui/components/badge';
-import { Button } from '@repo/ui/components/button';
 import { Link } from '@repo/i18n/navigation';
 import { getTranslations } from '@repo/i18n/server';
+import { buttonVariants } from '@repo/ui/components/button';
 
 export const Hero = async () => {
   const t = await getTranslations('home.hero');
@@ -20,12 +20,12 @@ export const Hero = async () => {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
-          <Button size="lg" asChild>
-            <Link href="/login">{t('signIn')}</Link>
-          </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href="/register">{t('register')}</Link>
-          </Button>
+          <Link
+            href="/login"
+            className={buttonVariants({ variant: 'default', size: 'lg' })}
+          >
+            {t('citizenPortal')}
+          </Link>
         </div>
       </div>
     </section>

@@ -47,8 +47,7 @@
       "title": "Welcome to",
       "cityName": "G-Stadt",
       "description": "Live. Work. Shape the future – all information and services from your city in one place.",
-      "signIn": "Sign In",
-      "register": "Register"
+      "citizenPortal": "Citizen Portal"
     }
   },
   "services": {
@@ -105,6 +104,7 @@
     "home": "Home",
     "news": "News",
     "events": "Events",
+    "services": "Services",
     "contact": "Contact"
   }
 }

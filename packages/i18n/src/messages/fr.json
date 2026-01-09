@@ -49,6 +49,7 @@
       "description": "Vivre. Travailler. Façonner l'avenir – toutes les informations et services de votre ville en un seul endroit.",
       "signIn": "Se connecter",
       "register": "S'inscrire"
+      ,"citizenPortal": "Portail Citoyen"
     }
   },
   "services": {
@@ -105,6 +106,7 @@
     "home": "Accueil",
     "news": "Actualités",
     "events": "Événements",
+    "services": "Services",
     "contact": "Contact"
   }
 }

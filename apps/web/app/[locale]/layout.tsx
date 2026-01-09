@@ -6,8 +6,6 @@ import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
 import { getUser } from '@/lib/auth';
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
 
 import '@repo/ui/globals.css';
 
@@ -55,11 +53,8 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <body>
         <Providers locale={locale} initialUser={user}>
-          <Header locale={locale} />
           {children}
           {auth}
-          {/* Footer for all public pages */}
-          <Footer />
         </Providers>
       </body>
     </html>

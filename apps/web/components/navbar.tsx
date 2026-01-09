@@ -1,20 +1,36 @@
 'use client';
 
-import { usePathname } from '@repo/i18n/navigation';
+import { Link, usePathname } from '@repo/i18n/navigation';
 import { type Locale, useTranslations } from '@repo/i18n';
 import { NAVIGATION_LINKS } from '@repo/types';
 import { MobileSidebarNav } from './mobile-sidebar-nav';
 import { useState } from 'react';
 import { Menu } from '@repo/ui/components/icons';
 import { cn } from '@repo/ui/lib/utils';
-import { NavigationLink } from './navigation-link';
 import { Button } from '@repo/ui/components/button';
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from '@repo/ui/components/navigation-menu';
 
 export const Navbar = ({ locale }: { locale: Locale }) => {
   const t = useTranslations('navbar');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  const normalizedPathname = pathname?.slice(1) || '';
+
+  const normalizedPathname =
+    pathname.replace(new RegExp(`^/${locale}`), '') || '/';
+
+  const isHome = normalizedPathname === '/';
+
+  const isActive = (href: string) => {
+    if (href === '/') return isHome;
+    return (
+      normalizedPathname === href || normalizedPathname.startsWith(`${href}/`)
+    );
+  };
 
   return (
     <>
@@ -35,24 +51,29 @@ export const Navbar = ({ locale }: { locale: Locale }) => {
       />
 
       {/* Desktop nav */}
-      <nav className="py-2 hidden md:block">
-        {NAVIGATION_LINKS.length > 0 &&
-          NAVIGATION_LINKS.map((item) => (
-            <NavigationLink
-              key={item.href}
-              href={item.href}
-              locale={locale}
-              className={cn(
-                'inline-block px-4 py-1 transition-colors',
-                normalizedPathname === item.href.slice(1)
-                  ? 'text-white border-b-2 border-white'
-                  : 'text-gray-400 hover:text-gray-200',
-              )}
-            >
-              {t(item.label)}
-            </NavigationLink>
+      <NavigationMenu className="hidden md:block">
+        <NavigationMenuList>
+          {NAVIGATION_LINKS.filter(
+            (item) => !(item.href === '/' && isHome),
+          ).map((item) => (
+            <NavigationMenuItem key={item.href}>
+              <NavigationMenuLink asChild>
+                <Link
+                  href={item.href}
+                  className={cn(
+                    'px-4 py-2 text-xs uppercase tracking-wide font-medium transition-colors text-secondary',
+                    isActive(item.href)
+                      ? 'text-primary bg-secondary'
+                      : 'hover:text-primary',
+                  )}
+                >
+                  {t(item.label)}
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
           ))}
-      </nav>
+        </NavigationMenuList>
+      </NavigationMenu>
     </>
   );
 };

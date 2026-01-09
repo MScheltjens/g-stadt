@@ -49,6 +49,7 @@
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Dienstleistungen Ihrer Stadt an einem Ort.",
       "signIn": "Anmelden",
       "register": "Registrieren"
+      ,"citizenPortal": "Bürgerportal"
     }
   },
   "services": {
@@ -105,6 +106,7 @@
     "home": "Startseite",
     "news": "Nachrichten",
     "events": "Veranstaltungen",
+    "services": "Dienstleistungen",
     "contact": "Kontakt"
   }
 }
