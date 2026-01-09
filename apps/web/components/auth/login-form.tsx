@@ -25,7 +25,7 @@ import {
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
 
-export const LoginForm = () => {
+export function LoginForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();
@@ -128,4 +128,4 @@ export const LoginForm = () => {
       </Form>
     </div>
   );
-};
+}

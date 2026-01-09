@@ -1,4 +1,4 @@
-import { Hero } from '@/components/hero';
+import { Hero } from '@/components/common/hero';
 import { Locale } from '@repo/i18n/index';
 import { setRequestLocale } from '@repo/i18n/server';
 

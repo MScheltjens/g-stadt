@@ -5,7 +5,7 @@
  * and shows the login form in a modal instead of a full page.
  */
 
-import { Modal } from '@/components/modal';
+import { Modal } from '@/components/common/modal';
 import { LoginForm } from '@/components/auth/login-form';
 import { setRequestLocale } from '@repo/i18n/server';
 import { Locale } from '@repo/i18n/index';

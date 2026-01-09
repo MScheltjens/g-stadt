@@ -1,5 +1,5 @@
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
+import { Footer } from '@/components/common/footer';
+import { Header } from '@/components/common/header';
 import { Locale } from '@repo/i18n/index';
 
 export default async function PublicLayout({

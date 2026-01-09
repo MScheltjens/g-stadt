@@ -48,8 +48,9 @@
       "cityName": "G-Stadt",
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Dienstleistungen Ihrer Stadt an einem Ort.",
       "signIn": "Anmelden",
-      "register": "Registrieren"
-      ,"citizenPortal": "Bürgerportal"
+      "register": "Registrieren",
+      "citizenPortal": "Bürgerportal",
+      "citizenRegister": "Als Bürger registrieren"
     }
   },
   "services": {

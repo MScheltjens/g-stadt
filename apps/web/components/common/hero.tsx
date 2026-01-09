@@ -3,7 +3,7 @@ import { Link } from '@repo/i18n/navigation';
 import { getTranslations } from '@repo/i18n/server';
 import { buttonVariants } from '@repo/ui/components/button';
 
-export const Hero = async () => {
+export async function Hero() {
   const t = await getTranslations('home.hero');
 
   return (
@@ -26,8 +26,14 @@ export const Hero = async () => {
           >
             {t('citizenPortal')}
           </Link>
+          <Link
+            href="/register"
+            className={buttonVariants({ variant: 'link', size: 'lg' })}
+          >
+            {t('citizenRegister')}
+          </Link>
         </div>
       </div>
     </section>
   );
-};
+}

@@ -5,7 +5,7 @@
  * and shows the registration form in a modal instead of a full page.
  */
 
-import { Modal } from '@/components/modal';
+import { Modal } from '@/components/common/modal';
 import { RegisterForm } from '@/components/auth/register-form';
 import { setRequestLocale } from '@repo/i18n/server';
 import { Locale } from '@repo/i18n/index';
