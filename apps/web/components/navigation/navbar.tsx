@@ -11,7 +11,7 @@ import {
   NavigationMenuLink,
 } from '@repo/ui/components/navigation-menu';
 
-export async function Navbar({ locale }: { locale: Locale }) {
+export function Navbar({ locale }: { locale: Locale }) {
   const t = useTranslations('navbar');
   const pathname = usePathname();
 
