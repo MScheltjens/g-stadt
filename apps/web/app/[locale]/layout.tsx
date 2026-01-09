@@ -51,7 +51,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body>
+      <body className="min-h-screen flex flex-col">
         <Providers locale={locale} initialUser={user}>
           {children}
           {auth}

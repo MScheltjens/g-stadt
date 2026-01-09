@@ -14,11 +14,11 @@ export default async function ServiceItemPage({
   const serviceItem = await getServiceBySlug(slug);
 
   return (
-    <main>
+    <>
       <h1>{serviceItem.title}</h1>
       {/* <p>{new Date(serviceItem.).toLocaleDateString(locale)}</p> */}
       <p>{serviceItem.category}</p>
       {/* {serviceItem.imageUrl && <img src={serviceItem.imageUrl} alt={serviceItem.title} />} */}
-    </main>
+    </>
   );
 }

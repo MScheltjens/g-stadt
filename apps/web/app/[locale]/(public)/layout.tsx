@@ -13,7 +13,7 @@ export default async function PublicLayout({
   return (
     <>
       <Header locale={locale as Locale} />
-      {children}
+      <main className="flex-1">{children}</main>
       <Footer />
     </>
   );

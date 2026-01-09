@@ -15,14 +15,12 @@ export default async function EventsPage({ params }: EventsPageProps) {
   const events = await getEvents();
 
   return (
-    <main className="container mx-auto py-8 max-w-6xl">
-      <PageSectionWrapper title={t('title')}>
-        <ItemGrid
-          items={events}
-          locale={locale as Locale}
-          basePath="/events/[slug]"
-        />
-      </PageSectionWrapper>
-    </main>
+    <PageSectionWrapper title={t('title')}>
+      <ItemGrid
+        items={events}
+        locale={locale as Locale}
+        basePath="/events/[slug]"
+      />
+    </PageSectionWrapper>
   );
 }

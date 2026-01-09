@@ -14,14 +14,12 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   const services = await getServices();
 
   return (
-    <main className="container mx-auto py-8 max-w-6xl">
-      <PageSectionWrapper title={t('title')} description={t('description')}>
-        <ItemGrid
-          items={services}
-          locale={locale as Locale}
-          basePath="/services/[slug]"
-        />
-      </PageSectionWrapper>
-    </main>
+    <PageSectionWrapper title={t('title')} description={t('description')}>
+      <ItemGrid
+        items={services}
+        locale={locale as Locale}
+        basePath="/services/[slug]"
+      />
+    </PageSectionWrapper>
   );
 }

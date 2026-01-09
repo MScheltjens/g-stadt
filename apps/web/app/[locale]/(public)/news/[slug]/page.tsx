@@ -12,13 +12,13 @@ export default async function NewsItemPage({ params }: NewsItemPageProps) {
   const newsItem = await getNewsBySlug(slug);
 
   return (
-    <main>
+    <>
       <h1>{newsItem.title}</h1>
       {/* <p>{new Date(newsItem.).toLocaleDateString(locale)}</p> */}
       <p>{newsItem.category}</p>
       {/* {newsItem.imageUrl && (
                 <img src={newsItem.imageUrl} alt={newsItem.title} />
             )} */}
-    </main>
+    </>
   );
 }

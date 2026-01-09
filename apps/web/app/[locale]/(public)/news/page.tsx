@@ -15,14 +15,12 @@ export default async function NewsPage({ params }: NewsPageProps) {
   const news = await getNews();
 
   return (
-    <main className="container mx-auto py-8 max-w-6xl">
-      <PageSectionWrapper title={t('title')}>
-        <ItemGrid
-          items={news}
-          locale={locale as Locale}
-          basePath="/news/[slug]"
-        />
-      </PageSectionWrapper>
-    </main>
+    <PageSectionWrapper title={t('title')}>
+      <ItemGrid
+        items={news}
+        locale={locale as Locale}
+        basePath="/news/[slug]"
+      />
+    </PageSectionWrapper>
   );
 }

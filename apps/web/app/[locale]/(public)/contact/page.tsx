@@ -11,9 +11,9 @@ export default async function ContactPage({ params }: ContactPageProps) {
   const t = await getTranslations('contact');
 
   return (
-    <main>
+    <>
       <h1>{t('title')}</h1>
       <p>{t('description')}</p>
-    </main>
+    </>
   );
 }
