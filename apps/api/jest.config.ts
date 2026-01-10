@@ -1,7 +1,8 @@
-import { config } from '@repo/jest-config';
+import { nestConfig } from '@repo/jest-config';
 
 export default {
-  ...config,
+  ...nestConfig,
+  rootDir: '.',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
