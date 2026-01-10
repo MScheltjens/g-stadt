@@ -110,5 +110,8 @@
     "events": "Veranstaltungen",
     "services": "Dienstleistungen",
     "contact": "Kontakt"
+  },
+  "itemCard": {
+    "readMore": "Mehr lesen"
   }
 }

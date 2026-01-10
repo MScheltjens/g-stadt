@@ -20,10 +20,7 @@ export default async function LoginModal({ params }: LoginModalProps) {
 
   return (
     <Modal>
-      <div className="p-6">
-        <h2 className="text-2xl font-semibold mb-6">Login</h2>
-        <LoginForm />
-      </div>
+      <LoginForm />
     </Modal>
   );
 }
