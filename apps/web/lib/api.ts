@@ -7,9 +7,6 @@
 import { getLocale } from '@repo/i18n/server';
 import { safeFetch } from './safe-fetch';
 import {
-  Event,
-  News,
-  Service,
   EventWithTranslation,
   NewsWithTranslation,
   ServiceWithTranslation,
@@ -37,14 +34,6 @@ export async function getEvents(
   );
 }
 
-export async function getEvent(id: string): Promise<Event> {
-  // No translation, fallback to old fetchAPI for now (or add EventSchema if needed)
-  return safeFetch<Event>(
-    `/events/${id}`,
-    EventWithTranslationSchema as unknown as ZodSchema<Event>,
-  );
-}
-
 export async function getEventBySlug(
   slug: string,
 ): Promise<EventWithTranslation> {
@@ -68,14 +57,6 @@ export async function getNews(
   return safeFetch<NewsWithTranslation[]>(
     `/news?${params.toString()}`,
     NewsWithTranslationSchema.array(),
-  );
-}
-
-export async function getNewsById(id: string): Promise<News> {
-  // No translation, fallback to old fetchAPI for now (or add NewsSchema if needed)
-  return safeFetch<News>(
-    `/news/${id}`,
-    NewsWithTranslationSchema as unknown as ZodSchema<News>,
   );
 }
 
