@@ -52,5 +52,11 @@
       "react": "^19.2.3",
       "react-dom": "^19.2.3"
     }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   }
 }
