@@ -90,7 +90,7 @@ async function main() {
   console.log('✅ Created contacts');
 
   // --- GALLERY ---
-  const gallery1 = await prisma.gallery.create({
+  await prisma.gallery.create({
     data: {
       title: 'Stadtansichten',
       description: 'Bilder aus G-Stadt',
@@ -102,7 +102,7 @@ async function main() {
       },
     },
   });
-  const gallery2 = await prisma.gallery.create({
+  await prisma.gallery.create({
     data: {
       title: 'Events',
       description: 'Fotos von Veranstaltungen',
@@ -117,7 +117,7 @@ async function main() {
   console.log('✅ Created galleries');
 
   // --- POLLS ---
-  const poll = await prisma.poll.create({
+  await prisma.poll.create({
     data: {
       question: 'Wie zufrieden sind Sie mit dem Stadtfest?',
       isActive: true,
