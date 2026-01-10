@@ -6,7 +6,7 @@ import type {
   NewsCategoryType,
   NewsWithTranslation,
 } from '@repo/types';
-import { Public } from '../../auth/decorators/public.decorator';
+import { Public } from '@/common/decorators/public.decorator';
 
 @Public()
 @Controller('news')

@@ -6,14 +6,14 @@ import {
   HttpStatus,
   Get,
 } from '@nestjs/common';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '@/auth/authentication.service';
 import {
   type LoginDto,
   type RegisterDto,
   type RefreshTokenDto,
 } from '@repo/types';
-import { Public } from './decorators/public.decorator';
-import { CurrentUser } from './decorators/current-user.decorator';
+import { Public } from '@/common/decorators/public.decorator';
+import { CurrentUser } from '@/common/decorators/current-user.decorator';
 
 @Controller('auth')
 export class AuthenticationController {

@@ -2,7 +2,7 @@ import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ServicesService } from './services.service';
 import type { LocaleType, Service, ServiceCategoryType } from '@repo/types';
 import type { ServiceWithTranslation } from '@repo/types/src/service.schema';
-import { Public } from '../../auth/decorators/public.decorator';
+import { Public } from '@/common/decorators/public.decorator';
 
 @Public()
 @Controller('services')

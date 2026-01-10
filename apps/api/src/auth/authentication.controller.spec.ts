@@ -3,7 +3,7 @@ import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../content/prisma/prisma.service';
 
 describe('AuthenticationController', () => {
   let controller: AuthenticationController;
