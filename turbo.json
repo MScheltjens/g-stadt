@@ -38,6 +38,12 @@
       ],
       "outputs": []
     },
+    "db:studio": {
+      "dependsOn": [
+        "^db:studio"
+      ],
+      "outputs": []
+    },
     "@repo/types#build": {
       "dependsOn": [
         "@repo/database#build"
