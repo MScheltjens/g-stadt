@@ -13,10 +13,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -24,12 +20,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:configs/typescript-config
-      '@types/react':
-        specifier: ^18.2.0
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.2.0
-        version: 18.3.7(@types/react@18.3.27)
+      eslint:
+        specifier: ^9.31.0
+        version: 9.39.2
       husky:
         specifier: ^8.0.3
         version: 8.0.3
@@ -39,20 +32,11 @@ importers:
       prettier:
         specifier: ^3.7.4
         version: 3.7.4
-      react:
-        specifier: ^19.2.3
-        version: 19.2.3
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.3(react@19.2.3)
-      tsx:
-        specifier: ^4.21.0
-        version: 4.21.0
       turbo:
         specifier: ^2.6.3
         version: 2.6.3
       typescript:
-        specifier: ^5.8.2
+        specifier: ^5.9.3
         version: 5.9.3
 
   apps/api:
@@ -95,7 +79,7 @@ importers:
         version: 17.2.3
       nestjs-zod:
         specifier: ^5.0.1
-        version: 5.0.1(@nestjs/common@11.1.9)(@nestjs/swagger@11.2.4)(rxjs@7.8.2)(zod@3.25.76)
+        version: 5.0.1(@nestjs/common@11.1.9)(@nestjs/swagger@11.2.4)(rxjs@7.8.2)(zod@4.3.5)
       passport:
         specifier: ^0.7.0
         version: 0.7.0
@@ -123,7 +107,7 @@ importers:
         version: 11.0.14(@types/node@22.19.3)
       '@nestjs/schematics':
         specifier: ^11.0.0
-        version: 11.0.9(typescript@5.5.4)
+        version: 11.0.9(chokidar@4.0.3)(typescript@5.9.3)
       '@nestjs/testing':
         specifier: ^11.0.0
         version: 11.1.9(@nestjs/common@11.1.9)(@nestjs/core@11.1.9)(@nestjs/platform-express@11.1.9)
@@ -151,9 +135,6 @@ importers:
       '@types/supertest':
         specifier: ^6.0.0
         version: 6.0.3
-      eslint:
-        specifier: ^9.31.0
-        version: 9.39.2
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.19.3)(ts-node@10.9.2)
@@ -165,28 +146,25 @@ importers:
         version: 7.1.4
       ts-jest:
         specifier: ^29.2.5
-        version: 29.4.6(@babel/core@7.28.5)(jest@29.7.0)(typescript@5.5.4)
+        version: 29.4.6(@babel/core@7.28.5)(jest@29.7.0)(typescript@5.9.3)
       ts-loader:
         specifier: ^9.4.3
-        version: 9.5.4(typescript@5.5.4)(webpack@5.104.1)
+        version: 9.5.4(typescript@5.9.3)(webpack@5.104.1)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.19.3)(typescript@5.5.4)
+        version: 10.9.2(@types/node@22.19.3)(typescript@5.9.3)
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
-      typescript:
-        specifier: 5.5.4
-        version: 5.5.4
 
   apps/web:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.69.0)
-      '@radix-ui/react-slot':
-        specifier: ^1.2.3
-        version: 1.2.4(@types/react@18.3.27)(react@19.2.3)
+      '@repo/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -205,13 +183,13 @@ importers:
       react-hook-form:
         specifier: ^7.69.0
         version: 7.69.0(react@19.2.3)
+      zod:
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@repo/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@repo/types':
         specifier: workspace:*
         version: link:../../packages/types
@@ -227,12 +205,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.3.7(@types/react@18.3.27)
-      eslint:
-        specifier: ^9.31.0
-        version: 9.39.2
-      typescript:
-        specifier: 5.8.2
-        version: 5.8.2
 
   configs/eslint-config:
     devDependencies:
@@ -242,9 +214,6 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^16.0.10
         version: 16.0.10
-      eslint:
-        specifier: ^9.39.2
-        version: 9.39.2
       eslint-config-prettier:
         specifier: ^10.1.8
         version: 10.1.8(eslint@9.39.2)
@@ -266,9 +235,6 @@ importers:
       prettier:
         specifier: ^3.4.0
         version: 3.7.4
-      typescript:
-        specifier: ^5.8.2
-        version: 5.9.3
       typescript-eslint:
         specifier: ^8.37.0
         version: 8.50.0(eslint@9.39.2)(typescript@5.9.3)
@@ -284,9 +250,6 @@ importers:
       next:
         specifier: 16.0.10
         version: 16.0.10(@babel/core@7.28.5)(react-dom@19.2.3)(react@19.2.3)
-      typescript:
-        specifier: ^5.8.2
-        version: 5.9.3
 
   configs/typescript-config: {}
 
@@ -302,8 +265,8 @@ importers:
         specifier: ^8.13.1
         version: 8.16.3
       zod:
-        specifier: ^3.23.8
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -317,12 +280,12 @@ importers:
       prisma:
         specifier: ^7.2.0
         version: 7.2.0(@types/react@18.3.27)(react-dom@19.2.3)(react@19.2.3)(typescript@5.9.3)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+      tsx:
+        specifier: ^4.21.0
+        version: 4.21.0
       zod-prisma-types:
         specifier: ^3.1.8
-        version: 3.3.10(@prisma/client@7.2.0)(prisma@7.2.0)(zod@3.25.76)
+        version: 3.3.10(@prisma/client@7.2.0)(prisma@7.2.0)(zod@4.3.5)
 
   packages/i18n:
     dependencies:
@@ -354,12 +317,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.3.7(@types/react@18.3.27)
-      eslint:
-        specifier: ^9.39.2
-        version: 9.39.2
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
 
   packages/types:
     dependencies:
@@ -367,15 +324,12 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0(prisma@7.2.0)(typescript@5.9.3)
       zod:
-        specifier: ^3.23.8
-        version: 3.25.76
+        specifier: ^4.3.5
+        version: 4.3.5
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
 
   packages/ui:
     dependencies:
@@ -406,15 +360,6 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.3)(react@19.2.3)
-      pg:
-        specifier: ^8.13.1
-        version: 8.16.3
-      react:
-        specifier: ^19.2.3
-        version: 19.2.3
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.3(react@19.2.3)
       react-hook-form:
         specifier: ^7.69.0
         version: 7.69.0(react@19.2.3)
@@ -424,9 +369,6 @@ importers:
       tw-animate-css:
         specifier: ^1.3.6
         version: 1.4.0
-      zod:
-        specifier: ^3.25.76
-        version: 3.25.76
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -449,12 +391,15 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.3.7(@types/react@18.3.27)
+      react:
+        specifier: ^19.2.3
+        version: 19.2.3
+      react-dom:
+        specifier: ^19.2.3
+        version: 19.2.3(react@19.2.3)
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.18
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
 
 packages:
 
@@ -2274,21 +2219,6 @@ packages:
       jsonc-parser: 3.3.1
       pluralize: 8.0.0
       typescript: 5.9.3
-    transitivePeerDependencies:
-      - chokidar
-    dev: true
-
-  /@nestjs/schematics@11.0.9(typescript@5.5.4):
-    resolution: {integrity: sha512-0NfPbPlEaGwIT8/TCThxLzrlz3yzDNkfRNpbL7FiplKq3w4qXpJg0JYwqgMEJnLQZm3L/L/5XjoyfJHUO3qX9g==}
-    peerDependencies:
-      typescript: '>=4.8.2'
-    dependencies:
-      '@angular-devkit/core': 19.2.17(chokidar@4.0.3)
-      '@angular-devkit/schematics': 19.2.17(chokidar@4.0.3)
-      comment-json: 4.4.1
-      jsonc-parser: 3.3.1
-      pluralize: 8.0.0
-      typescript: 5.5.4
     transitivePeerDependencies:
       - chokidar
     dev: true
@@ -6987,7 +6917,7 @@ packages:
       pretty-format: 29.7.0
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.2(@types/node@22.19.3)(typescript@5.5.4)
+      ts-node: 10.9.2(@types/node@22.19.3)(typescript@5.9.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -8019,7 +7949,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /nestjs-zod@5.0.1(@nestjs/common@11.1.9)(@nestjs/swagger@11.2.4)(rxjs@7.8.2)(zod@3.25.76):
+  /nestjs-zod@5.0.1(@nestjs/common@11.1.9)(@nestjs/swagger@11.2.4)(rxjs@7.8.2)(zod@4.3.5):
     resolution: {integrity: sha512-IjK99tpK+04UobLJJA5tlHv94Ml3wNWiRr7pRVDFJ62Jy/c/aYhMQa90WKiy7qUcmIDMWyPHQpHQN/MehESOmw==}
     peerDependencies:
       '@nestjs/common': ^10.0.0 || ^11.0.0
@@ -8034,7 +7964,7 @@ packages:
       '@nestjs/swagger': 11.2.4(@nestjs/common@11.1.9)(@nestjs/core@11.1.9)(reflect-metadata@0.2.2)
       deepmerge: 4.3.1
       rxjs: 7.8.2
-      zod: 3.25.76
+      zod: 4.3.5
     dev: false
 
   /netmask@2.0.2:
@@ -9868,7 +9798,7 @@ packages:
       typescript: 5.9.3
     dev: true
 
-  /ts-jest@29.4.6(@babel/core@7.28.5)(jest@29.7.0)(typescript@5.5.4):
+  /ts-jest@29.4.6(@babel/core@7.28.5)(jest@29.7.0)(typescript@5.9.3):
     resolution: {integrity: sha512-fSpWtOO/1AjSNQguk43hb/JCo16oJDnMJf3CdEGNkqsEX3t0KX96xvyX1D7PfLCpVoKu4MfVrqUkFyblYoY4lA==}
     engines: {node: ^14.15.0 || ^16.10.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9905,11 +9835,11 @@ packages:
       make-error: 1.3.6
       semver: 7.7.3
       type-fest: 4.41.0
-      typescript: 5.5.4
+      typescript: 5.9.3
       yargs-parser: 21.1.1
     dev: true
 
-  /ts-loader@9.5.4(typescript@5.5.4)(webpack@5.104.1):
+  /ts-loader@9.5.4(typescript@5.9.3)(webpack@5.104.1):
     resolution: {integrity: sha512-nCz0rEwunlTZiy6rXFByQU1kVVpCIgUpc/psFiKVrUwrizdnIbRFu8w7bxhUF0X613DYwT4XzrZHpVyMe758hQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -9921,7 +9851,7 @@ packages:
       micromatch: 4.0.8
       semver: 7.7.3
       source-map: 0.7.6
-      typescript: 5.5.4
+      typescript: 5.9.3
       webpack: 5.104.1
     dev: true
 
@@ -9956,7 +9886,7 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node@10.9.2(@types/node@22.19.3)(typescript@5.5.4):
+  /ts-node@10.9.2(@types/node@22.19.3)(typescript@5.9.3):
     resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
@@ -9982,7 +9912,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.5.4
+      typescript: 5.9.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -10192,18 +10122,6 @@ packages:
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-    dev: true
-
-  /typescript@5.8.2:
-    resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
-    engines: {node: '>=14.17'}
-    hasBin: true
     dev: true
 
   /typescript@5.9.3:
@@ -10644,7 +10562,7 @@ packages:
     dependencies:
       grammex: 3.1.12
 
-  /zod-prisma-types@3.3.10(@prisma/client@7.2.0)(prisma@7.2.0)(zod@3.25.76):
+  /zod-prisma-types@3.3.10(@prisma/client@7.2.0)(prisma@7.2.0)(zod@4.3.5):
     resolution: {integrity: sha512-JvgW7XhajDPhnq9yR7dZwPQvD8rdWX2JRNmSxaYghXBb5o2G1XIgayOjKTmxEsZ72bhXegpmca5dcWz9olzS7w==}
     hasBin: true
     peerDependencies:
@@ -10658,7 +10576,7 @@ packages:
       code-block-writer: 13.0.3
       lodash: 4.17.21
       prisma: 7.2.0(@types/react@18.3.27)(react-dom@19.2.3)(react@19.2.3)(typescript@5.9.3)
-      zod: 3.25.76
+      zod: 4.3.5
     dev: true
 
   /zod-validation-error@4.0.2(zod@3.25.76):
@@ -10672,3 +10590,7 @@ packages:
 
   /zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+    dev: true
+
+  /zod@4.3.5:
+    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}

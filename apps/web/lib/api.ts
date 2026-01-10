@@ -15,7 +15,6 @@ import {
   NewsWithTranslationSchema,
   ServiceWithTranslationSchema,
 } from '@repo/types';
-import { ZodSchema } from 'zod';
 
 // ============================================================================
 // Events API
