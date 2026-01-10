@@ -2,13 +2,13 @@
  * Safe fetch wrapper with Zod validation
  */
 
-import { ZodSchema } from 'zod';
+import { ZodType } from 'zod';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function safeFetch<T>(
   endpoint: string,
-  schema: ZodSchema<T>,
+  schema: ZodType<T>,
   options?: RequestInit,
 ): Promise<T> {
   const url = `${API_URL}${endpoint}`;

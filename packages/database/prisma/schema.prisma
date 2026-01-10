@@ -113,6 +113,7 @@ model PollResponse {
 ////////////////////
 /// GALLERY ///
 ////////////////////
+
 model Gallery {
   id          String         @id @default(uuid())
   title       String

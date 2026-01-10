@@ -9,7 +9,9 @@ export async function Hero() {
   return (
     <section className="relative bg-secondary py-28">
       <div className="max-w-6xl mx-auto px-6">
-        <Badge className="mb-4">{t('badge')}</Badge>
+        <Badge variant="default" className="mb-4">
+          {t('badge')}
+        </Badge>
 
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
           {t('title')} <span className="text-primary">{t('cityName')}</span>

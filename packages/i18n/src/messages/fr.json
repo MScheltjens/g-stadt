@@ -64,7 +64,8 @@
   "events": {
     "title": "Événements à venir",
     "description": "Découvrez les événements à G-Stadt et participez aux activités communautaires.",
-    "viewAll": "Voir tous les événements"
+    "viewAll": "Voir tous les événements",
+    "readMore": "Lire la suite"
   },
   "contact": {
     "title": "Contactez-nous",

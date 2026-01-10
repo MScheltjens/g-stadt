@@ -66,7 +66,8 @@
   "events": {
     "title": "Bevorstehende Veranstaltungen",
     "description": "Entdecken Sie Veranstaltungen in G-Stadt und nehmen Sie an Gemeinschaftsaktivitäten teil.",
-    "viewAll": "Alle Veranstaltungen anzeigen"
+    "viewAll": "Alle Veranstaltungen anzeigen",
+    "readMore": "Mehr lesen"
   },
   "contact": {
     "title": "Kontakt",
