@@ -9,9 +9,9 @@ export const NewsWithTranslationSchema = z.object({
   category: NewsCategorySchema,
   imageUrl: z.string().nullable(),
   published: z.boolean(),
-  publishedAt: z.date().nullable(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  publishedAt: z.coerce.date().nullable(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
   // Required translation fields
   title: z.string(),
   slug: z.string(),

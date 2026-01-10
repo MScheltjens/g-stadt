@@ -5,7 +5,8 @@
  */
 
 import { getLocale } from '@repo/i18n/server';
-import type {
+import { safeFetch } from './safe-fetch';
+import {
   Event,
   News,
   Service,
@@ -13,33 +14,11 @@ import type {
   NewsWithTranslation,
   ServiceWithTranslation,
   EventCategoryType,
+  EventWithTranslationSchema,
+  NewsWithTranslationSchema,
+  ServiceWithTranslationSchema,
 } from '@repo/types';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-/**
- * Base fetch wrapper with error handling
- */
-async function fetchAPI<T>(
-  endpoint: string,
-  options?: RequestInit,
-): Promise<T> {
-  const url = `${API_URL}${endpoint}`;
-
-  const res = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers,
-    },
-    ...options,
-  });
-
-  if (!res.ok) {
-    throw new Error(`API Error: ${res.status} ${res.statusText}`);
-  }
-
-  return res.json();
-}
+import { ZodSchema } from 'zod';
 
 // ============================================================================
 // Events API
@@ -49,61 +28,88 @@ export async function getEvents(
   category?: EventCategoryType,
 ): Promise<EventWithTranslation[]> {
   const locale = await getLocale();
-  if (category) {
-    return fetchAPI<EventWithTranslation[]>(
-      `/events?locale=${locale}&category=${category}`,
-    );
-  }
-  return fetchAPI<EventWithTranslation[]>('/events');
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  if (category) params.append('category', category);
+  return safeFetch<EventWithTranslation[]>(
+    `/events?${params.toString()}`,
+    EventWithTranslationSchema.array(),
+  );
 }
 
 export async function getEvent(id: string): Promise<Event> {
-  return fetchAPI<Event>(`/events/${id}`);
+  // No translation, fallback to old fetchAPI for now (or add EventSchema if needed)
+  return safeFetch<Event>(
+    `/events/${id}`,
+    EventWithTranslationSchema as unknown as ZodSchema<Event>,
+  );
 }
 
 export async function getEventBySlug(
   slug: string,
 ): Promise<EventWithTranslation> {
-  return fetchAPI<EventWithTranslation>(`/events/slug/${slug}`);
+  return safeFetch<EventWithTranslation>(
+    `/events/slug/${slug}`,
+    EventWithTranslationSchema,
+  );
 }
 
 // ============================================================================
 // News API
 // ============================================================================
 
-export async function getNews(published = true): Promise<News[]> {
-  const query = published ? '?published=true' : '';
-  return fetchAPI<News[]>(`/news${query}`);
+export async function getNews(
+  published?: boolean,
+): Promise<NewsWithTranslation[]> {
+  const locale = await getLocale();
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  if (published) params.append('published', 'true');
+  return safeFetch<NewsWithTranslation[]>(
+    `/news?${params.toString()}`,
+    NewsWithTranslationSchema.array(),
+  );
 }
 
 export async function getNewsById(id: string): Promise<News> {
-  return fetchAPI<News>(`/news/${id}`);
+  // No translation, fallback to old fetchAPI for now (or add NewsSchema if needed)
+  return safeFetch<News>(
+    `/news/${id}`,
+    NewsWithTranslationSchema as unknown as ZodSchema<News>,
+  );
 }
 
 export async function getNewsBySlug(
   slug: string,
 ): Promise<NewsWithTranslation> {
-  return fetchAPI<NewsWithTranslation>(`/news/slug/${slug}`);
+  return safeFetch<NewsWithTranslation>(
+    `/news/slug/${slug}`,
+    NewsWithTranslationSchema,
+  );
 }
 
 // ============================================================================
 // Services API
 // ============================================================================
 
-export async function getServices(): Promise<Service[]> {
-  return fetchAPI<Service[]>('/services');
-}
-
-export async function getServicesByCategory(
-  category: string,
-): Promise<Service[]> {
-  return fetchAPI<Service[]>(
-    `/services?category=${encodeURIComponent(category)}`,
+export async function getServices(
+  category?: string,
+): Promise<ServiceWithTranslation[]> {
+  const locale = await getLocale();
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  if (category) params.append('category', category);
+  return safeFetch<ServiceWithTranslation[]>(
+    `/services?${params.toString()}`,
+    ServiceWithTranslationSchema.array(),
   );
 }
 
 export async function getServiceBySlug(
   slug: string,
 ): Promise<ServiceWithTranslation> {
-  return fetchAPI<ServiceWithTranslation>(`/services/slug/${slug}`);
+  return safeFetch<ServiceWithTranslation>(
+    `/services/slug/${slug}`,
+    ServiceWithTranslationSchema,
+  );
 }

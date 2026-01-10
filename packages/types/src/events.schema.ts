@@ -10,7 +10,7 @@ export const CreateEventSchema = z.object({
   description: z.string().min(1, 'Description is required'),
   date: z.coerce.date(),
   location: z.string().min(1, 'Location is required'),
-  imageUrl: z.string().url().optional(),
+  imageUrl: z.string().url().nullable().optional(),
 });
 
 export type CreateEventDto = z.infer<typeof CreateEventSchema>;
@@ -27,13 +27,14 @@ export type UpdateEventDto = z.infer<typeof UpdateEventSchema>;
  */
 export const EventWithTranslationSchema = CreateEventSchema.extend({
   id: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
   title: z.string(),
   slug: z.string(),
   category: EventCategorySchema,
   description: z.string().optional(),
   location: z.string().optional(),
+  imageUrl: z.string().url().nullable().optional(),
 });
 
 export type EventWithTranslation = z.infer<typeof EventWithTranslationSchema>;

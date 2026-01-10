@@ -9,8 +9,8 @@ export const ServiceWithTranslationSchema = z.object({
   category: ServiceCategorySchema,
   icon: z.string(),
   link: z.string().nullable(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
   // Required translation fields
   title: z.string(),
   slug: z.string(),
