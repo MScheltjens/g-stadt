@@ -616,25 +616,29 @@ async function main() {
   console.log('✅ Created comments');
 
   // --- POLL RESPONSES ---
-  const pollOption = await prisma.pollOption.findFirst({
-    where: { pollId: poll.id },
-  });
-  if (pollOption) {
-    await prisma.pollResponse.create({
-      data: {
-        pollId: poll.id,
-        optionId: pollOption.id,
-        userId: user1.id,
-      },
+  // Get the first poll created above
+  const firstPoll = await prisma.poll.findFirst();
+  if (firstPoll) {
+    const pollOption = await prisma.pollOption.findFirst({
+      where: { pollId: firstPoll.id },
     });
-    await prisma.pollResponse.create({
-      data: {
-        pollId: poll.id,
-        optionId: pollOption.id,
-        userId: user2.id,
-      },
-    });
-    console.log('✅ Created poll responses');
+    if (pollOption) {
+      await prisma.pollResponse.create({
+        data: {
+          pollId: firstPoll.id,
+          optionId: pollOption.id,
+          userId: user1.id,
+        },
+      });
+      await prisma.pollResponse.create({
+        data: {
+          pollId: firstPoll.id,
+          optionId: pollOption.id,
+          userId: user2.id,
+        },
+      });
+      console.log('✅ Created poll responses');
+    }
   }
 
   console.log('🎉 Database seeded successfully!');
