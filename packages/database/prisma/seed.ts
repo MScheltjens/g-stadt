@@ -204,7 +204,7 @@ async function main() {
   // --- SERVICES ---
   const service1 = await prisma.service.create({
     data: {
-      category: 'Administrative',
+      category: 'administrative',
       icon: 'Landmark',
       translations: {
         create: [
@@ -232,7 +232,7 @@ async function main() {
   });
   const service2 = await prisma.service.create({
     data: {
-      category: 'Cultural',
+      category: 'cultural',
       icon: 'Calendar',
       translations: {
         create: [
@@ -263,7 +263,7 @@ async function main() {
   // --- NEWS ---
   await prisma.news.create({
     data: {
-      category: 'Culture',
+      category: 'culture',
       published: true,
       translations: {
         create: [
@@ -294,7 +294,7 @@ async function main() {
   });
   await prisma.news.create({
     data: {
-      category: 'Environment',
+      category: 'environment',
       published: true,
       translations: {
         create: [
@@ -328,7 +328,7 @@ async function main() {
   // --- EVENTS ---
   await prisma.event.create({
     data: {
-      category: 'Music',
+      category: 'music',
       date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       translations: {
         create: [
@@ -360,7 +360,7 @@ async function main() {
   });
   await prisma.event.create({
     data: {
-      category: 'Sports',
+      category: 'sports',
       date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
       translations: {
         create: [
@@ -394,7 +394,7 @@ async function main() {
   // --- FAQ ---
   await prisma.fAQ.create({
     data: {
-      category: 'General',
+      category: 'general',
       order: 1,
       translations: {
         create: [
@@ -419,7 +419,7 @@ async function main() {
   });
   await prisma.fAQ.create({
     data: {
-      category: 'Services',
+      category: 'services',
       order: 2,
       translations: {
         create: [
@@ -503,7 +503,7 @@ async function main() {
   await prisma.document.create({
     data: {
       fileUrl: '/docs/info.pdf',
-      category: 'Policy',
+      category: 'policy',
       translations: {
         create: [
           {
@@ -528,7 +528,7 @@ async function main() {
   await prisma.document.create({
     data: {
       fileUrl: '/docs/veranstaltungen.pdf',
-      category: 'Form',
+      category: 'form',
       translations: {
         create: [
           {

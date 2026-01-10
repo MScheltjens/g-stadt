@@ -174,13 +174,15 @@ model AuditLog {
 }
 
 enum EventCategory {
-  Music
-  Sports
-  Education
-  Culture
-  Community
-  Health
-  Environment
+  music
+  sports
+  culture
+  education
+  community
+  health
+  environment
+  technology
+
   // Add more categories as needed
 }
 
@@ -211,15 +213,15 @@ model EventTranslation {
 }
 
 enum NewsCategory {
-  Local
-  Politics
-  Economy
-  Culture
-  Sports
-  Technology
-  Health
-  Environment
-  Education
+  local
+  politics
+  economy
+  culture
+  sports
+  technology
+  health
+  environment
+  education
   // Add more categories as needed
 }
 
@@ -251,16 +253,17 @@ model NewsTranslation {
 }
 
 enum ServiceCategory {
-  Administrative
-  Health
-  Education
-  Transportation
-  PublicSafety
-  Recreation
-  SocialServices
-  Utilities
-  Environmental
-  Cultural
+  administrative
+  health
+  education
+  transportation
+  publicSafety
+  recreation
+  service
+  socialservices
+  utilities
+  environmental
+  cultural
   // Add more categories as needed
 }
 
@@ -312,12 +315,12 @@ model PageTranslation {
 }
 
 enum FAQCategory {
-  General
-  Technical
-  Billing
-  Account
-  Services
-  Policies
+  general
+  technical
+  billing
+  account
+  services
+  policies
   // Add more categories as needed
 }
 
@@ -365,10 +368,10 @@ model AnnouncementTranslation {
 }
 
 enum DocumentCategory {
-  Policy
-  Form
-  Guide
-  Report
+  policy
+  form
+  guide
+  report
   // Add more categories as needed
 }
 

@@ -7,7 +7,7 @@ import type {
   LocaleType,
 } from '@repo/types';
 import type { EventWithTranslation } from '@repo/types/src/events.schema';
-import { slugify } from '../../lib/utils';
+import { slugify } from '../../../lib/utils';
 
 @Injectable()
 export class EventsService {

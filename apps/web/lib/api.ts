@@ -4,6 +4,7 @@
  * Simple fetch wrappers for calling the NestJS API
  */
 
+import { getLocale } from '@repo/i18n/server';
 import type {
   Event,
   News,
@@ -11,6 +12,7 @@ import type {
   EventWithTranslation,
   NewsWithTranslation,
   ServiceWithTranslation,
+  EventCategoryType,
 } from '@repo/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -43,7 +45,15 @@ async function fetchAPI<T>(
 // Events API
 // ============================================================================
 
-export async function getEvents(): Promise<EventWithTranslation[]> {
+export async function getEvents(
+  category?: EventCategoryType,
+): Promise<EventWithTranslation[]> {
+  const locale = await getLocale();
+  if (category) {
+    return fetchAPI<EventWithTranslation[]>(
+      `/events?locale=${locale}&category=${category}`,
+    );
+  }
   return fetchAPI<EventWithTranslation[]>('/events');
 }
 

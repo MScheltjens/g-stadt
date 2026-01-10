@@ -2,7 +2,7 @@ import { Controller, Get, Param, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
 import type { Event, EventCategoryType, LocaleType } from '@repo/types';
 import type { EventWithTranslation } from '@repo/types/src/events.schema';
-import { Public } from '../authentication/decorators/public.decorator';
+import { Public } from '../../common/decorators/public.decorator';
 
 @Public()
 @Controller('events')
