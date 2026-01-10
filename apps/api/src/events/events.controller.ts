@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
-import type { Event } from '@repo/types';
+import type { Event, EventCategoryType, LocaleType } from '@repo/types';
+import type { EventWithTranslation } from '@repo/types/src/events.schema';
 import { Public } from '../authentication/decorators/public.decorator';
 
 @Public()
@@ -9,11 +10,17 @@ export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Get()
-  async findAll(@Query('category') category?: string): Promise<Event[]> {
-    if (category) {
-      return this.eventsService.findByCategory(category);
+  async findAll(
+    @Query('locale') locale: LocaleType,
+    @Query('category') category?: EventCategoryType,
+  ): Promise<EventWithTranslation[]> {
+    if (!locale) {
+      throw new Error('Locale is required');
     }
-    return this.eventsService.findAll();
+    if (category) {
+      return this.eventsService.findByCategoryAndLocale(category, locale);
+    }
+    return this.eventsService.findAll(locale);
   }
 
   @Get(':id')
@@ -22,7 +29,9 @@ export class EventsController {
   }
 
   @Get('/slug/:slug')
-  async findOneBySlug(@Param('slug') slug: string): Promise<Event> {
+  async findOneBySlug(
+    @Param('slug') slug: string,
+  ): Promise<EventWithTranslation> {
     return this.eventsService.findOneBySlug(slug);
   }
 }

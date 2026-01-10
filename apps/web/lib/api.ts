@@ -1,17 +1,17 @@
-export async function getNewsBySlug(slug: string): Promise<News> {
-  return fetchAPI<News>(`/news/slug/${slug}`);
-}
-
-export async function getServiceBySlug(slug: string): Promise<Service> {
-  return fetchAPI<Service>(`/services/slug/${slug}`);
-}
 /**
  * API Client for G-Stadt Backend
  *
  * Simple fetch wrappers for calling the NestJS API
  */
 
-import { Event, News, Service } from '@repo/types';
+import type {
+  Event,
+  News,
+  Service,
+  EventWithTranslation,
+  NewsWithTranslation,
+  ServiceWithTranslation,
+} from '@repo/types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -43,16 +43,18 @@ async function fetchAPI<T>(
 // Events API
 // ============================================================================
 
-export async function getEvents(): Promise<Event[]> {
-  return fetchAPI<Event[]>('/events');
+export async function getEvents(): Promise<EventWithTranslation[]> {
+  return fetchAPI<EventWithTranslation[]>('/events');
 }
 
 export async function getEvent(id: string): Promise<Event> {
   return fetchAPI<Event>(`/events/${id}`);
 }
 
-export async function getEventBySlug(slug: string): Promise<Event> {
-  return fetchAPI<Event>(`/events/slug/${slug}`);
+export async function getEventBySlug(
+  slug: string,
+): Promise<EventWithTranslation> {
+  return fetchAPI<EventWithTranslation>(`/events/slug/${slug}`);
 }
 
 // ============================================================================
@@ -66,6 +68,12 @@ export async function getNews(published = true): Promise<News[]> {
 
 export async function getNewsById(id: string): Promise<News> {
   return fetchAPI<News>(`/news/${id}`);
+}
+
+export async function getNewsBySlug(
+  slug: string,
+): Promise<NewsWithTranslation> {
+  return fetchAPI<NewsWithTranslation>(`/news/slug/${slug}`);
 }
 
 // ============================================================================
@@ -82,4 +90,10 @@ export async function getServicesByCategory(
   return fetchAPI<Service[]>(
     `/services?category=${encodeURIComponent(category)}`,
   );
+}
+
+export async function getServiceBySlug(
+  slug: string,
+): Promise<ServiceWithTranslation> {
+  return fetchAPI<ServiceWithTranslation>(`/services/slug/${slug}`);
 }

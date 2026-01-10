@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ServicesService } from './services.service';
-import type { Service } from '@repo/types';
+import type { LocaleType, Service, ServiceCategoryType } from '@repo/types';
+import type { ServiceWithTranslation } from '@repo/types/src/service.schema';
 import { Public } from '../authentication/decorators/public.decorator';
 
 @Public()
@@ -9,11 +10,17 @@ export class ServicesController {
   constructor(private readonly servicesService: ServicesService) {}
 
   @Get()
-  async findAll(@Query('category') category?: string): Promise<Service[]> {
-    if (category) {
-      return this.servicesService.findByCategory(category);
+  async findAll(
+    @Query('locale') locale: LocaleType,
+    @Query('category') category?: ServiceCategoryType,
+  ): Promise<ServiceWithTranslation[]> {
+    if (!locale) {
+      throw new Error('Locale is required');
     }
-    return this.servicesService.findAll();
+    if (category) {
+      return this.servicesService.findByCategoryAndLocale(category, locale);
+    }
+    return this.servicesService.findAll(locale);
   }
 
   @Get(':id')
@@ -22,7 +29,9 @@ export class ServicesController {
   }
 
   @Get('/slug/:slug')
-  async findOneBySlug(@Param('slug') slug: string): Promise<Service> {
+  async findOneBySlug(
+    @Param('slug') slug: string,
+  ): Promise<ServiceWithTranslation> {
     return this.servicesService.findOneBySlug(slug);
   }
 }

@@ -1,5 +1,4 @@
-import { getNewsBySlug } from '@/lib/api';
-import { Locale } from '@repo/i18n/index';
+import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
 
 type NewsItemPageProps = {
@@ -7,18 +6,8 @@ type NewsItemPageProps = {
 };
 
 export default async function NewsItemPage({ params }: NewsItemPageProps) {
-  const { locale, slug } = await params;
+  const { locale } = await params;
   setRequestLocale(locale as Locale);
-  const newsItem = await getNewsBySlug(slug);
 
-  return (
-    <>
-      <h1>{newsItem.title}</h1>
-      {/* <p>{new Date(newsItem.).toLocaleDateString(locale)}</p> */}
-      <p>{newsItem.category}</p>
-      {/* {newsItem.imageUrl && (
-                <img src={newsItem.imageUrl} alt={newsItem.title} />
-            )} */}
-    </>
-  );
+  return <>NewsItem</>;
 }

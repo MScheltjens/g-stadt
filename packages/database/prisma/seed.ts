@@ -204,7 +204,7 @@ async function main() {
   // --- SERVICES ---
   const service1 = await prisma.service.create({
     data: {
-      category: 'Bürgerdienste',
+      category: 'Administrative',
       icon: 'Landmark',
       translations: {
         create: [
@@ -232,7 +232,7 @@ async function main() {
   });
   const service2 = await prisma.service.create({
     data: {
-      category: 'Veranstaltungen',
+      category: 'Cultural',
       icon: 'Calendar',
       translations: {
         create: [
@@ -263,7 +263,7 @@ async function main() {
   // --- NEWS ---
   await prisma.news.create({
     data: {
-      category: 'Veranstaltungen',
+      category: 'Culture',
       published: true,
       translations: {
         create: [
@@ -294,7 +294,7 @@ async function main() {
   });
   await prisma.news.create({
     data: {
-      category: 'Verkehr',
+      category: 'Environment',
       published: true,
       translations: {
         create: [
@@ -325,10 +325,76 @@ async function main() {
   });
   console.log('✅ Created news');
 
+  // --- EVENTS ---
+  await prisma.event.create({
+    data: {
+      category: 'Music',
+      date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      translations: {
+        create: [
+          {
+            locale: 'de',
+            title: 'Open-Air Konzert',
+            description: 'Ein Konzert im Stadtpark mit lokalen Bands.',
+            slug: 'open-air-konzert',
+            location: 'Stadtpark',
+          },
+          {
+            locale: 'en',
+            title: 'Open-Air Concert',
+            description: 'A concert in the city park with local bands.',
+            slug: 'open-air-concert',
+            location: 'City Park',
+          },
+          {
+            locale: 'fr',
+            title: 'Concert en plein air',
+            description:
+              'Un concert au parc municipal avec des groupes locaux.',
+            slug: 'concert-plein-air',
+            location: 'Parc municipal',
+          },
+        ],
+      },
+    },
+  });
+  await prisma.event.create({
+    data: {
+      category: 'Sports',
+      date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000),
+      translations: {
+        create: [
+          {
+            locale: 'de',
+            title: 'Stadtlauf',
+            description: 'Der jährliche Stadtlauf für alle Altersgruppen.',
+            slug: 'stadtlauf',
+            location: 'Sporthalle',
+          },
+          {
+            locale: 'en',
+            title: 'City Run',
+            description: 'The annual city run for all age groups.',
+            slug: 'city-run',
+            location: 'Sports Hall',
+          },
+          {
+            locale: 'fr',
+            title: 'Course de la ville',
+            description: 'La course annuelle de la ville pour tous les âges.',
+            slug: 'course-ville',
+            location: 'Salle de sport',
+          },
+        ],
+      },
+    },
+  });
+  console.log('✅ Created events');
+
   // --- FAQ ---
   await prisma.fAQ.create({
     data: {
-      category: 'Allgemein',
+      category: 'General',
       order: 1,
       translations: {
         create: [
@@ -353,7 +419,7 @@ async function main() {
   });
   await prisma.fAQ.create({
     data: {
-      category: 'Veranstaltungen',
+      category: 'Services',
       order: 2,
       translations: {
         create: [
@@ -437,7 +503,7 @@ async function main() {
   await prisma.document.create({
     data: {
       fileUrl: '/docs/info.pdf',
-      category: 'Info',
+      category: 'Policy',
       translations: {
         create: [
           {
@@ -462,7 +528,7 @@ async function main() {
   await prisma.document.create({
     data: {
       fileUrl: '/docs/veranstaltungen.pdf',
-      category: 'Veranstaltungen',
+      category: 'Form',
       translations: {
         create: [
           {

@@ -1,13 +1,36 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { db } from '@repo/database';
-import type { News } from '@repo/types';
+import type {
+  LocaleType,
+  News,
+  NewsCategoryType,
+  NewsWithTranslation,
+} from '@repo/types';
 
 @Injectable()
 export class NewsService {
-  async findAll(published?: boolean): Promise<News[]> {
-    return db.news.findMany({
+  async findAll(
+    locale: LocaleType,
+    published?: boolean,
+  ): Promise<NewsWithTranslation[]> {
+    const newsList = await db.news.findMany({
       where: published !== undefined ? { published } : undefined,
       orderBy: { createdAt: 'desc' },
+      include: { translations: true },
+    });
+    return newsList.map((news) => {
+      const translation =
+        news.translations.find((t) => t.locale === locale) ||
+        news.translations[0];
+      const { translations, ...base } = news;
+      return {
+        ...base,
+        category: news.category,
+        title: translation?.title,
+        slug: translation?.slug ?? news.id,
+        content: translation?.content,
+        excerpt: translation?.excerpt,
+      };
     });
   }
 
@@ -23,20 +46,58 @@ export class NewsService {
     return news;
   }
 
-  async findOneBySlug(slug: string): Promise<News> {
-    const news = await db.news.findUnique({
-      where: { slug },
+  async findOneBySlug(slug: string): Promise<NewsWithTranslation> {
+    const news = await db.news.findFirst({
+      where: {
+        translations: {
+          some: { slug },
+        },
+      },
+      include: { translations: true },
     });
+
     if (!news) {
       throw new NotFoundException(`News with slug ${slug} not found`);
     }
-    return news;
+
+    const translation =
+      news.translations.find((t) => t.slug === slug) || news.translations[0];
+    const { translations, ...base } = news;
+
+    return {
+      ...base,
+      category: news.category,
+      title: translation?.title,
+      slug: translation?.slug ?? news.id,
+      content: translation?.content,
+      excerpt: translation?.excerpt,
+    };
   }
 
-  async findByCategory(category: string, published = true): Promise<News[]> {
-    return db.news.findMany({
+  async findByCategory(
+    category: NewsCategoryType,
+    locale: LocaleType,
+    published = true,
+  ): Promise<NewsWithTranslation[]> {
+    const newsList = await db.news.findMany({
       where: { category, published },
       orderBy: { createdAt: 'desc' },
+      include: { translations: true },
+    });
+
+    return newsList.map((news) => {
+      const translation =
+        news.translations.find((t) => t.locale === locale) ||
+        news.translations[0];
+      const { translations, ...base } = news;
+      return {
+        ...base,
+        category: news.category,
+        title: translation?.title,
+        slug: translation?.slug ?? news.id,
+        content: translation?.content,
+        excerpt: translation?.excerpt,
+      };
     });
   }
 }

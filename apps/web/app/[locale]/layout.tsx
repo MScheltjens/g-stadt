@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import { hasLocale, Locale } from '@repo/i18n';
-import { getTranslations } from '@repo/i18n/server';
-import { Providers } from '@/components/providers/providers';
+import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from '@repo/i18n/server';
 import { getUser } from '@/lib/auth';
 
 import '@repo/ui/globals.css';
+import { Providers } from '@/components/providers/providers';
 
 export async function generateMetadata({
   params,
@@ -20,6 +19,8 @@ export async function generateMetadata({
     locale: locale as Locale,
     namespace: 'metadata',
   });
+
+  setRequestLocale(locale as Locale);
 
   return {
     title: t('title'),
@@ -46,7 +47,7 @@ export default async function LocaleLayout({
     notFound();
   }
   // Enable static rendering for this page
-  setRequestLocale(locale);
+  setRequestLocale(locale as Locale);
   const user = await getUser();
 
   return (

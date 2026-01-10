@@ -173,13 +173,24 @@ model AuditLog {
   details   String?
 }
 
+enum EventCategory {
+  Music
+  Sports
+  Education
+  Culture
+  Community
+  Health
+  Environment
+  // Add more categories as needed
+}
+
 model Event {
-  id        String   @id @default(uuid())
+  id        String        @id @default(uuid())
   date      DateTime
-  category  String
+  category  EventCategory
   imageUrl  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
   translations EventTranslation[]
 }
@@ -199,14 +210,27 @@ model EventTranslation {
   @@unique([locale, slug])
 }
 
+enum NewsCategory {
+  Local
+  Politics
+  Economy
+  Culture
+  Sports
+  Technology
+  Health
+  Environment
+  Education
+  // Add more categories as needed
+}
+
 model News {
-  id          String    @id @default(uuid())
-  category    String
+  id          String       @id @default(uuid())
+  category    NewsCategory
   imageUrl    String?
-  published   Boolean   @default(false)
+  published   Boolean      @default(false)
   publishedAt DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 
   translations NewsTranslation[]
 }
@@ -226,13 +250,27 @@ model NewsTranslation {
   @@unique([locale, slug])
 }
 
+enum ServiceCategory {
+  Administrative
+  Health
+  Education
+  Transportation
+  PublicSafety
+  Recreation
+  SocialServices
+  Utilities
+  Environmental
+  Cultural
+  // Add more categories as needed
+}
+
 model Service {
-  id        String   @id @default(uuid())
-  category  String
+  id        String          @id @default(uuid())
+  category  ServiceCategory
   icon      String
   link      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
 
   translations ServiceTranslation[]
   appointments Appointment[]
@@ -273,9 +311,19 @@ model PageTranslation {
   @@unique([locale, slug])
 }
 
+enum FAQCategory {
+  General
+  Technical
+  Billing
+  Account
+  Services
+  Policies
+  // Add more categories as needed
+}
+
 model FAQ {
-  id       String  @id @default(uuid())
-  category String?
+  id       String       @id @default(uuid())
+  category FAQCategory?
   order    Int?
 
   translations FAQTranslation[]
@@ -316,11 +364,19 @@ model AnnouncementTranslation {
   @@unique([announcementId, locale])
 }
 
+enum DocumentCategory {
+  Policy
+  Form
+  Guide
+  Report
+  // Add more categories as needed
+}
+
 model Document {
-  id         String   @id @default(uuid())
+  id         String           @id @default(uuid())
   fileUrl    String
-  category   String
-  uploadedAt DateTime @default(now())
+  category   DocumentCategory
+  uploadedAt DateTime         @default(now())
 
   translations DocumentTranslation[]
 }

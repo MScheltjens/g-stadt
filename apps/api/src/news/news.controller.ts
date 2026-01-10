@@ -1,6 +1,11 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { NewsService } from './news.service';
-import type { News } from '@repo/types';
+import type {
+  LocaleType,
+  News,
+  NewsCategoryType,
+  NewsWithTranslation,
+} from '@repo/types';
 import { Public } from '../authentication/decorators/public.decorator';
 
 @Public()
@@ -10,16 +15,14 @@ export class NewsController {
 
   @Get()
   async findAll(
-    @Query('published') published?: string,
-    @Query('category') category?: string,
-  ): Promise<News[]> {
-    const isPublished =
-      published === 'true' ? true : published === 'false' ? false : true;
-
+    @Query('locale') locale: LocaleType,
+    @Query('published') published?: boolean,
+    @Query('category') category?: NewsCategoryType,
+  ): Promise<NewsWithTranslation[]> {
     if (category) {
-      return this.newsService.findByCategory(category, isPublished);
+      return this.newsService.findByCategory(category, locale, published);
     }
-    return this.newsService.findAll(isPublished);
+    return this.newsService.findAll(locale, published);
   }
 
   @Get(':id')
@@ -28,7 +31,9 @@ export class NewsController {
   }
 
   @Get('/slug/:slug')
-  async findOneBySlug(@Param('slug') slug: string): Promise<News> {
+  async findOneBySlug(
+    @Param('slug') slug: string,
+  ): Promise<NewsWithTranslation> {
     return this.newsService.findOneBySlug(slug);
   }
 }

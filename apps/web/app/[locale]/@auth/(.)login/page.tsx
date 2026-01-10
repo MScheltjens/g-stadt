@@ -8,7 +8,7 @@
 import { Modal } from '@/components/common/modal';
 import { LoginForm } from '@/components/auth/login-form';
 import { setRequestLocale } from '@repo/i18n/server';
-import { Locale } from '@repo/i18n/index';
+import { Locale } from '@repo/i18n';
 
 type LoginModalProps = Readonly<{
   params: Promise<{ locale: string }>;

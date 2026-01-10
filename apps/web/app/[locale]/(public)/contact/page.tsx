@@ -1,4 +1,4 @@
-import { Locale } from '@repo/i18n/index';
+import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 
 type ContactPageProps = {

@@ -7,7 +7,7 @@
  */
 
 import { LoginForm } from '@/components/auth/login-form';
-import { Locale } from '@repo/i18n/index';
+import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
 
 type LoginPageProps = Readonly<{
