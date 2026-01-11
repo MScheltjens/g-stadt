@@ -47,8 +47,8 @@
       "title": "Bienvenue à",
       "cityName": "G-Stadt",
       "description": "Vivre. Travailler. Façonner l'avenir – toutes les informations et services de votre ville en un seul endroit.",
-      "citizenPortal": "Portail Citoyen",
-      "citizenRegister": "S'inscrire en tant que citoyen"
+      "actionNews": "Actualités",
+      "actionEvents": "Événements"
     }
   },
   "services": {
@@ -105,11 +105,16 @@
   "navbar": {
     "home": "Accueil",
     "news": "Actualités",
-    "events": "Événements",
+    "contact": "Contact",
     "services": "Services",
-    "contact": "Contact"
+    "openMenu": "Ouvrir le menu",
+    "menu": "Menu"
   },
   "itemCard": {
     "readMore": "Lire la suite"
+  },
+  "LocaleSwitcher": {
+    "label": "Changer de langue",
+    "locale": "{locale, select, de {Allemand} en {Anglais} fr {Français} other {Inconnu}}"
   }
 }

@@ -2,7 +2,7 @@ import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { getServices } from '@/lib/api';
 import { formatDate } from '@/lib/utils';
-import { SectionCard } from '@/components/common/section-card';
+import { CardList } from '@/components/common/card-list';
 import { PublicPageHeader } from '@/components/common/public-page-header';
 
 type ServicesPageProps = {
@@ -18,10 +18,9 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   return (
     <>
       <PublicPageHeader title={t('title')} description={t('description')} />
-      <SectionCard
+      <CardList
         muted
         items={services.map((service) => ({
-          key: service.id,
           title: service.title,
           description: service.description,
           pathname: '/services/[slug]',

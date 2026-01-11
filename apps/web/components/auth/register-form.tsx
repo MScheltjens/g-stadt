@@ -11,7 +11,7 @@ import { useTranslations } from '@repo/i18n';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterWithConfirmSchema, RegisterWithConfirmDto } from '@repo/types';
-import { register } from '@/server/actions/auth';
+import { register } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 import { Input } from '@repo/ui/components/input';

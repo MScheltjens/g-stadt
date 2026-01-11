@@ -47,10 +47,8 @@
       "title": "Willkommen in",
       "cityName": "G-Stadt",
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Dienstleistungen Ihrer Stadt an einem Ort.",
-      "signIn": "Anmelden",
-      "register": "Registrieren",
-      "citizenPortal": "Bürgerportal",
-      "citizenRegister": "Als Bürger registrieren"
+      "actionNews": "Nachrichten",
+      "actionEvents": "Veranstaltungen"
     }
   },
   "services": {
@@ -106,12 +104,16 @@
   },
   "navbar": {
     "home": "Startseite",
-    "news": "Nachrichten",
-    "events": "Veranstaltungen",
     "services": "Dienstleistungen",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "openMenu": "Menü öffnen",
+    "menu": "Menü"
   },
   "itemCard": {
     "readMore": "Mehr lesen"
+  },
+  "LocaleSwitcher": {
+    "label": "Sprache ändern",
+    "locale": "{locale, select, de {Deutsch} en {English} fr {Französisch} other {Unbekannt}}"
   }
 }

@@ -2,7 +2,7 @@ import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { getNews } from '@/lib/api';
 import { formatDate } from '@/lib/utils';
-import { SectionCard } from '@/components/common/section-card';
+import { CardList } from '@/components/common/card-list';
 import { PublicPageHeader } from '@/components/common/public-page-header';
 
 type NewsPageProps = {
@@ -18,15 +18,15 @@ export default async function NewsPage({ params }: NewsPageProps) {
   return (
     <>
       <PublicPageHeader title={t('title')} description={t('description')} />
-      <SectionCard
+      <CardList
         muted
         items={news.map((newsItem) => ({
-          key: newsItem.id,
           title: newsItem.title,
           pathname: '/news/[slug]',
-          icon: 'Calendar',
           slug: newsItem.slug,
-          footer: formatDate(newsItem.createdAt.toLocaleDateString()),
+          date: (
+            newsItem.publishedAt || newsItem.createdAt
+          ).toLocaleDateString(),
         }))}
       />
     </>

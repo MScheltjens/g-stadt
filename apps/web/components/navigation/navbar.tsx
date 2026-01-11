@@ -2,7 +2,7 @@
 
 import { Link, usePathname } from '@repo/i18n/navigation';
 import { type Locale, useTranslations } from '@repo/i18n';
-import { NAVIGATION_LINKS } from '@repo/types';
+import { NAVBAR_STRUCTURAL_LINKS } from '@repo/types';
 import { cn } from '@repo/ui/lib/utils';
 import {
   NavigationMenu,
@@ -10,6 +10,8 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
 } from '@repo/ui/components/navigation-menu';
+import { MobileNav } from './mobile-nav';
+import { buttonVariants } from '@repo/ui/components/button';
 
 export function Navbar({ locale }: { locale: Locale }) {
   const t = useTranslations('navbar');
@@ -28,28 +30,36 @@ export function Navbar({ locale }: { locale: Locale }) {
   };
 
   return (
-    <NavigationMenu className="hidden md:flex">
-      <NavigationMenuList>
-        {NAVIGATION_LINKS.filter((item) => !(item.href === '/' && isHome)).map(
-          (item) => (
-            <NavigationMenuItem key={item.href}>
+    <nav>
+      <NavigationMenu>
+        {/* Mobile */}
+        <MobileNav isHome={isHome} isActive={isActive} />
+
+        {/* Desktop */}
+        <NavigationMenuList className="hidden md:flex gap-8">
+          {NAVBAR_STRUCTURAL_LINKS.filter(
+            (item) => !(item.href === '/' && isHome),
+          ).map((item) => (
+            <NavigationMenuItem key={item.href} className="h-full">
               <NavigationMenuLink asChild>
                 <Link
                   href={item.href}
                   className={cn(
-                    'px-4 py-2 text-xs uppercase tracking-wide font-medium transition-colors text-secondary',
+                    'relative py-3 px-3 text-sm font-medium transition-colors h-full',
+                    'border-b-2 border-transparent',
+                    'text-foreground',
                     isActive(item.href)
-                      ? 'text-primary bg-secondary'
-                      : 'hover:text-primary',
+                      ? 'border-primary text-primary'
+                      : 'hover:border-primary/40 hover:text-primary',
                   )}
                 >
                   {t(item.label)}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
-          ),
-        )}
-      </NavigationMenuList>
-    </NavigationMenu>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </nav>
   );
 }

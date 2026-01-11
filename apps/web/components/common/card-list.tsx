@@ -1,3 +1,4 @@
+// card-list.tsx
 import { Button } from '@repo/ui/components/button';
 import {
   Card,
@@ -8,42 +9,42 @@ import {
 } from '@repo/ui/components/card';
 import { cn } from '@repo/ui/lib/utils';
 import { ItemCard, ItemCardProps } from './item-card';
+import { ComponentPropsWithoutRef } from 'react';
 
-import type { HTMLAttributes } from 'react';
-
-type SectionCardProps = {
+type CardListProps = {
   title?: string;
-  actionBtnText?: string;
-  children?: React.ReactNode;
   description?: string;
+  actionBtnText?: string;
   muted?: boolean;
-  className?: string;
   items?: ItemCardProps[];
-  cardItemList?: string;
-  containerClassName?: string;
-} & HTMLAttributes<HTMLDivElement>;
+  children?: React.ReactNode;
 
-export function SectionCard({
+  /** layout-only */
+  className?: string;
+  sectionClassName?: string;
+  cardItemListClassName?: string;
+  id?: string;
+} & ComponentPropsWithoutRef<'section'>;
+
+export function CardList({
   title,
-  muted,
   description,
   actionBtnText,
+  muted,
+  items,
   children,
   className,
-  items,
-  cardItemList = 'flex flex-wrap gap-6 mt-6',
-  ...props
-}: SectionCardProps) {
+  cardItemListClassName = 'flex flex-wrap gap-6 mt-6',
+  ...sectionProps
+}: CardListProps) {
   return (
-    <section>
+    <section {...sectionProps}>
       <Card
         className={cn(
           'rounded-none w-full',
-          muted && 'bg-muted',
-          !muted && 'bg-background',
+          muted ? 'bg-muted' : 'bg-background',
           className,
         )}
-        {...props}
       >
         <div className="container max-w-5xl mx-auto">
           <CardHeader className="flex flex-row justify-between items-center">
@@ -59,15 +60,19 @@ export function SectionCard({
                 </CardDescription>
               )}
             </div>
+
             {actionBtnText && <Button variant="ghost">{actionBtnText}</Button>}
           </CardHeader>
+
           <CardContent className="py-4">
             {items ? (
-              <div className={cardItemList}>
+              <ul className={cardItemListClassName}>
                 {items.map((item) => (
-                  <ItemCard key={item.slug} {...item} />
+                  <li key={item.slug}>
+                    <ItemCard {...item} />
+                  </li>
                 ))}
-              </div>
+              </ul>
             ) : (
               children
             )}
