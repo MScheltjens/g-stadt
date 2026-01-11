@@ -83,6 +83,11 @@
     "success": "Your message has been sent!",
     "error": "There was an error sending your message."
   },
+  "header": {
+    "utils": {
+      "login": "Sign In"
+    }
+  },
   "footer": {
     "contact": "Contact",
     "privacy": "Privacy",
@@ -104,11 +109,13 @@
   },
   "navbar": {
     "home": "Home",
-    "news": "News",
     "services": "Services",
+    "idCard": "ID Card",
+    "appointments": "Appointments",
     "contact": "Contact",
-    "openMenu": "Open menu",
-    "menu": "Menu"
+    "contactForm": "Contact Form",
+    "locations": "Locations",
+    "emergency": "Emergency"
   },
   "itemCard": {
     "readMore": "Read More"

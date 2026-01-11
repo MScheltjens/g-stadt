@@ -37,7 +37,7 @@
   --muted-foreground: oklch(0.45 0.03 255);
 
   /* Accent – restrained warm hint (yellow, subtle) */
-  --accent: oklch(0.88 0.05 95);
+  --accent: oklch(0.92 0.01 255);
   --accent-foreground: var(--foreground);
 
   /* Destructive */

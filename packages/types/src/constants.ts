@@ -1,5 +1,21 @@
-export const NAVBAR_STRUCTURAL_LINKS = [
-  { label: 'home', href: '/' },
-  { label: 'services', href: '/services' },
-  { label: 'contact', href: '/contact' },
+export const NAV_ITEMS = [
+  {
+    label: 'services',
+    href: '/services',
+    icon: 'services',
+    children: [
+      { label: 'idCard', href: '/services/id-card' },
+      { label: 'appointments', href: '/appointments' },
+    ],
+  },
+  {
+    label: 'contact',
+    href: '/contact',
+    icon: 'contact',
+    children: [
+      { label: 'contactForm', href: '/contact' },
+      { label: 'locations', href: '/locations' },
+      { label: 'emergency', href: '/emergency' },
+    ],
+  },
 ] as const;

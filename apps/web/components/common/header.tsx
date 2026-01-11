@@ -1,35 +1,29 @@
 import { Navbar } from '@/components/navigation/navbar';
-import { Locale } from '@repo/i18n';
 import { Link } from '@repo/i18n/navigation';
-import { getTranslations } from '@repo/i18n/server';
-import { buttonVariants } from '@repo/ui/components/button';
-import { LocaleSwitcher } from '../navigation/locale-switcher';
-import { LogIn } from '@repo/ui/components/icons';
+import { HeaderUtils } from './header-utils';
+import { NavbarIcons } from '../navigation/navbar-icons';
 
-export function Header({ locale }: { locale: Locale }) {
+export function Header() {
   return (
     <header className="w-full bg-background border-b border-border">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="text-base font-semibold tracking-tight text-foreground"
-          ></Link>
+          <Link href="/" className="text-lg font-semibold">
+            G-Stadt
+          </Link>
 
-          {/* Right side navigation */}
-          <div className="flex items-center gap-6">
-            <Navbar locale={locale} />
-            {/* Utilities */}
-            <LocaleSwitcher />
-            <Link
-              href="/login"
-              className={buttonVariants({ variant: 'link', size: 'sm' })}
-            >
-              {/* User icon from lucide-react via @repo/ui/icons */}
-              <span className="sr-only">Sign in</span>
-              <LogIn />
-            </Link>
+          {/* Right cluster */}
+          <div className="flex items-center">
+            {/* Desktop nav and utils */}
+
+            <Navbar />
+
+            {/* Mobile nav and utils as icons */}
+            <div className="flex md:hidden">
+              <NavbarIcons />
+            </div>
+            <HeaderUtils />
           </div>
         </div>
       </div>

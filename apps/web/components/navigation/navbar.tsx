@@ -1,65 +1,64 @@
 'use client';
 
+import { NAV_ITEMS } from '@repo/types';
 import { Link, usePathname } from '@repo/i18n/navigation';
-import { type Locale, useTranslations } from '@repo/i18n';
-import { NAVBAR_STRUCTURAL_LINKS } from '@repo/types';
-import { cn } from '@repo/ui/lib/utils';
+import { useTranslations } from '@repo/i18n';
+
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
   NavigationMenuLink,
 } from '@repo/ui/components/navigation-menu';
-import { MobileNav } from './mobile-nav';
-import { buttonVariants } from '@repo/ui/components/button';
 
-export function Navbar({ locale }: { locale: Locale }) {
+import { cn } from '@repo/ui/lib/utils';
+
+export function Navbar() {
   const t = useTranslations('navbar');
   const pathname = usePathname();
 
-  const normalizedPathname =
-    pathname.replace(new RegExp(`^/${locale}`), '') || '/';
-
-  const isHome = normalizedPathname === '/';
-
-  const isActive = (href: string) => {
-    if (href === '/') return isHome;
-    return (
-      normalizedPathname === href || normalizedPathname.startsWith(`${href}/`)
-    );
-  };
-
   return (
-    <nav>
-      <NavigationMenu>
-        {/* Mobile */}
-        <MobileNav isHome={isHome} isActive={isActive} />
-
-        {/* Desktop */}
-        <NavigationMenuList className="hidden md:flex gap-8">
-          {NAVBAR_STRUCTURAL_LINKS.filter(
-            (item) => !(item.href === '/' && isHome),
-          ).map((item) => (
-            <NavigationMenuItem key={item.href} className="h-full">
-              <NavigationMenuLink asChild>
-                <Link
-                  href={item.href}
-                  className={cn(
-                    'relative py-3 px-3 text-sm font-medium transition-colors h-full',
-                    'border-b-2 border-transparent',
-                    'text-foreground',
-                    isActive(item.href)
-                      ? 'border-primary text-primary'
-                      : 'hover:border-primary/40 hover:text-primary',
-                  )}
-                >
-                  {t(item.label)}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          ))}
-        </NavigationMenuList>
-      </NavigationMenu>
-    </nav>
+    <NavigationMenu viewport={false}>
+      <NavigationMenuList className="hidden md:flex items-center ">
+        {NAV_ITEMS.map((item) => (
+          <NavigationMenuItem key={item.label}>
+            <NavigationMenuTrigger
+              className={cn(
+                'bg-transparent px-4 text-sm font-medium',
+                'hover:bg-transparent focus:bg-transparent',
+                'border-b-2 border-transparent data-[state=open]:border-primary',
+              )}
+            >
+              {t(item.label)}
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="flex flex-col gap-1">
+                {item.children.map((child) => (
+                  <li key={child.href}>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        // @ts-expect-error -- TypeScript will validate that only known `params`
+                        // are used in combination with a given `pathname`. Since the two will
+                        // always match for the current route, we can skip runtime checks.
+                        href={child.href}
+                        className={cn(
+                          'block px-3 py-1.5 text-sm rounded-sm',
+                          'hover:bg-muted',
+                          pathname === child.href && 'font-medium text-primary',
+                        )}
+                      >
+                        {t(child.label)}
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }

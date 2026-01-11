@@ -83,6 +83,11 @@
     "success": "Ihre Nachricht wurde gesendet!",
     "error": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten."
   },
+  "header": {
+    "utils": {
+      "login": "Anmelden"
+    }
+  },
   "footer": {
     "contact": "Kontakt",
     "privacy": "Datenschutz",
@@ -105,9 +110,12 @@
   "navbar": {
     "home": "Startseite",
     "services": "Dienstleistungen",
+    "idCard": "Personalausweis",
+    "appointments": "Termine",
     "contact": "Kontakt",
-    "openMenu": "Menü öffnen",
-    "menu": "Menü"
+    "contactForm": "Kontaktformular",
+    "locations": "Standorte",
+    "emergency": "Notfall"
   },
   "itemCard": {
     "readMore": "Mehr lesen"

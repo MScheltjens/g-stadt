@@ -83,6 +83,11 @@
     "success": "Votre message a été envoyé !",
     "error": "Une erreur s'est produite lors de l'envoi de votre message."
   },
+  "header": {
+    "utils": {
+      "login": "Se connecter"
+    }
+  },
   "footer": {
     "contact": "Contact",
     "privacy": "Confidentialité",
@@ -104,11 +109,13 @@
   },
   "navbar": {
     "home": "Accueil",
-    "news": "Actualités",
-    "contact": "Contact",
     "services": "Services",
-    "openMenu": "Ouvrir le menu",
-    "menu": "Menu"
+    "idCard": "Carte d'identité",
+    "appointments": "Rendez-vous",
+    "contact": "Contact",
+    "contactForm": "Formulaire de contact",
+    "locations": "Lieux",
+    "emergency": "Urgence"
   },
   "itemCard": {
     "readMore": "Lire la suite"
