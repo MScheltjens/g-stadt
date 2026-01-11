@@ -1,7 +1,6 @@
 import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { getEvents } from '@/lib/api';
-import { formatDate } from '@/lib/utils';
 import { CardList } from '@/components/common/card-list';
 import { PublicPageHeader } from '@/components/common/public-page-header';
 
