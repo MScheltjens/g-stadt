@@ -5,7 +5,6 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter,
 } from '@repo/ui/components/card';
 import { cn } from '@repo/ui/lib/utils';
 import { ItemCard, ItemCardProps } from './item-card';
@@ -66,7 +65,7 @@ export function SectionCard({
             {items ? (
               <div className={cardItemList}>
                 {items.map((item) => (
-                  <ItemCard {...item} />
+                  <ItemCard key={item.slug} {...item} />
                 ))}
               </div>
             ) : (

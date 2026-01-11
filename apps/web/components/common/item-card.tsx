@@ -13,7 +13,6 @@ import { ArrowRight } from '@repo/ui/components/icons';
 import { Pathname } from '@repo/i18n/routing';
 import { getTranslations } from '@repo/i18n/server';
 import { HTMLAttributes } from 'react';
-import { createDecipheriv } from 'crypto';
 
 export interface ItemCardProps {
   title: string;
