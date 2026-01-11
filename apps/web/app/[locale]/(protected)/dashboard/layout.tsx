@@ -4,7 +4,7 @@ import { setRequestLocale } from '@repo/i18n/server';
 import { RoleEnum } from '@repo/types';
 import type { LayoutProps } from '@/types/next-page';
 
-type DashboardLayoutProps = LayoutProps & {
+type DashboardLayoutProps = LayoutProps<object> & {
   user: React.ReactNode;
   admin: React.ReactNode;
   staff: React.ReactNode;
