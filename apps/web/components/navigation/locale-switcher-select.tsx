@@ -32,14 +32,7 @@ export function LocaleSwitcherSelect({ children, defaultValue }: Props) {
     });
   }
 
-  // Find the selected option's label
-  let selectedLabel = '';
-  if (Array.isArray(children)) {
-    const selectedOption = children.find(
-      (child: React.ReactElement) =>
-        child.props && child.props.value === defaultValue,
-    );
-  }
+  // ...existing code...
 
   return (
     <Button
