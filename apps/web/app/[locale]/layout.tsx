@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth';
-import type { LayoutProps } from '@/types/next-page';
+import type { LayoutProps, MetadataProps } from '@/types/next-page';
 import { Providers } from '@/components/providers/providers';
 import { Locale } from '@repo/types';
 
@@ -12,9 +12,7 @@ import '@repo/ui/globals.css';
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}): Promise<Metadata> {
+}: MetadataProps): Promise<Metadata> {
   const { locale } = await params;
 
   const t = await getTranslations({

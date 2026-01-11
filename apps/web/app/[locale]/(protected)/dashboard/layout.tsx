@@ -1,7 +1,7 @@
 import { checkUserRole } from '@/lib/auth';
 import { redirect } from '@repo/i18n/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
-import { RoleEnum, type Locale } from '@repo/types';
+import { RoleEnum } from '@repo/types';
 import type { LayoutProps } from '@/types/next-page';
 
 type DashboardLayoutProps = LayoutProps & {
