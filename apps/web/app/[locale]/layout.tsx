@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
-import { hasLocale, Locale } from '@repo/i18n';
+import { hasLocale } from '@repo/i18n/next-intl';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth';
+import type { LayoutProps } from '@/types/next-page';
+import { Providers } from '@/components/providers/providers';
+import { Locale } from '@repo/types';
 
 import '@repo/ui/globals.css';
-import { Providers } from '@/components/providers/providers';
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
 
@@ -20,7 +22,7 @@ export async function generateMetadata({
     namespace: 'metadata',
   });
 
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   return {
     title: t('title'),
@@ -32,15 +34,15 @@ export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
 
+type LocaleLayoutProps = LayoutProps & {
+  auth?: React.ReactNode;
+};
+
 export default async function LocaleLayout({
   children,
   params,
   auth,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-  auth?: React.ReactNode;
-}>) {
+}: LocaleLayoutProps) {
   const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
@@ -53,7 +55,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
-        <Providers locale={locale} initialUser={user}>
+        <Providers locale={locale as Locale} initialUser={user}>
           {children}
           {auth}
         </Providers>

@@ -4,7 +4,7 @@ import { LocaleSwitcher } from '../navigation/locale-switcher';
 import { Link } from '@repo/i18n/navigation';
 import { User } from '@repo/ui/components/icons';
 import { usePathname } from '@repo/i18n/navigation';
-import { useTranslations } from '@repo/i18n/index';
+import { useTranslations } from '@repo/i18n/next-intl';
 
 export function HeaderUtils() {
   const pathname = usePathname();

@@ -1,18 +1,13 @@
-import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { getEvents } from '@/lib/api';
 import { CardList } from '@/components/common/card-list';
 import { PublicPageHeader } from '@/components/common/public-page-header';
+import type { PageProps } from '@/types/next-page';
 
-type EventsPageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function EventsPage({ params }: EventsPageProps) {
+export default async function EventsPage({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
   const t = await getTranslations('events');
-
   const events = await getEvents();
 
   return (

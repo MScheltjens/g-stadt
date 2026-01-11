@@ -1,16 +1,13 @@
-import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { getNews } from '@/lib/api';
 import { CardList } from '@/components/common/card-list';
 import { PublicPageHeader } from '@/components/common/public-page-header';
 
-type NewsPageProps = {
-  params: Promise<{ locale: string }>;
-};
+import type { PageProps } from '@/types/next-page';
 
-export default async function NewsPage({ params }: NewsPageProps) {
+export default async function NewsPage({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
   const t = await getTranslations('news');
   const news = await getNews();
 

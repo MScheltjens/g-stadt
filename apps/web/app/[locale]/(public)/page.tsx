@@ -1,14 +1,10 @@
 import { Hero } from '@/components/common/hero';
-import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
+import type { PageProps } from '@/types/next-page';
 
-type HomePageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function HomePage({ params }: HomePageProps) {
+export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   return (
     <main className="flex flex-col">

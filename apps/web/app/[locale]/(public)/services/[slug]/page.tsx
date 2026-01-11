@@ -1,16 +1,16 @@
-import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
 import { getServiceBySlug } from '@/lib/api';
+import type { PageProps } from '@/types/next-page';
 
-type ServiceItemPageProps = {
-  params: Promise<{ locale: string; slug: string }>;
-};
+type ServiceItemPageProps = PageProps<{
+  slug: string;
+}>;
 
 export default async function ServiceItemPage({
   params,
 }: ServiceItemPageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   const service = await getServiceBySlug(slug);
 

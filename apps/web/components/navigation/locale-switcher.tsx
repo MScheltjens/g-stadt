@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from '@repo/i18n';
+import { useLocale, useTranslations } from '@repo/i18n/next-intl';
 import { routing } from '@repo/i18n/routing';
 import { usePathname, useRouter } from '@repo/i18n/navigation';
 import { useTransition } from 'react';

@@ -7,7 +7,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { useTranslations } from '@repo/i18n';
+import { useTranslations } from '@repo/i18n/next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterWithConfirmSchema, RegisterWithConfirmDto } from '@repo/types';

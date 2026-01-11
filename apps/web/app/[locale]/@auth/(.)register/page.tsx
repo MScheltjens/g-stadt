@@ -8,15 +8,11 @@
 import { Modal } from '@/components/common/modal';
 import { RegisterForm } from '@/components/auth/register-form';
 import { setRequestLocale } from '@repo/i18n/server';
-import { Locale } from '@repo/i18n';
+import type { PageProps } from '@/types/next-page';
 
-type RegisterModalProps = Readonly<{
-  params: Promise<{ locale: string }>;
-}>;
-
-export default async function RegisterModal({ params }: RegisterModalProps) {
+export default async function RegisterModal({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   return (
     <Modal>

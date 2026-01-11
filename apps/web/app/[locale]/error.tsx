@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from '@repo/i18n/index';
+import { useTranslations } from '@repo/i18n/next-intl';
 import { useEffect } from 'react';
 
 export default function Error({

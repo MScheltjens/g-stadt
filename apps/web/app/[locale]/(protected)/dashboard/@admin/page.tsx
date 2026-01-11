@@ -1,15 +1,9 @@
-import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
+import type { PageProps } from '@/types/next-page';
 
-type AdminDashboardPageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function AdminDashboardPage({
-  params,
-}: AdminDashboardPageProps) {
+export default async function AdminDashboardPage({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   return <h1>Admin Dashboard</h1>;
 }

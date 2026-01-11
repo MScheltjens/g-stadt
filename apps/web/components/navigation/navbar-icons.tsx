@@ -2,7 +2,7 @@
 
 import { NAV_ITEMS } from '@repo/types';
 import { Link, usePathname } from '@repo/i18n/navigation';
-import { useTranslations } from '@repo/i18n';
+import { useTranslations } from '@repo/i18n/next-intl';
 import { Mail, MapPin, AlertCircle } from '@repo/ui/components/icons';
 import { cn } from '@repo/ui/lib/utils';
 import {

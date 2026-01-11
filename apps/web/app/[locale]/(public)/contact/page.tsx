@@ -1,13 +1,8 @@
-import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import type { PageProps } from '@/types/next-page';
 
-type ContactPageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function ContactPage({ params }: ContactPageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale as Locale);
+export default async function ContactPage({ params: { locale } }: PageProps) {
+  setRequestLocale(locale);
   const t = await getTranslations('contact');
 
   return (

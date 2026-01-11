@@ -1,14 +1,14 @@
-import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
 import { getNewsBySlug } from '@/lib/api';
+import type { PageProps } from '@/types/next-page';
 
-type NewsPageProps = {
-  params: Promise<{ locale: string; slug: string }>;
-};
+type NewsPageProps = PageProps<{
+  slug: string;
+}>;
 
 export default async function NewsPage({ params }: NewsPageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   const news = await getNewsBySlug(slug);
 

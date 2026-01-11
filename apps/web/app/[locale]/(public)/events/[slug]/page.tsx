@@ -1,14 +1,14 @@
-import { Locale } from '@repo/i18n';
 import { setRequestLocale } from '@repo/i18n/server';
 import { getEventBySlug } from '@/lib/api';
+import type { PageProps } from '@/types/next-page';
 
-type EventPageProps = {
-  params: Promise<{ locale: string; slug: string }>;
-};
+type EventPageProps = PageProps<{
+  slug: string;
+}>;
 
 export default async function EventPage({ params }: EventPageProps) {
   const { locale, slug } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   const event = await getEventBySlug(slug);
 
