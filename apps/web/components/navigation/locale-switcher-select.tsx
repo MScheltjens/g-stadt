@@ -36,7 +36,8 @@ export function LocaleSwitcherSelect({ children, defaultValue }: Props) {
   let selectedLabel = '';
   if (Array.isArray(children)) {
     const selectedOption = children.find(
-      (child: any) => child.props && child.props.value === defaultValue,
+      (child: React.ReactElement) =>
+        child.props && child.props.value === defaultValue,
     );
     selectedLabel = selectedOption
       ? selectedOption.props.children
