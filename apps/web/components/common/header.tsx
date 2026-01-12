@@ -16,7 +16,6 @@ export function Header() {
           {/* Right cluster */}
           <div className="flex items-center">
             {/* Desktop nav and utils */}
-
             <Navbar />
 
             {/* Mobile nav and utils as icons */}
