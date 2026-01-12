@@ -1,124 +1,107 @@
-# Turborepo starter
+# G-Stadtt Monorepo
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+This repository is a monorepo for the G-Stadtt project, a fictive website for a city, containing both backend (API) and frontend (web) applications, as well as shared packages and configurations.
 
-## Using this example
+## Project Structure
 
-Run the following command:
-
-```bash
-npx create-turbo@latest -e with-nestjs
 ```
-
-## What's inside?
-
-This Turborepo includes the following packages & apps:
-
-### Apps and Packages
-
-```shell
 .
-├── apps
-│   ├── api                       # NestJS app (https://nestjs.com).
-│   └── web                       # Next.js app (https://nextjs.org).
-└── packages
-    ├── @repo/api                 # Shared `NestJS` resources.
-    ├── @repo/eslint-config       # `eslint` configurations (includes `prettier`)
-    ├── @repo/jest-config         # `jest` configurations
-    ├── @repo/typescript-config   # `tsconfig.json`s used throughout the monorepo
-    └── @repo/ui                  # Shareable stub React component library.
+├── apps/
+│   ├── api/         # NestJS backend API
+│   └── web/         # Next.js frontend web app
+├── packages/
+│   ├── database/    # Prisma schema and database utilities
+│   ├── i18n/        # Internationalization utilities
+│   ├── types/       # Shared TypeScript types
+│   └── ui/          # Shared UI components
+├── configs/         # Shared configuration (eslint, jest, tsconfig, etc.)
+├── docker-compose.yml
+├── package.json
+├── pnpm-workspace.yaml
+├── turbo.json       # Turborepo configuration
+└── README.md        # This file
 ```
 
-Each package and application are mostly written in [TypeScript](https://www.typescriptlang.org/).
+## Getting Started
 
-### Utilities
+### Prerequisites
 
-This `Turborepo` has some additional tools already set for you:
+- Node.js (v18+ recommended)
+- pnpm (v8+ recommended)
+- Docker (for local database, optional)
 
-- [TypeScript](https://www.typescriptlang.org/) for static type-safety
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-- [Jest](https://prettier.io) & [Playwright](https://playwright.dev/) for testing
+### Install Dependencies
 
-### Commands
-
-This `Turborepo` already configured useful commands for all your apps and packages.
-
-#### Build
-
-```bash
-# Will build all the app & packages with the supported `build` script.
-pnpm run build
-
-# ℹ️ If you plan to only build apps individually,
-# Please make sure you've built the packages first.
+```sh
+pnpm install
 ```
 
-#### Develop
+### Development
 
-```bash
-# Will run the development server for all the app & packages with the supported `dev` script.
-pnpm run dev
+#### Start All Apps
+
+```sh
+pnpm dev
 ```
 
-#### test
+#### Start Individually
 
-```bash
-# Will launch a test suites for all the app & packages with the supported `test` script.
-pnpm run test
+- API: `pnpm --filter api dev`
+- Web: `pnpm --filter web dev`
 
-# You can launch e2e testes with `test:e2e`
-pnpm run test:e2e
+### Build
 
-# See `@repo/jest-config` to customize the behavior.
+```sh
+pnpm build
 ```
 
-#### Lint
+### Test
 
-```bash
-# Will lint all the app & packages with the supported `lint` script.
-# See `@repo/eslint-config` to customize the behavior.
-pnpm run lint
+```sh
+pnpm test
 ```
 
-#### Format
+## Database
 
-```bash
-# Will format all the supported `.ts,.js,json,.tsx,.jsx` files.
-# See `@repo/eslint-config/prettier-base.js` to customize the behavior.
-pnpm format
-```
+- Uses Prisma ORM (see `packages/database/prisma/schema.prisma`)
+- To apply migrations:
+  ```sh
+  pnpm --filter @repo/database prisma migrate dev
+  ```
+- To open Prisma Studio:
+  ```sh
+  pnpm --filter @repo/database prisma studio
+  ```
 
-### Remote Caching
+## Linting & Formatting
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- Lint: `pnpm lint`
+- Format: `pnpm format`
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## Environment Variables
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+- Copy `.env.example` to `.env` in each app/package as needed and fill in values.
 
-```bash
-npx turbo login
-```
+## Useful Scripts
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- `pnpm dev` - Start all apps in development mode
+- `pnpm build` - Build all apps and packages
+- `pnpm test` - Run all tests
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Contributing
 
-```bash
-npx turbo link
-```
+1. Create a new branch: `git checkout -b feat/my-feature`
+2. Make your changes
+3. Commit: `git commit -m "feat: add my feature"`
+4. Push: `git push origin feat/my-feature`
+5. Open a pull request
 
-## Useful Links
+## License
 
-This example take some inspiration the [with-nextjs](https://github.com/vercel/turborepo/tree/main/examples/with-nextjs) `Turbo` example and [01-cats-app](https://github.com/nestjs/nest/tree/master/sample/01-cats-app) `NestJs` sample.
+[MIT](LICENSE)
 
-Learn more about the power of Turborepo:
+---
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+For more details, see the README files in each app or package.
+
+---
