@@ -1,6 +1,5 @@
 // apps/web/src/types/next-page.ts
 import type { ReactNode } from 'react';
-import type { Locale } from '@repo/types';
 
 /**
  * Params can be sync OR async depending on route dynamism (Next.js 16).
