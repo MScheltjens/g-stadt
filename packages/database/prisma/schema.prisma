@@ -65,59 +65,53 @@ model RefreshToken {
 /// SERVICES ///
 
 model ServiceCategory {
-  id           String                       @id @default(uuid())
-  key          String                       @unique
-  order        Int                          @default(0)
+  id        String  @id @default(uuid())
+  code      String  @unique
+  order     Int     @default(0)
+  isActive  Boolean @default(true)
+
   services     Service[]
   translations ServiceCategoryTranslation[]
+
+  @@index([isActive])
 }
 
 model ServiceCategoryTranslation {
   id         String @id @default(uuid())
   categoryId String
   locale     Locale
-  label      String
+
+  label String
+  slug  String
 
   category ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@unique([categoryId, locale])
+  @@unique([locale, slug])
 }
-
-// Add more categories as needed
 
 model Service {
   id String @id @default(uuid())
 
-  /**
-   * Domain
-   */
   categoryId String
   category   ServiceCategory @relation(fields: [categoryId], references: [id])
-  icon       String
-  link       String? // external link or fallback
-  order      Int             @default(0)
 
-  /**
-   * Visibility & access
-   */
+  icon        String
+  externalUrl String?
+  order       Int @default(0)
+
   isActive     Boolean @default(true)
   requiresAuth Boolean @default(false)
-  role         Role? // null = public
+  role         Role?
 
-  /**
-   * Relations
-   */
   translations ServiceTranslation[]
 
-  /**
-   * Metadata
-   */
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([categoryId])
-  @@index([isActive])
+  @@index([categoryId, isActive, order])
 }
+
 
 model ServiceTranslation {
   id String @id @default(uuid())

@@ -1,25 +1,26 @@
-import { z } from 'zod';
-import { ServiceCategorySchema } from './generated';
+import z from 'zod';
 
-/**
- * ServiceWithTranslation API Response Schema
- */
-export const ServiceWithTranslationSchema = z.object({
-  id: z.string(),
-  category: ServiceCategorySchema,
-  icon: z.string(),
-  order: z.number().optional(),
-  requiresAuth: z.boolean().optional(),
-  link: z.string().nullable().optional(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
-  // Required translation fields
-  title: z.string(),
-  slug: z.string(),
-  // Optional translation fields
-  description: z.string().nullable().optional(),
+import { ServiceCategorySchema } from './generated';
+import { ServiceSchema } from './generated';
+import { ServiceTranslationSchema } from './generated';
+import { ServiceCategoryTranslationSchema } from './generated';
+
+export const ServiceCategoryResponseSchema = z.object({
+  id: ServiceCategorySchema.shape.id,
+  order: ServiceCategorySchema.shape.order,
+  locale: ServiceCategoryTranslationSchema.shape.locale,
+  label: ServiceCategoryTranslationSchema.shape.label,
 });
 
-export type ServiceWithTranslation = z.infer<
-  typeof ServiceWithTranslationSchema
+export type ServiceCategoryResponse = z.infer<
+  typeof ServiceCategoryResponseSchema
 >;
+
+export const ServiceResponseSchema = ServiceSchema.extend({
+  locale: ServiceCategoryTranslationSchema.shape.locale,
+  title: ServiceTranslationSchema.shape.title,
+  description: ServiceTranslationSchema.shape.description,
+  slug: ServiceTranslationSchema.shape.slug,
+});
+
+export type ServiceResponse = z.infer<typeof ServiceResponseSchema>;

@@ -5,22 +5,13 @@ import { ZodValidationPipe } from 'nestjs-zod';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { PrismaModule } from './content/prisma/prisma.module';
-import { EventsModule } from './content/events/events.module';
 import { UsersModule } from './users/users.module';
 import { ServicesModule } from './content/services/services.module';
-import { NewsModule } from './content/news/news.module';
 import { AuthenticationModule } from './auth/authentication.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 
 @Module({
-  imports: [
-    PrismaModule,
-    EventsModule,
-    UsersModule,
-    ServicesModule,
-    NewsModule,
-    AuthenticationModule,
-  ],
+  imports: [PrismaModule, UsersModule, ServicesModule, AuthenticationModule],
   controllers: [AppController],
   providers: [
     AppService,

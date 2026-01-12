@@ -12,14 +12,6 @@ export class PrismaService implements OnModuleInit, OnModuleDestroy {
     return db.refreshToken;
   }
 
-  get event() {
-    return db.event;
-  }
-
-  get news() {
-    return db.news;
-  }
-
   get service() {
     return db.service;
   }

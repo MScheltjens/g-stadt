@@ -29,8 +29,9 @@ CREATE TABLE "RefreshToken" (
 -- CreateTable
 CREATE TABLE "ServiceCategory" (
     "id" TEXT NOT NULL,
-    "key" TEXT NOT NULL,
+    "code" TEXT NOT NULL,
     "order" INTEGER NOT NULL DEFAULT 0,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "ServiceCategory_pkey" PRIMARY KEY ("id")
 );
@@ -41,6 +42,7 @@ CREATE TABLE "ServiceCategoryTranslation" (
     "categoryId" TEXT NOT NULL,
     "locale" "Locale" NOT NULL,
     "label" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
 
     CONSTRAINT "ServiceCategoryTranslation_pkey" PRIMARY KEY ("id")
 );
@@ -50,7 +52,7 @@ CREATE TABLE "Service" (
     "id" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
     "icon" TEXT NOT NULL,
-    "link" TEXT,
+    "externalUrl" TEXT,
     "order" INTEGER NOT NULL DEFAULT 0,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "requiresAuth" BOOLEAN NOT NULL DEFAULT false,
@@ -77,16 +79,19 @@ CREATE TABLE "ServiceTranslation" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ServiceCategory_key_key" ON "ServiceCategory"("key");
+CREATE UNIQUE INDEX "ServiceCategory_code_key" ON "ServiceCategory"("code");
+
+-- CreateIndex
+CREATE INDEX "ServiceCategory_isActive_idx" ON "ServiceCategory"("isActive");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "ServiceCategoryTranslation_categoryId_locale_key" ON "ServiceCategoryTranslation"("categoryId", "locale");
 
 -- CreateIndex
-CREATE INDEX "Service_categoryId_idx" ON "Service"("categoryId");
+CREATE UNIQUE INDEX "ServiceCategoryTranslation_locale_slug_key" ON "ServiceCategoryTranslation"("locale", "slug");
 
 -- CreateIndex
-CREATE INDEX "Service_isActive_idx" ON "Service"("isActive");
+CREATE INDEX "Service_categoryId_isActive_order_idx" ON "Service"("categoryId", "isActive", "order");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "ServiceTranslation_serviceId_locale_key" ON "ServiceTranslation"("serviceId", "locale");
