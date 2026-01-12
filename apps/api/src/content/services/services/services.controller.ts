@@ -1,23 +1,28 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ServicesService } from './services.service';
-import type { Locale } from '@repo/types';
+import { LocaleQueryDto } from '@/common/dto/locale-query.dto';
+import { SlugParamDto } from '@/common/dto/slug-param.dto';
+import { ZodSerializerDto } from 'nestjs-zod';
+import { ServiceResponseSchema, ServicesByCategorySchema } from '@repo/types';
 
 @Controller('services')
 export class ServicesController {
   constructor(private readonly servicesService: ServicesService) {}
 
   @Get()
-  findAll(@Query('locale') locale: Locale) {
-    return this.servicesService.findAll(locale);
+  findAll(@Query() query: LocaleQueryDto) {
+    return this.servicesService.findAll(query.locale);
   }
 
   @Get('by-category')
-  servicesByCategory(@Query('locale') locale: Locale) {
-    return this.servicesService.servicesByCategory(locale);
+  @ZodSerializerDto(ServicesByCategorySchema.array())
+  servicesByCategory(@Query() query: LocaleQueryDto) {
+    return this.servicesService.servicesByCategory(query.locale);
   }
 
   @Get(':slug')
-  findOne(@Param('slug') slug: string, @Query('locale') locale: Locale) {
-    return this.servicesService.findOneBySlug(slug, locale);
+  @ZodSerializerDto(ServiceResponseSchema)
+  findOne(@Param() params: SlugParamDto, @Query() query: LocaleQueryDto) {
+    return this.servicesService.findOneBySlug(params.slug, query.locale);
   }
 }
