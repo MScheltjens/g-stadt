@@ -1,6 +1,6 @@
 // apps/web/src/types/next-page.ts
 import type { ReactNode } from 'react';
-g;
+
 /**
  * Params can be sync OR async depending on route dynamism (Next.js 16).
  * Always type them as possibly async.
