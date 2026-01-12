@@ -138,7 +138,7 @@ async function main() {
         isActive: true,
         translations: {
           create: cat.translations.map((t) => ({
-            locale: t.locale as any,
+            locale: t.locale as 'de' | 'en' | 'fr',
             label: t.label,
             slug: t.slug,
           })),
@@ -155,7 +155,7 @@ async function main() {
         requiresAuth: !!cat.service.requiresAuth,
         translations: {
           create: cat.service.translations.map((t) => ({
-            locale: t.locale as any,
+            locale: t.locale as 'de' | 'en' | 'fr',
             title: t.title,
             description: t.description,
             slug: t.slug,
