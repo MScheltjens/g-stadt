@@ -2,25 +2,27 @@
 
 import { cn } from '@repo/ui/lib/utils';
 import { useParams } from 'next/navigation';
-import { Locale } from '@repo/i18n';
 import { ChangeEvent, ReactNode, useTransition } from 'react';
 import { usePathname, useRouter } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 import { Globe } from '@repo/ui/icons';
 
-type Props = {
+interface LocaleSwitcherSelectProps {
   children: ReactNode;
   defaultValue: string;
-};
+}
 
-export function LocaleSwitcherSelect({ children, defaultValue }: Props) {
+export function LocaleSwitcherSelect({
+  children,
+  defaultValue,
+}: LocaleSwitcherSelectProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
   const params = useParams();
 
   function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-    const nextLocale = event.target.value as Locale;
+    const nextLocale = event.target.value;
     startTransition(() => {
       router.replace(
         // @ts-expect-error -- TypeScript will validate that only known `params`

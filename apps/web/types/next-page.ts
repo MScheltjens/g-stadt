@@ -14,7 +14,7 @@ export type MaybeAsync<T> = T | Promise<T>;
 export type PageProps<P extends object = object> = {
   params: MaybeAsync<
     {
-      locale: Locale;
+      locale: string;
     } & P
   >;
 };
@@ -26,7 +26,7 @@ export type LayoutProps<P extends object = object> = {
   children: ReactNode;
   params: MaybeAsync<
     {
-      locale: Locale;
+      locale: string;
     } & P
   >;
 };
@@ -37,7 +37,7 @@ export type LayoutProps<P extends object = object> = {
 export type MetadataProps<P extends object = object> = {
   params: MaybeAsync<
     {
-      locale: Locale;
+      locale: string;
     } & P
   >;
 };

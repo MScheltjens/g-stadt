@@ -1,4 +1,3 @@
-import { Locale } from '@repo/i18n';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { getServices } from '@/lib/api';
 import { formatDate } from '@/lib/utils';
@@ -11,7 +10,7 @@ type ServicesPageProps = {
 
 export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
   const t = await getTranslations('services');
   const services = await getServices();
 
