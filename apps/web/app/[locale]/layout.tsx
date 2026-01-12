@@ -1,24 +1,26 @@
 import type { Metadata } from 'next';
-import { hasLocale, Locale } from '@repo/i18n';
-import { getTranslations } from '@repo/i18n/server';
-import { Providers } from '@/components/providers';
+import { hasLocale } from '@repo/i18n/next-intl';
+import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { routing } from '@repo/i18n/routing';
 import { notFound } from 'next/navigation';
-import { setRequestLocale } from '@repo/i18n/server';
 import { getUser } from '@/lib/auth';
+import type { LayoutProps, MetadataProps } from '@/types/next-page';
+import { Providers } from '@/components/providers/providers';
+import { Locale } from '@repo/types';
 
 import '@repo/ui/globals.css';
 
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+}: MetadataProps): Promise<Metadata> {
   const { locale } = await params;
+
   const t = await getTranslations({
     locale: locale as Locale,
     namespace: 'metadata',
   });
+
+  setRequestLocale(locale);
 
   return {
     title: t('title'),
@@ -30,30 +32,28 @@ export const generateStaticParams = () => {
   return routing.locales.map((locale) => ({ locale }));
 };
 
+type LocaleLayoutProps = LayoutProps & {
+  auth?: React.ReactNode;
+};
+
 export default async function LocaleLayout({
   children,
   params,
   auth,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-  auth?: React.ReactNode;
-}>) {
-  const lang = (await params).locale as Locale;
+}: LocaleLayoutProps) {
+  const { locale } = await params;
 
-  if (!hasLocale(routing.locales, lang)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
   // Enable static rendering for this page
-  setRequestLocale(lang);
-
-  // Get current user for auth context
+  setRequestLocale(locale as Locale);
   const user = await getUser();
 
   return (
-    <html lang={lang} suppressHydrationWarning>
-      <body>
-        <Providers locale={lang} initialUser={user}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col">
+        <Providers locale={locale as Locale} initialUser={user}>
           {children}
           {auth}
         </Providers>

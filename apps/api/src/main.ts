@@ -7,11 +7,23 @@ config({ path: join(process.cwd(), '.env') });
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+
+  // Swagger setup
+  const config = new DocumentBuilder()
+    .setTitle('API Docs')
+    .setDescription('The API description')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document);
+
   await app.listen(3001);
   console.log(`🚀 API running on http://localhost:3001`);
+  console.log(`📚 Swagger docs at http://localhost:3001/api/docs`);
 }
 void bootstrap();

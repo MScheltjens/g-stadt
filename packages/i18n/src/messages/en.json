@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "G-Stadtt",
+    "title": "G-Stadt",
     "description": "A city built for the G's."
   },
   "auth": {
@@ -47,37 +47,81 @@
       "title": "Welcome to",
       "cityName": "G-Stadt",
       "description": "Live. Work. Shape the future – all information and services from your city in one place.",
-      "signIn": "Sign In",
-      "register": "Register"
-    },
-    "services": {
-      "title": "Our Services",
-      "viewAll": "All Services",
-      "citizenServices": "Citizen Services",
-      "events": "Events",
-      "transportation": "Public Transport & Mobility",
-      "waste": "Waste & Recycling",
-      "administration": "City Administration",
-      "news": "News",
-      "description": "All information and services about"
-    },
-    "news": {
-      "title": "Current News",
-      "viewAll": "View All",
-      "festivalTitle": "City Festival This Weekend",
-      "festivalDescription": "Information about road closures and program overview."
-    },
-    "events": {
-      "title": "Upcoming Events",
-      "viewAll": "All Events",
-      "tourTitle": "G-Stadt City Tour",
-      "date": "October 12",
-      "location": "Downtown"
-    },
-    "cta": {
-      "title": "Ready to Get Started?",
-      "description": "Create your account today and discover all the features we have to offer.",
-      "button": "Get Started"
+      "actionNews": "News",
+      "actionEvents": "Events"
     }
+  },
+  "services": {
+    "title": "City Services",
+    "description": "Explore the various services offered by G-Stadt to its residents.",
+    "viewAll": "View All Services"
+  },
+  "news": {
+    "title": "Latest News",
+    "description": "Stay updated with the latest news and announcements from G-Stadt.",
+    "viewAll": "View All News"
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "description": "Discover events happening in G-Stadt and participate in community activities.",
+    "viewAll": "View All Events",
+    "readMore": "Read More"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with the city administration.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Opening Hours",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "submit": "Send Message"
+    },
+    "success": "Your message has been sent!",
+    "error": "There was an error sending your message."
+  },
+  "header": {
+    "utils": {
+      "login": "Sign In"
+    }
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist.",
+    "back": "Go back home"
+  },
+  "loading": {
+    "title": "Loading…",
+    "description": "Please wait while we load the page."
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred.",
+    "retry": "Try again"
+  },
+  "navbar": {
+    "home": "Home",
+    "services": "Services",
+    "idCard": "ID Card",
+    "appointments": "Appointments",
+    "contact": "Contact",
+    "contactForm": "Contact Form",
+    "locations": "Locations",
+    "emergency": "Emergency"
+  },
+  "itemCard": {
+    "readMore": "Read More"
+  },
+  "LocaleSwitcher": {
+    "label": "Switch Language",
+    "locale": "{locale, select, de {German} en {English} fr {French} other {Unknown}}"
   }
 }

@@ -7,12 +7,11 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { useRouter } from 'next/navigation';
-import { useTranslations } from '@repo/i18n';
+import { useTranslations } from '@repo/i18n/next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterWithConfirmSchema, RegisterWithConfirmDto } from '@repo/types';
-import { register } from '@/server/actions/auth';
+import { register } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 import { Input } from '@repo/ui/components/input';
@@ -26,8 +25,7 @@ import {
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
 
-export const RegisterForm = () => {
-  const router = useRouter();
+export function RegisterForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();
@@ -54,8 +52,7 @@ export const RegisterForm = () => {
       if ('error' in result) {
         setError(result.error);
       } else {
-        router.push('/dashboard');
-        router.refresh();
+        window.location.href = '/dashboard';
       }
     });
   }
@@ -156,4 +153,4 @@ export const RegisterForm = () => {
       </Form>
     </div>
   );
-};
+}

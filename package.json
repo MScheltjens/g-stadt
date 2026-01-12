@@ -1,5 +1,5 @@
 {
-  "name": "g-stadtt",
+  "name": "g-stadt",
   "version": "0.0.0",
   "private": true,
   "description": "",
@@ -7,6 +7,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "turbo run build",
+    "db:seed": "turbo run db:seed",
+    "db:migrate": "turbo run db:migrate",
+    "db:generate": "turbo run db:generate",
+    "db:studio": "turbo run db:studio",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
@@ -19,14 +23,12 @@
     "next": "16.0.10",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.31.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "^3.7.4",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "turbo": "^2.7.0"
+    "turbo": "^2.6.3",
+    "typescript": "^5.9.3"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md}": [
@@ -37,13 +39,6 @@
   "packageManager": "pnpm@8.15.5",
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "@prisma/client": "^7.2.0",
-    "prisma": "^7.2.0",
-    "zod": "^4.2.1",
-    "zod-prisma-types": "^3.1.8",
-    "typescript": "^5.9.3"
   },
   "resolutions": {
     "@types/react": "^18.2.0",

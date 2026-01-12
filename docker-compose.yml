@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: g-stadtt-postgres
+    container_name: g-stadt-postgres
     restart: unless-stopped
     ports:
       - '5432:5432'

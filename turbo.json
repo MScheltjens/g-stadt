@@ -20,6 +20,30 @@
         "dist/**"
       ]
     },
+    "db:seed": {
+      "dependsOn": [
+        "^db:seed"
+      ],
+      "outputs": []
+    },
+    "db:migrate": {
+      "dependsOn": [
+        "^db:migrate"
+      ],
+      "outputs": []
+    },
+    "db:generate": {
+      "dependsOn": [
+        "^db:generate"
+      ],
+      "outputs": []
+    },
+    "db:studio": {
+      "dependsOn": [
+        "^db:studio"
+      ],
+      "outputs": []
+    },
     "@repo/types#build": {
       "cache": false,
       "dependsOn": [

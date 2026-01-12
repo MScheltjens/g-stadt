@@ -1,6 +1,7 @@
-import { hasLocale, messages } from '@repo/i18n';
+import { messages } from '@repo/i18n';
 import { routing } from '@repo/i18n/routing';
 import { getRequestConfig } from '@repo/i18n/server';
+import { hasLocale } from '@repo/i18n/next-intl';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // Typically corresponds to the `[locale]` segment

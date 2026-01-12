@@ -2,11 +2,12 @@ import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
   // A list of all locales that are supported
-  locales: ['en', 'de', 'fr'],
+  locales: ['en', 'de', 'fr'] as const,
 
   // Used when no locale matches
   defaultLocale: 'de',
   localeDetection: true,
+  localePrefix: 'as-needed',
 
   // Pathnames with translations
   pathnames: {
@@ -36,8 +37,45 @@ export const routing = defineRouting({
       de: '/einstellungen',
       fr: '/parametres',
     },
+    '/news': {
+      en: '/news',
+      de: '/nachrichten',
+      fr: '/actualites',
+    },
+    '/news/[slug]': {
+      en: '/news/[slug]',
+      de: '/nachrichten/[slug]',
+      fr: '/actualites/[slug]',
+    },
+    '/events': {
+      en: '/events',
+      de: '/veranstaltungen',
+      fr: '/evenements',
+    },
+    '/events/[slug]': {
+      en: '/events/[slug]',
+      de: '/veranstaltungen/[slug]',
+      fr: '/evenements/[slug]',
+    },
+    '/services': {
+      en: '/services',
+      de: '/dienstleistungen',
+      fr: '/services',
+    },
+    '/services/[slug]': {
+      en: '/services/[slug]',
+      de: '/dienstleistungen/[slug]',
+      fr: '/services/[slug]',
+    },
+    '/contact': {
+      en: '/contact',
+      de: '/kontakt',
+      fr: '/contact',
+    },
   },
 });
+
+export type Pathname = keyof typeof routing.pathnames;
 
 export const apiAuthPrefix = '/api/auth';
 

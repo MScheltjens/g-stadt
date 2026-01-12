@@ -7,16 +7,12 @@
  */
 
 import { LoginForm } from '@/components/auth/login-form';
-import { Locale } from '@repo/i18n/index';
 import { setRequestLocale } from '@repo/i18n/server';
+import type { PageProps } from '@/types/next-page';
 
-type LoginPageProps = Readonly<{
-  params: Promise<{ locale: string }>;
-}>;
-
-export default async function LoginPage({ params }: LoginPageProps) {
+export default async function LoginPage({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   return (
     <div className="max-w-md mx-auto my-10 p-6 bg-white rounded-md shadow-md">

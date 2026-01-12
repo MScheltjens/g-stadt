@@ -4,71 +4,92 @@
  * Simple fetch wrappers for calling the NestJS API
  */
 
-import { Event, News, Service } from '@repo/types';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-/**
- * Base fetch wrapper with error handling
- */
-async function fetchAPI<T>(
-  endpoint: string,
-  options?: RequestInit,
-): Promise<T> {
-  const url = `${API_URL}${endpoint}`;
-
-  const res = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers,
-    },
-    ...options,
-  });
-
-  if (!res.ok) {
-    throw new Error(`API Error: ${res.status} ${res.statusText}`);
-  }
-
-  return res.json();
-}
+import { getLocale } from '@repo/i18n/server';
+import { safeFetch } from './safe-fetch';
+import {
+  EventWithTranslation,
+  NewsWithTranslation,
+  ServiceWithTranslation,
+  EventCategoryType,
+  EventWithTranslationSchema,
+  NewsWithTranslationSchema,
+  ServiceWithTranslationSchema,
+} from '@repo/types';
 
 // ============================================================================
 // Events API
 // ============================================================================
 
-export async function getEvents(): Promise<Event[]> {
-  return fetchAPI<Event[]>('/events');
+export async function getEvents(
+  category?: EventCategoryType,
+): Promise<EventWithTranslation[]> {
+  const locale = await getLocale();
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  if (category) params.append('category', category);
+  return safeFetch<EventWithTranslation[]>(
+    `/events?${params.toString()}`,
+    EventWithTranslationSchema.array(),
+  );
 }
 
-export async function getEvent(id: string): Promise<Event> {
-  return fetchAPI<Event>(`/events/${id}`);
+export async function getEventBySlug(
+  slug: string,
+): Promise<EventWithTranslation> {
+  return safeFetch<EventWithTranslation>(
+    `/events/slug/${slug}`,
+    EventWithTranslationSchema,
+  );
 }
 
 // ============================================================================
 // News API
 // ============================================================================
 
-export async function getNews(published = true): Promise<News[]> {
-  const query = published ? '?published=true' : '';
-  return fetchAPI<News[]>(`/news${query}`);
+export async function getNews(
+  published?: boolean,
+): Promise<NewsWithTranslation[]> {
+  const locale = await getLocale();
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  if (published) params.append('published', 'true');
+  return safeFetch<NewsWithTranslation[]>(
+    `/news?${params.toString()}`,
+    NewsWithTranslationSchema.array(),
+  );
 }
 
-export async function getNewsById(id: string): Promise<News> {
-  return fetchAPI<News>(`/news/${id}`);
+export async function getNewsBySlug(
+  slug: string,
+): Promise<NewsWithTranslation> {
+  return safeFetch<NewsWithTranslation>(
+    `/news/slug/${slug}`,
+    NewsWithTranslationSchema,
+  );
 }
 
 // ============================================================================
 // Services API
 // ============================================================================
 
-export async function getServices(): Promise<Service[]> {
-  return fetchAPI<Service[]>('/services');
+export async function getServices(
+  category?: string,
+): Promise<ServiceWithTranslation[]> {
+  const locale = await getLocale();
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  if (category) params.append('category', category);
+  return safeFetch<ServiceWithTranslation[]>(
+    `/services?${params.toString()}`,
+    ServiceWithTranslationSchema.array(),
+  );
 }
 
-export async function getServicesByCategory(
-  category: string,
-): Promise<Service[]> {
-  return fetchAPI<Service[]>(
-    `/services?category=${encodeURIComponent(category)}`,
+export async function getServiceBySlug(
+  slug: string,
+): Promise<ServiceWithTranslation> {
+  return safeFetch<ServiceWithTranslation>(
+    `/services/slug/${slug}`,
+    ServiceWithTranslationSchema,
   );
 }

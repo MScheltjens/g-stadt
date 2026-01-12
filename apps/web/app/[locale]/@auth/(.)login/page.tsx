@@ -5,25 +5,17 @@
  * and shows the login form in a modal instead of a full page.
  */
 
-import { Modal } from '@/components/modal';
+import { Modal } from '@/components/common/modal';
 import { LoginForm } from '@/components/auth/login-form';
 import { setRequestLocale } from '@repo/i18n/server';
-import { Locale } from '@repo/i18n/index';
+import type { PageProps } from '@/types/next-page';
 
-type LoginModalProps = Readonly<{
-  params: Promise<{ locale: string }>;
-}>;
-
-export default async function LoginModal({ params }: LoginModalProps) {
+export default async function LoginModal({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
-
+  setRequestLocale(locale);
   return (
     <Modal>
-      <div className="p-6">
-        <h2 className="text-2xl font-semibold mb-6">Login</h2>
-        <LoginForm />
-      </div>
+      <LoginForm />
     </Modal>
   );
 }

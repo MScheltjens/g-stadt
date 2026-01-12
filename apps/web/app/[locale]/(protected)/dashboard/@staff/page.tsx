@@ -1,13 +1,9 @@
-import { Locale } from '@repo/i18n/index';
 import { setRequestLocale } from '@repo/i18n/server';
+import type { PageProps } from '@/types/next-page';
 
-export default async function StaffDashboardPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function StaffDashboardPage({ params }: PageProps) {
   const { locale } = await params;
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
 
   return <h1>Staff Dashboard</h1>;
 }

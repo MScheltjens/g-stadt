@@ -7,11 +7,11 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-import { useTranslations } from '@repo/i18n';
+import { useTranslations } from '@repo/i18n/next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LoginSchema, type LoginDto } from '@repo/types';
-import { login } from '@/server/actions/auth';
+import { login } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 import { Input } from '@repo/ui/components/input';
@@ -25,7 +25,7 @@ import {
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
 
-export const LoginForm = () => {
+export function LoginForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();
@@ -128,4 +128,4 @@ export const LoginForm = () => {
       </Form>
     </div>
   );
-};
+}
