@@ -1,5 +1,4 @@
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
-import { CardList } from '@/components/common/card-list';
 import { PublicPageHeader } from '@/components/common/public-page-header';
 import type { PageProps } from '@/types/next-page';
 
