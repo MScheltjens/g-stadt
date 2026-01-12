@@ -21,7 +21,7 @@ datasource db {
 }
 
 ////////////////////
-/// GLOBAL ENUMS ///
+/// ENUMS
 ////////////////////
 
 enum Role {
@@ -36,142 +36,19 @@ enum Locale {
   de
 }
 
-////////////////////
-/// AUTH & CORE ///
-////////////////////
-
-model User {
-  id           String   @id @default(uuid())
-  email        String   @unique
-  passwordHash String
-  role         Role     @default(CITIZEN)
-  isVerified   Boolean  @default(false)
-  createdAt    DateTime @default(now())
-
-  refreshTokens RefreshToken[]
-  comments      Comment[]
-  appointments  Appointment[]
-  notifications Notification[]
-  auditLogs     AuditLog[]
-  pollResponses PollResponse[]
-}
-
-model RefreshToken {
-  id        String   @id @default(uuid())
-  tokenHash String
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  expiresAt DateTime
-}
-
-////////////////////
-/// CONTENT CORE ///
-////////////////////
-
-////////////////////
-/// CONTACT ///
-////////////////////
-model Contact {
-  id        String   @id @default(uuid())
-  name      String
-  email     String
-  message   String
-  createdAt DateTime @default(now())
-}
-
-////////////////////
-/// POLL ///
-////////////////////
-model Poll {
-  id        String         @id @default(uuid())
-  question  String
-  isActive  Boolean        @default(true)
-  createdAt DateTime       @default(now())
-  options   PollOption[]
-  responses PollResponse[]
-}
-
-model PollOption {
-  id        String         @id @default(uuid())
-  pollId    String
-  text      String
-  poll      Poll           @relation(fields: [pollId], references: [id], onDelete: Cascade)
-  responses PollResponse[]
-}
-
-model PollResponse {
-  id        String     @id @default(uuid())
-  pollId    String
-  optionId  String
-  userId    String?
-  poll      Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
-  option    PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
-  user      User?      @relation(fields: [userId], references: [id])
-  createdAt DateTime   @default(now())
-}
-
-////////////////////
-/// GALLERY ///
-////////////////////
-
-model Gallery {
-  id          String         @id @default(uuid())
-  title       String
-  description String?
-  createdAt   DateTime       @default(now())
-  images      GalleryImage[]
-}
-
-model GalleryImage {
-  id        String  @id @default(uuid())
-  galleryId String
-  url       String
-  caption   String?
-  gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
-}
-
-model Comment {
-  id          String    @id @default(uuid())
-  content     String
-  authorId    String?
-  author      User?     @relation(fields: [authorId], references: [id])
-  parentId    String?
-  parent      Comment?  @relation("CommentToComment", fields: [parentId], references: [id])
-  children    Comment[] @relation("CommentToComment")
-  createdAt   DateTime  @default(now())
-  relatedType String
-  relatedId   String
-}
-
-model Appointment {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  serviceId String
-  service   Service  @relation(fields: [serviceId], references: [id])
-  date      DateTime
-  status    String   @default("pending")
-  createdAt DateTime @default(now())
-}
-
-model Notification {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  type      String
-  content   String
-  read      Boolean  @default(false)
-  createdAt DateTime @default(now())
-}
-
-model AuditLog {
-  id        String   @id @default(uuid())
-  userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
-  action    String
-  target    String
-  timestamp DateTime @default(now())
-  details   String?
+enum ServiceCategory {
+  identityAndDocuments
+  housingAndLiving
+  familyAndSocial
+  mobilityAndTransport
+  educationAndCulture
+  healthAndSafety
+  businessAndWork
+  constructionAndPlanning
+  environmentAndSustainability
+  utilitiesAndInfrastructure
+  civicParticipation
+  tourismAndVisits
 }
 
 enum EventCategory {
@@ -183,17 +60,175 @@ enum EventCategory {
   health
   environment
   technology
-
-  // Add more categories as needed
 }
+
+enum NewsCategory {
+  local
+  politics
+  economy
+  culture
+  sports
+  technology
+  health
+  environment
+  education
+}
+
+enum FaqCategory {
+  general
+  technical
+  billing
+  account
+  services
+  policies
+}
+
+enum DocumentCategory {
+  policy
+  form
+  guide
+  report
+}
+
+////////////////////
+/// CORE
+////////////////////
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(CITIZEN)
+  isVerified   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  comments      Comment[]
+  appointments  Appointment[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+  pollResponses PollResponse[]
+}
+
+model Comment {
+  id          String    @id @default(uuid())
+  content     String
+  authorId    String?
+  author      User?     @relation(fields: [authorId], references: [id])
+  parentId    String?
+  parent      Comment?  @relation("CommentTree", fields: [parentId], references: [id])
+  children    Comment[] @relation("CommentTree")
+  createdAt   DateTime  @default(now())
+  relatedType String
+  relatedId   String
+}
+
+////////////////////
+/// SERVICES
+////////////////////
+
+model Service {
+  id        String          @id @default(uuid())
+  category  ServiceCategory
+  icon      String
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  translations ServiceTranslation[]
+  appointments Appointment[]
+}
+
+model ServiceTranslation {
+  id          String @id @default(uuid())
+  serviceId   String
+  locale      Locale
+  title       String
+  description String
+  slug        String
+
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([serviceId, locale])
+  @@unique([locale, slug])
+}
+
+model Appointment {
+  id        String   @id @default(uuid())
+  userId    String
+  serviceId String
+  date      DateTime
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
+}
+
+////////////////////
+/// POLLS
+////////////////////
+
+model Poll {
+  id        String   @id @default(uuid())
+  question  String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  options   PollOption[]
+  responses PollResponse[]
+}
+
+model PollOption {
+  id     String @id @default(uuid())
+  pollId String
+  text   String
+
+  poll      Poll           @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  responses PollResponse[]
+}
+
+model PollResponse {
+  id        String   @id @default(uuid())
+  pollId    String
+  optionId  String
+  userId    String?
+  createdAt DateTime @default(now())
+
+  poll   Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  option PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  user   User?      @relation(fields: [userId], references: [id])
+}
+
+////////////////////
+/// MEDIA
+////////////////////
+
+model Gallery {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  images GalleryImage[]
+}
+
+model GalleryImage {
+  id        String  @id @default(uuid())
+  galleryId String
+  url       String
+  caption   String?
+
+  gallery Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+}
+
+////////////////////
+/// CONTENT
+////////////////////
 
 model Event {
   id        String        @id @default(uuid())
   date      DateTime
   category  EventCategory
-  imageUrl  String?
   createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
 
   translations EventTranslation[]
 }
@@ -213,27 +248,11 @@ model EventTranslation {
   @@unique([locale, slug])
 }
 
-enum NewsCategory {
-  local
-  politics
-  economy
-  culture
-  sports
-  technology
-  health
-  environment
-  education
-  // Add more categories as needed
-}
-
 model News {
-  id          String       @id @default(uuid())
-  category    NewsCategory
-  imageUrl    String?
-  published   Boolean      @default(false)
-  publishedAt DateTime?
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id        String       @id @default(uuid())
+  category  NewsCategory
+  published Boolean      @default(false)
+  createdAt DateTime     @default(now())
 
   translations NewsTranslation[]
 }
@@ -250,47 +269,6 @@ model NewsTranslation {
   news News @relation(fields: [newsId], references: [id], onDelete: Cascade)
 
   @@unique([newsId, locale])
-  @@unique([locale, slug])
-}
-
-enum ServiceCategory {
-  administrative
-  health
-  education
-  transportation
-  publicSafety
-  recreation
-  service
-  socialservices
-  utilities
-  environmental
-  cultural
-  // Add more categories as needed
-}
-
-model Service {
-  id        String          @id @default(uuid())
-  category  ServiceCategory
-  icon      String
-  link      String?
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-
-  translations ServiceTranslation[]
-  appointments Appointment[]
-}
-
-model ServiceTranslation {
-  id          String @id @default(uuid())
-  serviceId   String
-  locale      Locale
-  title       String
-  description String
-  slug        String
-
-  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
-
-  @@unique([serviceId, locale])
   @@unique([locale, slug])
 }
 
@@ -315,32 +293,22 @@ model PageTranslation {
   @@unique([locale, slug])
 }
 
-enum FAQCategory {
-  general
-  technical
-  billing
-  account
-  services
-  policies
-  // Add more categories as needed
-}
-
-model FAQ {
+model Faq {
   id       String       @id @default(uuid())
-  category FAQCategory?
+  category FaqCategory?
   order    Int?
 
-  translations FAQTranslation[]
+  translations FaqTranslation[]
 }
 
-model FAQTranslation {
+model FaqTranslation {
   id       String @id @default(uuid())
   faqId    String
   locale   Locale
   question String
   answer   String
 
-  faq FAQ @relation(fields: [faqId], references: [id], onDelete: Cascade)
+  faq Faq @relation(fields: [faqId], references: [id], onDelete: Cascade)
 
   @@unique([faqId, locale])
 }
@@ -350,7 +318,6 @@ model Announcement {
   type      String
   startDate DateTime
   endDate   DateTime
-  isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
 
   translations AnnouncementTranslation[]
@@ -366,14 +333,6 @@ model AnnouncementTranslation {
   announcement Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
 
   @@unique([announcementId, locale])
-}
-
-enum DocumentCategory {
-  policy
-  form
-  guide
-  report
-  // Add more categories as needed
 }
 
 model Document {
@@ -398,11 +357,9 @@ model DocumentTranslation {
 }
 
 model Location {
-  id           String  @id @default(uuid())
-  type         String
-  address      String
-  openingHours String?
-  imageUrl     String?
+  id      String @id @default(uuid())
+  type    String
+  address String
 
   translations LocationTranslation[]
 }
@@ -417,4 +374,26 @@ model LocationTranslation {
   location Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
 
   @@unique([locationId, locale])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String
+  content   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  action    String
+  target    String
+  timestamp DateTime @default(now())
+  details   String?
+
+  user User? @relation(fields: [userId], references: [id])
 }
