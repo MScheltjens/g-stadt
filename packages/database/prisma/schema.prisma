@@ -1,3 +1,21 @@
+model Gallery {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  images GalleryImage[]
+}
+
+model GalleryImage {
+  id        String  @id @default(uuid())
+  galleryId String
+  url       String
+  caption   String?
+
+  gallery Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+}
+
 generator zod {
   provider                         = "zod-prisma-types"
   output                           = "../../types/src/generated"
@@ -21,7 +39,7 @@ datasource db {
 }
 
 ////////////////////
-/// ENUMS
+/// GLOBAL ENUMS ///
 ////////////////////
 
 enum Role {
@@ -35,6 +53,99 @@ enum Locale {
   fr
   de
 }
+
+////////////////////
+/// AUTH & CORE ///
+////////////////////
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(CITIZEN)
+  isVerified   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+
+  refreshTokens RefreshToken[]
+  comments      Comment[]
+  appointments  Appointment[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+  pollResponses PollResponse[]
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  tokenHash String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+}
+
+////////////////////
+/// CONTACT ///
+////////////////////
+
+model Contact {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+////////////////////
+/// POLL ///
+////////////////////
+
+model Poll {
+  id        String         @id @default(uuid())
+  question  String
+  isActive  Boolean        @default(true)
+  createdAt DateTime       @default(now())
+  options   PollOption[]
+  responses PollResponse[]
+}
+
+model PollOption {
+  id        String         @id @default(uuid())
+  pollId    String
+  text      String
+  poll      Poll           @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  responses PollResponse[]
+}
+
+model PollResponse {
+  id        String     @id @default(uuid())
+  pollId    String
+  optionId  String
+  userId    String?
+  poll      Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  option    PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  user      User?      @relation(fields: [userId], references: [id])
+  createdAt DateTime   @default(now())
+}
+
+////////////////////
+/// COMMENTS ///
+////////////////////
+
+model Comment {
+  id          String    @id @default(uuid())
+  content     String
+  authorId    String?
+  author      User?     @relation(fields: [authorId], references: [id])
+  parentId    String?
+  parent      Comment?  @relation("CommentToComment", fields: [parentId], references: [id])
+  children    Comment[] @relation("CommentToComment")
+  createdAt   DateTime  @default(now())
+  relatedType String
+  relatedId   String
+}
+
+////////////////////
+/// SERVICES ///
+////////////////////
 
 enum ServiceCategory {
   identityAndDocuments
@@ -51,85 +162,11 @@ enum ServiceCategory {
   tourismAndVisits
 }
 
-enum EventCategory {
-  music
-  sports
-  culture
-  education
-  community
-  health
-  environment
-  technology
-}
-
-enum NewsCategory {
-  local
-  politics
-  economy
-  culture
-  sports
-  technology
-  health
-  environment
-  education
-}
-
-enum FaqCategory {
-  general
-  technical
-  billing
-  account
-  services
-  policies
-}
-
-enum DocumentCategory {
-  policy
-  form
-  guide
-  report
-}
-
-////////////////////
-/// CORE
-////////////////////
-
-model User {
-  id           String   @id @default(uuid())
-  email        String   @unique
-  passwordHash String
-  role         Role     @default(CITIZEN)
-  isVerified   Boolean  @default(false)
-  createdAt    DateTime @default(now())
-
-  comments      Comment[]
-  appointments  Appointment[]
-  notifications Notification[]
-  auditLogs     AuditLog[]
-  pollResponses PollResponse[]
-}
-
-model Comment {
-  id          String    @id @default(uuid())
-  content     String
-  authorId    String?
-  author      User?     @relation(fields: [authorId], references: [id])
-  parentId    String?
-  parent      Comment?  @relation("CommentTree", fields: [parentId], references: [id])
-  children    Comment[] @relation("CommentTree")
-  createdAt   DateTime  @default(now())
-  relatedType String
-  relatedId   String
-}
-
-////////////////////
-/// SERVICES
-////////////////////
-
 model Service {
   id        String          @id @default(uuid())
   category  ServiceCategory
   icon      String
+  link      String?
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
 
@@ -151,6 +188,10 @@ model ServiceTranslation {
   @@unique([locale, slug])
 }
 
+////////////////////
+/// APPOINTMENTS ///
+////////////////////
+
 model Appointment {
   id        String   @id @default(uuid())
   userId    String
@@ -164,71 +205,57 @@ model Appointment {
 }
 
 ////////////////////
-/// POLLS
+/// NOTIFICATIONS ///
 ////////////////////
 
-model Poll {
+model Notification {
   id        String   @id @default(uuid())
-  question  String
-  isActive  Boolean  @default(true)
+  userId    String
+  type      String
+  content   String
+  read      Boolean  @default(false)
   createdAt DateTime @default(now())
 
-  options   PollOption[]
-  responses PollResponse[]
+  user User @relation(fields: [userId], references: [id])
 }
 
-model PollOption {
-  id     String @id @default(uuid())
-  pollId String
-  text   String
+////////////////////
+/// AUDIT LOG ///
+////////////////////
 
-  poll      Poll           @relation(fields: [pollId], references: [id], onDelete: Cascade)
-  responses PollResponse[]
-}
-
-model PollResponse {
+model AuditLog {
   id        String   @id @default(uuid())
-  pollId    String
-  optionId  String
   userId    String?
-  createdAt DateTime @default(now())
+  action    String
+  target    String
+  timestamp DateTime @default(now())
+  details   String?
 
-  poll   Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
-  option PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
-  user   User?      @relation(fields: [userId], references: [id])
+  user User? @relation(fields: [userId], references: [id])
 }
 
 ////////////////////
-/// MEDIA
+/// EVENTS ///
 ////////////////////
 
-model Gallery {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  createdAt   DateTime @default(now())
-
-  images GalleryImage[]
+enum EventCategory {
+  music
+  sports
+  culture
+  education
+  community
+  health
+  environment
+  technology
 }
-
-model GalleryImage {
-  id        String  @id @default(uuid())
-  galleryId String
-  url       String
-  caption   String?
-
-  gallery Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
-}
-
-////////////////////
-/// CONTENT
-////////////////////
 
 model Event {
   id        String        @id @default(uuid())
   date      DateTime
   category  EventCategory
+  imageUrl  String?
   createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 
   translations EventTranslation[]
 }
@@ -248,11 +275,30 @@ model EventTranslation {
   @@unique([locale, slug])
 }
 
+////////////////////
+/// NEWS ///
+////////////////////
+
+enum NewsCategory {
+  local
+  politics
+  economy
+  culture
+  sports
+  technology
+  health
+  environment
+  education
+}
+
 model News {
-  id        String       @id @default(uuid())
-  category  NewsCategory
-  published Boolean      @default(false)
-  createdAt DateTime     @default(now())
+  id          String       @id @default(uuid())
+  category    NewsCategory
+  imageUrl    String?
+  published   Boolean      @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 
   translations NewsTranslation[]
 }
@@ -271,6 +317,10 @@ model NewsTranslation {
   @@unique([newsId, locale])
   @@unique([locale, slug])
 }
+
+////////////////////
+/// PAGES ///
+////////////////////
 
 model Page {
   id        String   @id @default(uuid())
@@ -293,6 +343,19 @@ model PageTranslation {
   @@unique([locale, slug])
 }
 
+////////////////////
+/// FAQ ///
+////////////////////
+
+enum FaqCategory {
+  general
+  technical
+  billing
+  account
+  services
+  policies
+}
+
 model Faq {
   id       String       @id @default(uuid())
   category FaqCategory?
@@ -313,11 +376,16 @@ model FaqTranslation {
   @@unique([faqId, locale])
 }
 
+////////////////////
+/// ANNOUNCEMENTS ///
+////////////////////
+
 model Announcement {
   id        String   @id @default(uuid())
   type      String
   startDate DateTime
   endDate   DateTime
+  isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
 
   translations AnnouncementTranslation[]
@@ -333,6 +401,17 @@ model AnnouncementTranslation {
   announcement Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
 
   @@unique([announcementId, locale])
+}
+
+////////////////////
+/// DOCUMENTS ///
+////////////////////
+
+enum DocumentCategory {
+  policy
+  form
+  guide
+  report
 }
 
 model Document {
@@ -356,10 +435,16 @@ model DocumentTranslation {
   @@unique([documentId, locale])
 }
 
+////////////////////
+/// LOCATIONS ///
+////////////////////
+
 model Location {
-  id      String @id @default(uuid())
-  type    String
-  address String
+  id           String  @id @default(uuid())
+  type         String
+  address      String
+  openingHours String?
+  imageUrl     String?
 
   translations LocationTranslation[]
 }
@@ -374,26 +459,4 @@ model LocationTranslation {
   location Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
 
   @@unique([locationId, locale])
-}
-
-model Notification {
-  id        String   @id @default(uuid())
-  userId    String
-  type      String
-  content   String
-  read      Boolean  @default(false)
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id])
-}
-
-model AuditLog {
-  id        String   @id @default(uuid())
-  userId    String?
-  action    String
-  target    String
-  timestamp DateTime @default(now())
-  details   String?
-
-  user User? @relation(fields: [userId], references: [id])
 }
