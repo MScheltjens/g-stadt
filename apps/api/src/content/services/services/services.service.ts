@@ -5,7 +5,6 @@ import {
   ServiceResponseSchema,
   type ServiceResponse,
 } from '@repo/types';
-import {} from '@repo/types';
 
 @Injectable()
 export class ServicesService {
