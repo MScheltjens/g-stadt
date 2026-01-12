@@ -93,3 +93,16 @@ export async function getServiceBySlug(
     ServiceWithTranslationSchema,
   );
 }
+
+export async function getServicesByCategory(
+  category: string,
+): Promise<ServiceWithTranslation[]> {
+  const locale = await getLocale();
+  const params = new URLSearchParams();
+  params.append('locale', locale);
+  params.append('category', category);
+  return safeFetch<ServiceWithTranslation[]>(
+    `/services?${params.toString()}`,
+    ServiceWithTranslationSchema.array(),
+  );
+}

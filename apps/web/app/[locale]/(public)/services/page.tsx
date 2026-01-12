@@ -12,21 +12,10 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('services');
-  const services = await getServices();
 
   return (
     <>
       <PublicPageHeader title={t('title')} description={t('description')} />
-      <CardList
-        muted
-        items={services.map((service) => ({
-          title: service.title,
-          description: service.description,
-          pathname: '/services/[slug]',
-          slug: service.slug,
-          footer: formatDate(service.createdAt.toLocaleDateString()),
-        }))}
-      />
     </>
   );
 }

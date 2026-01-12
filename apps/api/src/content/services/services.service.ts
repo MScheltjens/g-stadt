@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { db } from '@repo/database';
-import type { Service, Locale, ServiceCategoryType } from '@repo/types';
+import type { Locale, ServiceCategoryType } from '@repo/types';
 import type { ServiceWithTranslation } from '@repo/types/src/service.schema';
 
 @Injectable()
