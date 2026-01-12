@@ -89,176 +89,390 @@ async function main() {
   });
   console.log('✅ Created contacts');
 
-  // --- GALLERY ---
-  await prisma.gallery.create({
-    data: {
-      title: 'Stadtansichten',
-      description: 'Bilder aus G-Stadt',
-      images: {
-        create: [
-          { url: '/images/altstadt.jpg', caption: 'Historische Altstadt' },
-          { url: '/images/park.jpg', caption: 'Stadtpark im Frühling' },
-        ],
-      },
-    },
-  });
-  await prisma.gallery.create({
-    data: {
-      title: 'Events',
-      description: 'Fotos von Veranstaltungen',
-      images: {
-        create: [
-          { url: '/images/fest.jpg', caption: 'Stadtfest 2025' },
-          { url: '/images/konzert.jpg', caption: 'Konzert im Park' },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created galleries');
-
-  // --- POLLS ---
-  await prisma.poll.create({
-    data: {
-      question: 'Wie zufrieden sind Sie mit dem Stadtfest?',
-      isActive: true,
-      options: {
-        create: [
-          { text: 'Sehr zufrieden' },
-          { text: 'Zufrieden' },
-          { text: 'Weniger zufrieden' },
-          { text: 'Unzufrieden' },
-        ],
-      },
-    },
-  });
-  await prisma.poll.create({
-    data: {
-      question: 'Welche neuen Services wünschen Sie sich?',
-      isActive: true,
-      options: {
-        create: [
-          { text: 'Mehr Online-Angebote' },
-          { text: 'Längere Öffnungszeiten' },
-          { text: 'Mehr Veranstaltungen' },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created polls');
-
-  // --- PAGES ---
-  await prisma.page.create({
-    data: {
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Startseite',
-            slug: 'start',
-            content: 'Willkommen in G-Stadt!',
-          },
-          {
-            locale: 'en',
-            title: 'Homepage',
-            slug: 'home',
-            content: 'Welcome to G-Stadt!',
-          },
-          {
-            locale: 'fr',
-            title: 'Page d’accueil',
-            slug: 'accueil',
-            content: 'Bienvenue à G-Stadt !',
-          },
-        ],
-      },
-    },
-  });
-  await prisma.page.create({
-    data: {
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Kontakt',
-            slug: 'kontakt',
-            content: 'Kontaktieren Sie uns.',
-          },
-          {
-            locale: 'en',
-            title: 'Contact',
-            slug: 'contact',
-            content: 'Contact us.',
-          },
-          {
-            locale: 'fr',
-            title: 'Contact',
-            slug: 'contact',
-            content: 'Contactez-nous.',
-          },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created pages');
-
   // --- SERVICES ---
-  const service1 = await prisma.service.create({
-    data: {
-      category: 'administrative',
-      icon: 'Landmark',
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Personalausweis beantragen',
-            description: 'Beantragen Sie Ihren Ausweis.',
-            slug: 'personalausweis',
-          },
-          {
-            locale: 'en',
-            title: 'Apply for ID card',
-            description: 'Apply for your ID card.',
-            slug: 'id-card',
-          },
-          {
-            locale: 'fr',
-            title: 'Demander une carte d’identité',
-            description: 'Demandez votre carte d’identité.',
-            slug: 'carte-identite',
-          },
-        ],
+
+  const services = await Promise.all([
+    // citizen_services
+    prisma.service.create({
+      data: {
+        category: 'citizen_services',
+        icon: 'IdCard',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Personalausweis beantragen',
+              description: 'Beantragen Sie Ihren Ausweis.',
+              slug: 'personalausweis-beantragen',
+            },
+            {
+              locale: 'en',
+              title: 'Apply for ID card',
+              description: 'Apply for your ID card.',
+              slug: 'apply-id-card',
+            },
+            {
+              locale: 'fr',
+              title: 'Demander une carte d’identité',
+              description: 'Demandez votre carte d’identité.',
+              slug: 'demander-carte-identite',
+            },
+          ],
+        },
       },
-    },
-  });
-  const service2 = await prisma.service.create({
-    data: {
-      category: 'cultural',
-      icon: 'Calendar',
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Veranstaltungskalender',
-            description: 'Alle Events im Überblick.',
-            slug: 'veranstaltungen',
-          },
-          {
-            locale: 'en',
-            title: 'Event Calendar',
-            description: 'All events at a glance.',
-            slug: 'events',
-          },
-          {
-            locale: 'fr',
-            title: 'Calendrier des événements',
-            description: 'Tous les événements en un coup d’œil.',
-            slug: 'evenements',
-          },
-        ],
+    }),
+
+    // city_administration
+    prisma.service.create({
+      data: {
+        category: 'city_administration',
+        icon: 'Building',
+        order: 1,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Rathaus Kontakt',
+              description: 'Kontakt und Öffnungszeiten des Rathauses.',
+              slug: 'rathaus-kontakt',
+            },
+            {
+              locale: 'en',
+              title: 'City Hall Contact',
+              description: 'Contact and opening hours of city hall.',
+              slug: 'city-hall-contact',
+            },
+            {
+              locale: 'fr',
+              title: 'Contact de la mairie',
+              description: 'Contact et horaires de la mairie.',
+              slug: 'contact-mairie',
+            },
+          ],
+        },
       },
-    },
-  });
-  console.log('✅ Created services');
+    }),
+
+    // transport_mobility
+    prisma.service.create({
+      data: {
+        category: 'transport_mobility',
+        icon: 'Bus',
+        order: 1,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'ÖPNV Fahrpläne',
+              description: 'Fahrpläne und Linienübersicht.',
+              slug: 'oepnv-fahrplaene',
+            },
+            {
+              locale: 'en',
+              title: 'Public Transport Timetables',
+              description: 'Timetables and routes.',
+              slug: 'public-transport-timetables',
+            },
+            {
+              locale: 'fr',
+              title: 'Horaires des transports',
+              description: 'Horaires et lignes.',
+              slug: 'horaires-transports',
+            },
+          ],
+        },
+      },
+    }),
+
+    // waste_environment
+    prisma.service.create({
+      data: {
+        category: 'waste_environment',
+        icon: 'Trash',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Sperrmüll anmelden',
+              description: 'Sperrmüll online anmelden.',
+              slug: 'sperrmuell-anmelden',
+            },
+            {
+              locale: 'en',
+              title: 'Bulk Waste Pickup',
+              description: 'Register bulk waste pickup.',
+              slug: 'bulk-waste-pickup',
+            },
+            {
+              locale: 'fr',
+              title: 'Déchets encombrants',
+              description: 'Déclarer les déchets encombrants.',
+              slug: 'dechets-encombrants',
+            },
+          ],
+        },
+      },
+    }),
+
+    // family_social
+    prisma.service.create({
+      data: {
+        category: 'family_social',
+        icon: 'Users',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Kita-Anmeldung',
+              description: 'Ihr Kind für eine Kita anmelden.',
+              slug: 'kita-anmeldung',
+            },
+            {
+              locale: 'en',
+              title: 'Daycare Registration',
+              description: 'Register your child for daycare.',
+              slug: 'daycare-registration',
+            },
+            {
+              locale: 'fr',
+              title: 'Inscription à la crèche',
+              description: 'Inscrire votre enfant à la crèche.',
+              slug: 'inscription-creche',
+            },
+          ],
+        },
+      },
+    }),
+
+    // education_culture
+    prisma.service.create({
+      data: {
+        category: 'education_culture',
+        icon: 'BookOpen',
+        order: 1,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Stadtbibliothek',
+              description: 'Informationen zur Stadtbibliothek.',
+              slug: 'stadtbibliothek',
+            },
+            {
+              locale: 'en',
+              title: 'City Library',
+              description: 'Information about the city library.',
+              slug: 'city-library',
+            },
+            {
+              locale: 'fr',
+              title: 'Bibliothèque municipale',
+              description: 'Informations sur la bibliothèque.',
+              slug: 'bibliotheque-municipale',
+            },
+          ],
+        },
+      },
+    }),
+
+    // economy_business
+    prisma.service.create({
+      data: {
+        category: 'economy_business',
+        icon: 'Briefcase',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Gewerbe anmelden',
+              description: 'Ein Gewerbe anmelden.',
+              slug: 'gewerbe-anmelden',
+            },
+            {
+              locale: 'en',
+              title: 'Register a Business',
+              description: 'Register a new business.',
+              slug: 'register-business',
+            },
+            {
+              locale: 'fr',
+              title: 'Créer une entreprise',
+              description: 'Déclarer une entreprise.',
+              slug: 'creer-entreprise',
+            },
+          ],
+        },
+      },
+    }),
+
+    // public_order_safety
+    prisma.service.create({
+      data: {
+        category: 'public_order_safety',
+        icon: 'Shield',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Fundbüro',
+              description: 'Verlorene Gegenstände melden.',
+              slug: 'fundbuero',
+            },
+            {
+              locale: 'en',
+              title: 'Lost and Found',
+              description: 'Report lost items.',
+              slug: 'lost-and-found',
+            },
+            {
+              locale: 'fr',
+              title: 'Objets trouvés',
+              description: 'Déclarer un objet perdu.',
+              slug: 'objets-trouves',
+            },
+          ],
+        },
+      },
+    }),
+
+    // health
+    prisma.service.create({
+      data: {
+        category: 'health',
+        icon: 'HeartPulse',
+        order: 1,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Gesundheitsamt',
+              description: 'Informationen des Gesundheitsamts.',
+              slug: 'gesundheitsamt',
+            },
+            {
+              locale: 'en',
+              title: 'Public Health Office',
+              description: 'Public health information.',
+              slug: 'public-health-office',
+            },
+            {
+              locale: 'fr',
+              title: 'Service de santé',
+              description: 'Informations sanitaires.',
+              slug: 'service-sante',
+            },
+          ],
+        },
+      },
+    }),
+
+    // housing_building
+    prisma.service.create({
+      data: {
+        category: 'housing_building',
+        icon: 'Home',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Baugenehmigung',
+              description: 'Baugenehmigung beantragen.',
+              slug: 'baugenehmigung',
+            },
+            {
+              locale: 'en',
+              title: 'Building Permit',
+              description: 'Apply for a building permit.',
+              slug: 'building-permit',
+            },
+            {
+              locale: 'fr',
+              title: 'Permis de construire',
+              description: 'Demander un permis.',
+              slug: 'permis-construire',
+            },
+          ],
+        },
+      },
+    }),
+
+    // leisure_tourism
+    prisma.service.create({
+      data: {
+        category: 'leisure_tourism',
+        icon: 'Map',
+        order: 1,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Stadtführungen',
+              description: 'Geführte Stadttouren.',
+              slug: 'stadtfuehrungen',
+            },
+            {
+              locale: 'en',
+              title: 'City Tours',
+              description: 'Guided city tours.',
+              slug: 'city-tours',
+            },
+            {
+              locale: 'fr',
+              title: 'Visites guidées',
+              description: 'Visites guidées de la ville.',
+              slug: 'visites-guidees',
+            },
+          ],
+        },
+      },
+    }),
+
+    // digital_city_hall
+    prisma.service.create({
+      data: {
+        category: 'digital_city_hall',
+        icon: 'Globe',
+        order: 1,
+        requiresAuth: true,
+        translations: {
+          create: [
+            {
+              locale: 'de',
+              title: 'Online-Terminbuchung',
+              description: 'Termin online buchen.',
+              slug: 'online-terminbuchung',
+            },
+            {
+              locale: 'en',
+              title: 'Online Appointment Booking',
+              description: 'Book appointments online.',
+              slug: 'online-appointment-booking',
+            },
+            {
+              locale: 'fr',
+              title: 'Prise de rendez-vous en ligne',
+              description: 'Réserver un rendez-vous.',
+              slug: 'rendez-vous-en-ligne',
+            },
+          ],
+        },
+      },
+    }),
+  ]);
+
+  console.log(`✅ Created ${services.length} services`);
 
   // --- NEWS ---
   await prisma.news.create({
@@ -390,322 +604,6 @@ async function main() {
     },
   });
   console.log('✅ Created events');
-
-  // --- FAQ ---
-  await prisma.fAQ.create({
-    data: {
-      category: 'general',
-      order: 1,
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            question: 'Wie erreiche ich das Bürgerbüro?',
-            answer: 'Sie erreichen uns per E-Mail oder Telefon.',
-          },
-          {
-            locale: 'en',
-            question: 'How to contact the citizens office?',
-            answer: 'Contact us via email or phone.',
-          },
-          {
-            locale: 'fr',
-            question: 'Comment contacter le bureau des citoyens ?',
-            answer: 'Contactez-nous par e-mail ou par téléphone.',
-          },
-        ],
-      },
-    },
-  });
-  await prisma.fAQ.create({
-    data: {
-      category: 'services',
-      order: 2,
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            question: 'Wann ist das nächste Stadtfest?',
-            answer: 'Im Juli.',
-          },
-          {
-            locale: 'en',
-            question: 'When is the next city festival?',
-            answer: 'In July.',
-          },
-          {
-            locale: 'fr',
-            question: 'Quand a lieu la prochaine fête de la ville ?',
-            answer: 'En juillet.',
-          },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created FAQs');
-
-  // --- ANNOUNCEMENTS ---
-  await prisma.announcement.create({
-    data: {
-      type: 'Info',
-      startDate: new Date(),
-      endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Neue Öffnungszeiten',
-            content: 'Das Bürgerbüro hat neue Öffnungszeiten.',
-          },
-          {
-            locale: 'en',
-            title: 'New opening hours',
-            content: 'The citizens office has new opening hours.',
-          },
-          {
-            locale: 'fr',
-            title: 'Nouveaux horaires',
-            content: 'Le bureau des citoyens a de nouveaux horaires.',
-          },
-        ],
-      },
-    },
-  });
-  await prisma.announcement.create({
-    data: {
-      type: 'Warnung',
-      startDate: new Date(),
-      endDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Straßensperrung',
-            content: 'Die Hauptstraße ist gesperrt.',
-          },
-          {
-            locale: 'en',
-            title: 'Road closure',
-            content: 'The main street is closed.',
-          },
-          {
-            locale: 'fr',
-            title: 'Fermeture de rue',
-            content: 'La rue principale est fermée.',
-          },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created announcements');
-
-  // --- DOCUMENTS ---
-  await prisma.document.create({
-    data: {
-      fileUrl: '/docs/info.pdf',
-      category: 'policy',
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Informationsblatt',
-            description: 'Wichtige Infos als PDF.',
-          },
-          {
-            locale: 'en',
-            title: 'Information sheet',
-            description: 'Important info as PDF.',
-          },
-          {
-            locale: 'fr',
-            title: 'Fiche d’information',
-            description: 'Informations importantes en PDF.',
-          },
-        ],
-      },
-    },
-  });
-  await prisma.document.create({
-    data: {
-      fileUrl: '/docs/veranstaltungen.pdf',
-      category: 'form',
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            title: 'Veranstaltungsplan',
-            description: 'Alle Events im Überblick.',
-          },
-          {
-            locale: 'en',
-            title: 'Event schedule',
-            description: 'All events at a glance.',
-          },
-          {
-            locale: 'fr',
-            title: 'Programme des événements',
-            description: 'Tous les événements en un coup d’œil.',
-          },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created documents');
-
-  // --- LOCATIONS ---
-  await prisma.location.create({
-    data: {
-      type: 'Park',
-      address: 'Parkstraße 1',
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            name: 'Stadtpark',
-            description: 'Grüne Oase im Herzen der Stadt.',
-          },
-          {
-            locale: 'en',
-            name: 'City Park',
-            description: 'Green oasis in the heart of the city.',
-          },
-          {
-            locale: 'fr',
-            name: 'Parc municipal',
-            description: 'Oasis verte au cœur de la ville.',
-          },
-        ],
-      },
-    },
-  });
-  await prisma.location.create({
-    data: {
-      type: 'Rathaus',
-      address: 'Rathausplatz 1',
-      translations: {
-        create: [
-          {
-            locale: 'de',
-            name: 'Rathaus',
-            description: 'Verwaltungssitz der Stadt.',
-          },
-          {
-            locale: 'en',
-            name: 'Town Hall',
-            description: 'City administration headquarters.',
-          },
-          {
-            locale: 'fr',
-            name: 'Hôtel de ville',
-            description: 'Siège de l’administration municipale.',
-          },
-        ],
-      },
-    },
-  });
-  console.log('✅ Created locations');
-
-  // --- NOTIFICATIONS ---
-  await prisma.notification.create({
-    data: {
-      userId: user1.id,
-      type: 'Info',
-      content: 'Willkommen in G-Stadt!',
-      read: false,
-    },
-  });
-  await prisma.notification.create({
-    data: {
-      userId: user2.id,
-      type: 'Warnung',
-      content: 'Bitte beachten Sie die aktuellen Straßensperrungen.',
-      read: true,
-    },
-  });
-  console.log('✅ Created notifications');
-
-  // --- APPOINTMENTS ---
-  await prisma.appointment.create({
-    data: {
-      userId: user1.id,
-      serviceId: service1.id,
-      date: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
-      status: 'pending',
-    },
-  });
-  await prisma.appointment.create({
-    data: {
-      userId: user2.id,
-      serviceId: service2.id,
-      date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      status: 'confirmed',
-    },
-  });
-  console.log('✅ Created appointments');
-
-  // --- AUDIT LOGS ---
-  await prisma.auditLog.create({
-    data: {
-      userId: user3.id,
-      action: 'LOGIN',
-      target: 'admin@g-stadt.de',
-      details: 'Admin logged in successfully.',
-    },
-  });
-  await prisma.auditLog.create({
-    data: {
-      userId: user2.id,
-      action: 'CREATE_EVENT',
-      target: 'Stadtfest 2025',
-      details: 'Staff created a new event.',
-    },
-  });
-  console.log('✅ Created audit logs');
-
-  // --- COMMENTS ---
-  await prisma.comment.create({
-    data: {
-      content: 'Tolles Event!',
-      authorId: user1.id,
-      relatedType: 'Event',
-      relatedId: '1',
-    },
-  });
-  await prisma.comment.create({
-    data: {
-      content: 'Sehr informativ.',
-      authorId: user2.id,
-      relatedType: 'News',
-      relatedId: '1',
-    },
-  });
-  console.log('✅ Created comments');
-
-  // --- POLL RESPONSES ---
-  // Get the first poll created above
-  const firstPoll = await prisma.poll.findFirst();
-  if (firstPoll) {
-    const pollOption = await prisma.pollOption.findFirst({
-      where: { pollId: firstPoll.id },
-    });
-    if (pollOption) {
-      await prisma.pollResponse.create({
-        data: {
-          pollId: firstPoll.id,
-          optionId: pollOption.id,
-          userId: user1.id,
-        },
-      });
-      await prisma.pollResponse.create({
-        data: {
-          pollId: firstPoll.id,
-          optionId: pollOption.id,
-          userId: user2.id,
-        },
-      });
-      console.log('✅ Created poll responses');
-    }
-  }
 
   console.log('🎉 Database seeded successfully!');
 }

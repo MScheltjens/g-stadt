@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { db } from '@repo/database';
 import type {
-  LocaleType,
+  Locale,
   News,
   NewsCategoryType,
   NewsWithTranslation,
@@ -10,7 +10,7 @@ import type {
 @Injectable()
 export class NewsService {
   async findAll(
-    locale: LocaleType,
+    locale: Locale,
     published?: boolean,
   ): Promise<NewsWithTranslation[]> {
     const newsList = await db.news.findMany({
@@ -76,7 +76,7 @@ export class NewsService {
 
   async findByCategory(
     category: NewsCategoryType,
-    locale: LocaleType,
+    locale: Locale,
     published = true,
   ): Promise<NewsWithTranslation[]> {
     const newsList = await db.news.findMany({

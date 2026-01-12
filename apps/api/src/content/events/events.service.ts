@@ -4,14 +4,14 @@ import type {
   Event,
   EventCategoryType,
   CreateEventDto,
-  LocaleType,
+  Locale,
 } from '@repo/types';
 import type { EventWithTranslation } from '@repo/types/src/events.schema';
-import { slugify } from '../../../lib/utils';
+import { slugify } from '@/lib/utils';
 
 @Injectable()
 export class EventsService {
-  async findAll(locale: LocaleType): Promise<EventWithTranslation[]> {
+  async findAll(locale: Locale): Promise<EventWithTranslation[]> {
     try {
       console.log('Fetching all events...');
       const events = await db.event.findMany({
@@ -40,7 +40,7 @@ export class EventsService {
 
   async findByCategoryAndLocale(
     category: EventCategoryType,
-    locale: LocaleType,
+    locale: Locale,
   ): Promise<EventWithTranslation[]> {
     try {
       const events = await db.event.findMany({

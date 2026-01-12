@@ -254,36 +254,62 @@ model NewsTranslation {
 }
 
 enum ServiceCategory {
-  administrative
+  citizen_services
+  city_administration
+  transport_mobility
+  waste_environment
+  family_social
+  education_culture
+  economy_business
+  public_order_safety
   health
-  education
-  transportation
-  publicSafety
-  recreation
-  service
-  socialservices
-  utilities
-  environmental
-  cultural
-  // Add more categories as needed
+  housing_building
+  leisure_tourism
+  digital_city_hall
 }
 
-model Service {
-  id        String          @id @default(uuid())
-  category  ServiceCategory
-  icon      String
-  link      String?
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
+// Add more categories as needed
 
+model Service {
+  id String @id @default(uuid())
+
+  /**
+   * Domain
+   */
+  category ServiceCategory
+  icon     String
+  link     String? // external link or fallback
+  order    Int             @default(0)
+
+  /**
+   * Visibility & access
+   */
+  isActive     Boolean @default(true)
+  requiresAuth Boolean @default(false)
+  role         Role? // null = public
+
+  /**
+   * Relations
+   */
   translations ServiceTranslation[]
   appointments Appointment[]
+
+  /**
+   * Metadata
+   */
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([isActive])
 }
 
 model ServiceTranslation {
-  id          String @id @default(uuid())
-  serviceId   String
-  locale      Locale
+  id String @id @default(uuid())
+
+  serviceId String
+  locale    Locale
+
   title       String
   description String
   slug        String

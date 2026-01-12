@@ -8,14 +8,16 @@ export const ServiceWithTranslationSchema = z.object({
   id: z.string(),
   category: ServiceCategorySchema,
   icon: z.string(),
-  link: z.string().nullable(),
+  order: z.number().optional(),
+  requiresAuth: z.boolean().optional(),
+  link: z.string().nullable().optional(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
   // Required translation fields
   title: z.string(),
   slug: z.string(),
   // Optional translation fields
-  description: z.string().optional(),
+  description: z.string().nullable().optional(),
 });
 
 export type ServiceWithTranslation = z.infer<

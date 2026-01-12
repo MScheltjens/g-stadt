@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { NewsService } from './news.service';
 import type {
-  LocaleType,
+  Locale,
   News,
   NewsCategoryType,
   NewsWithTranslation,
@@ -15,7 +15,7 @@ export class NewsController {
 
   @Get()
   async findAll(
-    @Query('locale') locale: LocaleType,
+    @Query('locale') locale: Locale,
     @Query('published') published?: boolean,
     @Query('category') category?: NewsCategoryType,
   ): Promise<NewsWithTranslation[]> {

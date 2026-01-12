@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { EventsService } from './events.service';
-import type { Event, EventCategoryType, LocaleType } from '@repo/types';
+import type { Event, EventCategoryType, Locale } from '@repo/types';
 import type { EventWithTranslation } from '@repo/types/src/events.schema';
 import { Public } from '../../common/decorators/public.decorator';
 
@@ -11,7 +11,7 @@ export class EventsController {
 
   @Get()
   async findAll(
-    @Query('locale') locale: LocaleType,
+    @Query('locale') locale: Locale,
     @Query('category') category?: EventCategoryType,
   ): Promise<EventWithTranslation[]> {
     if (!locale) {
