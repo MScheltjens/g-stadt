@@ -10,7 +10,7 @@ import { useState, useTransition } from 'react';
 import { useTranslations } from '@repo/i18n/next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginSchema, type Login } from '@repo/types';
+import { type LoginInput, LoginInputSchema } from '@repo/contracts';
 import { login } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
@@ -30,15 +30,15 @@ export function LoginForm() {
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<Login>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<LoginInput>({
+    resolver: zodResolver(LoginInputSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  async function onSubmit(data: Login) {
+  async function onSubmit(data: LoginInput) {
     setError('');
 
     startTransition(async () => {

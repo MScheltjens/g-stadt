@@ -1,7 +1,6 @@
 'use client';
 
-import { NAV_ITEMS } from '@repo/types';
-import { Link, usePathname } from '@repo/i18n/navigation';
+import { usePathname } from '@repo/i18n/navigation';
 import { useTranslations } from '@repo/i18n/next-intl';
 import { Mail, MapPin, AlertCircle } from '@repo/ui/components/icons';
 import { cn } from '@repo/ui/lib/utils';
@@ -9,10 +8,11 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
+  // NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@repo/ui/components/navigation-menu';
+import { NAV_ITEMS } from './navbar';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <MapPin className="h-4 w-4" />,
@@ -40,7 +40,7 @@ export function NavbarIcons() {
                 {iconMap[item.icon]}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="flex flex-col gap-1">
+                {/* <ul className="flex flex-col gap-1">
                   {item.children.map((child) => (
                     <li key={child.href}>
                       <NavigationMenuLink asChild>
@@ -53,7 +53,7 @@ export function NavbarIcons() {
                             'block px-3 py-1.5 text-sm rounded-sm',
                             'hover:bg-muted',
                             pathname === child.href &&
-                              'font-medium text-primary',
+                            'font-medium text-primary',
                           )}
                         >
                           {t(child.label)}
@@ -61,7 +61,7 @@ export function NavbarIcons() {
                       </NavigationMenuLink>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               </NavigationMenuContent>
             </NavigationMenuItem>
           ))}

@@ -1,6 +1,5 @@
 'use client';
 
-import { NAV_ITEMS } from '@repo/types';
 import { Link, usePathname } from '@repo/i18n/navigation';
 import { useTranslations } from '@repo/i18n/next-intl';
 
@@ -14,11 +13,20 @@ import {
 } from '@repo/ui/components/navigation-menu';
 
 import { cn } from '@repo/ui/lib/utils';
+import { ServiceCategory } from '@repo/contracts';
+
+export const NAV_ITEMS = [
+  {
+    label: 'services',
+    href: '/services',
+    icon: 'ExclamationCircle',
+  },
+  { label: 'contact', href: '/contact', icon: 'Mail' },
+] as const;
 
 export function Navbar() {
   const t = useTranslations('navbar');
   const pathname = usePathname();
-
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList className="hidden md:flex items-center ">
@@ -35,7 +43,7 @@ export function Navbar() {
                 {t(item.label)}
               </Link>
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
+            {/* <NavigationMenuContent>
               <ul className="flex flex-col gap-1">
                 {item.children.map((child) => (
                   <li key={child.href}>
@@ -57,7 +65,7 @@ export function Navbar() {
                   </li>
                 ))}
               </ul>
-            </NavigationMenuContent>
+            </NavigationMenuContent> */}
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>

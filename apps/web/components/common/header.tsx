@@ -3,7 +3,7 @@ import { Link } from '@repo/i18n/navigation';
 import { HeaderUtils } from './header-utils';
 import { NavbarIcons } from '../navigation/navbar-icons';
 
-export function Header() {
+export async function Header() {
   return (
     <header className="w-full bg-background border-b border-border">
       <div className="mx-auto max-w-7xl px-6">
@@ -15,13 +15,14 @@ export function Header() {
 
           {/* Right cluster */}
           <div className="flex items-center">
-            {/* Desktop nav and utils */}
+            {/* Desktop nav */}
             <Navbar />
 
-            {/* Mobile nav and utils as icons */}
+            {/* Mobile nav icons */}
             <div className="flex md:hidden">
               <NavbarIcons />
             </div>
+
             <HeaderUtils />
           </div>
         </div>

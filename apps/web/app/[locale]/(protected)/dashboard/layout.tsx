@@ -1,8 +1,7 @@
 import { checkUserRole } from '@/lib/auth';
 import { redirect } from '@repo/i18n/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
-import { RoleEnum } from '@repo/types';
-import { type LayoutProps } from '@/types/next-page';
+import type { LayoutProps } from '@/types/next-page';
 
 type DashboardLayoutProps = LayoutProps & {
   user: React.ReactNode;
@@ -27,12 +26,15 @@ export default async function DashboardLayout({
 
   return (
     <>
-      <div style={{ background: '#ffe', padding: '8px', marginBottom: '8px' }}>
-        <strong>Debug:</strong> Role detected: {role ?? 'none'}
-      </div>
-      {role === RoleEnum.enum.ADMIN && admin}
-      {role === RoleEnum.enum.STAFF && staff}
-      {role === RoleEnum.enum.CITIZEN && user}
+      {process.env.NODE_ENV === 'development' && (
+        <div style={{ background: '#ffe', padding: 8, marginBottom: 8 }}>
+          <strong>Debug:</strong> Role detected: {role}
+        </div>
+      )}
+
+      {role === 'ADMIN' && admin}
+      {role === 'STAFF' && staff}
+      {role === 'CITIZEN' && user}
     </>
   );
 }

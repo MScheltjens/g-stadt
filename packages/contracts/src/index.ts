@@ -8,3 +8,4 @@ export * from './common/params.schema';
 export * from './service/service.schema';
 export * from './service/service-category.schema';
 export * from './service/service.query.schema';
+export * from './service/service.response.schema';

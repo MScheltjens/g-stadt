@@ -11,7 +11,7 @@
 'use client';
 
 import { createContext, useContext, ReactNode } from 'react';
-import type { JwtPayload } from '@repo/types';
+import type { JwtPayload } from '@repo/contracts';
 
 /**
  * Authentication context value interface

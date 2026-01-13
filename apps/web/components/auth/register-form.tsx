@@ -1,19 +1,10 @@
-/**
- * Register Form Component
- *
- * Reusable registration form that can be used in both full page and modal contexts.
- */
-
 'use client';
 
 import { useState, useTransition } from 'react';
 import { useTranslations } from '@repo/i18n/next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  RegisterWithConfirmSchema,
-  type RegisterWithConfirm,
-} from '@repo/types';
+import { z } from 'zod';
 import { register } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
@@ -28,13 +19,31 @@ import {
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
 
+// Define the schema for the registration form
+// This is not a contract schema but a form-specific schema
+
+const RegisterFormSchema = z
+  .object({
+    email: z.string().email(),
+    password: z.string().min(8),
+    confirmPassword: z.string().min(8),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
+
+type RegisterFormValues = z.infer<typeof RegisterFormSchema>;
+
+// Registration Form Component
+
 export function RegisterForm() {
   const t = useTranslations('auth');
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<RegisterWithConfirm>({
-    resolver: zodResolver(RegisterWithConfirmSchema),
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -42,14 +51,13 @@ export function RegisterForm() {
     },
   });
 
-  async function onSubmit(data: RegisterWithConfirm) {
+  async function onSubmit(data: RegisterFormValues) {
     setError('');
 
     startTransition(async () => {
       const result = await register({
         email: data.email,
         password: data.password,
-        role: 'CITIZEN',
       });
 
       if ('error' in result) {
@@ -86,12 +94,7 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel>{t('register.email')}</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    placeholder={t('register.emailPlaceholder')}
-                    autoComplete="email"
-                    {...field}
-                  />
+                  <Input type="email" autoComplete="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,7 +110,6 @@ export function RegisterForm() {
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder={t('register.passwordPlaceholder')}
                     autoComplete="new-password"
                     {...field}
                   />
@@ -126,7 +128,6 @@ export function RegisterForm() {
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder={t('register.confirmPasswordPlaceholder')}
                     autoComplete="new-password"
                     {...field}
                   />

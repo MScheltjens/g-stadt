@@ -9,7 +9,7 @@
  */
 
 import { cookies } from 'next/headers';
-import { JwtUserSchema } from '@repo/contracts';
+import { JwtPayloadSchema } from '@repo/contracts';
 import type { Role } from '@repo/contracts';
 import { jwtDecode } from 'jwt-decode';
 /**
@@ -31,21 +31,27 @@ import { jwtDecode } from 'jwt-decode';
  */
 export async function setAuthCookies(
   accessToken: string,
-  refreshToken: string,
+  refreshToken?: string,
 ) {
-  (await cookies()).set('accessToken', accessToken, {
+  const cookieStore = await cookies();
+
+  cookieStore.set('accessToken', accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     maxAge: 15 * 60, // 15 minutes
+    path: '/',
   });
 
-  (await cookies()).set('refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 7 * 24 * 60 * 60, // 7 days
-  });
+  if (refreshToken) {
+    cookieStore.set('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60, // 7 days
+      path: '/',
+    });
+  }
 }
 
 /**
@@ -129,7 +135,7 @@ export async function getUser() {
 
   try {
     const decoded = jwtDecode(token);
-    return JwtUserSchema.parse(decoded);
+    return JwtPayloadSchema.parse(decoded);
   } catch {
     return null;
   }
