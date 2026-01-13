@@ -8,15 +8,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /* --------------------------------------------------
-   G-STADT – Calm civic theme
-   Blue + neutral, yellow as subtle accent only
+   G-STADT – Civic theme (warmer, more alive)
+   Authority blue + warm stone accents
 -------------------------------------------------- */
 :root {
   /* Base */
   --background: oklch(0.98 0.005 255);
-  /* clean off-white */
   --foreground: oklch(0.22 0.02 255);
-  /* near-black blue */
 
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
@@ -24,54 +22,60 @@
   --popover: oklch(1 0 0);
   --popover-foreground: var(--foreground);
 
-  /* Primary – Civic blue */
-  --primary: oklch(0.42 0.14 255);
+  /* Primary – Civic authority blue (slightly warmer) */
+  --primary: oklch(0.44 0.16 250);
   --primary-foreground: oklch(0.98 0.005 255);
 
-  /* Secondary – neutral surface (NO yellow) */
-  --secondary: oklch(0.96 0.005 255);
+  /* Secondary – warm surface */
+  --secondary: oklch(0.96 0.01 95);
   --secondary-foreground: var(--foreground);
 
-  /* Muted – section separation */
-  --muted: oklch(0.95 0.01 255);
-  --muted-foreground: oklch(0.45 0.03 255);
+  /* Muted – section separation (warm stone) */
+  --muted: oklch(0.94 0.015 95);
+  --muted-foreground: oklch(0.42 0.04 255);
 
-  /* Accent – restrained warm hint (yellow, subtle) */
-  --accent: oklch(0.92 0.01 255);
-  --accent-foreground: var(--foreground);
+  /* Accent – sandstone / architectural warmth */
+  --accent: oklch(0.93 0.03 85);
+  --accent-foreground: oklch(0.25 0.04 85);
 
   /* Destructive */
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0.005 255);
 
   /* Borders / Inputs */
-  --border: oklch(0.88 0.01 255);
-  --input: oklch(0.88 0.01 255);
+  --border: oklch(0.88 0.015 95);
+  --input: oklch(0.88 0.015 95);
   --ring: var(--primary);
 
-  /* Charts */
+  /* Charts – more human, civic palette */
   --chart-1: var(--primary);
-  --chart-2: oklch(0.70 0.12 95);
-  --chart-3: oklch(0.55 0.06 255);
-  --chart-4: oklch(0.80 0.06 255);
-  --chart-5: oklch(0.40 0.03 255);
+  /* authority */
+  --chart-2: oklch(0.72 0.14 120);
+  /* civic green */
+  --chart-3: oklch(0.62 0.10 40);
+  /* terracotta */
+  --chart-4: oklch(0.78 0.08 95);
+  /* sand */
+  --chart-5: oklch(0.50 0.06 255);
+  /* neutral blue */
 
-  /* Radius – administrative */
-  --radius: 0rem;
+  /* Radius – human touch (not playful) */
+  --radius: 0.375rem;
+  /* 6px */
 
   /* Sidebar */
-  --sidebar: oklch(0.97 0.005 255);
+  --sidebar: oklch(0.97 0.01 95);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
   --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
 }
 
 /* --------------------------------------------------
-   DARK MODE – Calm civic night mode
+   DARK MODE – Civic night mode (less navy, more city)
 -------------------------------------------------- */
 .dark {
   --background: oklch(0.16 0.02 255);
@@ -83,32 +87,32 @@
   --popover: oklch(0.20 0.02 255);
   --popover-foreground: var(--foreground);
 
-  --primary: oklch(0.65 0.18 255);
+  --primary: oklch(0.65 0.18 250);
   --primary-foreground: oklch(0.16 0.02 255);
 
-  --secondary: oklch(0.26 0.01 255);
+  --secondary: oklch(0.28 0.02 95);
   --secondary-foreground: var(--foreground);
 
-  --muted: oklch(0.28 0.02 255);
+  --muted: oklch(0.30 0.02 95);
   --muted-foreground: oklch(0.72 0.04 255);
 
-  --accent: oklch(0.40 0.06 95);
+  --accent: oklch(0.45 0.08 95);
   --accent-foreground: var(--foreground);
 
   --destructive: oklch(0.52 0.22 25);
   --destructive-foreground: var(--foreground);
 
-  --border: oklch(0.32 0.02 255);
-  --input: oklch(0.32 0.02 255);
+  --border: oklch(0.32 0.02 95);
+  --input: oklch(0.32 0.02 95);
   --ring: var(--primary);
 
   --chart-1: var(--primary);
-  --chart-2: oklch(0.72 0.12 95);
-  --chart-3: oklch(0.60 0.06 255);
-  --chart-4: oklch(0.78 0.06 255);
-  --chart-5: oklch(0.50 0.04 255);
+  --chart-2: oklch(0.72 0.14 120);
+  --chart-3: oklch(0.65 0.10 40);
+  --chart-4: oklch(0.78 0.08 95);
+  --chart-5: oklch(0.55 0.06 255);
 
-  --sidebar: oklch(0.20 0.02 255);
+  --sidebar: oklch(0.20 0.02 95);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);

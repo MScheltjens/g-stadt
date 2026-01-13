@@ -2,34 +2,36 @@ import { z } from 'zod';
 
 // Enums
 export const RoleEnum = z.enum(['CITIZEN', 'STAFF', 'ADMIN']);
-export type Role = z.infer<typeof RoleEnum>;
 
-// User DTOs for API validation
+// User Schemas for API validation
 export const CreateUserSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  email: z.email({ message: 'Invalid email address' }),
+  password: z
+    .string()
+    .min(8, { message: 'Password must be at least 8 characters' }),
   role: RoleEnum.optional().default('CITIZEN'),
 });
 
 export const UpdateUserSchema = z.object({
-  email: z.string().email('Invalid email address').optional(),
+  email: z.email({ message: 'Invalid email address' }).optional(),
   password: z
     .string()
-    .min(8, 'Password must be at least 8 characters')
+    .min(8, { message: 'Password must be at least 8 characters' })
     .optional(),
   role: RoleEnum.optional(),
   isVerified: z.boolean().optional(),
 });
 
 export const UserResponseSchema = z.object({
-  id: z.string().uuid(),
-  email: z.string().email(),
+  id: z.uuid({ message: 'Invalid UUID' }),
+  email: z.email({ message: 'Invalid email address' }),
   role: RoleEnum,
   isVerified: z.boolean(),
-  createdAt: z.date(),
+  createdAt: z.date(), // Keep as z.date() for shared types, override in API DTO
 });
 
 // Types
-export type CreateUserDto = z.infer<typeof CreateUserSchema>;
-export type UpdateUserDto = z.infer<typeof UpdateUserSchema>;
+export type Role = z.infer<typeof RoleEnum>;
+export type CreateUser = z.infer<typeof CreateUserSchema>;
+export type UpdateUser = z.infer<typeof UpdateUserSchema>;
 export type UserResponse = z.infer<typeof UserResponseSchema>;

@@ -12,7 +12,7 @@
 
 import { redirect } from 'next/navigation';
 import { setAuthCookies, clearAuthCookies } from '@/lib/auth';
-import type { LoginDto, RegisterDto, AuthResponse } from '@repo/types';
+import type { Login, Register, AuthResponse } from '@repo/types';
 
 /**
  * Base API URL for backend authentication endpoints
@@ -55,7 +55,7 @@ type RegisterResult = ActionSuccess | ActionError;
  *
  */
 
-export async function login(data: LoginDto): Promise<LoginResult> {
+export async function login(data: Login): Promise<LoginResult> {
   try {
     const res = await fetch(`${API_URL}/auth/login`, {
       method: 'POST',
@@ -89,7 +89,7 @@ export async function login(data: LoginDto): Promise<LoginResult> {
  * @returns Success response with user data or error message
  *
  */
-export async function register(data: RegisterDto): Promise<RegisterResult> {
+export async function register(data: Register): Promise<RegisterResult> {
   try {
     const res = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',

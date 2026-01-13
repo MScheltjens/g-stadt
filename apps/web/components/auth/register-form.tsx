@@ -10,7 +10,10 @@ import { useState, useTransition } from 'react';
 import { useTranslations } from '@repo/i18n/next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RegisterWithConfirmSchema, RegisterWithConfirmDto } from '@repo/types';
+import {
+  RegisterWithConfirmSchema,
+  type RegisterWithConfirm,
+} from '@repo/types';
 import { register } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
@@ -30,7 +33,7 @@ export function RegisterForm() {
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<RegisterWithConfirmDto>({
+  const form = useForm<RegisterWithConfirm>({
     resolver: zodResolver(RegisterWithConfirmSchema),
     defaultValues: {
       email: '',
@@ -39,7 +42,7 @@ export function RegisterForm() {
     },
   });
 
-  async function onSubmit(data: RegisterWithConfirmDto) {
+  async function onSubmit(data: RegisterWithConfirm) {
     setError('');
 
     startTransition(async () => {

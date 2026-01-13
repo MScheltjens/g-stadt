@@ -1,5 +1,4 @@
 import { setRequestLocale } from '@repo/i18n/server';
-import { getEventBySlug } from '@/lib/api';
 import type { PageProps } from '@/types/next-page';
 
 type EventPageProps = PageProps<{
@@ -7,15 +6,8 @@ type EventPageProps = PageProps<{
 }>;
 
 export default async function EventPage({ params }: EventPageProps) {
-  const { locale, slug } = await params;
+  const { locale } = await params;
   setRequestLocale(locale);
 
-  const event = await getEventBySlug(slug);
-
-  return (
-    <>
-      <h1>Event</h1>
-      <pre>{JSON.stringify(event, null, 2)}</pre>
-    </>
-  );
+  return <h1>Event</h1>;
 }

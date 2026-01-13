@@ -8,10 +8,14 @@ config({ path: join(process.cwd(), '.env') });
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ZodValidationPipe } from 'nestjs-zod';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
+
+  // zod global pipe can be set up here if needed
+  app.useGlobalPipes(new ZodValidationPipe());
 
   // Swagger setup
   const config = new DocumentBuilder()
