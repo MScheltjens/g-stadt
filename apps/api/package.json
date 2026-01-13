@@ -25,7 +25,6 @@
     "@prisma/adapter-pg": "^7.1.0",
     "@repo/contracts": "workspace:*",
     "@repo/database": "workspace:*",
-    "@repo/types": "workspace:*",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "nestjs-zod": "^5.0.1",
