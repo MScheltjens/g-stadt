@@ -1,6 +1,6 @@
 generator zod {
   provider                         = "zod-prisma-types"
-  output                           = "../../types/src/generated"
+  output                           = ".generated/zod"
   useMultipleFiles                 = false
   createInputTypes                 = false
   addInputTypeValidation           = false
@@ -65,10 +65,10 @@ model RefreshToken {
 /// SERVICES ///
 
 model ServiceCategory {
-  id        String  @id @default(uuid())
-  code      String  @unique
-  order     Int     @default(0)
-  isActive  Boolean @default(true)
+  id       String  @id @default(uuid())
+  code     String  @unique
+  order    Int     @default(0)
+  isActive Boolean @default(true)
 
   services     Service[]
   translations ServiceCategoryTranslation[]
@@ -98,7 +98,7 @@ model Service {
 
   icon        String
   externalUrl String?
-  order       Int @default(0)
+  order       Int     @default(0)
 
   isActive     Boolean @default(true)
   requiresAuth Boolean @default(false)
@@ -111,7 +111,6 @@ model Service {
 
   @@index([categoryId, isActive, order])
 }
-
 
 model ServiceTranslation {
   id String @id @default(uuid())

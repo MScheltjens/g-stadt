@@ -4,6 +4,7 @@ export interface JwtPayload {
   email: string;
   role: string;
 }
+
 import { z } from 'zod';
 import { RoleEnum } from './user.schema';
 
