@@ -1,15 +1,23 @@
+// JWT Payload shared type
+export interface JwtPayload {
+  sub: string;
+  email: string;
+  role: string;
+}
 import { z } from 'zod';
 import { RoleEnum } from './user.schema';
 
 // Login Schema
 export const LoginSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email('Invalid email address'),
   password: z.string().min(1, 'Password is required'),
 });
 
+export type Login = z.infer<typeof LoginSchema>;
+
 // Register Schema
 export const RegisterSchema = z.object({
-  email: z.string().email('Invalid email address'),
+  email: z.email('Invalid email address'),
   password: z
     .string()
     .min(8, 'Password must be at least 8 characters')
@@ -17,10 +25,12 @@ export const RegisterSchema = z.object({
   role: RoleEnum.optional().default('CITIZEN'),
 });
 
+export type Register = z.infer<typeof RegisterSchema>;
+
 // Register Schema with confirmation (for forms)
 export const RegisterWithConfirmSchema = z
   .object({
-    email: z.string().email('Invalid email address'),
+    email: z.email('Invalid email address'),
     password: z
       .string()
       .min(8, 'Password must be at least 8 characters')
@@ -31,6 +41,8 @@ export const RegisterWithConfirmSchema = z
     message: 'Passwords do not match',
     path: ['confirmPassword'],
   });
+
+export type RegisterWithConfirm = z.infer<typeof RegisterWithConfirmSchema>;
 
 // Change Password Schema
 export const ChangePasswordSchema = z.object({
