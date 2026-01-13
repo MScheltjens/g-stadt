@@ -13,7 +13,6 @@ import {
 } from '@repo/ui/components/navigation-menu';
 
 import { cn } from '@repo/ui/lib/utils';
-import { ServiceCategory } from '@repo/contracts';
 
 export const NAV_ITEMS = [
   {

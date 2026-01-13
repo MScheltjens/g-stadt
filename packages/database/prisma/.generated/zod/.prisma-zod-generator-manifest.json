@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "generatorVersion": "0.0.0",
-  "generatedAt": "2026-01-13T15:25:07.139Z",
+  "generatedAt": "2026-01-13T15:27:59.408Z",
   "outputPath": "C:\\Users\\mathi_tq8fneg\\Desktop\\web\\g-stadtt\\packages\\database\\prisma\\.generated\\zod",
   "files": [
     "schemas\\enums\\TransactionIsolationLevel.schema.ts",
