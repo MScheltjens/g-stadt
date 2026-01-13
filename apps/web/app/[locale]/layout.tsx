@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/types/next-page';
 import { Providers } from '@/components/providers/providers';
-import { Locale } from '@repo/contracts';
+import { Locale } from '@repo/constants';
 
 import '@repo/ui/globals.css';
 

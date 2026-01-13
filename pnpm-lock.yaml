@@ -77,6 +77,9 @@ importers:
       '@prisma/adapter-pg':
         specifier: ^7.1.0
         version: 7.1.0
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       '@repo/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -174,6 +177,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.69.0)
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       '@repo/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -267,6 +273,19 @@ importers:
         version: 16.0.10(@babel/core@7.28.5)(react-dom@19.2.3)(react@19.2.3)
 
   configs/typescript-config: {}
+
+  packages/constants:
+    dependencies:
+      zod:
+        specifier: ^4.3.5
+        version: 4.3.5
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../configs/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../configs/typescript-config
 
   packages/contracts:
     dependencies:

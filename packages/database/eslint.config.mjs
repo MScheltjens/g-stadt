@@ -1,8 +1,8 @@
-import { libraryConfig } from "@repo/eslint-config/library";
+import { databaseConfig } from "@repo/eslint-config/database";
 
 /** @type {import("eslint").Linter.Config} */
 export default [
-    ...libraryConfig,
+    ...databaseConfig,
     {
         ignores: ["**/dist/**", "**/node_modules/**"]
     }
