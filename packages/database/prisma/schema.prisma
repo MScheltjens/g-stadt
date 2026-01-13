@@ -1,15 +1,6 @@
 generator zod {
-  provider                         = "zod-prisma-types"
-  output                           = ".generated/zod"
-  useMultipleFiles                 = false
-  createInputTypes                 = false
-  addInputTypeValidation           = false
-  createModelTypes                 = true
-  createOptionalDefaultValuesTypes = true
-  createRelationValuesTypes        = false
-  createPartialTypes               = false
-  useDefaultValidators             = false
-  coerceDate                       = false
+  provider = "prisma-zod-generator"
+  output   = ".generated/zod"
 }
 
 generator client {
