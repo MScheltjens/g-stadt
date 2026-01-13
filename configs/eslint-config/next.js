@@ -51,7 +51,19 @@ export const nextJsConfig = defineConfig([
     settings: { react: { version: 'detect' } },
     rules: {
       ...pluginReactHooks.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off', // Not needed with new JSX transform
+      'react/react-in-jsx-scope': 'off',
+    },
+  },
+
+  // 🚫 Architecture boundary: web must not import DB
+  {
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['@repo/database', '@prisma/client'],
+        },
+      ],
     },
   },
 

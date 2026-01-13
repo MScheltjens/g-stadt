@@ -61,7 +61,17 @@
         "../types/src/generated/**"
       ]
     },
-    "lint": {},
+    "lint": {
+      "inputs": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.js",
+        "**/*.jsx",
+        "eslint.config.*",
+        "../../configs/eslint-config/**"
+      ],
+      "outputs": []
+    },
     "test": {},
     "dev": {
       "cache": false,
