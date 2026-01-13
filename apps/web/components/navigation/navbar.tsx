@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, usePathname } from '@repo/i18n/navigation';
+import { Link } from '@repo/i18n/navigation';
 import { useTranslations } from '@repo/i18n/next-intl';
 
 import {
@@ -8,7 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuTrigger,
-  NavigationMenuContent,
+  // NavigationMenuContent,
   // NavigationMenuLink,
 } from '@repo/ui/components/navigation-menu';
 
@@ -24,7 +24,7 @@ export const NAV_ITEMS = [
 ] as const;
 
 export function Navbar() {
-  // const t = useTranslations('navbar');
+  const t = useTranslations('navbar');
   // const pathname = usePathname();
   return (
     <NavigationMenu viewport={false}>
