@@ -2,13 +2,12 @@ import { checkUserRole } from '@/lib/auth';
 import { redirect } from '@repo/i18n/navigation';
 import { setRequestLocale } from '@repo/i18n/server';
 import { RoleEnum } from '@repo/types';
+import { type LayoutProps } from '@/types/next-page';
 
-type DashboardLayoutProps = {
+type DashboardLayoutProps = LayoutProps & {
   user: React.ReactNode;
   admin: React.ReactNode;
   staff: React.ReactNode;
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 };
 
 export default async function DashboardLayout({
@@ -16,7 +15,6 @@ export default async function DashboardLayout({
   admin,
   staff,
   params,
-  children,
 }: DashboardLayoutProps) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -29,10 +27,12 @@ export default async function DashboardLayout({
 
   return (
     <>
+      <div style={{ background: '#ffe', padding: '8px', marginBottom: '8px' }}>
+        <strong>Debug:</strong> Role detected: {role ?? 'none'}
+      </div>
       {role === RoleEnum.enum.ADMIN && admin}
       {role === RoleEnum.enum.STAFF && staff}
       {role === RoleEnum.enum.CITIZEN && user}
-      {children}
     </>
   );
 }

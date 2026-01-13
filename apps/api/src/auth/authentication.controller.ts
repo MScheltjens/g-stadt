@@ -7,11 +7,9 @@ import {
   Get,
 } from '@nestjs/common';
 import { AuthenticationService } from '@/auth/authentication.service';
-import {
-  type LoginDto,
-  type RegisterDto,
-  type RefreshTokenDto,
-} from '@repo/types';
+import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
+import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { Public } from '@/common/decorators/public.decorator';
 import { CurrentUser } from '@/common/decorators/current-user.decorator';
 

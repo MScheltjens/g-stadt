@@ -4,7 +4,9 @@ import { LocaleQueryDto } from '@/common/dto/locale-query.dto';
 import { SlugParamDto } from '@/common/dto/slug-param.dto';
 import { ZodSerializerDto } from 'nestjs-zod';
 import { ServiceResponseSchema, ServicesByCategorySchema } from '@repo/types';
+import { Public } from '@/common/decorators/public.decorator';
 
+@Public()
 @Controller('services')
 export class ServicesController {
   constructor(private readonly servicesService: ServicesService) {}

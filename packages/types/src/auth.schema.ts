@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { RoleEnum } from './user.schema';
-import { RefreshTokenSchema } from './generated';
 
 // Login Schema
 export const LoginSchema = z.object({
@@ -33,11 +32,6 @@ export const RegisterWithConfirmSchema = z
     path: ['confirmPassword'],
   });
 
-// // Refresh Token Schema
-// export const RefreshTokenSchema = z.object({
-//     refreshToken: z.string().min(1, 'Refresh token is required'),
-// });
-
 // Change Password Schema
 export const ChangePasswordSchema = z.object({
   currentPassword: z.string().min(1, 'Current password is required'),
@@ -55,15 +49,6 @@ export const ResetPasswordSchema = z.object({
   newPassword: z.string().min(8, 'New password must be at least 8 characters'),
 });
 
-// Types
-export type LoginDto = z.infer<typeof LoginSchema>;
-export type RefreshTokenDto = z.infer<typeof RefreshTokenSchema>;
-export type RegisterDto = z.infer<typeof RegisterSchema>;
-export type RegisterWithConfirmDto = z.infer<typeof RegisterWithConfirmSchema>;
-export type ChangePasswordDto = z.infer<typeof ChangePasswordSchema>;
-export type ForgotPasswordDto = z.infer<typeof ForgotPasswordSchema>;
-export type ResetPasswordDto = z.infer<typeof ResetPasswordSchema>;
-
 // Auth Response
 export interface AuthResponse {
   accessToken: string;
@@ -74,11 +59,4 @@ export interface AuthResponse {
     role: string;
     isVerified: boolean;
   };
-}
-
-// Token Payload
-export interface JwtPayload {
-  sub: string;
-  email: string;
-  role: string;
 }

@@ -130,7 +130,7 @@ export async function getUser(): Promise<JwtPayload | null> {
   try {
     const decoded = jwtDecode<JwtPayload>(token);
     return decoded;
-  } catch {
+  } catch (err) {
     return null;
   }
 }
