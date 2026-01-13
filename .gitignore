@@ -58,6 +58,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Misc
+packages/database/prisma/.generated/
 .DS_Store
 *.pem
 
