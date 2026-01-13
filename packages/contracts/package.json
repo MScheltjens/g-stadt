@@ -2,21 +2,23 @@
     "name": "@repo/contracts",
     "version": "0.0.1",
     "private": true,
-    "type": "module",
     "sideEffects": false,
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "main": "./dist/cjs/index.cjs",
+    "types": "./dist/types/index.d.ts",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
-            "default": "./dist/index.js"
+            "require": "./dist/cjs/index.cjs",
+            "import": "./dist/esm/index.js",
+            "types": "./dist/types/index.d.ts"
         }
     },
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "tsc -p tsconfig.build.json",
+        "build:cjs": "tsc -p tsconfig.cjs.json",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "build": "pnpm build:cjs && pnpm build:esm",
         "clean": "rm -rf dist",
         "lint": "eslint . --max-warnings 0"
     },

@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { ServicesService } from './services/services.service';
-import { ServicesController } from './services/services.controller';
-import { ServiceCategoryService } from './category/service-category.service';
-import { ServiceCategoryController } from './category/service-category.controller';
+import { ServicesService } from './services.service';
+import { ServicesController } from './services.controller';
 
 @Module({
-  controllers: [ServicesController, ServiceCategoryController],
-  providers: [ServicesService, ServiceCategoryService],
-  exports: [ServicesService, ServiceCategoryService],
+  controllers: [ServicesController],
+  providers: [ServicesService],
+  exports: [ServicesService],
 })
 export class ServicesModule {}

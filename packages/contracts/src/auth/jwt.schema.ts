@@ -1,12 +1,16 @@
 import { z } from 'zod';
-import { RoleSchema } from './role.schema.js';
+import { RoleSchema } from './role.schema';
 
-export const JwtUserSchema = z.object({
+/**
+ * JWT payload contract
+ *
+ * This is the shape encoded into access & refresh tokens.
+ * It must stay STABLE.
+ */
+export const JwtPayloadSchema = z.object({
   sub: z.uuid(), // user id
   email: z.email(),
   role: RoleSchema,
-  iat: z.number(),
-  exp: z.number(),
 });
 
-export type JwtUser = z.infer<typeof JwtUserSchema>;
+export type JwtPayload = z.infer<typeof JwtPayloadSchema>;

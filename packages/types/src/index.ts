@@ -1,6 +1,4 @@
 // Manual schemas (DTOs, validations)
-export * from './user.schema';
-export * from './auth.schema';
 export * from './constants';
 export * from './service.schema';
 export * from './request.schema';

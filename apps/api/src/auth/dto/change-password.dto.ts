@@ -1,4 +1,6 @@
 import { createZodDto } from 'nestjs-zod';
-import { ChangePasswordSchema } from '@repo/types';
+import { ChangePasswordInputSchema } from '@repo/contracts';
 
-export class ChangePasswordDto extends createZodDto(ChangePasswordSchema) {}
+export class ChangePasswordDto extends createZodDto(
+  ChangePasswordInputSchema,
+) {}

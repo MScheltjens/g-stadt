@@ -3,7 +3,7 @@ import { db } from '@repo/database';
 
 @Injectable()
 export class PrismaService implements OnModuleInit, OnModuleDestroy {
-  // Access all Prisma models through db
+  // AUTH
   get user() {
     return db.user;
   }
@@ -12,9 +12,21 @@ export class PrismaService implements OnModuleInit, OnModuleDestroy {
     return db.refreshToken;
   }
 
+  get passwordResetToken() {
+    return db.passwordResetToken;
+  }
+
+  // CONTENT
   get service() {
     return db.service;
   }
+
+  get serviceCategory() {
+    return db.serviceCategory;
+  }
+
+  // TRANSACTIONS
+  $transaction = db.$transaction.bind(db);
 
   async onModuleInit() {
     await db.$connect();

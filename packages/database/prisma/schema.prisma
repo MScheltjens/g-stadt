@@ -48,7 +48,8 @@ model User {
   isVerified   Boolean  @default(false)
   createdAt    DateTime @default(now())
 
-  refreshTokens RefreshToken[]
+  refreshTokens       RefreshToken[]
+  passwordResetTokens PasswordResetToken[]
 }
 
 model RefreshToken {
@@ -59,9 +60,21 @@ model RefreshToken {
   expiresAt DateTime
 }
 
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String
+  expiresAt DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+}
+
 ////////////////////
 /// CONTENT CORE ///
 ////////////////////
+
 /// SERVICES ///
 
 model ServiceCategory {

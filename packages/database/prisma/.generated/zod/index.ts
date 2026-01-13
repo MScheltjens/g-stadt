@@ -32,6 +32,13 @@ export const RefreshTokenScalarFieldEnumSchema = z.enum([
   'expiresAt',
 ]);
 
+export const PasswordResetTokenScalarFieldEnumSchema = z.enum([
+  'id',
+  'userId',
+  'tokenHash',
+  'expiresAt',
+]);
+
 export const ServiceCategoryScalarFieldEnumSchema = z.enum([
   'id',
   'code',
@@ -140,6 +147,33 @@ export const RefreshTokenOptionalDefaultsSchema = RefreshTokenSchema.merge(
 
 export type RefreshTokenOptionalDefaults = z.infer<
   typeof RefreshTokenOptionalDefaultsSchema
+>;
+
+/////////////////////////////////////////
+// PASSWORD RESET TOKEN SCHEMA
+/////////////////////////////////////////
+
+export const PasswordResetTokenSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  tokenHash: z.string(),
+  expiresAt: z.date(),
+});
+
+export type PasswordResetToken = z.infer<typeof PasswordResetTokenSchema>;
+
+// PASSWORD RESET TOKEN OPTIONAL DEFAULTS SCHEMA
+//------------------------------------------------------
+
+export const PasswordResetTokenOptionalDefaultsSchema =
+  PasswordResetTokenSchema.merge(
+    z.object({
+      id: z.string().optional(),
+    }),
+  );
+
+export type PasswordResetTokenOptionalDefaults = z.infer<
+  typeof PasswordResetTokenOptionalDefaultsSchema
 >;
 
 /////////////////////////////////////////
