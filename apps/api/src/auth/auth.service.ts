@@ -13,7 +13,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
-export class AuthenticationService {
+export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,

@@ -1,18 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthenticationController } from './authentication.controller';
-import { AuthenticationService } from './authentication.service';
+import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../content/prisma/prisma.service';
 
-describe('AuthenticationController', () => {
-  let controller: AuthenticationController;
+describe('AuthService', () => {
+  let service: AuthService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [AuthenticationController],
       providers: [
-        AuthenticationService,
+        AuthService,
         {
           provide: UsersService,
           useValue: {
@@ -41,10 +39,10 @@ describe('AuthenticationController', () => {
       ],
     }).compile();
 
-    controller = module.get<AuthenticationController>(AuthenticationController);
+    service = module.get<AuthService>(AuthService);
   });
 
   it('should be defined', () => {
-    expect(controller).toBeDefined();
+    expect(service).toBeDefined();
   });
 });

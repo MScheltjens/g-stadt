@@ -9,9 +9,9 @@
  */
 
 import { cookies } from 'next/headers';
+import { JwtUserSchema } from '@repo/contracts';
+import type { Role } from '@repo/contracts';
 import { jwtDecode } from 'jwt-decode';
-import type { JwtPayload, RoleType } from '@repo/types';
-
 /**
  * Sets authentication tokens in HTTP-only cookies
  *
@@ -123,13 +123,13 @@ export async function clearAuthCookies() {
  * }
  * ```
  */
-export async function getUser(): Promise<JwtPayload | null> {
+export async function getUser() {
   const token = await getAccessToken();
   if (!token) return null;
 
   try {
-    const decoded = jwtDecode<JwtPayload>(token);
-    return decoded;
+    const decoded = jwtDecode(token);
+    return JwtUserSchema.parse(decoded);
   } catch {
     return null;
   }
@@ -151,7 +151,7 @@ export async function getUser(): Promise<JwtPayload | null> {
  * }
  * ```
  */
-export async function checkUserRole(): Promise<RoleType | null> {
+export async function checkUserRole(): Promise<Role | null> {
   const user = await getUser();
-  return user ? (user.role as RoleType) : null;
+  return user?.role ?? null;
 }
