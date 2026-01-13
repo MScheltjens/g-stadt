@@ -4,6 +4,6 @@ import { libraryConfig } from "@repo/eslint-config/library";
 export default [
     ...libraryConfig,
     {
-        ignores: ["prisma/.generated/zod/**", "**/dist/**", "**/node_modules/**"]
+        ignores: ["**/prisma/.generated/zod/**", "**/dist/**", "**/node_modules/**"]
     }
 ]; 

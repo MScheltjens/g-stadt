@@ -1,7 +1,7 @@
 'use client';
 
-import { usePathname } from '@repo/i18n/navigation';
-import { useTranslations } from '@repo/i18n/next-intl';
+// import { usePathname } from '@repo/i18n/navigation';
+// import { useTranslations } from '@repo/i18n/next-intl';
 import { Mail, MapPin, AlertCircle } from '@repo/ui/components/icons';
 import { cn } from '@repo/ui/lib/utils';
 import {
@@ -21,8 +21,8 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export function NavbarIcons() {
-  const t = useTranslations('navbar');
-  const pathname = usePathname();
+  // const t = useTranslations('navbar');
+  // const pathname = usePathname();
   return (
     <nav className="md:hidden">
       <NavigationMenu viewport={false}>

@@ -9,7 +9,7 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger,
   NavigationMenuContent,
-  NavigationMenuLink,
+  // NavigationMenuLink,
 } from '@repo/ui/components/navigation-menu';
 
 import { cn } from '@repo/ui/lib/utils';
@@ -24,8 +24,8 @@ export const NAV_ITEMS = [
 ] as const;
 
 export function Navbar() {
-  const t = useTranslations('navbar');
-  const pathname = usePathname();
+  // const t = useTranslations('navbar');
+  // const pathname = usePathname();
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList className="hidden md:flex items-center ">
