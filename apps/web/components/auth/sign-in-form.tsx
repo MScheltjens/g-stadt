@@ -24,9 +24,9 @@ import {
   FormMessage,
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
-import { ROUTES } from '../../../../packages/constants/dist/types/routing';
+import { ROUTES } from '@repo/constants';
 
-export function LoginForm() {
+export function SignInForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();

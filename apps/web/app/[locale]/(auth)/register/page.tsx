@@ -16,7 +16,6 @@ export default async function RegisterPage({ params }: PageProps) {
 
   return (
     <div className="max-w-md mx-auto my-10 p-6 bg-white rounded-md shadow-md">
-      <h1 className="text-2xl font-semibold mb-6">Register</h1>
       <RegisterForm />
     </div>
   );

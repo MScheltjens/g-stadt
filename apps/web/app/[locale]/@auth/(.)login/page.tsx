@@ -6,7 +6,7 @@
  */
 
 import { Modal } from '@/components/common/modal';
-import { LoginForm } from '@/components/auth/login-form';
+import { LoginForm } from '@/components/auth/sign-in-form';
 import { setRequestLocale } from '@repo/i18n/server';
 import type { PageProps } from '@/types/next-page';
 
