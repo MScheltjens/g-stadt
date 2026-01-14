@@ -120,8 +120,12 @@
   "itemCard": {
     "readMore": "Mehr lesen"
   },
-  "LocaleSwitcher": {
+  "locale-switcher": {
     "label": "Sprache ändern",
     "locale": "{locale, select, de {Deutsch} en {English} fr {Französisch} other {Unbekannt}}"
+  },
+  "coming-soon": {
+    "title": "Demnächst verfügbar",
+    "description": "Diese Funktion wird derzeit entwickelt und bald verfügbar sein."
   }
 }
