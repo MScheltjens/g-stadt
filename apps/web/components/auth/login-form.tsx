@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
+import { ROUTES } from '../../../../packages/constants/dist/types/routing';
 
 export function LoginForm() {
   const t = useTranslations('auth');
@@ -62,7 +63,7 @@ export function LoginForm() {
         <p className="mt-2 text-center text-sm text-muted-foreground">
           {t('login.subtitle')}{' '}
           <Link
-            href="/register"
+            href={ROUTES.REGISTER}
             className="font-medium text-primary hover:text-primary/80 underline-offset-4 hover:underline"
           >
             {t('login.registerLink')}

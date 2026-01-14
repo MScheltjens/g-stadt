@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from '@repo/ui/components/form';
 import { Alert, AlertDescription } from '@repo/ui/components/alert';
+import { ROUTES } from '@repo/constants';
 
 // Define the schema for the registration form
 // This is not a contract schema but a form-specific schema
@@ -77,7 +78,7 @@ export function RegisterForm() {
         <p className="mt-2 text-center text-sm text-muted-foreground">
           {t('register.subtitle')}{' '}
           <Link
-            href="/login"
+            href={ROUTES.SIGNIN}
             className="font-medium text-primary hover:text-primary/80 underline-offset-4 hover:underline"
           >
             {t('register.loginLink')}
