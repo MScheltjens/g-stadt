@@ -52,7 +52,7 @@ export async function Hero() {
 
         {/* News / Events */}
         <div className="mt-8 flex flex-wrap items-center gap-5">
-          <Link
+          {/* <Link
             href="/news"
             className={buttonVariants({ variant: 'default', size: 'lg' })}
           >
@@ -67,7 +67,7 @@ export async function Hero() {
             )}
           >
             {t('actionEvents')}
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
