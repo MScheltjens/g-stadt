@@ -84,7 +84,7 @@ export function proxy(req: NextRequest) {
     !accessToken &&
     matchesLocalizedRoute(pathnameWithoutLocale, PROTECTED_ROUTES)
   ) {
-    const loginPath = routing.pathnames[ROUTES.LOGIN];
+    const loginPath = routing.pathnames[ROUTES.SIGNIN];
     const localizedLogin =
       typeof loginPath === 'string'
         ? loginPath

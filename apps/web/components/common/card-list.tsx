@@ -18,7 +18,6 @@ type CardListProps = {
   muted?: boolean;
   items?: ItemCardProps[];
   children?: React.ReactNode;
-
   /** layout-only */
   className?: string;
   sectionClassName?: string;
@@ -68,7 +67,7 @@ export function CardList({
             {items ? (
               <ul className={cardItemListClassName}>
                 {items.map((item) => (
-                  <li key={item.slug}>
+                  <li key={item.itemSlug}>
                     <ItemCard {...item} />
                   </li>
                 ))}

@@ -21,7 +21,7 @@ export interface ItemCardProps {
   createdAt?: string;
   badge?: string;
   children?: React.ReactNode;
-  slug: string;
+  itemSlug: string;
   pathname: Pathname;
 }
 
@@ -32,10 +32,10 @@ export async function ItemCard({
   createdAt,
   badge,
   children,
-  slug,
+  itemSlug,
   pathname,
 }: ItemCardProps) {
-  const t = await getTranslations('itemCard');
+  const t = await getTranslations('item-card');
 
   return (
     <Card className="w-full sm:w-80 h-56 flex flex-col transition-shadow hover:shadow-lg">
@@ -52,7 +52,8 @@ export async function ItemCard({
 
         <Link
           className={buttonVariants({ variant: 'link' })}
-          href={{ pathname, params: { slug } }}
+          // @ts-expect-error -- TypeScript cannot infer the correct type for `pathname` here
+          href={{ pathname, params: { itemSlug } }}
           aria-label={`${t('readMore')} ${title}`}
         >
           <span>{t('readMore')}</span>

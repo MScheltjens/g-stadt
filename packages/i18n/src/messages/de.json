@@ -1,10 +1,28 @@
 {
-  "metadata": {
-    "title": "G-Stadt",
-    "description": "Eine Stadt für die G's."
+  "locale-layout": {
+    "metadata": {
+      "title": "G-Stadt",
+      "description": "Eine Stadt für die G's."
+    }
+  },
+  "public-layout": {
+    "metadata": {
+      "title": "G-Stadt",
+      "description": "Eine Stadt für die G's."
+    }
   },
   "auth": {
+    "layout": {
+      "metadata": {
+        "title": "G-Stadt - Authentifizierung",
+        "description": "Authentifizieren Sie sich, um auf die G-Stadt-Dienste zuzugreifen."
+      }
+    },
     "login": {
+      "metadata": {
+        "title": "G-Stadt - Anmeldung",
+        "description": "Melden Sie sich bei Ihrem G-Stadt-Konto an."
+      },
       "title": "Bei Ihrem Konto anmelden",
       "subtitle": "Oder",
       "registerLink": "neues Konto erstellen",
@@ -16,6 +34,10 @@
       "signingIn": "Anmeldung läuft..."
     },
     "register": {
+      "metadata": {
+        "title": "G-Stadt - Registrierung",
+        "description": "Erstellen Sie ein neues Konto bei G-Stadt."
+      },
       "title": "Konto erstellen",
       "subtitle": "Oder",
       "loginLink": "bei bestehendem Konto anmelden",
@@ -31,6 +53,10 @@
     }
   },
   "dashboard": {
+    "metadata": {
+      "title": "G-Stadt - Dashboard",
+      "description": "Ihr persönliches Dashboard in G-Stadt."
+    },
     "welcome": "Willkommen zu Ihrem Dashboard",
     "loading": "Lädt...",
     "logout": "Abmelden",
@@ -42,6 +68,10 @@
     "info": "Sie sind erfolgreich authentifiziert. Dies ist eine geschützte Seite."
   },
   "home": {
+    "metadata": {
+      "title": "G-Stadt - Startseite",
+      "description": "Willkommen bei G-Stadt, Ihrem offiziellen Stadtportal."
+    },
     "hero": {
       "badge": "Offizielle Stadtseite",
       "title": "Willkommen in",
@@ -52,16 +82,28 @@
     }
   },
   "services": {
+    "metadata": {
+      "title": "G-Stadt - Dienstleistungen",
+      "description": "Entdecken Sie die verschiedenen Dienstleistungen, die G-Stadt seinen Bürgern bietet."
+    },
     "title": "Unsere Services",
     "description": "Entdecken Sie die verschiedenen Services, die G-Stadt seinen Bürgern bietet.",
     "viewAll": "Alle Services anzeigen"
   },
   "news": {
+    "metadata": {
+      "title": "G-Stadt - Nachrichten",
+      "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Ankündigungen aus G-Stadt."
+    },
     "title": "Neueste Nachrichten",
     "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Ankündigungen aus G-Stadt.",
     "viewAll": "Alle Nachrichten anzeigen"
   },
   "events": {
+    "metadata": {
+      "title": "G-Stadt - Veranstaltungen",
+      "description": "Entdecken Sie bevorstehende Veranstaltungen und Aktivitäten in G-Stadt."
+    },
     "title": "Bevorstehende Veranstaltungen",
     "description": "Entdecken Sie Veranstaltungen in G-Stadt und nehmen Sie an Gemeinschaftsaktivitäten teil.",
     "viewAll": "Alle Veranstaltungen anzeigen",
@@ -85,7 +127,8 @@
   },
   "header": {
     "utils": {
-      "login": "Anmelden"
+      "sign-in": "Anmelden",
+      "sign-out": "Abmelden"
     }
   },
   "footer": {
@@ -93,7 +136,7 @@
     "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen"
   },
-  "notFound": {
+  "not-found": {
     "title": "Seite nicht gefunden",
     "description": "Die gesuchte Seite existiert nicht.",
     "back": "Zurück zur Startseite"
@@ -117,7 +160,7 @@
     "locations": "Standorte",
     "emergency": "Notfall"
   },
-  "itemCard": {
+  "item-card": {
     "readMore": "Mehr lesen"
   },
   "locale-switcher": {

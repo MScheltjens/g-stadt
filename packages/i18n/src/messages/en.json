@@ -1,10 +1,28 @@
 {
-  "metadata": {
-    "title": "G-Stadt",
-    "description": "A city built for the G's."
+  "locale-layout": {
+    "metadata": {
+      "title": "G-Stadt",
+      "description": "A city built for the G's."
+    }
+  },
+  "public-layout": {
+    "metadata": {
+      "title": "G-Stadt",
+      "description": "A city built for the G's."
+    }
   },
   "auth": {
+    "layout": {
+      "metadata": {
+        "title": "G-Stadt - Authentication",
+        "description": "Authenticate to access G-Stadt services."
+      }
+    },
     "login": {
+      "metadata": {
+        "title": "G-Stadt - Sign In",
+        "description": "Sign in to your G-Stadt account."
+      },
       "title": "Sign in to your account",
       "subtitle": "Or",
       "registerLink": "create a new account",
@@ -16,6 +34,10 @@
       "signingIn": "Signing in..."
     },
     "register": {
+      "metadata": {
+        "title": "G-Stadt - Register",
+        "description": "Create a new account with G-Stadt."
+      },
       "title": "Create your account",
       "subtitle": "Or",
       "loginLink": "sign in to existing account",
@@ -31,6 +53,10 @@
     }
   },
   "dashboard": {
+    "metadata": {
+      "title": "G-Stadt - Dashboard",
+      "description": "Your personal dashboard in G-Stadt."
+    },
     "welcome": "Welcome to your Dashboard",
     "loading": "Loading...",
     "logout": "Logout",
@@ -42,6 +68,10 @@
     "info": "You are successfully authenticated. This is a protected page."
   },
   "home": {
+    "metadata": {
+      "title": "G-Stadt - Home",
+      "description": "Welcome to G-Stadt, your official city portal."
+    },
     "hero": {
       "badge": "Official City Site",
       "title": "Welcome to",
@@ -52,22 +82,38 @@
     }
   },
   "services": {
+    "metadata": {
+      "title": "G-Stadt - Services",
+      "description": "Explore the various services offered by G-Stadt to its residents."
+    },
     "title": "City Services",
     "description": "Explore the various services offered by G-Stadt to its residents.",
     "viewAll": "View All Services"
   },
   "news": {
+    "metadata": {
+      "title": "G-Stadt - News",
+      "description": "Stay updated with the latest news and announcements from G-Stadt."
+    },
     "title": "Latest News",
     "description": "Stay updated with the latest news and announcements from G-Stadt.",
     "viewAll": "View All News"
   },
   "events": {
+    "metadata": {
+      "title": "G-Stadt - Events",
+      "description": "Discover upcoming events and activities in G-Stadt."
+    },
     "title": "Upcoming Events",
     "description": "Discover events happening in G-Stadt and participate in community activities.",
     "viewAll": "View All Events",
     "readMore": "Read More"
   },
   "contact": {
+    "metadata": {
+      "title": "G-Stadt - Contact",
+      "description": "Get in touch with the city administration."
+    },
     "title": "Contact Us",
     "description": "Get in touch with the city administration.",
     "address": "Address",
@@ -85,7 +131,8 @@
   },
   "header": {
     "utils": {
-      "login": "Sign In"
+      "sign-in": "Sign In",
+      "sign-out": "Sign Out"
     }
   },
   "footer": {
@@ -93,7 +140,7 @@
     "privacy": "Privacy",
     "terms": "Terms"
   },
-  "notFound": {
+  "not-found": {
     "title": "Page Not Found",
     "description": "The page you are looking for does not exist.",
     "back": "Go back home"
@@ -117,7 +164,7 @@
     "locations": "Locations",
     "emergency": "Emergency"
   },
-  "itemCard": {
+  "item-card": {
     "readMore": "Read More"
   },
   "locale-switcher": {
