@@ -1,5 +1,4 @@
-import { getTranslations, setRequestLocale } from '@repo/i18n/server';
-import { PublicPageHeader } from '@/components/common/public-page-header';
+import { setRequestLocale } from '@repo/i18n/server';
 import { ComingSoon } from '@/components/common/coming-soon';
 
 type ServicesPageProps = {
@@ -9,7 +8,6 @@ type ServicesPageProps = {
 export default async function ServicesPage({ params }: ServicesPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations('services');
 
   return <ComingSoon />;
 }
