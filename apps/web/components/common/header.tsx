@@ -2,6 +2,7 @@ import { Navbar } from '@/components/navigation/navbar';
 import { Link } from '@repo/i18n/navigation';
 import { HeaderUtils } from './header-utils';
 import { NavbarIcons } from '../navigation/navbar-icons';
+import { ROUTES } from '@repo/constants';
 
 export async function Header() {
   return (
@@ -9,7 +10,7 @@ export async function Header() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-lg font-semibold">
+          <Link href={ROUTES.HOME} className="text-lg font-semibold">
             G-Stadt
           </Link>
 

@@ -12,7 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@repo/ui/components/navigation-menu';
-import { NAV_ITEMS } from './navbar';
+import { NAV_ROUTES } from '@repo/constants';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <MapPin className="h-4 w-4" />,
@@ -27,7 +27,7 @@ export function NavbarIcons() {
     <nav className="md:hidden">
       <NavigationMenu viewport={false}>
         <NavigationMenuList className="flex items-center gap-1">
-          {NAV_ITEMS.map((item) => (
+          {NAV_ROUTES.map((item) => (
             <NavigationMenuItem key={item.label}>
               <NavigationMenuTrigger
                 className={cn(

@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import { getTranslations } from '@repo/i18n/server';
 import homeHeroImg from '@/public/images/g-stadt.png';
+import { Link } from '@repo/i18n/navigation';
+import { buttonVariants } from '@repo/ui/components/button';
+import { cn } from '@repo/ui/lib/utils';
+import { ROUTES } from '@repo/constants';
 
 export async function Hero() {
   const t = await getTranslations('home.hero');
@@ -49,22 +53,22 @@ export async function Hero() {
 
         {/* News / Events */}
         <div className="mt-8 flex flex-wrap items-center gap-5">
-          {/* <Link
-            href="/news"
+          <Link
+            href={ROUTES.NEWS}
             className={buttonVariants({ variant: 'default', size: 'lg' })}
           >
             {t('actionNews')}
           </Link>
 
           <Link
-            href="/events"
+            href={ROUTES.EVENTS}
             className={cn(
               buttonVariants({ size: 'lg' }),
               'bg-transparent border border-border text-foreground hover:bg-background hover:border-ring',
             )}
           >
             {t('actionEvents')}
-          </Link> */}
+          </Link>
         </div>
       </div>
     </section>

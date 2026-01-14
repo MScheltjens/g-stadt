@@ -1,5 +1,6 @@
 'use client';
 
+import { NAV_ROUTES } from '@repo/constants';
 import { Link } from '@repo/i18n/navigation';
 import { useTranslations } from '@repo/i18n/next-intl';
 
@@ -14,22 +15,13 @@ import {
 
 import { cn } from '@repo/ui/lib/utils';
 
-export const NAV_ITEMS = [
-  {
-    label: 'services',
-    href: '/services',
-    icon: 'ExclamationCircle',
-  },
-  { label: 'contact', href: '/contact', icon: 'Mail' },
-] as const;
-
 export function Navbar() {
   const t = useTranslations('navbar');
   // const pathname = usePathname();
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList className="hidden md:flex items-center ">
-        {NAV_ITEMS.map((item) => (
+        {NAV_ROUTES.map((item) => (
           <NavigationMenuItem key={item.label}>
             <NavigationMenuTrigger
               className={cn(

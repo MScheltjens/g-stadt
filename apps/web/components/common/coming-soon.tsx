@@ -1,11 +1,6 @@
 import { getTranslations } from '@repo/i18n/server';
 
-interface ComingSoonProps {
-  title?: string;
-  description?: string;
-}
-
-export async function ComingSoon({ title, description }: ComingSoonProps) {
+export async function ComingSoon() {
   const t = await getTranslations('coming-soon');
   return (
     <main className="flex min-h-[70vh] items-center justify-center px-6">
