@@ -1,8 +1,5 @@
 import Image from 'next/image';
-import { Link } from '@repo/i18n/navigation';
 import { getTranslations } from '@repo/i18n/server';
-import { buttonVariants } from '@repo/ui/components/button';
-import { cn } from '@repo/ui/lib/utils';
 import homeHeroImg from '@/public/images/g-stadt.png';
 
 export async function Hero() {
