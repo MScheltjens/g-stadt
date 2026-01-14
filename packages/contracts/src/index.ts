@@ -2,7 +2,7 @@ export * from './auth/role.schema';
 export * from './auth/auth.schema';
 export * from './auth/jwt.schema';
 export * from './auth/auth-user.schema';
-export * from './i18n/locale.schema';
+export * from './routing/locale.schema';
 export * from './user/user.schema';
 export * from './common/params.schema';
 export * from './service/service.schema';

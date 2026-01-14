@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { RoleSchema } from '../auth/role.schema';
-import { LocaleSchema } from '../i18n/locale.schema';
+import { LocaleSchema } from '../routing/locale.schema';
 
 /* =========================
    TRANSLATIONS
