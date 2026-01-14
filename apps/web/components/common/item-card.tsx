@@ -11,7 +11,7 @@ import { Badge } from '@repo/ui/components/badge';
 import { Link } from '@repo/i18n/navigation';
 import { buttonVariants } from '@repo/ui/components/button';
 import { ArrowRight } from '@repo/ui/components/icons';
-import { Pathname } from '@repo/i18n/routing';
+import { Pathname } from '@repo/constants';
 import { getTranslations } from '@repo/i18n/server';
 
 export interface ItemCardProps {
