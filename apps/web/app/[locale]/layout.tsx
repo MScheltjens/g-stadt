@@ -13,16 +13,16 @@ export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
   const { locale } = await params;
-
   const t = await getTranslations({
     locale,
-    namespace: 'locale-layout.metadata',
+    namespace: 'meta',
   });
 
-  setRequestLocale(locale);
-
   return {
-    title: t('title'),
+    title: {
+      default: t('title'),
+      template: `%s – ${t('title')}`,
+    },
     description: t('description'),
   };
 }

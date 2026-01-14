@@ -18,7 +18,7 @@ import { cn } from '@repo/ui/lib/utils';
 
 export function LocaleSwitcher() {
   const locale = useLocale();
-  const t = useTranslations('locale-switcher');
+  const t = useTranslations('localeSwitcher');
   const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();

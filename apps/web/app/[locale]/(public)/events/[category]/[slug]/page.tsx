@@ -2,6 +2,27 @@ import { setRequestLocale } from '@repo/i18n/server';
 import type { PageProps } from '@/types/next-page';
 import { ComingSoon } from '@/components/common/coming-soon';
 
+// type EventPageMetaDataProps = MetadataProps<{
+//   category: string;
+//   slug: string;
+// }>;
+
+// export async function generateMetadata({
+//   params
+// }: EventPageMetaDataProps): Promise<Metadata> {
+//   const { category, slug } = params;
+//   const eventData = await getEventByCategoryAndSlug(category, slug);
+//   if (!eventData) {
+//     return {
+//       title: 'Event',
+//     };
+//   }
+//   return {
+//     title: eventData.title,
+//     description: eventData.description
+//   };
+// }
+
 type EventPageProps = PageProps<{
   category: string;
   slug: string;

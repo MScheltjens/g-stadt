@@ -1,26 +1,24 @@
 {
-  "locale-layout": {
-    "metadata": {
-      "title": "G-Stadt",
-      "description": "Une ville construite pour les G's."
-    }
+  "meta": {
+    "title": "G-Stadt",
+    "description": "Application officielle de la ville de G-Stadt."
   },
-  "public-layout": {
-    "metadata": {
+  "public": {
+    "meta": {
       "title": "G-Stadt",
-      "description": "Une ville construite pour les G's."
+      "description": "Portail officiel de la ville pour les services, les actualités et les événements."
     }
   },
   "auth": {
     "layout": {
-      "metadata": {
-        "title": "G-Stadt - Authentification",
+      "meta": {
+        "title": "Authentification",
         "description": "Authentifiez-vous pour accéder aux services de G-Stadt."
       }
     },
     "login": {
-      "metadata": {
-        "title": "G-Stadt - Connexion",
+      "meta": {
+        "title": "Se connecter",
         "description": "Connectez-vous à votre compte G-Stadt."
       },
       "title": "Connectez-vous à votre compte",
@@ -34,11 +32,11 @@
       "signingIn": "Connexion en cours..."
     },
     "register": {
-      "metadata": {
-        "title": "G-Stadt - Inscription",
-        "description": "Créer un nouveau compte avec G-Stadt."
+      "meta": {
+        "title": "Créer un compte",
+        "description": "Créez un nouveau compte G-Stadt."
       },
-      "title": "Créer votre compte",
+      "title": "Créez votre compte",
       "subtitle": "Ou",
       "loginLink": "se connecter à un compte existant",
       "email": "Adresse e-mail",
@@ -52,10 +50,16 @@
       "passwordMismatch": "Les mots de passe ne correspondent pas"
     }
   },
+  "protected": {
+    "meta": {
+      "title": "Compte",
+      "description": "Espace privé de votre compte G-Stadt."
+    }
+  },
   "dashboard": {
-    "metadata": {
-      "title": "G-Stadt - Tableau de bord",
-      "description": "Votre tableau de bord personnel dans G-Stadt."
+    "meta": {
+      "title": "Tableau de bord",
+      "description": "Vue d’ensemble de votre compte personnel G-Stadt."
     },
     "welcome": "Bienvenue sur votre tableau de bord",
     "loading": "Chargement...",
@@ -68,58 +72,58 @@
     "info": "Vous êtes authentifié avec succès. Ceci est une page protégée."
   },
   "home": {
-    "metadata": {
-      "title": "G-Stadt - Accueil",
+    "meta": {
+      "title": "Accueil",
       "description": "Bienvenue à G-Stadt, votre portail officiel de la ville."
     },
     "hero": {
       "badge": "Site officiel de la ville",
       "title": "Bienvenue à",
       "cityName": "G-Stadt",
-      "description": "Vivre. Travailler. Façonner l'avenir – toutes les informations et services de votre ville en un seul endroit.",
+      "description": "Vivre. Travailler. Construire l’avenir – toutes les informations et services de votre ville en un seul endroit.",
       "actionNews": "Actualités",
       "actionEvents": "Événements"
     }
   },
   "services": {
-    "metadata": {
-      "title": "G-Stadt - Services",
-      "description": "Découvrez les différents services proposés par G-Stadt à ses habitants."
+    "meta": {
+      "title": "Services",
+      "description": "Découvrez les services proposés par la ville de G-Stadt."
     },
-    "title": "Nos Services",
-    "description": "Découvrez les différents services proposés par G-Stadt à ses habitants.",
+    "title": "Services municipaux",
+    "description": "Découvrez les services proposés par la ville de G-Stadt.",
     "viewAll": "Voir tous les services"
   },
   "news": {
-    "metadata": {
-      "title": "G-Stadt - Actualités",
-      "description": "Restez informé des dernières nouvelles et annonces de G-Stadt."
+    "meta": {
+      "title": "Actualités",
+      "description": "Restez informé des dernières actualités et annonces de G-Stadt."
     },
     "title": "Dernières actualités",
-    "description": "Restez informé des dernières nouvelles et annonces de G-Stadt.",
+    "description": "Restez informé des dernières actualités et annonces de G-Stadt.",
     "viewAll": "Voir toutes les actualités"
   },
   "events": {
-    "metadata": {
-      "title": "G-Stadt - Événements",
-      "description": "Découvrez les événements à venir et les activités à G-Stadt."
+    "meta": {
+      "title": "Événements",
+      "description": "Découvrez les événements et activités à venir à G-Stadt."
     },
     "title": "Événements à venir",
-    "description": "Découvrez les événements à G-Stadt et participez aux activités communautaires.",
+    "description": "Découvrez les événements à G-Stadt et participez à la vie communautaire.",
     "viewAll": "Voir tous les événements",
-    "readMore": "Lire la suite"
+    "readMore": "En savoir plus"
   },
   "contact": {
-    "metadata": {
-      "title": "G-Stadt - Contact",
-      "description": "Contactez l'administration de la ville."
+    "meta": {
+      "title": "Contact",
+      "description": "Contactez l’administration municipale."
     },
-    "title": "Contactez-nous",
-    "description": "Contactez l'administration de la ville.",
+    "title": "Nous contacter",
+    "description": "Contactez l’administration municipale.",
     "address": "Adresse",
     "phone": "Téléphone",
     "email": "E-mail",
-    "hours": "Heures d'ouverture",
+    "hours": "Heures d’ouverture",
     "form": {
       "name": "Votre nom",
       "email": "Votre e-mail",
@@ -127,12 +131,12 @@
       "submit": "Envoyer le message"
     },
     "success": "Votre message a été envoyé !",
-    "error": "Une erreur s'est produite lors de l'envoi de votre message."
+    "error": "Une erreur est survenue lors de l’envoi de votre message."
   },
   "header": {
     "utils": {
-      "sign-in": "Se connecter",
-      "sign-out": "Se déconnecter"
+      "signIn": "Se connecter",
+      "signOut": "Se déconnecter"
     }
   },
   "footer": {
@@ -140,40 +144,37 @@
     "privacy": "Confidentialité",
     "terms": "Conditions"
   },
-  "not-found": {
+  "notFound": {
     "title": "Page non trouvée",
-    "description": "La page que vous recherchez n'existe pas.",
-    "back": "Retour à l'accueil"
+    "description": "La page que vous recherchez n’existe pas.",
+    "back": "Retour à l’accueil"
   },
   "loading": {
     "title": "Chargement…",
     "description": "Veuillez patienter pendant le chargement de la page."
   },
   "error": {
-    "title": "Une erreur s'est produite",
-    "description": "Une erreur inattendue s'est produite.",
+    "title": "Une erreur est survenue",
+    "description": "Une erreur inattendue s’est produite.",
     "retry": "Réessayer"
   },
   "navbar": {
     "home": "Accueil",
     "services": "Services",
-    "idCard": "Carte d'identité",
-    "appointments": "Rendez-vous",
-    "contact": "Contact",
-    "contactForm": "Formulaire de contact",
-    "locations": "Lieux",
-    "emergency": "Urgence"
+    "news": "Actualités",
+    "events": "Événements",
+    "contact": "Contact"
   },
-  "item-card": {
-    "readMore": "Lire la suite"
+  "itemCard": {
+    "readMore": "En savoir plus"
   },
-  "locale-switcher": {
+  "localeSwitcher": {
     "label": "Changer de langue",
     "locale": "{locale, select, de {Allemand} en {Anglais} fr {Français} other {Inconnu}}"
   },
-  "coming-soon": {
+  "comingSoon": {
     "title": "Bientôt disponible",
     "description": "Cette fonctionnalité est en cours de développement et sera bientôt disponible.",
-    "note": "Veuillez revenir bientôt."
+    "note": "Veuillez revenir plus tard."
   }
 }

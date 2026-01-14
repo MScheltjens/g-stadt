@@ -1,31 +1,29 @@
 {
-  "locale-layout": {
-    "metadata": {
-      "title": "G-Stadt",
-      "description": "Eine Stadt für die G's."
-    }
+  "meta": {
+    "title": "G-Stadt",
+    "description": "Offizielle Anwendung der Stadt G-Stadt."
   },
-  "public-layout": {
-    "metadata": {
+  "public": {
+    "meta": {
       "title": "G-Stadt",
-      "description": "Eine Stadt für die G's."
+      "description": "Offizielles Stadtportal für Services, Nachrichten und Veranstaltungen."
     }
   },
   "auth": {
     "layout": {
-      "metadata": {
-        "title": "G-Stadt - Authentifizierung",
-        "description": "Authentifizieren Sie sich, um auf die G-Stadt-Dienste zuzugreifen."
+      "meta": {
+        "title": "Authentifizierung",
+        "description": "Melden Sie sich an, um auf die Dienste von G-Stadt zuzugreifen."
       }
     },
     "login": {
-      "metadata": {
-        "title": "G-Stadt - Anmeldung",
+      "meta": {
+        "title": "Anmelden",
         "description": "Melden Sie sich bei Ihrem G-Stadt-Konto an."
       },
-      "title": "Bei Ihrem Konto anmelden",
+      "title": "Melden Sie sich bei Ihrem Konto an",
       "subtitle": "Oder",
-      "registerLink": "neues Konto erstellen",
+      "registerLink": "ein neues Konto erstellen",
       "email": "E-Mail-Adresse",
       "emailPlaceholder": "E-Mail-Adresse",
       "password": "Passwort",
@@ -34,11 +32,11 @@
       "signingIn": "Anmeldung läuft..."
     },
     "register": {
-      "metadata": {
-        "title": "G-Stadt - Registrierung",
-        "description": "Erstellen Sie ein neues Konto bei G-Stadt."
+      "meta": {
+        "title": "Registrieren",
+        "description": "Erstellen Sie ein neues G-Stadt-Konto."
       },
-      "title": "Konto erstellen",
+      "title": "Erstellen Sie Ihr Konto",
       "subtitle": "Oder",
       "loginLink": "bei bestehendem Konto anmelden",
       "email": "E-Mail-Adresse",
@@ -52,66 +50,76 @@
       "passwordMismatch": "Passwörter stimmen nicht überein"
     }
   },
+  "protected": {
+    "meta": {
+      "title": "Konto",
+      "description": "Privater Bereich Ihres G-Stadt-Kontos."
+    }
+  },
   "dashboard": {
-    "metadata": {
-      "title": "G-Stadt - Dashboard",
-      "description": "Ihr persönliches Dashboard in G-Stadt."
+    "meta": {
+      "title": "Dashboard",
+      "description": "Übersicht über Ihr persönliches G-Stadt-Konto."
     },
-    "welcome": "Willkommen zu Ihrem Dashboard",
-    "loading": "Lädt...",
+    "welcome": "Willkommen in Ihrem Dashboard",
+    "loading": "Wird geladen...",
     "logout": "Abmelden",
     "loggingOut": "Abmeldung läuft...",
     "userInfo": "Benutzerinformationen",
     "userId": "Benutzer-ID",
     "email": "E-Mail",
     "role": "Rolle",
-    "info": "Sie sind erfolgreich authentifiziert. Dies ist eine geschützte Seite."
+    "info": "Sie sind erfolgreich angemeldet. Dies ist eine geschützte Seite."
   },
   "home": {
-    "metadata": {
-      "title": "G-Stadt - Startseite",
+    "meta": {
+      "title": "Startseite",
       "description": "Willkommen bei G-Stadt, Ihrem offiziellen Stadtportal."
     },
     "hero": {
       "badge": "Offizielle Stadtseite",
       "title": "Willkommen in",
       "cityName": "G-Stadt",
-      "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Dienstleistungen Ihrer Stadt an einem Ort.",
+      "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Services Ihrer Stadt an einem Ort.",
       "actionNews": "Nachrichten",
       "actionEvents": "Veranstaltungen"
     }
   },
   "services": {
-    "metadata": {
-      "title": "G-Stadt - Dienstleistungen",
-      "description": "Entdecken Sie die verschiedenen Dienstleistungen, die G-Stadt seinen Bürgern bietet."
+    "meta": {
+      "title": "Services",
+      "description": "Entdecken Sie die Dienstleistungen der Stadt G-Stadt."
     },
-    "title": "Unsere Services",
-    "description": "Entdecken Sie die verschiedenen Services, die G-Stadt seinen Bürgern bietet.",
+    "title": "Städtische Services",
+    "description": "Entdecken Sie die Dienstleistungen der Stadt G-Stadt.",
     "viewAll": "Alle Services anzeigen"
   },
   "news": {
-    "metadata": {
-      "title": "G-Stadt - Nachrichten",
-      "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Ankündigungen aus G-Stadt."
+    "meta": {
+      "title": "Nachrichten",
+      "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus G-Stadt informiert."
     },
-    "title": "Neueste Nachrichten",
-    "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Ankündigungen aus G-Stadt.",
+    "title": "Aktuelle Nachrichten",
+    "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus G-Stadt informiert.",
     "viewAll": "Alle Nachrichten anzeigen"
   },
   "events": {
-    "metadata": {
-      "title": "G-Stadt - Veranstaltungen",
-      "description": "Entdecken Sie bevorstehende Veranstaltungen und Aktivitäten in G-Stadt."
+    "meta": {
+      "title": "Veranstaltungen",
+      "description": "Entdecken Sie kommende Veranstaltungen und Aktivitäten in G-Stadt."
     },
     "title": "Bevorstehende Veranstaltungen",
-    "description": "Entdecken Sie Veranstaltungen in G-Stadt und nehmen Sie an Gemeinschaftsaktivitäten teil.",
+    "description": "Entdecken Sie Veranstaltungen in G-Stadt und nehmen Sie am Gemeinschaftsleben teil.",
     "viewAll": "Alle Veranstaltungen anzeigen",
-    "readMore": "Mehr lesen"
+    "readMore": "Mehr erfahren"
   },
   "contact": {
+    "meta": {
+      "title": "Kontakt",
+      "description": "Kontaktieren Sie die Stadtverwaltung."
+    },
     "title": "Kontakt",
-    "description": "Nehmen Sie Kontakt mit der Stadtverwaltung auf.",
+    "description": "Kontaktieren Sie die Stadtverwaltung.",
     "address": "Adresse",
     "phone": "Telefon",
     "email": "E-Mail",
@@ -127,22 +135,22 @@
   },
   "header": {
     "utils": {
-      "sign-in": "Anmelden",
-      "sign-out": "Abmelden"
+      "signIn": "Anmelden",
+      "signOut": "Abmelden"
     }
   },
   "footer": {
     "contact": "Kontakt",
     "privacy": "Datenschutz",
-    "terms": "Nutzungsbedingungen"
+    "terms": "Bedingungen"
   },
-  "not-found": {
+  "notFound": {
     "title": "Seite nicht gefunden",
-    "description": "Die gesuchte Seite existiert nicht.",
+    "description": "Die von Ihnen gesuchte Seite existiert nicht.",
     "back": "Zurück zur Startseite"
   },
   "loading": {
-    "title": "Lädt…",
+    "title": "Wird geladen…",
     "description": "Bitte warten Sie, während die Seite geladen wird."
   },
   "error": {
@@ -152,24 +160,21 @@
   },
   "navbar": {
     "home": "Startseite",
-    "services": "Dienstleistungen",
-    "idCard": "Personalausweis",
-    "appointments": "Termine",
-    "contact": "Kontakt",
-    "contactForm": "Kontaktformular",
-    "locations": "Standorte",
-    "emergency": "Notfall"
+    "services": "Services",
+    "news": "Nachrichten",
+    "events": "Veranstaltungen",
+    "contact": "Kontakt"
   },
-  "item-card": {
-    "readMore": "Mehr lesen"
+  "itemCard": {
+    "readMore": "Mehr erfahren"
   },
-  "locale-switcher": {
-    "label": "Sprache ändern",
-    "locale": "{locale, select, de {Deutsch} en {English} fr {Französisch} other {Unbekannt}}"
+  "localeSwitcher": {
+    "label": "Sprache wechseln",
+    "locale": "{locale, select, de {Deutsch} en {Englisch} fr {Französisch} other {Unbekannt}}"
   },
-  "coming-soon": {
+  "comingSoon": {
     "title": "Demnächst verfügbar",
-    "description": "Diese Funktion wird derzeit entwickelt und bald verfügbar sein.",
+    "description": "Diese Funktion befindet sich in Entwicklung und wird bald verfügbar sein.",
     "note": "Bitte schauen Sie bald wieder vorbei."
   }
 }

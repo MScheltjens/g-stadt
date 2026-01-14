@@ -1,7 +1,7 @@
 import { getTranslations } from '@repo/i18n/server';
 
 export async function ComingSoon() {
-  const t = await getTranslations('coming-soon');
+  const t = await getTranslations('comingSoon');
   return (
     <main className="flex min-h-[70vh] items-center justify-center px-6">
       <div className="max-w-lg text-center">

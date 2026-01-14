@@ -1,26 +1,24 @@
 {
-  "locale-layout": {
-    "metadata": {
-      "title": "G-Stadt",
-      "description": "A city built for the G's."
-    }
+  "meta": {
+    "title": "G-Stadt",
+    "description": "Official application of the City of G-Stadt."
   },
-  "public-layout": {
-    "metadata": {
+  "public": {
+    "meta": {
       "title": "G-Stadt",
-      "description": "A city built for the G's."
+      "description": "Official city portal for services, news, and events."
     }
   },
   "auth": {
     "layout": {
-      "metadata": {
-        "title": "G-Stadt - Authentication",
+      "meta": {
+        "title": "Authentication",
         "description": "Authenticate to access G-Stadt services."
       }
     },
     "login": {
-      "metadata": {
-        "title": "G-Stadt - Sign In",
+      "meta": {
+        "title": "Sign in",
         "description": "Sign in to your G-Stadt account."
       },
       "title": "Sign in to your account",
@@ -34,8 +32,8 @@
       "signingIn": "Signing in..."
     },
     "register": {
-      "metadata": {
-        "title": "G-Stadt - Register",
+      "meta": {
+        "title": "Register",
         "description": "Create a new account with G-Stadt."
       },
       "title": "Create your account",
@@ -52,28 +50,34 @@
       "passwordMismatch": "Passwords do not match"
     }
   },
+  "protected": {
+    "meta": {
+      "title": "Account",
+      "description": "Private area of your G-Stadt account."
+    }
+  },
   "dashboard": {
-    "metadata": {
-      "title": "G-Stadt - Dashboard",
-      "description": "Your personal dashboard in G-Stadt."
+    "meta": {
+      "title": "Dashboard",
+      "description": "Overview of your personal G-Stadt account."
     },
-    "welcome": "Welcome to your Dashboard",
+    "welcome": "Welcome to your dashboard",
     "loading": "Loading...",
     "logout": "Logout",
     "loggingOut": "Logging out...",
-    "userInfo": "User Information",
+    "userInfo": "User information",
     "userId": "User ID",
     "email": "Email",
     "role": "Role",
     "info": "You are successfully authenticated. This is a protected page."
   },
   "home": {
-    "metadata": {
-      "title": "G-Stadt - Home",
+    "meta": {
+      "title": "Home",
       "description": "Welcome to G-Stadt, your official city portal."
     },
     "hero": {
-      "badge": "Official City Site",
+      "badge": "Official city site",
       "title": "Welcome to",
       "cityName": "G-Stadt",
       "description": "Live. Work. Shape the future – all information and services from your city in one place.",
@@ -82,57 +86,57 @@
     }
   },
   "services": {
-    "metadata": {
-      "title": "G-Stadt - Services",
+    "meta": {
+      "title": "Services",
       "description": "Explore the various services offered by G-Stadt to its residents."
     },
-    "title": "City Services",
+    "title": "City services",
     "description": "Explore the various services offered by G-Stadt to its residents.",
-    "viewAll": "View All Services"
+    "viewAll": "View all services"
   },
   "news": {
-    "metadata": {
-      "title": "G-Stadt - News",
+    "meta": {
+      "title": "News",
       "description": "Stay updated with the latest news and announcements from G-Stadt."
     },
-    "title": "Latest News",
+    "title": "Latest news",
     "description": "Stay updated with the latest news and announcements from G-Stadt.",
-    "viewAll": "View All News"
+    "viewAll": "View all news"
   },
   "events": {
-    "metadata": {
-      "title": "G-Stadt - Events",
+    "meta": {
+      "title": "Events",
       "description": "Discover upcoming events and activities in G-Stadt."
     },
-    "title": "Upcoming Events",
+    "title": "Upcoming events",
     "description": "Discover events happening in G-Stadt and participate in community activities.",
-    "viewAll": "View All Events",
-    "readMore": "Read More"
+    "viewAll": "View all events",
+    "readMore": "Read more"
   },
   "contact": {
-    "metadata": {
-      "title": "G-Stadt - Contact",
+    "meta": {
+      "title": "Contact",
       "description": "Get in touch with the city administration."
     },
-    "title": "Contact Us",
+    "title": "Contact us",
     "description": "Get in touch with the city administration.",
     "address": "Address",
     "phone": "Phone",
     "email": "Email",
-    "hours": "Opening Hours",
+    "hours": "Opening hours",
     "form": {
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "submit": "Send Message"
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Your message",
+      "submit": "Send message"
     },
     "success": "Your message has been sent!",
     "error": "There was an error sending your message."
   },
   "header": {
     "utils": {
-      "sign-in": "Sign In",
-      "sign-out": "Sign Out"
+      "signIn": "Sign in",
+      "signOut": "Sign out"
     }
   },
   "footer": {
@@ -140,8 +144,8 @@
     "privacy": "Privacy",
     "terms": "Terms"
   },
-  "not-found": {
-    "title": "Page Not Found",
+  "notFound": {
+    "title": "Page not found",
     "description": "The page you are looking for does not exist.",
     "back": "Go back home"
   },
@@ -157,22 +161,19 @@
   "navbar": {
     "home": "Home",
     "services": "Services",
-    "idCard": "ID Card",
-    "appointments": "Appointments",
-    "contact": "Contact",
-    "contactForm": "Contact Form",
-    "locations": "Locations",
-    "emergency": "Emergency"
+    "news": "News",
+    "events": "Events",
+    "contact": "Contact"
   },
-  "item-card": {
-    "readMore": "Read More"
+  "itemCard": {
+    "readMore": "Read more"
   },
-  "locale-switcher": {
-    "label": "Switch Language",
+  "localeSwitcher": {
+    "label": "Switch language",
     "locale": "{locale, select, de {German} en {English} fr {French} other {Unknown}}"
   },
-  "coming-soon": {
-    "title": "Coming Soon",
+  "comingSoon": {
+    "title": "Coming soon",
     "description": "This feature is under development and will be available soon.",
     "note": "Please check back soon."
   }

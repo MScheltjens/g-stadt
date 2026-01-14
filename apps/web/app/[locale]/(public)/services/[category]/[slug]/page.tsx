@@ -2,6 +2,27 @@ import { setRequestLocale } from '@repo/i18n/server';
 import type { PageProps } from '@/types/next-page';
 import { ComingSoon } from '@/components/common/coming-soon';
 
+// type ServicePageMetadataProps = MetadataProps<{
+//   category: string;
+//   slug: string;
+// }>;
+
+// export async function generateMetadata({
+//   params
+// }: ServicePageMetadataProps): Promise<Metadata> {
+//   const { category, slug } = params;
+//   const eventData = await getServiceByCategoryAndSlug(category, slug);
+//   if (!eventData) {
+//     return {
+//       title: 'Service',
+//     };
+//   }
+//   return {
+//     title: eventData.title,
+//     description: eventData.description
+//   };
+// }
+
 type ServiceItemPageProps = PageProps<{
   category: string;
   slug: string;

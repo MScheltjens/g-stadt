@@ -9,7 +9,7 @@ import { ROUTES } from '@repo/constants';
 
 export function HeaderUtils() {
   const pathname = usePathname();
-  const t = useTranslations('header');
+  const t = useTranslations('header.utils');
   return (
     <div className="flex items-center gap-3 border-l pl-2">
       {pathname === '/' && <LocaleSwitcher />}
@@ -18,7 +18,7 @@ export function HeaderUtils() {
         className="text-muted-foreground hover:text-foreground"
       >
         <User className="h-4 w-4" />
-        <span className="sr-only">{t('utils.sign-in')}</span>
+        <span className="sr-only">{t('signIn')}</span>
       </Link>
     </div>
   );

@@ -1,7 +1,21 @@
 import { checkUserRole } from '@/lib/auth';
 import { redirect } from '@repo/i18n/navigation';
-import { setRequestLocale } from '@repo/i18n/server';
-import type { LayoutProps } from '@/types/next-page';
+import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import type { LayoutProps, MetadataProps } from '@/types/next-page';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const t = await getTranslations({
+    locale: params.locale,
+    namespace: 'dashboard.meta',
+  });
+  return {
+    title: t('title'),
+    description: t('description'),
+  };
+}
 
 type DashboardLayoutProps = LayoutProps & {
   user: React.ReactNode;

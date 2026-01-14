@@ -35,7 +35,7 @@ export async function ItemCard({
   itemSlug,
   pathname,
 }: ItemCardProps) {
-  const t = await getTranslations('item-card');
+  const t = await getTranslations('itemCard');
 
   return (
     <Card className="w-full sm:w-80 h-56 flex flex-col transition-shadow hover:shadow-lg">
