@@ -11,9 +11,7 @@ export async function ComingSoon() {
 
         <p className="mt-4 text-muted-foreground">{t('description')}</p>
 
-        <p className="mt-6 text-sm text-muted-foreground">
-          Please check back soon.
-        </p>
+        <p className="mt-6 text-sm text-muted-foreground">{t('note')}</p>
       </div>
     </main>
   );

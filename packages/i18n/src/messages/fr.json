@@ -126,6 +126,7 @@
   },
   "coming-soon": {
     "title": "Bientôt disponible",
-    "description": "Cette fonctionnalité est en cours de développement et sera bientôt disponible."
+    "description": "Cette fonctionnalité est en cours de développement et sera bientôt disponible.",
+    "note": "Veuillez revenir bientôt."
   }
 }

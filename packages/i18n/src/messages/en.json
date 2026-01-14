@@ -126,6 +126,7 @@
   },
   "coming-soon": {
     "title": "Coming Soon",
-    "description": "This feature is under development and will be available soon."
+    "description": "This feature is under development and will be available soon.",
+    "note": "Please check back soon."
   }
 }
