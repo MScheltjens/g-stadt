@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { LocaleSchema } from '../i18n/locale.schema';
+import { LocaleSchema } from '../routing/locale.schema';
 
 /* =========================
    TRANSLATIONS

@@ -1,5 +1,14 @@
 import createIntlMiddleware from '@repo/i18n/middleware';
-import { routing, authRoutes, protectedRoutes } from '@repo/i18n/routing';
+import { routing } from '@repo/i18n/routing';
+import {
+  AUTH_ROUTES,
+  PROTECTED_ROUTES,
+  Pathname,
+  Pathnames,
+  LocalizedPathnames,
+} from '@repo/constants';
+import { ROUTES } from '@repo/constants';
+import { COOKIE_NAMES } from '@repo/constants';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
@@ -7,22 +16,27 @@ import { NextRequest, NextResponse } from 'next/server';
  * @param pathname - The base pathname (e.g., '/login')
  * @returns Array of all localized versions
  */
-function getLocalizedPathnames(pathname: string): string[] {
+function getLocalizedPathnames(
+  pathname: Pathname,
+): LocalizedPathnames | string {
   const pathnameConfig =
     routing.pathnames[pathname as keyof typeof routing.pathnames];
   if (!pathnameConfig || typeof pathnameConfig === 'string') {
-    return [pathname];
+    return pathname;
   }
-  return Object.values(pathnameConfig);
+  return pathnameConfig as LocalizedPathnames;
 }
 
 /**
  * Check if a pathname matches any of the localized versions of the given routes
  */
-function matchesLocalizedRoute(pathname: string, routes: string[]): boolean {
+function matchesLocalizedRoute(pathname: string, routes: Pathnames): boolean {
   return routes.some((route) => {
-    const localizedPaths = getLocalizedPathnames(route);
-    return localizedPaths.some((localizedPath) =>
+    const localized = getLocalizedPathnames(route);
+    if (typeof localized === 'string') {
+      return pathname.startsWith(localized);
+    }
+    return Object.values(localized).some((localizedPath) =>
       pathname.startsWith(localizedPath),
     );
   });
@@ -36,7 +50,7 @@ function matchesLocalizedRoute(pathname: string, routes: string[]): boolean {
  * 2. Internationalization routing
  */
 export function proxy(req: NextRequest) {
-  const accessToken = req.cookies.get('accessToken')?.value;
+  const accessToken = req.cookies.get(COOKIE_NAMES.ACCESS_TOKEN)?.value;
   const { pathname } = req.nextUrl;
 
   // Extract locale and pathname without locale prefix
@@ -49,8 +63,12 @@ export function proxy(req: NextRequest) {
   const pathnameWithoutLocale = '/' + segments.slice(1).join('/') || '/';
 
   // Redirect authenticated users away from auth pages to dashboard
-  if (accessToken && matchesLocalizedRoute(pathnameWithoutLocale, authRoutes)) {
-    const dashboardPath = routing.pathnames['/dashboard'];
+  if (
+    accessToken &&
+    (AUTH_ROUTES as string[]).includes(pathnameWithoutLocale) &&
+    matchesLocalizedRoute(pathnameWithoutLocale, AUTH_ROUTES)
+  ) {
+    const dashboardPath = routing.pathnames[ROUTES.DASHBOARD];
     const localizedDashboardPath =
       typeof dashboardPath === 'string'
         ? dashboardPath
@@ -64,9 +82,9 @@ export function proxy(req: NextRequest) {
   // Redirect unauthenticated users from protected routes to login
   if (
     !accessToken &&
-    matchesLocalizedRoute(pathnameWithoutLocale, protectedRoutes)
+    matchesLocalizedRoute(pathnameWithoutLocale, PROTECTED_ROUTES)
   ) {
-    const loginPath = routing.pathnames['/login'];
+    const loginPath = routing.pathnames[ROUTES.LOGIN];
     const localizedLogin =
       typeof loginPath === 'string'
         ? loginPath

@@ -23,6 +23,7 @@
         "lint": "eslint . --max-warnings 0"
     },
     "dependencies": {
+        "@repo/constants": "workspace:*",
         "zod": "^4.3.5"
     },
     "devDependencies": {

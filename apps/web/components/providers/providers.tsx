@@ -2,7 +2,8 @@
 
 import { NextIntlClientProvider } from '@repo/i18n/next-intl';
 import { AuthProvider } from './auth-provider';
-import { JwtPayload, Locale } from '@repo/contracts';
+import { JwtPayload } from '@repo/contracts';
+import { Locale } from '@repo/constants';
 import { messages } from '@repo/i18n';
 
 export function Providers({

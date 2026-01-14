@@ -289,6 +289,9 @@ importers:
 
   packages/contracts:
     dependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../constants
       zod:
         specifier: ^4.3.5
         version: 4.3.5
@@ -333,6 +336,9 @@ importers:
 
   packages/i18n:
     dependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../constants
       next:
         specifier: ^15.3.5 || ^16.0.0
         version: 16.0.10(@babel/core@7.28.5)(react-dom@19.2.3)(react@19.2.3)

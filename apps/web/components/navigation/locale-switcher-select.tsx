@@ -1,4 +1,5 @@
-'use client';
+import { Locale } from '@repo/constants';
+('use client');
 
 import { cn } from '@repo/ui/lib/utils';
 import { useParams } from 'next/navigation';
@@ -9,7 +10,7 @@ import { Globe } from '@repo/ui/icons';
 
 interface LocaleSwitcherSelectProps {
   children: ReactNode;
-  defaultValue: string;
+  defaultValue: Locale;
 }
 
 export function LocaleSwitcherSelect({

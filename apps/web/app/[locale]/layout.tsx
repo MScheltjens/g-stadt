@@ -6,7 +6,6 @@ import { notFound } from 'next/navigation';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/types/next-page';
 import { Providers } from '@/components/providers/providers';
-import { Locale } from '@repo/constants';
 
 import '@repo/ui/globals.css';
 
@@ -16,7 +15,7 @@ export async function generateMetadata({
   const { locale } = await params;
 
   const t = await getTranslations({
-    locale: locale as Locale,
+    locale,
     namespace: 'metadata',
   });
 
@@ -47,13 +46,13 @@ export default async function LocaleLayout({
     notFound();
   }
   // Enable static rendering for this page
-  setRequestLocale(locale as Locale);
+  setRequestLocale(locale);
   const user = await getUser();
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
-        <Providers locale={locale as Locale} initialUser={user}>
+        <Providers locale={locale} initialUser={user}>
           {children}
           {auth}
         </Providers>

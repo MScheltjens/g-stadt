@@ -9,6 +9,7 @@
  */
 
 import { cookies } from 'next/headers';
+import { COOKIE_NAMES } from '@repo/constants';
 import { JwtPayloadSchema } from '@repo/contracts';
 import type { Role } from '@repo/contracts';
 import { jwtDecode } from 'jwt-decode';
@@ -35,7 +36,7 @@ export async function setAuthCookies(
 ) {
   const cookieStore = await cookies();
 
-  cookieStore.set('accessToken', accessToken, {
+  cookieStore.set(COOKIE_NAMES.ACCESS_TOKEN, accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
@@ -44,7 +45,7 @@ export async function setAuthCookies(
   });
 
   if (refreshToken) {
-    cookieStore.set('refreshToken', refreshToken, {
+    cookieStore.set(COOKIE_NAMES.REFRESH_TOKEN, refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
@@ -70,7 +71,7 @@ export async function setAuthCookies(
  * ```
  */
 export async function getAccessToken() {
-  return (await cookies()).get('accessToken')?.value;
+  return (await cookies()).get(COOKIE_NAMES.ACCESS_TOKEN)?.value;
 }
 
 /**
@@ -89,7 +90,7 @@ export async function getAccessToken() {
  * ```
  */
 export async function getRefreshToken() {
-  return (await cookies()).get('refreshToken')?.value;
+  return (await cookies()).get(COOKIE_NAMES.REFRESH_TOKEN)?.value;
 }
 
 /**
@@ -108,8 +109,8 @@ export async function getRefreshToken() {
  * ```
  */
 export async function clearAuthCookies() {
-  (await cookies()).delete('accessToken');
-  (await cookies()).delete('refreshToken');
+  (await cookies()).delete(COOKIE_NAMES.ACCESS_TOKEN);
+  (await cookies()).delete(COOKIE_NAMES.REFRESH_TOKEN);
 }
 
 /**

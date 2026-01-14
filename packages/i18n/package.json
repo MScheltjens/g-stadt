@@ -26,6 +26,7 @@
     "@types/react-dom": "19.2.3"
   },
   "dependencies": {
+    "@repo/constants": "workspace:*",
     "next-intl": "^4.6.1"
   },
   "peerDependencies": {
