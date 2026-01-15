@@ -7,8 +7,9 @@ import { Metadata } from 'next';
 export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({
-    locale: params.locale,
+    locale,
     namespace: 'dashboard.meta',
   });
   return {
