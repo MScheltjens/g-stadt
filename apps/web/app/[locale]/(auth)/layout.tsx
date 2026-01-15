@@ -5,8 +5,9 @@ import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({
-    locale: params.locale,
+    locale,
     namespace: 'auth.layout.meta',
   });
   return {
