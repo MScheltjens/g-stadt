@@ -45,6 +45,25 @@ export const nestJsConfig = defineConfig([
           ignoreRestSiblings: true,
         },
       ],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['../*', '../../*', '../../../*'],
+        },
+      ],
+    },
+  },
+
+  // Allow ../../prisma/generated/client.js specifically
+  {
+    files: ['**/db/prisma.service.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['../*', '../../*', '../../../*'],
+        },
+      ],
     },
   },
 
