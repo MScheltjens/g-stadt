@@ -1,4 +1,4 @@
-import { PrismaModule } from '@api/db/prisma.module.js';
+import { PrismaModule } from '@/db/prisma.module.js';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
