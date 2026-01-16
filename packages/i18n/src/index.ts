@@ -1,4 +1,4 @@
-import { DEFAULT_TIMEZONE, TIMEZONES } from '@repo/constants';
+import { DEFAULT_TIMEZONE, TIMEZONES } from '@invicity/constants';
 
 import deMessages from './messages/de.json';
 import enMessages from './messages/en.json';

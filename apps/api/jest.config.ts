@@ -1,4 +1,4 @@
-import { nestConfig } from '@repo/jest-config';
+import { nestConfig } from '@invicity/jest-config';
 
 export default {
   ...nestConfig,

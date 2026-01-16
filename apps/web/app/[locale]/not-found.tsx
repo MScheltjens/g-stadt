@@ -1,4 +1,4 @@
-import { useTranslations } from '@repo/i18n/next-intl';
+import { useTranslations } from '@invicity/i18n/next-intl';
 
 export default function NotFound() {
   const t = useTranslations('notFound');

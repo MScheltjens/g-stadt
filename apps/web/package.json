@@ -8,12 +8,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx --max-warnings 0",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "clean": "npx rimraf .next dist"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
-    "@repo/i18n": "workspace:*",
-    "@repo/contracts": "workspace:*",
+    "@invicity/ui": "workspace:*",
+    "@invicity/i18n": "workspace:*",
+    "@invicity/contracts": "workspace:*",
     "next": "16.0.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,11 +22,11 @@
     "jwt-decode": "^4.0.0",
     "react-hook-form": "^7.69.0",
     "@hookform/resolvers": "^5.2.2",
-    "@repo/constants": "workspace:*"
+    "@invicity/constants": "workspace:*"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@invicity/eslint-config": "workspace:*",
+    "@invicity/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0"

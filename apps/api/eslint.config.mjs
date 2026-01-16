@@ -1,4 +1,4 @@
-import { nestJsConfig } from '@repo/eslint-config/nest-js';
+import { nestJsConfig } from '@invicity/eslint-config/nest-js';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([

@@ -1,9 +1,9 @@
 // item-card.tsx
-import { Pathname } from '@repo/constants';
-import { Link } from '@repo/i18n/navigation';
-import { getTranslations } from '@repo/i18n/server';
-import { Badge } from '@repo/ui/components/badge';
-import { buttonVariants } from '@repo/ui/components/button';
+import { Pathname } from '@invicity/constants';
+import { Link } from '@invicity/i18n/navigation';
+import { getTranslations } from '@invicity/i18n/server';
+import { Badge } from '@invicity/ui/components/badge';
+import { buttonVariants } from '@invicity/ui/components/button';
 import {
   Card,
   CardContent,
@@ -11,8 +11,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@repo/ui/components/card';
-import { ArrowRight } from '@repo/ui/components/icons';
+} from '@invicity/ui/components/card';
+import { ArrowRight } from '@invicity/ui/components/icons';
 
 export interface ItemCardProps {
   title: string;

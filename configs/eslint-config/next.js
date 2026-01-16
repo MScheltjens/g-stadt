@@ -62,7 +62,7 @@ export const nextJsConfig = defineConfig([
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['@repo/database', '@prisma/client'],
+          patterns: ['@invicity/database', '@prisma/client'],
         },
       ],
     },

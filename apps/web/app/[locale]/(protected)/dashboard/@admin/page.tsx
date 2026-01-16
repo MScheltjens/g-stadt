@@ -1,4 +1,4 @@
-import { setRequestLocale } from '@repo/i18n/server';
+import { setRequestLocale } from '@invicity/i18n/server';
 
 import type { PageProps } from '@/types/next-page';
 

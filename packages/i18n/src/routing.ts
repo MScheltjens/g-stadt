@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALES, ROUTE_PATHNAMES } from '@repo/constants';
+import { DEFAULT_LOCALE, LOCALES, ROUTE_PATHNAMES } from '@invicity/constants';
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({

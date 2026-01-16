@@ -1,9 +1,9 @@
 'use client';
 
-import { Locale } from '@repo/constants';
-import { JwtPayload } from '@repo/contracts';
-import { messages } from '@repo/i18n';
-import { NextIntlClientProvider } from '@repo/i18n/next-intl';
+import { Locale } from '@invicity/constants';
+import { JwtPayload } from '@invicity/contracts';
+import { messages } from '@invicity/i18n';
+import { NextIntlClientProvider } from '@invicity/i18n/next-intl';
 
 import { AuthProvider } from './auth-provider';
 

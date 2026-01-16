@@ -1,9 +1,9 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "@invicity/typescript-config/ui.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/ui/*": [
+      "@invicity/ui/*": [
         "./src/*"
       ]
     }

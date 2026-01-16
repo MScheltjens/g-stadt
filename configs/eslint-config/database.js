@@ -16,11 +16,11 @@ export const databaseConfig = [
         'error',
         {
           patterns: [
-            '@repo/constants',
-            '@repo/contracts',
-            '@repo/i18n',
-            '@repo/ui',
-            '@repo/web',
+            '@invicity/constants',
+            '@invicity/contracts',
+            '@invicity/i18n',
+            '@invicity/ui',
+            '@invicity/web',
           ],
         },
       ],

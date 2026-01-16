@@ -1,9 +1,7 @@
 {
-  "extends": "@repo/typescript-config/base.json",
+  "extends": "@invicity/typescript-config/i18n",
   "compilerOptions": {
     "rootDir": "src",
-    "composite": true,
-    "incremental": true
   },
   "include": [
     "src"

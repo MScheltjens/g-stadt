@@ -1,5 +1,5 @@
 {
-  "name": "@repo/database",
+  "name": "@invicity/database",
   "version": "0.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -11,8 +11,9 @@
     }
   },
   "scripts": {
-    "build": "prisma generate && pnpm --filter @repo/types fix:generated && tsc",
+    "build": "prisma generate && tsc --project tsconfig.json --outDir dist",
     "lint": "eslint . --max-warnings 0",
+    "clean": "npx rimraf dist .generated",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
@@ -27,7 +28,8 @@
     "pg": "^8.13.1"
   },
   "devDependencies": {
-    "@repo/typescript-config": "workspace:*",
+    "@invicity/typescript-config": "workspace:*",
+    "@invicity/eslint-config": "workspace:*",
     "@types/node": "^22.12.0",
     "@types/pg": "^8.11.10",
     "prisma": "^7.2.0",

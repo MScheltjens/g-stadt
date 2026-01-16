@@ -1,5 +1,5 @@
 {
-    "name": "@repo/contracts",
+    "name": "@invicity/contracts",
     "version": "0.0.1",
     "private": true,
     "sideEffects": false,
@@ -19,15 +19,15 @@
         "build:cjs": "tsc -p tsconfig.cjs.json",
         "build:esm": "tsc -p tsconfig.esm.json",
         "build": "pnpm build:cjs && pnpm build:esm",
-        "clean": "rm -rf dist",
-        "lint": "eslint . --max-warnings 0"
+        "lint": "eslint . --max-warnings 0",
+        "clean": "npx rimraf dist"
     },
     "dependencies": {
-        "@repo/constants": "workspace:*",
+        "@invicity/constants": "workspace:*",
         "zod": "^4.3.5"
     },
     "devDependencies": {
-        "@repo/typescript-config": "workspace:*",
-        "@repo/eslint-config": "workspace:*"
+        "@invicity/typescript-config": "workspace:*",
+        "@invicity/eslint-config": "workspace:*"
     }
 }

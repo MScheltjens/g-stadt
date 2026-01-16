@@ -1,8 +1,8 @@
-import { ROUTES } from '@repo/constants';
-import { Link } from '@repo/i18n/navigation';
-import { getTranslations } from '@repo/i18n/server';
-import { buttonVariants } from '@repo/ui/components/button';
-import { cn } from '@repo/ui/lib/utils';
+import { ROUTES } from '@invicity/constants';
+import { Link } from '@invicity/i18n/navigation';
+import { getTranslations } from '@invicity/i18n/server';
+import { buttonVariants } from '@invicity/ui/components/button';
+import { cn } from '@invicity/ui/lib/utils';
 import Image from 'next/image';
 
 import homeHeroImg from '@/public/images/g-stadt.png';

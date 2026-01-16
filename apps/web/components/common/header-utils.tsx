@@ -1,10 +1,10 @@
 'use client';
 
-import { ROUTES } from '@repo/constants';
-import { Link } from '@repo/i18n/navigation';
-import { usePathname } from '@repo/i18n/navigation';
-import { useTranslations } from '@repo/i18n/next-intl';
-import { User } from '@repo/ui/components/icons';
+import { ROUTES } from '@invicity/constants';
+import { Link } from '@invicity/i18n/navigation';
+import { usePathname } from '@invicity/i18n/navigation';
+import { useTranslations } from '@invicity/i18n/next-intl';
+import { User } from '@invicity/ui/components/icons';
 
 import { LocaleSwitcher } from '../navigation/locale-switcher';
 

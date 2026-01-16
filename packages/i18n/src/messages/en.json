@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "G-Stadt",
-    "description": "Official application of the City of G-Stadt."
+    "title": "Invicity",
+    "description": "Official application of the City of Invicity."
   },
   "public": {
     "meta": {
-      "title": "G-Stadt",
+      "title": "Invicity",
       "description": "Official city portal for services, news, and events."
     }
   },
@@ -13,13 +13,13 @@
     "layout": {
       "meta": {
         "title": "Authentication",
-        "description": "Authenticate to access G-Stadt services."
+        "description": "Authenticate to access Invicity services."
       }
     },
     "login": {
       "meta": {
         "title": "Sign in",
-        "description": "Sign in to your G-Stadt account."
+        "description": "Sign in to your Invicity account."
       },
       "title": "Sign in to your account",
       "subtitle": "Or",
@@ -34,7 +34,7 @@
     "register": {
       "meta": {
         "title": "Register",
-        "description": "Create a new account with G-Stadt."
+        "description": "Create a new account with Invicity."
       },
       "title": "Create your account",
       "subtitle": "Or",
@@ -53,13 +53,13 @@
   "protected": {
     "meta": {
       "title": "Account",
-      "description": "Private area of your G-Stadt account."
+      "description": "Private area of your Invicity account."
     }
   },
   "dashboard": {
     "meta": {
       "title": "Dashboard",
-      "description": "Overview of your personal G-Stadt account."
+      "description": "Overview of your personal Invicity account."
     },
     "welcome": "Welcome to your dashboard",
     "loading": "Loading...",
@@ -74,12 +74,12 @@
   "home": {
     "meta": {
       "title": "Home",
-      "description": "Welcome to G-Stadt, your official city portal."
+      "description": "Welcome to Invicity, your official city portal."
     },
     "hero": {
       "badge": "Official city site",
       "title": "Welcome to",
-      "cityName": "G-Stadt",
+      "cityName": "Invicity",
       "description": "Live. Work. Shape the future – all information and services from your city in one place.",
       "actionNews": "News",
       "actionEvents": "Events"
@@ -88,28 +88,28 @@
   "services": {
     "meta": {
       "title": "Services",
-      "description": "Explore the various services offered by G-Stadt to its residents."
+      "description": "Explore the various services offered by Invicity to its residents."
     },
     "title": "City services",
-    "description": "Explore the various services offered by G-Stadt to its residents.",
+    "description": "Explore the various services offered by Invicity to its residents.",
     "viewAll": "View all services"
   },
   "news": {
     "meta": {
       "title": "News",
-      "description": "Stay updated with the latest news and announcements from G-Stadt."
+      "description": "Stay updated with the latest news and announcements from Invicity."
     },
     "title": "Latest news",
-    "description": "Stay updated with the latest news and announcements from G-Stadt.",
+    "description": "Stay updated with the latest news and announcements from Invicity.",
     "viewAll": "View all news"
   },
   "events": {
     "meta": {
       "title": "Events",
-      "description": "Discover upcoming events and activities in G-Stadt."
+      "description": "Discover upcoming events and activities in Invicity."
     },
     "title": "Upcoming events",
-    "description": "Discover events happening in G-Stadt and participate in community activities.",
+    "description": "Discover events happening in Invicity and participate in community activities.",
     "viewAll": "View all events",
     "readMore": "Read more"
   },

@@ -4,11 +4,11 @@ import {
   Pathname,
   Pathnames,
   PROTECTED_ROUTES,
-} from '@repo/constants';
-import { ROUTES } from '@repo/constants';
-import { COOKIE_NAMES } from '@repo/constants';
-import createIntlMiddleware from '@repo/i18n/middleware';
-import { routing } from '@repo/i18n/routing';
+} from '@invicity/constants';
+import { ROUTES } from '@invicity/constants';
+import { COOKIE_NAMES } from '@invicity/constants';
+import createIntlMiddleware from '@invicity/i18n/middleware';
+import { routing } from '@invicity/i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**

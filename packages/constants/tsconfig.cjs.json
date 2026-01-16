@@ -1,5 +1,5 @@
 {
-    "extends": "@repo/typescript-config/base",
+    "extends": "@invicity/typescript-config/constants",
     "compilerOptions": {
         "module": "CommonJS",
         "moduleResolution": "Node",

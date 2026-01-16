@@ -1,9 +1,9 @@
 'use client';
-import { Locale } from '@repo/constants';
-import { usePathname, useRouter } from '@repo/i18n/navigation';
-import { Button } from '@repo/ui/components/button';
-import { Globe } from '@repo/ui/icons';
-import { cn } from '@repo/ui/lib/utils';
+import { Locale } from '@invicity/constants';
+import { usePathname, useRouter } from '@invicity/i18n/navigation';
+import { Button } from '@invicity/ui/components/button';
+import { Globe } from '@invicity/ui/icons';
+import { cn } from '@invicity/ui/lib/utils';
 import { useParams } from 'next/navigation';
 import { ChangeEvent, ReactNode, useTransition } from 'react';
 

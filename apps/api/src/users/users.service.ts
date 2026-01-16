@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Role } from '@repo/constants';
-import { UserResponse, UserResponseSchema } from '@repo/contracts';
+import { Role } from '@invicity/constants';
+import { UserResponse, UserResponseSchema } from '@invicity/contracts';
 
-import { PrismaService } from '@/content/prisma/prisma.service';
+import { PrismaService } from '../content/prisma/prisma.service';
 
 @Injectable()
 export class UsersService {

@@ -1,4 +1,4 @@
-import { databaseConfig } from "@repo/eslint-config/database";
+import { databaseConfig } from "@invicity/eslint-config/database";
 
 /** @type {import("eslint").Linter.Config} */
 export default [

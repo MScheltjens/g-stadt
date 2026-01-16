@@ -1,8 +1,8 @@
 'use client';
 
-import { NAV_ROUTES } from '@repo/constants';
-import { Link } from '@repo/i18n/navigation';
-import { useTranslations } from '@repo/i18n/next-intl';
+import { NAV_ROUTES } from '@invicity/constants';
+import { Link } from '@invicity/i18n/navigation';
+import { useTranslations } from '@invicity/i18n/next-intl';
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -10,8 +10,8 @@ import {
   NavigationMenuTrigger,
   // NavigationMenuContent,
   // NavigationMenuLink,
-} from '@repo/ui/components/navigation-menu';
-import { cn } from '@repo/ui/lib/utils';
+} from '@invicity/ui/components/navigation-menu';
+import { cn } from '@invicity/ui/lib/utils';
 
 export function Navbar() {
   const t = useTranslations('navbar');

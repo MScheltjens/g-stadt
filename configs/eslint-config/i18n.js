@@ -14,7 +14,11 @@ export const i18nConfig = [
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['@repo/database', '@repo/contracts', '@prisma/client'],
+          patterns: [
+            '@invicity/database',
+            '@invicity/contracts',
+            '@prisma/client',
+          ],
         },
       ],
     },

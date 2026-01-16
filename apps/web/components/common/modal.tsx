@@ -7,9 +7,9 @@
 
 'use client';
 
-import { Button } from '@repo/ui/components/button';
-import { Card, CardContent } from '@repo/ui/components/card';
-import { X } from '@repo/ui/icons';
+import { Button } from '@invicity/ui/components/button';
+import { Card, CardContent } from '@invicity/ui/components/card';
+import { X } from '@invicity/ui/icons';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 

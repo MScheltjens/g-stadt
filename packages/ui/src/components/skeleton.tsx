@@ -1,4 +1,4 @@
-import { cn } from '@repo/ui/lib/utils';
+import { cn } from '@invicity/ui/lib/utils';
 
 function Skeleton({
   className,

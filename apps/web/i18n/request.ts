@@ -1,7 +1,7 @@
-import { messages } from '@repo/i18n';
-import { hasLocale } from '@repo/i18n/next-intl';
-import { routing } from '@repo/i18n/routing';
-import { getRequestConfig } from '@repo/i18n/server';
+import { messages } from '@invicity/i18n';
+import { hasLocale } from '@invicity/i18n/next-intl';
+import { routing } from '@invicity/i18n/routing';
+import { getRequestConfig } from '@invicity/i18n/server';
 
 export const requestConfig = getRequestConfig(async ({ requestLocale }) => {
   // Typically corresponds to the `[locale]` segment

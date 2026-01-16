@@ -1,17 +1,17 @@
 'use client';
 
-import { usePathname, useRouter } from '@repo/i18n/navigation';
-import { useLocale, useTranslations } from '@repo/i18n/next-intl';
-import { routing } from '@repo/i18n/routing';
-import { Button } from '@repo/ui/components/button';
+import { usePathname, useRouter } from '@invicity/i18n/navigation';
+import { useLocale, useTranslations } from '@invicity/i18n/next-intl';
+import { routing } from '@invicity/i18n/routing';
+import { Button } from '@invicity/ui/components/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@repo/ui/components/dropdown-menu';
-import { Globe } from '@repo/ui/icons';
-import { cn } from '@repo/ui/lib/utils';
+} from '@invicity/ui/components/dropdown-menu';
+import { Globe } from '@invicity/ui/icons';
+import { cn } from '@invicity/ui/lib/utils';
 import { useTransition } from 'react';
 
 export function LocaleSwitcher() {

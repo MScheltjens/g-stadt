@@ -6,7 +6,7 @@
  * When intercepted from another route, shows as a modal.
  */
 
-import { setRequestLocale } from '@repo/i18n/server';
+import { setRequestLocale } from '@invicity/i18n/server';
 
 import { SignInForm } from '@/components/auth/sign-in-form';
 import type { PageProps } from '@/types/next-page';

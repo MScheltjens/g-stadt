@@ -1,14 +1,14 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: g-stadt-postgres
+    container_name: invicity-postgres
     restart: unless-stopped
     ports:
       - '5432:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Gismo
-      POSTGRES_DB: gstadt
+      POSTGRES_DB: invicity
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

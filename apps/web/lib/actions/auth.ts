@@ -1,6 +1,10 @@
 'use server';
 
-import type { AuthResponse, LoginInput, RegisterInput } from '@repo/contracts';
+import type {
+  AuthResponse,
+  LoginInput,
+  RegisterInput,
+} from '@invicity/contracts';
 import { redirect } from 'next/navigation';
 
 import { clearAuthCookies, setAuthCookies } from '@/lib/auth';

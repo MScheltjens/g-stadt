@@ -1,8 +1,8 @@
-import '@repo/ui/globals.css';
+import '@invicity/ui/globals.css';
 
-import { hasLocale } from '@repo/i18n/next-intl';
-import { routing } from '@repo/i18n/routing';
-import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import { hasLocale } from '@invicity/i18n/next-intl';
+import { routing } from '@invicity/i18n/routing';
+import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

@@ -1,9 +1,9 @@
 'use client';
 
-// import { usePathname } from '@repo/i18n/navigation';
-// import { useTranslations } from '@repo/i18n/next-intl';
-import { NAV_ROUTES } from '@repo/constants';
-import { AlertCircle, Mail, MapPin } from '@repo/ui/components/icons';
+// import { usePathname } from '@invicity/i18n/navigation';
+// import { useTranslations } from '@invicity/i18n/next-intl';
+import { NAV_ROUTES } from '@invicity/constants';
+import { AlertCircle, Mail, MapPin } from '@invicity/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,8 +11,8 @@ import {
   // NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@repo/ui/components/navigation-menu';
-import { cn } from '@repo/ui/lib/utils';
+} from '@invicity/ui/components/navigation-menu';
+import { cn } from '@invicity/ui/lib/utils';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <MapPin className="h-4 w-4" />,

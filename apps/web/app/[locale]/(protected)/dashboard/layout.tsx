@@ -1,5 +1,5 @@
-import { redirect } from '@repo/i18n/navigation';
-import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import { redirect } from '@invicity/i18n/navigation';
+import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import { Metadata } from 'next';
 
 import { checkUserRole } from '@/lib/auth';

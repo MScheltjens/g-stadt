@@ -5,7 +5,7 @@
  * and shows the login form in a modal instead of a full page.
  */
 
-import { setRequestLocale } from '@repo/i18n/server';
+import { setRequestLocale } from '@invicity/i18n/server';
 
 import { SignInForm } from '@/components/auth/sign-in-form';
 import { Modal } from '@/components/common/modal';

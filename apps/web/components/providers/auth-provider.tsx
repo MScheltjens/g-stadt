@@ -10,7 +10,7 @@
 
 'use client';
 
-import type { JwtPayload } from '@repo/contracts';
+import type { JwtPayload } from '@invicity/contracts';
 import { createContext, ReactNode, useContext } from 'react';
 
 /**

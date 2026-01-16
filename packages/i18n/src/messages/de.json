@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "G-Stadt",
-    "description": "Offizielle Anwendung der Stadt G-Stadt."
+    "title": "Invicity",
+    "description": "Offizielle Anwendung der Stadt Invicity."
   },
   "public": {
     "meta": {
-      "title": "G-Stadt",
+      "title": "Invicity",
       "description": "Offizielles Stadtportal für Services, Nachrichten und Veranstaltungen."
     }
   },
@@ -13,13 +13,13 @@
     "layout": {
       "meta": {
         "title": "Authentifizierung",
-        "description": "Melden Sie sich an, um auf die Dienste von G-Stadt zuzugreifen."
+        "description": "Melden Sie sich an, um auf die Dienste von Invicity zuzugreifen."
       }
     },
     "login": {
       "meta": {
         "title": "Anmelden",
-        "description": "Melden Sie sich bei Ihrem G-Stadt-Konto an."
+        "description": "Melden Sie sich bei Ihrem Invicity-Konto an."
       },
       "title": "Melden Sie sich bei Ihrem Konto an",
       "subtitle": "Oder",
@@ -34,7 +34,7 @@
     "register": {
       "meta": {
         "title": "Registrieren",
-        "description": "Erstellen Sie ein neues G-Stadt-Konto."
+        "description": "Erstellen Sie ein neues Invicity-Konto."
       },
       "title": "Erstellen Sie Ihr Konto",
       "subtitle": "Oder",
@@ -53,13 +53,13 @@
   "protected": {
     "meta": {
       "title": "Konto",
-      "description": "Privater Bereich Ihres G-Stadt-Kontos."
+      "description": "Privater Bereich Ihres Invicity-Kontos."
     }
   },
   "dashboard": {
     "meta": {
       "title": "Dashboard",
-      "description": "Übersicht über Ihr persönliches G-Stadt-Konto."
+      "description": "Übersicht über Ihr persönliches Invicity-Konto."
     },
     "welcome": "Willkommen in Ihrem Dashboard",
     "loading": "Wird geladen...",
@@ -74,12 +74,12 @@
   "home": {
     "meta": {
       "title": "Startseite",
-      "description": "Willkommen bei G-Stadt, Ihrem offiziellen Stadtportal."
+      "description": "Willkommen bei Invicity, Ihrem offiziellen Stadtportal."
     },
     "hero": {
       "badge": "Offizielle Stadtseite",
       "title": "Willkommen in",
-      "cityName": "G-Stadt",
+      "cityName": "Invicity",
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Services Ihrer Stadt an einem Ort.",
       "actionNews": "Nachrichten",
       "actionEvents": "Veranstaltungen"
@@ -88,28 +88,28 @@
   "services": {
     "meta": {
       "title": "Services",
-      "description": "Entdecken Sie die Dienstleistungen der Stadt G-Stadt."
+      "description": "Entdecken Sie die Dienstleistungen der Stadt Invicity."
     },
     "title": "Städtische Services",
-    "description": "Entdecken Sie die Dienstleistungen der Stadt G-Stadt.",
+    "description": "Entdecken Sie die Dienstleistungen der Stadt Invicity.",
     "viewAll": "Alle Services anzeigen"
   },
   "news": {
     "meta": {
       "title": "Nachrichten",
-      "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus G-Stadt informiert."
+      "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus Invicity informiert."
     },
     "title": "Aktuelle Nachrichten",
-    "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus G-Stadt informiert.",
+    "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus Invicity informiert.",
     "viewAll": "Alle Nachrichten anzeigen"
   },
   "events": {
     "meta": {
       "title": "Veranstaltungen",
-      "description": "Entdecken Sie kommende Veranstaltungen und Aktivitäten in G-Stadt."
+      "description": "Entdecken Sie kommende Veranstaltungen und Aktivitäten in Invicity."
     },
     "title": "Bevorstehende Veranstaltungen",
-    "description": "Entdecken Sie Veranstaltungen in G-Stadt und nehmen Sie am Gemeinschaftsleben teil.",
+    "description": "Entdecken Sie Veranstaltungen in Invicity und nehmen Sie am Gemeinschaftsleben teil.",
     "viewAll": "Alle Veranstaltungen anzeigen",
     "readMore": "Mehr erfahren"
   },

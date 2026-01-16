@@ -8,9 +8,9 @@
  * @module lib/auth
  */
 
-import { COOKIE_NAMES } from '@repo/constants';
-import type { Role } from '@repo/contracts';
-import { JwtPayloadSchema } from '@repo/contracts';
+import { COOKIE_NAMES } from '@invicity/constants';
+import type { Role } from '@invicity/contracts';
+import { JwtPayloadSchema } from '@invicity/contracts';
 import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 /**

@@ -1,5 +1,5 @@
-import { ROUTES } from '@repo/constants';
-import { Link } from '@repo/i18n/navigation';
+import { ROUTES } from '@invicity/constants';
+import { Link } from '@invicity/i18n/navigation';
 
 import { Navbar } from '@/components/navigation/navbar';
 

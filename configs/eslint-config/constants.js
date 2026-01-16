@@ -1,4 +1,4 @@
-import { libraryConfig } from '@repo/eslint-config/library';
+import { libraryConfig } from '@invicity/eslint-config/library';
 
 export const constantsConfig = [
   ...libraryConfig,
@@ -9,11 +9,11 @@ export const constantsConfig = [
         'error',
         {
           patterns: [
-            '@repo/database',
-            '@repo/contracts',
-            '@repo/i18n',
-            '@repo/ui',
-            '@repo/web',
+            '@invicity/database',
+            '@invicity/contracts',
+            '@invicity/i18n',
+            '@invicity/ui',
+            '@invicity/web',
             '@prisma/client',
             '@nestjs/*',
             'react',

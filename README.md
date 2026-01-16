@@ -1,4 +1,4 @@
-# G-Stadtt Monorepo
+# InviCity Monorepo
 
 This repository is a monorepo for the G-Stadtt project, a fictive website for a city, containing both backend (API) and frontend (web) applications, as well as shared packages and configurations.
 
@@ -66,11 +66,11 @@ pnpm test
 - Uses Prisma ORM (see `packages/database/prisma/schema.prisma`)
 - To apply migrations:
   ```sh
-  pnpm --filter @repo/database prisma migrate dev
+  pnpm --filter @invicity/database prisma migrate dev
   ```
 - To open Prisma Studio:
   ```sh
-  pnpm --filter @repo/database prisma studio
+  pnpm --filter @invicity/database prisma studio
   ```
 
 ## Linting & Formatting

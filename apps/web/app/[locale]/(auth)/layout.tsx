@@ -1,4 +1,4 @@
-import { getTranslations } from '@repo/i18n/server';
+import { getTranslations } from '@invicity/i18n/server';
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 
 import { LayoutProps, MetadataProps } from '@/types/next-page';

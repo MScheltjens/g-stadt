@@ -1,4 +1,4 @@
-import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import { Metadata } from 'next';
 
 import { Footer } from '@/components/common/footer';

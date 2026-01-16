@@ -1,7 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": [
-    "**/.env.*local"
+    "**/.env.*local",
+    "**/.env"
   ],
   "globalEnv": [
     "NODE_ENV",
@@ -39,27 +40,22 @@
       ],
       "outputs": []
     },
+    "db:reset": {
+      "dependsOn": [
+        "^db:reset"
+      ],
+      "outputs": []
+    },
     "db:studio": {
       "dependsOn": [
         "^db:studio"
       ],
       "outputs": []
     },
-    "@repo/types#build": {
-      "cache": false,
-      "dependsOn": [
-        "@repo/database#build"
-      ],
-      "outputs": [
-        "dist/**",
-        "src/generated/**"
-      ]
-    },
-    "@repo/database#build": {
+    "@invicity/database#build": {
       "cache": false,
       "outputs": [
-        "dist/**",
-        "../types/src/generated/**"
+        "dist/**"
       ]
     },
     "lint": {
@@ -76,7 +72,10 @@
     "test": {},
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": [
+        "^build"
+      ]
     }
   }
 }

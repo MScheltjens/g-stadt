@@ -1,7 +1,7 @@
 import {
   type ServiceCategory,
   ServiceCategoryListSchema,
-} from '@repo/contracts';
+} from '@invicity/contracts';
 
 import { safeFetch } from '@/lib/safe-fetch';
 

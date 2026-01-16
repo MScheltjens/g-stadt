@@ -7,12 +7,12 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ROUTES } from '@repo/constants';
-import { type LoginInput, LoginInputSchema } from '@repo/contracts';
-import { Link } from '@repo/i18n/navigation';
-import { useTranslations } from '@repo/i18n/next-intl';
-import { Alert, AlertDescription } from '@repo/ui/components/alert';
-import { Button } from '@repo/ui/components/button';
+import { ROUTES } from '@invicity/constants';
+import { type LoginInput, LoginInputSchema } from '@invicity/contracts';
+import { Link } from '@invicity/i18n/navigation';
+import { useTranslations } from '@invicity/i18n/next-intl';
+import { Alert, AlertDescription } from '@invicity/ui/components/alert';
+import { Button } from '@invicity/ui/components/button';
 import {
   Form,
   FormControl,
@@ -20,8 +20,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@repo/ui/components/form';
-import { Input } from '@repo/ui/components/input';
+} from '@invicity/ui/components/form';
+import { Input } from '@invicity/ui/components/input';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 

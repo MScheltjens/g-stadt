@@ -10,11 +10,11 @@ import {
   AuthUserSchema,
   LoginInput,
   RegisterInput,
-} from '@repo/contracts';
+} from '@invicity/contracts';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 
-import { PrismaService } from '@/content/prisma/prisma.service';
+import { PrismaService } from '../content/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
