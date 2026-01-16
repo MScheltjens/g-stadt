@@ -1,20 +1,20 @@
 import {
-  ConflictException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import {
   AuthResponse,
   AuthResponseSchema,
   AuthUserSchema,
   LoginInput,
   RegisterInput,
 } from '@invicity/contracts';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 
-import { PrismaService } from '../content/prisma/prisma.service';
+import { PrismaService } from '@/content/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {

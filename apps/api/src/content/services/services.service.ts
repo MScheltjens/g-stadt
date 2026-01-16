@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
 import { Locale } from '@invicity/constants';
 import {
   type ServiceCategory,
   ServiceCategorySchema,
   ServiceSchema,
 } from '@invicity/contracts';
+import { Injectable } from '@nestjs/common';
 
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '@/content/prisma/prisma.service';
 
 @Injectable()
 export class ServicesService {

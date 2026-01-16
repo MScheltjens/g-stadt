@@ -1,8 +1,17 @@
 {
   "extends": "@invicity/typescript-config/nestjs",
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "dist",
-    "noEmit": false
+    "noEmit": false,
+    "paths": {
+      "@api/*": [
+        "src/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"
@@ -10,5 +19,5 @@
   "exclude": [
     "dist",
     "node_modules"
-  ]
+  ],
 }

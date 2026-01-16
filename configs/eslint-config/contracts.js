@@ -13,7 +13,7 @@ export const contractsConfig = [
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['@invicity/database', '@invicity/i18n'],
+          patterns: ['@invicity/db', '@invicity/i18n'],
         },
       ],
     },

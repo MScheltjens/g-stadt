@@ -1,0 +1,15 @@
+{
+    "extends": "@invicity/typescript-config/db",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "prisma/generated"
+    ]
+}

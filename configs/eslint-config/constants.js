@@ -9,7 +9,7 @@ export const constantsConfig = [
         'error',
         {
           patterns: [
-            '@invicity/database',
+            '@invicity/db',
             '@invicity/contracts',
             '@invicity/i18n',
             '@invicity/ui',

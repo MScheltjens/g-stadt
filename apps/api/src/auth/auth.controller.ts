@@ -1,3 +1,4 @@
+import { AuthResponse, JwtPayloadSchema } from '@invicity/contracts';
 import {
   Body,
   Controller,
@@ -6,12 +7,10 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { AuthResponse, JwtPayloadSchema } from '@invicity/contracts';
 
+import { CurrentUser } from '@/common/decorators/current-user.decorator';
+import { Public } from '@/common/decorators/public.decorator';
 import { AuthService } from './auth.service';
-import { CurrentUser } from '../common/decorators/current-user.decorator';
-import { Public } from '../common/decorators/public.decorator';
-
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { LoginDto } from './dto/login.dto';

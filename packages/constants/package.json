@@ -26,7 +26,8 @@
         "zod": "^4.3.5"
     },
     "devDependencies": {
+        "@invicity/eslint-config": "workspace:*",
         "@invicity/typescript-config": "workspace:*",
-        "@invicity/eslint-config": "workspace:*"
+        "@swc/core": "^1.15.8"
     }
 }

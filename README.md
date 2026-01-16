@@ -66,11 +66,11 @@ pnpm test
 - Uses Prisma ORM (see `packages/database/prisma/schema.prisma`)
 - To apply migrations:
   ```sh
-  pnpm --filter @invicity/database prisma migrate dev
+  pnpm --filter @invicity/db prisma migrate dev
   ```
 - To open Prisma Studio:
   ```sh
-  pnpm --filter @invicity/database prisma studio
+  pnpm --filter @invicity/db prisma studio
   ```
 
 ## Linting & Formatting
