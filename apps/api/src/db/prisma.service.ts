@@ -1,7 +1,6 @@
+import { PrismaClient } from '@api/prisma/generated/index.js';
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
-
-import { PrismaClient } from '@api/prisma/generated/index.js';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
