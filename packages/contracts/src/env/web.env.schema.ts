@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { baseEnvSchema } from './base.env.schema';
 
 export const webEnvSchema = baseEnvSchema.extend({

@@ -4,14 +4,14 @@
 
 import { ZodType } from 'zod';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import { env } from './env';
 
 export async function safeFetch<T>(
   endpoint: string,
   schema: ZodType<T>,
   options?: RequestInit,
 ): Promise<T> {
-  const url = `${API_URL}${endpoint}`;
+  const url = `${env.NEXT_PUBLIC_API_URL}${endpoint}`;
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',

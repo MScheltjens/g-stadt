@@ -1,6 +1,8 @@
 import { config as loadEnv } from 'dotenv';
 import { join } from 'path';
 
+import { env } from './lib/env.js';
+
 // Load .env from workspace root
 loadEnv({ path: join(process.cwd(), '.env') });
 
@@ -25,11 +27,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, document);
 
-  const port = process.env.PORT ?? 3001;
-  await app.listen(port);
+  await app.listen(env.PORT);
 
-  console.log(`🚀 API running on http://localhost:${port}`);
-  console.log(`📚 Swagger docs at http://localhost:${port}/api/docs`);
+  console.log(`🚀 API running on http://localhost:${env.PORT}`);
+  console.log(`📚 Swagger docs at http://localhost:${env.PORT}/api/docs`);
 }
 
 void bootstrap();
