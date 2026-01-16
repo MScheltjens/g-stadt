@@ -2,8 +2,8 @@
 
 // import { usePathname } from '@repo/i18n/navigation';
 // import { useTranslations } from '@repo/i18n/next-intl';
-import { Mail, MapPin, AlertCircle } from '@repo/ui/components/icons';
-import { cn } from '@repo/ui/lib/utils';
+import { NAV_ROUTES } from '@repo/constants';
+import { AlertCircle, Mail, MapPin } from '@repo/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@repo/ui/components/navigation-menu';
-import { NAV_ROUTES } from '@repo/constants';
+import { cn } from '@repo/ui/lib/utils';
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <MapPin className="h-4 w-4" />,

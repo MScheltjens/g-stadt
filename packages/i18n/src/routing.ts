@@ -1,5 +1,5 @@
+import { DEFAULT_LOCALE, LOCALES, ROUTE_PATHNAMES } from '@repo/constants';
 import { defineRouting } from 'next-intl/routing';
-import { ROUTE_PATHNAMES, LOCALES, DEFAULT_LOCALE } from '@repo/constants';
 
 export const routing = defineRouting({
   locales: Object.values(LOCALES),

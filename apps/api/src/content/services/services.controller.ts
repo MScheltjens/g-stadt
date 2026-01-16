@@ -1,7 +1,9 @@
 import { Controller, Get, Query } from '@nestjs/common';
+
 import { Public } from '@/common/decorators/public.decorator';
-import { ServicesService } from './services.service';
+
 import { ServiceListQueryDto } from './dto/service-list-query.dto';
+import { ServicesService } from './services.service';
 
 @Controller('services')
 export class ServicesController {

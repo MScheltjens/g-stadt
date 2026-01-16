@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { LocaleSchema } from '../routing/locale.schema';
 
 /* =========================

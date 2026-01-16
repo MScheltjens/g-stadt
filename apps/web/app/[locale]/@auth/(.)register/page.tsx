@@ -5,9 +5,10 @@
  * and shows the registration form in a modal instead of a full page.
  */
 
-import { Modal } from '@/components/common/modal';
-import { RegisterForm } from '@/components/auth/register-form';
 import { setRequestLocale } from '@repo/i18n/server';
+
+import { RegisterForm } from '@/components/auth/register-form';
+import { Modal } from '@/components/common/modal';
 import type { PageProps } from '@/types/next-page';
 
 export default async function RegisterModal({ params }: PageProps) {

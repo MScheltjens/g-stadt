@@ -4,6 +4,9 @@ import { databaseConfig } from "@repo/eslint-config/database";
 export default [
     ...databaseConfig,
     {
-        ignores: ["**/dist/**", "**/node_modules/**"]
+        ignores: [
+            "**/dist/**",
+            "**/node_modules/**"
+        ]
     }
-]; 
+];

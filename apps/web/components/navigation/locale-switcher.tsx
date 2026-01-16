@@ -1,20 +1,18 @@
 'use client';
 
+import { usePathname, useRouter } from '@repo/i18n/navigation';
 import { useLocale, useTranslations } from '@repo/i18n/next-intl';
 import { routing } from '@repo/i18n/routing';
-import { usePathname, useRouter } from '@repo/i18n/navigation';
-import { useTransition } from 'react';
-
+import { Button } from '@repo/ui/components/button';
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@repo/ui/components/dropdown-menu';
-
-import { Button } from '@repo/ui/components/button';
 import { Globe } from '@repo/ui/icons';
 import { cn } from '@repo/ui/lib/utils';
+import { useTransition } from 'react';
 
 export function LocaleSwitcher() {
   const locale = useLocale();

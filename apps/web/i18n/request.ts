@@ -1,9 +1,9 @@
 import { messages } from '@repo/i18n';
+import { hasLocale } from '@repo/i18n/next-intl';
 import { routing } from '@repo/i18n/routing';
 import { getRequestConfig } from '@repo/i18n/server';
-import { hasLocale } from '@repo/i18n/next-intl';
 
-export default getRequestConfig(async ({ requestLocale }) => {
+export const requestConfig = getRequestConfig(async ({ requestLocale }) => {
   // Typically corresponds to the `[locale]` segment
   const requested = await requestLocale;
   const locale = hasLocale(routing.locales, requested)
@@ -17,3 +17,5 @@ export default getRequestConfig(async ({ requestLocale }) => {
     now: new Date(),
   };
 });
+
+export default requestConfig;

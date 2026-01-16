@@ -1,11 +1,12 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
 import js from '@eslint/js';
-import typescriptEslint from 'typescript-eslint';
+import pluginNext from '@next/eslint-plugin-next';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import eslintPrettier from 'eslint-config-prettier/flat';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
-import pluginNext from '@next/eslint-plugin-next';
-import eslintPrettier from 'eslint-config-prettier/flat';
+import typescriptEslint from 'typescript-eslint';
+
 import { config as baseConfig } from './base.js';
 
 /**
@@ -79,4 +80,21 @@ export const nextJsConfig = defineConfig([
     'node_modules/**',
     'pnpm-lock.yaml',
   ]),
+
+  // Allow default exports for Next.js pages/layouts/config
+  {
+    files: [
+      'app/**/*.tsx',
+      'app/**/*.ts',
+      'pages/**/*.tsx',
+      'pages/**/*.ts',
+      'pages/**/*.js',
+      'pages/**/*.jsx',
+      'next.config.{js,ts,mjs}',
+      'i18n/request.ts',
+    ],
+    rules: {
+      'import/no-default-export': 'off',
+    },
+  },
 ]);

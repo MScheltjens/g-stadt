@@ -1,8 +1,9 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
-import globals from 'globals';
-import { fileURLToPath } from 'url';
-import typescriptEslint from 'typescript-eslint';
 import eslintPrettier from 'eslint-config-prettier/flat';
+import globals from 'globals';
+import typescriptEslint from 'typescript-eslint';
+import { fileURLToPath } from 'url';
+
 import { config as baseConfig } from './base.js';
 
 /**
@@ -49,4 +50,12 @@ export const nestJsConfig = defineConfig([
 
   // Ignore build/output folders globally
   globalIgnores(['dist/**', 'build/**', 'node_modules/**', 'coverage/**']),
+
+  // Allow restricted imports in test files
+  {
+    files: ['**/*.spec.ts', '**/*.spec.js', '**/*.test.ts', '**/*.test.js'],
+    rules: {
+      'no-restricted-imports': 'off',
+    },
+  },
 ]);

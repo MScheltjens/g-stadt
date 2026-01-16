@@ -1,10 +1,11 @@
 'use client';
 
-import { NextIntlClientProvider } from '@repo/i18n/next-intl';
-import { AuthProvider } from './auth-provider';
-import { JwtPayload } from '@repo/contracts';
 import { Locale } from '@repo/constants';
+import { JwtPayload } from '@repo/contracts';
 import { messages } from '@repo/i18n';
+import { NextIntlClientProvider } from '@repo/i18n/next-intl';
+
+import { AuthProvider } from './auth-provider';
 
 export function Providers({
   children,

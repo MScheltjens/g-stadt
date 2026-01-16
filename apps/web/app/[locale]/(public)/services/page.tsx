@@ -1,4 +1,5 @@
 import { setRequestLocale } from '@repo/i18n/server';
+
 import { ComingSoon } from '@/components/common/coming-soon';
 
 type ServicesPageProps = {

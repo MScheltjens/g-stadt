@@ -1,8 +1,9 @@
-import { safeFetch } from '@/lib/safe-fetch';
 import {
-  ServiceCategoryListSchema,
   type ServiceCategory,
+  ServiceCategoryListSchema,
 } from '@repo/contracts';
+
+import { safeFetch } from '@/lib/safe-fetch';
 
 export async function getServiceCategories(
   locale: string,

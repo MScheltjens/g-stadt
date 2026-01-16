@@ -2,14 +2,15 @@
 import { Button } from '@repo/ui/components/button';
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
 } from '@repo/ui/components/card';
 import { cn } from '@repo/ui/lib/utils';
-import { ItemCard, ItemCardProps } from './item-card';
 import { ComponentPropsWithoutRef } from 'react';
+
+import { ItemCard, ItemCardProps } from './item-card';
 
 type CardListProps = {
   title?: string;

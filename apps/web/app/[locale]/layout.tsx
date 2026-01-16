@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
+import '@repo/ui/globals.css';
+
 import { hasLocale } from '@repo/i18n/next-intl';
-import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import { routing } from '@repo/i18n/routing';
+import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+import { Providers } from '@/components/providers/providers';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/types/next-page';
-import { Providers } from '@/components/providers/providers';
-
-import '@repo/ui/globals.css';
 
 export async function generateMetadata({
   params,

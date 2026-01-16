@@ -8,11 +8,11 @@
  * @module lib/auth
  */
 
-import { cookies } from 'next/headers';
 import { COOKIE_NAMES } from '@repo/constants';
-import { JwtPayloadSchema } from '@repo/contracts';
 import type { Role } from '@repo/contracts';
+import { JwtPayloadSchema } from '@repo/contracts';
 import { jwtDecode } from 'jwt-decode';
+import { cookies } from 'next/headers';
 /**
  * Sets authentication tokens in HTTP-only cookies
  *

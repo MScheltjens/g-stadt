@@ -1,14 +1,14 @@
-import createIntlMiddleware from '@repo/i18n/middleware';
-import { routing } from '@repo/i18n/routing';
 import {
   AUTH_ROUTES,
-  PROTECTED_ROUTES,
+  LocalizedPathnames,
   Pathname,
   Pathnames,
-  LocalizedPathnames,
+  PROTECTED_ROUTES,
 } from '@repo/constants';
 import { ROUTES } from '@repo/constants';
 import { COOKIE_NAMES } from '@repo/constants';
+import createIntlMiddleware from '@repo/i18n/middleware';
+import { routing } from '@repo/i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**

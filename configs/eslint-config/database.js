@@ -11,11 +11,17 @@ export const databaseConfig = [
   ...libraryConfig,
   {
     rules: {
-      // 🚫 Database must not depend on contracts
+      // 🚫 Database must not be imported by any package except api
       'no-restricted-imports': [
         'error',
         {
-          patterns: ['@repo/contracts'],
+          patterns: [
+            '@repo/constants',
+            '@repo/contracts',
+            '@repo/i18n',
+            '@repo/ui',
+            '@repo/web',
+          ],
         },
       ],
     },

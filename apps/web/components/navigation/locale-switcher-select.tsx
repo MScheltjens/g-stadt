@@ -1,11 +1,11 @@
 'use client';
 import { Locale } from '@repo/constants';
-import { cn } from '@repo/ui/lib/utils';
-import { useParams } from 'next/navigation';
-import { ChangeEvent, ReactNode, useTransition } from 'react';
 import { usePathname, useRouter } from '@repo/i18n/navigation';
 import { Button } from '@repo/ui/components/button';
 import { Globe } from '@repo/ui/icons';
+import { cn } from '@repo/ui/lib/utils';
+import { useParams } from 'next/navigation';
+import { ChangeEvent, ReactNode, useTransition } from 'react';
 
 interface LocaleSwitcherSelectProps {
   children: ReactNode;

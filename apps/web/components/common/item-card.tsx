@@ -1,18 +1,18 @@
 // item-card.tsx
+import { Pathname } from '@repo/constants';
+import { Link } from '@repo/i18n/navigation';
+import { getTranslations } from '@repo/i18n/server';
+import { Badge } from '@repo/ui/components/badge';
+import { buttonVariants } from '@repo/ui/components/button';
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from '@repo/ui/components/card';
-import { Badge } from '@repo/ui/components/badge';
-import { Link } from '@repo/i18n/navigation';
-import { buttonVariants } from '@repo/ui/components/button';
 import { ArrowRight } from '@repo/ui/components/icons';
-import { Pathname } from '@repo/constants';
-import { getTranslations } from '@repo/i18n/server';
 
 export interface ItemCardProps {
   title: string;

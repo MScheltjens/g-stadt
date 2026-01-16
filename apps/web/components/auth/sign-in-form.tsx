@@ -6,15 +6,13 @@
 
 'use client';
 
-import { useState, useTransition } from 'react';
-import { useTranslations } from '@repo/i18n/next-intl';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ROUTES } from '@repo/constants';
 import { type LoginInput, LoginInputSchema } from '@repo/contracts';
-import { login } from '@/lib/actions/auth';
 import { Link } from '@repo/i18n/navigation';
+import { useTranslations } from '@repo/i18n/next-intl';
+import { Alert, AlertDescription } from '@repo/ui/components/alert';
 import { Button } from '@repo/ui/components/button';
-import { Input } from '@repo/ui/components/input';
 import {
   Form,
   FormControl,
@@ -23,8 +21,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@repo/ui/components/form';
-import { Alert, AlertDescription } from '@repo/ui/components/alert';
-import { ROUTES } from '@repo/constants';
+import { Input } from '@repo/ui/components/input';
+import { useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { login } from '@/lib/actions/auth';
 
 export function SignInForm() {
   const t = useTranslations('auth');

@@ -1,14 +1,11 @@
 'use client';
 
-import { useState, useTransition } from 'react';
-import { useTranslations } from '@repo/i18n/next-intl';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { register } from '@/lib/actions/auth';
+import { ROUTES } from '@repo/constants';
 import { Link } from '@repo/i18n/navigation';
+import { useTranslations } from '@repo/i18n/next-intl';
+import { Alert, AlertDescription } from '@repo/ui/components/alert';
 import { Button } from '@repo/ui/components/button';
-import { Input } from '@repo/ui/components/input';
 import {
   Form,
   FormControl,
@@ -17,8 +14,12 @@ import {
   FormLabel,
   FormMessage,
 } from '@repo/ui/components/form';
-import { Alert, AlertDescription } from '@repo/ui/components/alert';
-import { ROUTES } from '@repo/constants';
+import { Input } from '@repo/ui/components/input';
+import { useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { register } from '@/lib/actions/auth';
 
 // Define the schema for the registration form
 // This is not a contract schema but a form-specific schema

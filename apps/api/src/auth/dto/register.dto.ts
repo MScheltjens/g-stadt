@@ -1,4 +1,4 @@
-import { createZodDto } from 'nestjs-zod';
 import { RegisterInputSchema } from '@repo/contracts';
+import { createZodDto } from 'nestjs-zod';
 
 export class RegisterDto extends createZodDto(RegisterInputSchema) {}

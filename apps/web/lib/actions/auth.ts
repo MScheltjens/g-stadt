@@ -1,8 +1,9 @@
 'use server';
 
+import type { AuthResponse, LoginInput, RegisterInput } from '@repo/contracts';
 import { redirect } from 'next/navigation';
-import { setAuthCookies, clearAuthCookies } from '@/lib/auth';
-import type { LoginInput, RegisterInput, AuthResponse } from '@repo/contracts';
+
+import { clearAuthCookies, setAuthCookies } from '@/lib/auth';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

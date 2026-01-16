@@ -1,5 +1,6 @@
-import { config as baseConfig } from './base.js';
 import globals from 'globals';
+
+import { config as baseConfig } from './base.js';
 
 /**
  * A custom ESLint configuration for Node.js libraries.

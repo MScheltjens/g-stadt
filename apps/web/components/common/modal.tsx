@@ -7,11 +7,11 @@
 
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useCallback } from 'react';
-import { X } from '@repo/ui/icons';
 import { Button } from '@repo/ui/components/button';
 import { Card, CardContent } from '@repo/ui/components/card';
+import { X } from '@repo/ui/icons';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 
 interface ModalProps {
   children: React.ReactNode;

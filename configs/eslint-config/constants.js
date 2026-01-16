@@ -11,6 +11,9 @@ export const constantsConfig = [
           patterns: [
             '@repo/database',
             '@repo/contracts',
+            '@repo/i18n',
+            '@repo/ui',
+            '@repo/web',
             '@prisma/client',
             '@nestjs/*',
             'react',

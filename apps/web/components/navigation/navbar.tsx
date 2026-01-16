@@ -3,16 +3,14 @@
 import { NAV_ROUTES } from '@repo/constants';
 import { Link } from '@repo/i18n/navigation';
 import { useTranslations } from '@repo/i18n/next-intl';
-
 import {
   NavigationMenu,
-  NavigationMenuList,
   NavigationMenuItem,
+  NavigationMenuList,
   NavigationMenuTrigger,
   // NavigationMenuContent,
   // NavigationMenuLink,
 } from '@repo/ui/components/navigation-menu';
-
 import { cn } from '@repo/ui/lib/utils';
 
 export function Navbar() {

@@ -1,10 +1,11 @@
-import Image from 'next/image';
-import { getTranslations } from '@repo/i18n/server';
-import homeHeroImg from '@/public/images/g-stadt.png';
+import { ROUTES } from '@repo/constants';
 import { Link } from '@repo/i18n/navigation';
+import { getTranslations } from '@repo/i18n/server';
 import { buttonVariants } from '@repo/ui/components/button';
 import { cn } from '@repo/ui/lib/utils';
-import { ROUTES } from '@repo/constants';
+import Image from 'next/image';
+
+import homeHeroImg from '@/public/images/g-stadt.png';
 
 export async function Hero() {
   const t = await getTranslations('home.hero');

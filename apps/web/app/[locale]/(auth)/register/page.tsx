@@ -6,8 +6,9 @@
  * When intercepted from another route, shows as a modal.
  */
 
-import { RegisterForm } from '@/components/auth/register-form';
 import { setRequestLocale } from '@repo/i18n/server';
+
+import { RegisterForm } from '@/components/auth/register-form';
 import type { PageProps } from '@/types/next-page';
 
 export default async function RegisterPage({ params }: PageProps) {

@@ -1,8 +1,10 @@
-import { Navbar } from '@/components/navigation/navbar';
-import { Link } from '@repo/i18n/navigation';
-import { HeaderUtils } from './header-utils';
-import { NavbarIcons } from '../navigation/navbar-icons';
 import { ROUTES } from '@repo/constants';
+import { Link } from '@repo/i18n/navigation';
+
+import { Navbar } from '@/components/navigation/navbar';
+
+import { NavbarIcons } from '../navigation/navbar-icons';
+import { HeaderUtils } from './header-utils';
 
 export async function Header() {
   return (

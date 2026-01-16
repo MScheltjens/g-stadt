@@ -1,8 +1,9 @@
+import { getTranslations, setRequestLocale } from '@repo/i18n/server';
+import { Metadata } from 'next';
+
 import { Footer } from '@/components/common/footer';
 import { Header } from '@/components/common/header';
-import { getTranslations, setRequestLocale } from '@repo/i18n/server';
 import type { LayoutProps, MetadataProps } from '@/types/next-page';
-import { Metadata } from 'next';
 
 export async function generateMetadata({
   params,

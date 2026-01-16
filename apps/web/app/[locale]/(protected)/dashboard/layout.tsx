@@ -1,8 +1,9 @@
-import { checkUserRole } from '@/lib/auth';
 import { redirect } from '@repo/i18n/navigation';
 import { getTranslations, setRequestLocale } from '@repo/i18n/server';
-import type { LayoutProps, MetadataProps } from '@/types/next-page';
 import { Metadata } from 'next';
+
+import { checkUserRole } from '@/lib/auth';
+import type { LayoutProps, MetadataProps } from '@/types/next-page';
 
 export async function generateMetadata({
   params,

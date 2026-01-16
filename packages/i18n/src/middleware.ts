@@ -1,1 +1,2 @@
-export { default } from 'next-intl/middleware';
+import middleware from 'next-intl/middleware';
+export default middleware;

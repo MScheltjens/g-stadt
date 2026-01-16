@@ -12,7 +12,8 @@
     "./react-internal": "./react-internal.js",
     "./contracts": "./contracts.js",
     "./database": "./database.js",
-    "./constants": "./constants.js"
+    "./constants": "./constants.js",
+    "./i18n": "./i18n.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

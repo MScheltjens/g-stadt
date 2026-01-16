@@ -1,8 +1,9 @@
-import { routing } from './routing';
-import enMessages from './messages/en.json';
+import { DEFAULT_TIMEZONE, TIMEZONES } from '@repo/constants';
+
 import deMessages from './messages/de.json';
+import enMessages from './messages/en.json';
 import frMessages from './messages/fr.json';
-import { TIMEZONES, DEFAULT_TIMEZONE } from '@repo/constants';
+import { routing } from './routing';
 
 export const messages = {
   en: enMessages,

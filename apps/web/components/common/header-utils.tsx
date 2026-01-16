@@ -1,11 +1,12 @@
 'use client';
 
-import { LocaleSwitcher } from '../navigation/locale-switcher';
+import { ROUTES } from '@repo/constants';
 import { Link } from '@repo/i18n/navigation';
-import { User } from '@repo/ui/components/icons';
 import { usePathname } from '@repo/i18n/navigation';
 import { useTranslations } from '@repo/i18n/next-intl';
-import { ROUTES } from '@repo/constants';
+import { User } from '@repo/ui/components/icons';
+
+import { LocaleSwitcher } from '../navigation/locale-switcher';
 
 export function HeaderUtils() {
   const pathname = usePathname();

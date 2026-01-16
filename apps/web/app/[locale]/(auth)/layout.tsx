@@ -1,6 +1,7 @@
-import { LayoutProps, MetadataProps } from '@/types/next-page';
 import { getTranslations } from '@repo/i18n/server';
 import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
+
+import { LayoutProps, MetadataProps } from '@/types/next-page';
 
 export async function generateMetadata({
   params,
