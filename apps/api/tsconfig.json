@@ -3,10 +3,20 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist",
+    /* SWC owns emitting */
+    "noEmit": true,
+    /* Path aliases (compile-time only) */
     "paths": {
       "@/*": [
         "src/*"
       ]
     }
-  }
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }
