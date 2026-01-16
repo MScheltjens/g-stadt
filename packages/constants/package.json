@@ -20,7 +20,8 @@
         "build:esm": "tsc -p tsconfig.esm.json",
         "build": "pnpm build:cjs && pnpm build:esm",
         "clean": "npx rimraf dist",
-        "lint": "eslint . --max-warnings 0"
+        "lint": "eslint . --max-warnings 0",
+        "lint:fix": "eslint . --fix --max-warnings 0"
     },
     "dependencies": {
         "zod": "^4.3.5"
