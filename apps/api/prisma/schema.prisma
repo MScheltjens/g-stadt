@@ -1,0 +1,129 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+////////////////////
+/// GLOBAL ENUMS ///
+////////////////////
+
+enum Role {
+    CITIZEN
+    STAFF
+    ADMIN
+}
+
+enum Locale {
+    en
+    fr
+    de
+}
+
+////////////////////
+/// AUTH & CORE ///
+////////////////////
+
+model User {
+    id           String   @id @default(uuid())
+    email        String   @unique
+    passwordHash String
+    role         Role     @default(CITIZEN)
+    isVerified   Boolean  @default(false)
+    createdAt    DateTime @default(now())
+
+    refreshTokens       RefreshToken[]
+    passwordResetTokens PasswordResetToken[]
+}
+
+model RefreshToken {
+    id        String   @id @default(uuid())
+    tokenHash String
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    expiresAt DateTime
+}
+
+model PasswordResetToken {
+    id        String   @id @default(uuid())
+    userId    String
+    tokenHash String
+    expiresAt DateTime
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([expiresAt])
+}
+
+////////////////////
+/// CONTENT CORE ///
+////////////////////
+
+/// SERVICES ///
+
+model ServiceCategory {
+    id       String  @id @default(uuid())
+    code     String  @unique
+    order    Int     @default(0)
+    isActive Boolean @default(true)
+
+    services     Service[]
+    translations ServiceCategoryTranslation[]
+
+    @@index([isActive])
+}
+
+model ServiceCategoryTranslation {
+    id         String @id @default(uuid())
+    categoryId String
+    locale     Locale
+
+    label String
+    slug  String
+
+    category ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+    @@unique([categoryId, locale])
+    @@unique([locale, slug])
+}
+
+model Service {
+    id String @id @default(uuid())
+
+    categoryId String
+    category   ServiceCategory @relation(fields: [categoryId], references: [id])
+
+    icon        String
+    externalUrl String?
+    order       Int     @default(0)
+
+    isActive     Boolean @default(true)
+    requiresAuth Boolean @default(false)
+    role         Role?
+
+    translations ServiceTranslation[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([categoryId, isActive, order])
+}
+
+model ServiceTranslation {
+    id String @id @default(uuid())
+
+    serviceId String
+    locale    Locale
+
+    title       String
+    description String
+    slug        String
+
+    service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+    @@unique([serviceId, locale])
+    @@unique([locale, slug])
+}

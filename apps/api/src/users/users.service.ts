@@ -2,7 +2,7 @@ import { Role } from '@invicity/constants';
 import { UserResponse, UserResponseSchema } from '@invicity/contracts';
 import { Injectable } from '@nestjs/common';
 
-import { PrismaService } from '@/content/prisma/prisma.service';
+import { PrismaService } from '@/db/prisma.service.js';
 
 @Injectable()
 export class UsersService {

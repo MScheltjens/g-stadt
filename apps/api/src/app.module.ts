@@ -2,16 +2,17 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
-import { PrismaModule } from './content/prisma/prisma.module';
-import { ServicesModule } from './content/services/services.module';
-import { UsersModule } from './users/users.module';
+import { AppController } from './app.controller.js';
+import { AppService } from './app.service.js';
+import { AuthModule } from './auth/auth.module.js';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
+import { ServicesModule } from './content/services/services.module.js';
+import { UsersModule } from './users/users.module.js';
+import { PrismaService } from './db/prisma.service.js';
+import { PrismaModule } from './db/prisma.module.js';
 
 @Module({
-  imports: [PrismaModule, UsersModule, ServicesModule, AuthModule],
+  imports: [UsersModule, PrismaModule, ServicesModule, AuthModule],
   controllers: [AppController],
   providers: [
     AppService,
