@@ -1,6 +1,6 @@
 # InviCity Monorepo
 
-This repository is a monorepo for the G-Stadtt project, a fictive website for a city, containing both backend (API) and frontend (web) applications, as well as shared packages and configurations.
+This repository is a monorepo for the InviCity project, a fictive website for a city, containing both backend (API) and frontend (web) applications, as well as shared packages and configurations.
 
 ## Project Structure
 
@@ -10,17 +10,43 @@ This repository is a monorepo for the G-Stadtt project, a fictive website for a 
 │   ├── api/         # NestJS backend API
 │   └── web/         # Next.js frontend web app
 ├── packages/
-│   ├── database/    # Prisma schema and database utilities
+│   ├── constants/   # Shared constants (enums, values)
+│   ├── contracts/   # Shared API contracts (schemas, DTOs)
 │   ├── i18n/        # Internationalization utilities
-│   ├── types/       # Shared TypeScript types
 │   └── ui/          # Shared UI components
-├── configs/         # Shared configuration (eslint, jest, tsconfig, etc.)
+├── configs/         # Shared configuration (eslint,tsconfig, etc.)
 ├── docker-compose.yml
 ├── package.json
 ├── pnpm-workspace.yaml
 ├── turbo.json       # Turborepo configuration
 └── README.md        # This file
 ```
+
+## Packages Overview
+
+### constants
+
+Centralized enums, static values, and shared constants used across apps and packages. Example: user roles, status codes, feature flags.
+
+### contracts
+
+Shared API contracts, schemas, and DTOs for type-safe communication between frontend and backend. Example: Zod schemas, API response types.
+
+**Why use contracts?**
+
+- Using database types directly in your API or frontend is dangerous: DB types often expose internal fields, are tightly coupled to persistence, and can change independently of your API.
+- Contracts provide a stable, explicit, and validated interface for data exchange, ensuring only the intended fields and formats are shared between backend and frontend.
+- This separation improves security, maintainability, and allows for clear API evolution without leaking database internals.
+
+### i18n
+
+Internationalization utilities and helpers for multi-language support. Example: translation loading, locale detection.
+
+### ui
+
+Reusable UI components and design system elements for consistent frontend development. Example: buttons, modals, form controls.
+
+- This separation improves security, maintainability, and allows for clear API evolution without leaking database internals.
 
 ## Getting Started
 
@@ -55,27 +81,10 @@ pnpm dev
 pnpm build
 ```
 
-### Test
-
-```sh
-pnpm test
-```
-
-## Database
-
-- Uses Prisma ORM (see `packages/database/prisma/schema.prisma`)
-- To apply migrations:
-  ```sh
-  pnpm --filter @invicity/db prisma migrate dev
-  ```
-- To open Prisma Studio:
-  ```sh
-  pnpm --filter @invicity/db prisma studio
-  ```
-
 ## Linting & Formatting
 
 - Lint: `pnpm lint`
+- Lint & auto-fix: `pnpm lint:fix`
 - Format: `pnpm format`
 
 ## Environment Variables
@@ -86,7 +95,6 @@ pnpm test
 
 - `pnpm dev` - Start all apps in development mode
 - `pnpm build` - Build all apps and packages
-- `pnpm test` - Run all tests
 
 ## Contributing
 
