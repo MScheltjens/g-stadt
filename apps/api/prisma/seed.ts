@@ -434,7 +434,7 @@ async function main() {
   ];
 
   for (const cat of categories) {
-    const { icon, ...categoryData } = cat;
+    const { ...categoryData } = cat;
     const category = await prisma.category.create({
       data: {
         code: categoryData.code,

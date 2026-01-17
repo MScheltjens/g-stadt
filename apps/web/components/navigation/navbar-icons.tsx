@@ -42,8 +42,8 @@ export function NavbarIcons({ categories }: HeaderProps) {
                         key={cat.id}
                         // @ts-expect-error -- TypeScript will validate that only known `params`
                         href={
-                          cat.translations[0].slug
-                            ? `/services/${cat.translations[0].slug}`
+                          cat.translations[0]?.slug
+                            ? `/services/${cat.translations[0]?.slug}`
                             : '#'
                         }
                         className="block px-4 py-2 hover:bg-gray-100"
@@ -80,8 +80,8 @@ export function NavbarIcons({ categories }: HeaderProps) {
                         key={cat.id}
                         // @ts-expect-error -- TypeScript will validate that only known `params`
                         href={
-                          cat.translations[0].slug
-                            ? `/contacts/${cat.translations[0].slug}`
+                          cat.translations[0]?.slug
+                            ? `/contacts/${cat.translations[0]?.slug}`
                             : '#'
                         }
                         className="block px-4 py-2 hover:bg-gray-100"
