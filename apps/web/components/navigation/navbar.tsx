@@ -10,6 +10,7 @@ import {
   NavigationMenuTrigger,
 } from '@invicity/ui/components/navigation-menu';
 import { cn } from '@invicity/ui/lib/utils';
+
 import { HeaderProps } from '../common/header';
 
 export function Navbar({ categories }: HeaderProps) {

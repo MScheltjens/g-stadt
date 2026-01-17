@@ -7,7 +7,6 @@ import {
 import { Injectable, Logger } from '@nestjs/common';
 
 import { PrismaService } from '@/db/prisma.service.js';
-import { CategoryQueryDto } from './dto/type-query.dto.js';
 
 @Injectable()
 export class CategoriesService {

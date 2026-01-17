@@ -1,12 +1,11 @@
-import { Locale, ROUTES } from '@invicity/constants';
+import { ROUTES } from '@invicity/constants';
+import { CategoryListResponse } from '@invicity/contracts';
 import { Link } from '@invicity/i18n/navigation';
 
 import { Navbar } from '@/components/navigation/navbar';
 import { NavbarIcons } from '@/components/navigation/navbar-icons';
 
 import { HeaderUtils } from './header-utils';
-import { getCategories } from '@/lib/api/categories';
-import { CategoryListResponse, CategoryResponse } from '@invicity/contracts';
 
 export type HeaderProps = {
   categories: {

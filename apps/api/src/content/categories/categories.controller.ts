@@ -1,10 +1,10 @@
 import { Public } from '@api/src/common/decorators/public.decorator.js';
+import { CategoriesResponse } from '@invicity/contracts';
 import { Controller, Get, Logger, Query } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { CategoriesService } from './categories.service.js';
 import { CategoryQueryDto } from './dto/type-query.dto.js';
-import { CategoriesResponse } from '@invicity/contracts';
 
 @ApiTags('categories')
 @Public()

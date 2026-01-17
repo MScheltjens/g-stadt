@@ -1,10 +1,7 @@
-import {
-  CategoryListResponseSchema,
-  CategoryType,
-  type CategoryQuery,
-} from '@invicity/contracts';
-import { safeFetch } from '../safe-fetch';
 import { Locale } from '@invicity/constants';
+import { CategoryListResponseSchema, CategoryType } from '@invicity/contracts';
+
+import { safeFetch } from '../safe-fetch';
 
 export async function getCategories(locale: Locale, type?: CategoryType) {
   return await safeFetch(

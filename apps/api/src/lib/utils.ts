@@ -1,4 +1,4 @@
-import { CategoryListResponse, CategoryResponse } from '@invicity/contracts';
+import { CategoryListResponse } from '@invicity/contracts';
 
 // Slugify a string to create URL-friendly slugs
 export const slugify = (text: string): string =>

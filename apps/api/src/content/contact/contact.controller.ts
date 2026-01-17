@@ -8,7 +8,9 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+
 import { Public } from '@/common/decorators/public.decorator.js';
+
 import { ContactService } from './contact.service.js';
 
 @ApiTags('contact')

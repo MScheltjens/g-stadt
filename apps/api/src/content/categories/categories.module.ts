@@ -1,8 +1,8 @@
+import { PrismaService } from '@api/src/db/prisma.service.js';
 import { Module } from '@nestjs/common';
 
-import { CategoriesService } from './categories.service.js';
-import { PrismaService } from '@api/src/db/prisma.service.js';
 import { CategoriesController } from './categories.controller.js';
+import { CategoriesService } from './categories.service.js';
 
 @Module({
   controllers: [CategoriesController],
