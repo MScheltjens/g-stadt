@@ -1,14 +1,17 @@
 import { setRequestLocale } from '@invicity/i18n/server';
 
-import { ComingSoon } from '@/components/common/coming-soon';
+import { getAllServicesByCategory, getList } from '@/lib/api/services';
+import { PageProps } from '@/lib/types/next-page';
 
-type ServicesPageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function ServicesPage({ params }: ServicesPageProps) {
+export default async function ServicesPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <ComingSoon />;
+  const servicesList = await getAllServicesByCategory(locale);
+
+  return (
+    <>
+      <pre>{JSON.stringify(servicesList, null, 2)}</pre>
+    </>
+  );
 }

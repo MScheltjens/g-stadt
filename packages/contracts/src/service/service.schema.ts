@@ -16,14 +16,10 @@ export const ServiceTranslationSchema = z.object({
 
 export type ServiceTranslation = z.infer<typeof ServiceTranslationSchema>;
 
-/* =========================
-   SERVICE RESPONSE
-   ========================= */
-
 export const ServiceSchema = z.object({
   id: z.uuid(),
   icon: z.string(),
-  externalUrl: z.string().url().nullable(),
+  externalUrl: z.url().nullable(),
   requiresAuth: z.boolean(),
   role: RoleSchema.nullable(),
   translations: z.array(ServiceTranslationSchema),

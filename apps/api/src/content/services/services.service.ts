@@ -1,64 +1,59 @@
 import { Locale } from '@invicity/constants';
 import {
-  type ServiceCategory,
-  ServiceCategorySchema,
-  ServiceSchema,
+  ServicesByCategoryResponseSchema,
+  type ServicesByCategoryResponse,
 } from '@invicity/contracts';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 import { PrismaService } from '@/db/prisma.service.js';
 
 @Injectable()
 export class ServicesService {
+  private readonly logger = new Logger(ServicesService.name);
+
   constructor(private readonly prisma: PrismaService) {}
 
-  async list(locale: Locale): Promise<ServiceCategory[]> {
-    const categories = await this.prisma.serviceCategory.findMany({
-      where: { isActive: true },
-      orderBy: { order: 'asc' },
-      include: {
-        translations: {
-          where: { locale },
-        },
-        services: {
-          where: { isActive: true },
-          orderBy: { order: 'asc' },
-          include: {
-            translations: {
-              where: { locale },
+  /**
+   * Fetch all active service categories and their services, filtered by locale.
+   * Throws and logs errors for production readiness.
+   */
+  async getAllServicesByCategory(
+    locale: Locale,
+  ): Promise<ServicesByCategoryResponse> {
+    try {
+      const data = await this.prisma.serviceCategory.findMany({
+        where: { isActive: true },
+        orderBy: { order: 'asc' },
+        include: {
+          translations: {
+            where: { locale },
+          },
+          services: {
+            where: { isActive: true },
+            orderBy: { order: 'asc' },
+            include: {
+              translations: {
+                where: { locale },
+              },
             },
           },
         },
-      },
-    });
-
-    return categories.map((category) =>
-      ServiceCategorySchema.parse({
-        id: category.id,
-        code: category.code,
-        order: category.order,
-        isActive: category.isActive,
-        translations: category.translations.map((t) => ({
-          locale: t.locale,
-          label: t.label,
-          slug: t.slug,
-        })),
-        services: category.services.map((service) =>
-          ServiceSchema.parse({
-            id: service.id,
-            icon: service.icon,
-            externalUrl: service.externalUrl,
-            requiresAuth: service.requiresAuth,
-            role: service.role,
-            translations: service.translations.map((t) => ({
-              locale: t.locale,
-              title: t.title,
-              description: t.description,
-              slug: t.slug,
-            })),
-          }),
-        ),
-      }),
-    );
+      });
+      // validate the returned data
+      return ServicesByCategoryResponseSchema.parse(data);
+    } catch (error) {
+      if (error instanceof Error) {
+        this.logger.error(
+          'Database error in getAllServicesByCategory',
+          error.stack,
+        );
+      } else {
+        this.logger.error(
+          'Database error in getAllServicesByCategory',
+          String(error),
+        );
+      }
+      throw error;
+    }
   }
 }

@@ -9,7 +9,7 @@ import { setRequestLocale } from '@invicity/i18n/server';
 
 import { SignInForm } from '@/components/auth/sign-in-form';
 import { Modal } from '@/components/common/modal';
-import type { PageProps } from '@/types/next-page';
+import type { PageProps } from '@/lib/types/next-page';
 
 export default async function LoginModal({ params }: PageProps) {
   const { locale } = await params;

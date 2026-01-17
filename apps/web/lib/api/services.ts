@@ -1,14 +1,22 @@
 import {
-  type ServiceCategory,
-  ServiceCategoryListSchema,
+  type ServicesByCategoryResponse,
+  ServicesByCategoryResponseSchema,
 } from '@invicity/contracts';
 
 import { safeFetch } from '@/lib/safe-fetch';
 
-export async function getServiceCategories(
+// Fetch all services ordered by category and filtered by locale //
+
+export async function getAllServicesByCategory(
   locale: string,
-): Promise<ServiceCategory[]> {
-  return safeFetch(`/services?locale=${locale}`, ServiceCategoryListSchema, {
-    next: { revalidate: 60 * 60 }, // cache 1h
-  });
+): Promise<ServicesByCategoryResponse> {
+  return safeFetch(
+    `/services?locale=${locale}`,
+    ServicesByCategoryResponseSchema,
+    {
+      next: { revalidate: 60 * 60 }, // cache 1h
+    },
+  );
 }
+
+//

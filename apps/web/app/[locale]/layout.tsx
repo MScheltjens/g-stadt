@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 
 import { Providers } from '@/components/providers/providers';
 import { getUser } from '@/lib/auth';
-import type { LayoutProps, MetadataProps } from '@/types/next-page';
+import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
 
 export async function generateMetadata({
   params,

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { LocaleSchema } from '../routing/locale.schema';
+import { ServiceSchema } from './service.schema';
 
 /* =========================
    TRANSLATIONS
@@ -20,12 +21,22 @@ export type ServiceCategoryTranslation = z.infer<
    CATEGORY RESPONSE
    ========================= */
 
-export const ServiceCategorySchema = z.object({
+export const CategoryWithServicesResponseSchema = z.object({
   id: z.uuid(),
   code: z.string(),
   order: z.number(),
   isActive: z.boolean(),
   translations: z.array(ServiceCategoryTranslationSchema),
+  services: z.array(ServiceSchema),
 });
 
-export type ServiceCategory = z.infer<typeof ServiceCategorySchema>;
+export const ServicesByCategoryResponseSchema = z.array(
+  CategoryWithServicesResponseSchema,
+);
+
+export type CategoryWithServicesResponse = z.infer<
+  typeof CategoryWithServicesResponseSchema
+>;
+export type ServicesByCategoryResponse = z.infer<
+  typeof ServicesByCategoryResponseSchema
+>;

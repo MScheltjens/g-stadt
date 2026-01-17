@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import { Metadata } from 'next';
 
 import { checkUserRole } from '@/lib/auth';
-import type { LayoutProps, MetadataProps } from '@/types/next-page';
+import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
 
 export async function generateMetadata({
   params,
