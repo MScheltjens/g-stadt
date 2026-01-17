@@ -1,6 +1,6 @@
 import { setRequestLocale } from '@invicity/i18n/server';
 
-import { getAllServicesByCategory, getList } from '@/lib/api/services';
+import { getAllServicesByCategory } from '@/lib/api/services';
 import { PageProps } from '@/lib/types/next-page';
 
 export default async function ServicesPage({ params }: PageProps) {
