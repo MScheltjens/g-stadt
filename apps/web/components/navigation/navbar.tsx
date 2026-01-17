@@ -32,29 +32,6 @@ export function Navbar() {
                 {t(item.label)}
               </Link>
             </NavigationMenuTrigger>
-            {/* <NavigationMenuContent>
-              <ul className="flex flex-col gap-1">
-                {item.children.map((child) => (
-                  <li key={child.href}>
-                    <NavigationMenuLink asChild className="rounded-none">
-                      <Link
-                        // @ts-expect-error -- TypeScript will validate that only known `params`
-                        // are used in combination with a given `pathname`. Since the two will
-                        // always match for the current route, we can skip runtime checks.
-                        href={child.href}
-                        className={cn(
-                          'block px-3 py-1.5 text-sm',
-                          'hover:bg-muted',
-                          pathname === child.href && 'font-medium text-primary',
-                        )}
-                      >
-                        {t(child.label)}
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                ))}
-              </ul>
-            </NavigationMenuContent> */}
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>

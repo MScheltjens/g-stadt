@@ -7,7 +7,5 @@ export * from './env/api.env.schema';
 export * from './env/base.env.schema';
 export * from './env/web.env.schema';
 export * from './routing/locale.schema';
-export * from './service/service.query.schema';
 export * from './service/service.schema';
-export * from './service/service-category.schema';
 export * from './user/user.schema';

@@ -7,6 +7,9 @@ import { NavbarIcons } from '../navigation/navbar-icons';
 import { HeaderUtils } from './header-utils';
 
 export async function Header() {
+  // get all serviceCategories
+  // get all ContactCategories
+
   return (
     <header className="w-full bg-background border-b border-border">
       <div className="mx-auto max-w-7xl px-6">
