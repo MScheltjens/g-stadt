@@ -1,7 +1,7 @@
 import { Locale } from '@invicity/constants';
 import {
-  ServicesByCategoryResponseSchema,
   type ServicesByCategoryResponse,
+  ServicesByCategoryResponseSchema,
 } from '@invicity/contracts';
 import { Injectable, Logger } from '@nestjs/common';
 

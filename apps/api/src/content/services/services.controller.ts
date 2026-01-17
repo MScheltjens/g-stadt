@@ -1,19 +1,17 @@
+import { LocaleQueryDto } from '@api/src/common/dto/locale-query.dto.js';
 import {
+  BadRequestException,
   Controller,
   Get,
-  Query,
-  BadRequestException,
   InternalServerErrorException,
-  UsePipes,
-  ValidationPipe,
   Logger,
+  Query,
 } from '@nestjs/common';
 import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Public } from '@/common/decorators/public.decorator.js';
 
 import { ServicesService } from './services.service.js';
-import { LocaleQueryDto } from '@api/src/common/dto/locale-query.dto.js';
 
 @ApiTags('services')
 @Public()
