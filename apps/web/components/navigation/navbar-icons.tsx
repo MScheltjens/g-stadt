@@ -53,8 +53,8 @@ export function NavbarIcons({ categories }: HeaderProps) {
                         // are used in combination with a given `pathname`. Since the two will
                         // always match for the current route, we can skip runtime checks.
                         href={
-                          cat.translations[0].slug
-                            ? `/services/${cat.translations[0].slug}`
+                          cat.translations[0]?.slug
+                            ? `/services/${cat.translations[0]?.slug}`
                             : '#'
                         }
                         className="block px-4 py-2 hover:bg-gray-100"
