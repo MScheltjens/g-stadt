@@ -139,14 +139,15 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   expiresAt: 'expiresAt',
 };
 
-exports.Prisma.ServiceCategoryScalarFieldEnum = {
+exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   code: 'code',
+  type: 'type',
   order: 'order',
   isActive: 'isActive',
 };
 
-exports.Prisma.ServiceCategoryTranslationScalarFieldEnum = {
+exports.Prisma.CategoryTranslationScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
   locale: 'locale',
@@ -176,6 +177,28 @@ exports.Prisma.ServiceTranslationScalarFieldEnum = {
   slug: 'slug',
 };
 
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  icon: 'icon',
+  externalUrl: 'externalUrl',
+  order: 'order',
+  isActive: 'isActive',
+  requiresAuth: 'requiresAuth',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+};
+
+exports.Prisma.ContactTranslationScalarFieldEnum = {
+  id: 'id',
+  contactId: 'contactId',
+  locale: 'locale',
+  title: 'title',
+  description: 'description',
+  slug: 'slug',
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc',
@@ -196,6 +219,11 @@ exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
 };
 
+exports.CategoryType = exports.$Enums.CategoryType = {
+  SERVICE: 'SERVICE',
+  CONTACT: 'CONTACT',
+};
+
 exports.Locale = exports.$Enums.Locale = {
   en: 'en',
   fr: 'fr',
@@ -206,10 +234,12 @@ exports.Prisma.ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
   PasswordResetToken: 'PasswordResetToken',
-  ServiceCategory: 'ServiceCategory',
-  ServiceCategoryTranslation: 'ServiceCategoryTranslation',
+  Category: 'Category',
+  CategoryTranslation: 'CategoryTranslation',
   Service: 'Service',
   ServiceTranslation: 'ServiceTranslation',
+  Contact: 'Contact',
+  ContactTranslation: 'ContactTranslation',
 };
 
 /**

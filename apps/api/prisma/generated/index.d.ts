@@ -29,17 +29,16 @@ export type RefreshToken =
 export type PasswordResetToken =
   $Result.DefaultSelection<Prisma.$PasswordResetTokenPayload>;
 /**
- * Model ServiceCategory
+ * Model Category
  *
  */
-export type ServiceCategory =
-  $Result.DefaultSelection<Prisma.$ServiceCategoryPayload>;
+export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>;
 /**
- * Model ServiceCategoryTranslation
+ * Model CategoryTranslation
  *
  */
-export type ServiceCategoryTranslation =
-  $Result.DefaultSelection<Prisma.$ServiceCategoryTranslationPayload>;
+export type CategoryTranslation =
+  $Result.DefaultSelection<Prisma.$CategoryTranslationPayload>;
 /**
  * Model Service
  *
@@ -51,6 +50,17 @@ export type Service = $Result.DefaultSelection<Prisma.$ServicePayload>;
  */
 export type ServiceTranslation =
   $Result.DefaultSelection<Prisma.$ServiceTranslationPayload>;
+/**
+ * Model Contact
+ *
+ */
+export type Contact = $Result.DefaultSelection<Prisma.$ContactPayload>;
+/**
+ * Model ContactTranslation
+ *
+ */
+export type ContactTranslation =
+  $Result.DefaultSelection<Prisma.$ContactTranslationPayload>;
 
 /**
  * Enums
@@ -71,6 +81,13 @@ export namespace $Enums {
   };
 
   export type Locale = (typeof Locale)[keyof typeof Locale];
+
+  export const CategoryType: {
+    SERVICE: 'SERVICE';
+    CONTACT: 'CONTACT';
+  };
+
+  export type CategoryType = (typeof CategoryType)[keyof typeof CategoryType];
 }
 
 export type Role = $Enums.Role;
@@ -80,6 +97,10 @@ export const Role: typeof $Enums.Role;
 export type Locale = $Enums.Locale;
 
 export const Locale: typeof $Enums.Locale;
+
+export type CategoryType = $Enums.CategoryType;
+
+export const CategoryType: typeof $Enums.CategoryType;
 
 /**
  * ##  Prisma Client ʲˢ
@@ -274,24 +295,24 @@ export class PrismaClient<
   >;
 
   /**
-   * `prisma.serviceCategory`: Exposes CRUD operations for the **ServiceCategory** model.
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
    * Example usage:
    * ```ts
-   * // Fetch zero or more ServiceCategories
-   * const serviceCategories = await prisma.serviceCategory.findMany()
+   * // Fetch zero or more Categories
+   * const categories = await prisma.category.findMany()
    * ```
    */
-  get serviceCategory(): Prisma.ServiceCategoryDelegate<ExtArgs, ClientOptions>;
+  get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.serviceCategoryTranslation`: Exposes CRUD operations for the **ServiceCategoryTranslation** model.
+   * `prisma.categoryTranslation`: Exposes CRUD operations for the **CategoryTranslation** model.
    * Example usage:
    * ```ts
-   * // Fetch zero or more ServiceCategoryTranslations
-   * const serviceCategoryTranslations = await prisma.serviceCategoryTranslation.findMany()
+   * // Fetch zero or more CategoryTranslations
+   * const categoryTranslations = await prisma.categoryTranslation.findMany()
    * ```
    */
-  get serviceCategoryTranslation(): Prisma.ServiceCategoryTranslationDelegate<
+  get categoryTranslation(): Prisma.CategoryTranslationDelegate<
     ExtArgs,
     ClientOptions
   >;
@@ -315,6 +336,29 @@ export class PrismaClient<
    * ```
    */
   get serviceTranslation(): Prisma.ServiceTranslationDelegate<
+    ExtArgs,
+    ClientOptions
+  >;
+
+  /**
+   * `prisma.contact`: Exposes CRUD operations for the **Contact** model.
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Contacts
+   * const contacts = await prisma.contact.findMany()
+   * ```
+   */
+  get contact(): Prisma.ContactDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contactTranslation`: Exposes CRUD operations for the **ContactTranslation** model.
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more ContactTranslations
+   * const contactTranslations = await prisma.contactTranslation.findMany()
+   * ```
+   */
+  get contactTranslation(): Prisma.ContactTranslationDelegate<
     ExtArgs,
     ClientOptions
   >;
@@ -773,10 +817,12 @@ export namespace Prisma {
     User: 'User';
     RefreshToken: 'RefreshToken';
     PasswordResetToken: 'PasswordResetToken';
-    ServiceCategory: 'ServiceCategory';
-    ServiceCategoryTranslation: 'ServiceCategoryTranslation';
+    Category: 'Category';
+    CategoryTranslation: 'CategoryTranslation';
     Service: 'Service';
     ServiceTranslation: 'ServiceTranslation';
+    Contact: 'Contact';
+    ContactTranslation: 'ContactTranslation';
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -803,10 +849,12 @@ export namespace Prisma {
         | 'user'
         | 'refreshToken'
         | 'passwordResetToken'
-        | 'serviceCategory'
-        | 'serviceCategoryTranslation'
+        | 'category'
+        | 'categoryTranslation'
         | 'service'
-        | 'serviceTranslation';
+        | 'serviceTranslation'
+        | 'contact'
+        | 'contactTranslation';
       txIsolationLevel: Prisma.TransactionIsolationLevel;
     };
     model: {
@@ -1036,154 +1084,152 @@ export namespace Prisma {
           };
         };
       };
-      ServiceCategory: {
-        payload: Prisma.$ServiceCategoryPayload<ExtArgs>;
-        fields: Prisma.ServiceCategoryFieldRefs;
+      Category: {
+        payload: Prisma.$CategoryPayload<ExtArgs>;
+        fields: Prisma.CategoryFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.ServiceCategoryFindUniqueArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null;
+            args: Prisma.CategoryFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null;
           };
           findUniqueOrThrow: {
-            args: Prisma.ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+            args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>;
           };
           findFirst: {
-            args: Prisma.ServiceCategoryFindFirstArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null;
+            args: Prisma.CategoryFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null;
           };
           findFirstOrThrow: {
-            args: Prisma.ServiceCategoryFindFirstOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+            args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>;
           };
           findMany: {
-            args: Prisma.ServiceCategoryFindManyArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[];
+            args: Prisma.CategoryFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[];
           };
           create: {
-            args: Prisma.ServiceCategoryCreateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+            args: Prisma.CategoryCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>;
           };
           createMany: {
-            args: Prisma.ServiceCategoryCreateManyArgs<ExtArgs>;
+            args: Prisma.CategoryCreateManyArgs<ExtArgs>;
             result: BatchPayload;
           };
           createManyAndReturn: {
-            args: Prisma.ServiceCategoryCreateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[];
+            args: Prisma.CategoryCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[];
           };
           delete: {
-            args: Prisma.ServiceCategoryDeleteArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+            args: Prisma.CategoryDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>;
           };
           update: {
-            args: Prisma.ServiceCategoryUpdateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+            args: Prisma.CategoryUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>;
           };
           deleteMany: {
-            args: Prisma.ServiceCategoryDeleteManyArgs<ExtArgs>;
+            args: Prisma.CategoryDeleteManyArgs<ExtArgs>;
             result: BatchPayload;
           };
           updateMany: {
-            args: Prisma.ServiceCategoryUpdateManyArgs<ExtArgs>;
+            args: Prisma.CategoryUpdateManyArgs<ExtArgs>;
             result: BatchPayload;
           };
           updateManyAndReturn: {
-            args: Prisma.ServiceCategoryUpdateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[];
+            args: Prisma.CategoryUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[];
           };
           upsert: {
-            args: Prisma.ServiceCategoryUpsertArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+            args: Prisma.CategoryUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>;
           };
           aggregate: {
-            args: Prisma.ServiceCategoryAggregateArgs<ExtArgs>;
-            result: $Utils.Optional<AggregateServiceCategory>;
+            args: Prisma.CategoryAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateCategory>;
           };
           groupBy: {
-            args: Prisma.ServiceCategoryGroupByArgs<ExtArgs>;
-            result: $Utils.Optional<ServiceCategoryGroupByOutputType>[];
+            args: Prisma.CategoryGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<CategoryGroupByOutputType>[];
           };
           count: {
-            args: Prisma.ServiceCategoryCountArgs<ExtArgs>;
-            result:
-              | $Utils.Optional<ServiceCategoryCountAggregateOutputType>
-              | number;
+            args: Prisma.CategoryCountArgs<ExtArgs>;
+            result: $Utils.Optional<CategoryCountAggregateOutputType> | number;
           };
         };
       };
-      ServiceCategoryTranslation: {
-        payload: Prisma.$ServiceCategoryTranslationPayload<ExtArgs>;
-        fields: Prisma.ServiceCategoryTranslationFieldRefs;
+      CategoryTranslation: {
+        payload: Prisma.$CategoryTranslationPayload<ExtArgs>;
+        fields: Prisma.CategoryTranslationFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.ServiceCategoryTranslationFindUniqueArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload> | null;
+            args: Prisma.CategoryTranslationFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload> | null;
           };
           findUniqueOrThrow: {
-            args: Prisma.ServiceCategoryTranslationFindUniqueOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>;
+            args: Prisma.CategoryTranslationFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>;
           };
           findFirst: {
-            args: Prisma.ServiceCategoryTranslationFindFirstArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload> | null;
+            args: Prisma.CategoryTranslationFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload> | null;
           };
           findFirstOrThrow: {
-            args: Prisma.ServiceCategoryTranslationFindFirstOrThrowArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>;
+            args: Prisma.CategoryTranslationFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>;
           };
           findMany: {
-            args: Prisma.ServiceCategoryTranslationFindManyArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>[];
+            args: Prisma.CategoryTranslationFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>[];
           };
           create: {
-            args: Prisma.ServiceCategoryTranslationCreateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>;
+            args: Prisma.CategoryTranslationCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>;
           };
           createMany: {
-            args: Prisma.ServiceCategoryTranslationCreateManyArgs<ExtArgs>;
+            args: Prisma.CategoryTranslationCreateManyArgs<ExtArgs>;
             result: BatchPayload;
           };
           createManyAndReturn: {
-            args: Prisma.ServiceCategoryTranslationCreateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>[];
+            args: Prisma.CategoryTranslationCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>[];
           };
           delete: {
-            args: Prisma.ServiceCategoryTranslationDeleteArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>;
+            args: Prisma.CategoryTranslationDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>;
           };
           update: {
-            args: Prisma.ServiceCategoryTranslationUpdateArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>;
+            args: Prisma.CategoryTranslationUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>;
           };
           deleteMany: {
-            args: Prisma.ServiceCategoryTranslationDeleteManyArgs<ExtArgs>;
+            args: Prisma.CategoryTranslationDeleteManyArgs<ExtArgs>;
             result: BatchPayload;
           };
           updateMany: {
-            args: Prisma.ServiceCategoryTranslationUpdateManyArgs<ExtArgs>;
+            args: Prisma.CategoryTranslationUpdateManyArgs<ExtArgs>;
             result: BatchPayload;
           };
           updateManyAndReturn: {
-            args: Prisma.ServiceCategoryTranslationUpdateManyAndReturnArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>[];
+            args: Prisma.CategoryTranslationUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>[];
           };
           upsert: {
-            args: Prisma.ServiceCategoryTranslationUpsertArgs<ExtArgs>;
-            result: $Utils.PayloadToResult<Prisma.$ServiceCategoryTranslationPayload>;
+            args: Prisma.CategoryTranslationUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CategoryTranslationPayload>;
           };
           aggregate: {
-            args: Prisma.ServiceCategoryTranslationAggregateArgs<ExtArgs>;
-            result: $Utils.Optional<AggregateServiceCategoryTranslation>;
+            args: Prisma.CategoryTranslationAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateCategoryTranslation>;
           };
           groupBy: {
-            args: Prisma.ServiceCategoryTranslationGroupByArgs<ExtArgs>;
-            result: $Utils.Optional<ServiceCategoryTranslationGroupByOutputType>[];
+            args: Prisma.CategoryTranslationGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<CategoryTranslationGroupByOutputType>[];
           };
           count: {
-            args: Prisma.ServiceCategoryTranslationCountArgs<ExtArgs>;
+            args: Prisma.CategoryTranslationCountArgs<ExtArgs>;
             result:
-              | $Utils.Optional<ServiceCategoryTranslationCountAggregateOutputType>
+              | $Utils.Optional<CategoryTranslationCountAggregateOutputType>
               | number;
           };
         };
@@ -1338,6 +1384,156 @@ export namespace Prisma {
           };
         };
       };
+      Contact: {
+        payload: Prisma.$ContactPayload<ExtArgs>;
+        fields: Prisma.ContactFieldRefs;
+        operations: {
+          findUnique: {
+            args: Prisma.ContactFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload> | null;
+          };
+          findUniqueOrThrow: {
+            args: Prisma.ContactFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>;
+          };
+          findFirst: {
+            args: Prisma.ContactFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload> | null;
+          };
+          findFirstOrThrow: {
+            args: Prisma.ContactFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>;
+          };
+          findMany: {
+            args: Prisma.ContactFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>[];
+          };
+          create: {
+            args: Prisma.ContactCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>;
+          };
+          createMany: {
+            args: Prisma.ContactCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          createManyAndReturn: {
+            args: Prisma.ContactCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>[];
+          };
+          delete: {
+            args: Prisma.ContactDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>;
+          };
+          update: {
+            args: Prisma.ContactUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>;
+          };
+          deleteMany: {
+            args: Prisma.ContactDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateMany: {
+            args: Prisma.ContactUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateManyAndReturn: {
+            args: Prisma.ContactUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>[];
+          };
+          upsert: {
+            args: Prisma.ContactUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactPayload>;
+          };
+          aggregate: {
+            args: Prisma.ContactAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateContact>;
+          };
+          groupBy: {
+            args: Prisma.ContactGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<ContactGroupByOutputType>[];
+          };
+          count: {
+            args: Prisma.ContactCountArgs<ExtArgs>;
+            result: $Utils.Optional<ContactCountAggregateOutputType> | number;
+          };
+        };
+      };
+      ContactTranslation: {
+        payload: Prisma.$ContactTranslationPayload<ExtArgs>;
+        fields: Prisma.ContactTranslationFieldRefs;
+        operations: {
+          findUnique: {
+            args: Prisma.ContactTranslationFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload> | null;
+          };
+          findUniqueOrThrow: {
+            args: Prisma.ContactTranslationFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>;
+          };
+          findFirst: {
+            args: Prisma.ContactTranslationFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload> | null;
+          };
+          findFirstOrThrow: {
+            args: Prisma.ContactTranslationFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>;
+          };
+          findMany: {
+            args: Prisma.ContactTranslationFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>[];
+          };
+          create: {
+            args: Prisma.ContactTranslationCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>;
+          };
+          createMany: {
+            args: Prisma.ContactTranslationCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          createManyAndReturn: {
+            args: Prisma.ContactTranslationCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>[];
+          };
+          delete: {
+            args: Prisma.ContactTranslationDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>;
+          };
+          update: {
+            args: Prisma.ContactTranslationUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>;
+          };
+          deleteMany: {
+            args: Prisma.ContactTranslationDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateMany: {
+            args: Prisma.ContactTranslationUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
+          updateManyAndReturn: {
+            args: Prisma.ContactTranslationUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>[];
+          };
+          upsert: {
+            args: Prisma.ContactTranslationUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ContactTranslationPayload>;
+          };
+          aggregate: {
+            args: Prisma.ContactTranslationAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateContactTranslation>;
+          };
+          groupBy: {
+            args: Prisma.ContactTranslationGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<ContactTranslationGroupByOutputType>[];
+          };
+          count: {
+            args: Prisma.ContactTranslationCountArgs<ExtArgs>;
+            result:
+              | $Utils.Optional<ContactTranslationCountAggregateOutputType>
+              | number;
+          };
+        };
+      };
     };
   } & {
     other: {
@@ -1453,10 +1649,12 @@ export namespace Prisma {
     user?: UserOmit;
     refreshToken?: RefreshTokenOmit;
     passwordResetToken?: PasswordResetTokenOmit;
-    serviceCategory?: ServiceCategoryOmit;
-    serviceCategoryTranslation?: ServiceCategoryTranslationOmit;
+    category?: CategoryOmit;
+    categoryTranslation?: CategoryTranslationOmit;
     service?: ServiceOmit;
     serviceTranslation?: ServiceTranslationOmit;
+    contact?: ContactOmit;
+    contactTranslation?: ContactTranslationOmit;
   };
 
   /* Types for Logging */
@@ -1584,52 +1782,61 @@ export namespace Prisma {
   };
 
   /**
-   * Count Type ServiceCategoryCountOutputType
+   * Count Type CategoryCountOutputType
    */
 
-  export type ServiceCategoryCountOutputType = {
+  export type CategoryCountOutputType = {
     services: number;
+    contacts: number;
     translations: number;
   };
 
-  export type ServiceCategoryCountOutputTypeSelect<
+  export type CategoryCountOutputTypeSelect<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    services?: boolean | ServiceCategoryCountOutputTypeCountServicesArgs;
-    translations?:
-      | boolean
-      | ServiceCategoryCountOutputTypeCountTranslationsArgs;
+    services?: boolean | CategoryCountOutputTypeCountServicesArgs;
+    contacts?: boolean | CategoryCountOutputTypeCountContactsArgs;
+    translations?: boolean | CategoryCountOutputTypeCountTranslationsArgs;
   };
 
   // Custom InputTypes
   /**
-   * ServiceCategoryCountOutputType without action
+   * CategoryCountOutputType without action
    */
-  export type ServiceCategoryCountOutputTypeDefaultArgs<
+  export type CategoryCountOutputTypeDefaultArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryCountOutputType
+     * Select specific fields to fetch from the CategoryCountOutputType
      */
-    select?: ServiceCategoryCountOutputTypeSelect<ExtArgs> | null;
+    select?: CategoryCountOutputTypeSelect<ExtArgs> | null;
   };
 
   /**
-   * ServiceCategoryCountOutputType without action
+   * CategoryCountOutputType without action
    */
-  export type ServiceCategoryCountOutputTypeCountServicesArgs<
+  export type CategoryCountOutputTypeCountServicesArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     where?: ServiceWhereInput;
   };
 
   /**
-   * ServiceCategoryCountOutputType without action
+   * CategoryCountOutputType without action
    */
-  export type ServiceCategoryCountOutputTypeCountTranslationsArgs<
+  export type CategoryCountOutputTypeCountContactsArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: ContactWhereInput;
+  };
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountTranslationsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: CategoryTranslationWhereInput;
   };
 
   /**
@@ -1666,6 +1873,42 @@ export namespace Prisma {
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     where?: ServiceTranslationWhereInput;
+  };
+
+  /**
+   * Count Type ContactCountOutputType
+   */
+
+  export type ContactCountOutputType = {
+    translations: number;
+  };
+
+  export type ContactCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    translations?: boolean | ContactCountOutputTypeCountTranslationsArgs;
+  };
+
+  // Custom InputTypes
+  /**
+   * ContactCountOutputType without action
+   */
+  export type ContactCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactCountOutputType
+     */
+    select?: ContactCountOutputTypeSelect<ExtArgs> | null;
+  };
+
+  /**
+   * ContactCountOutputType without action
+   */
+  export type ContactCountOutputTypeCountTranslationsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: ContactTranslationWhereInput;
   };
 
   /**
@@ -5664,321 +5907,328 @@ export namespace Prisma {
   };
 
   /**
-   * Model ServiceCategory
+   * Model Category
    */
 
-  export type AggregateServiceCategory = {
-    _count: ServiceCategoryCountAggregateOutputType | null;
-    _avg: ServiceCategoryAvgAggregateOutputType | null;
-    _sum: ServiceCategorySumAggregateOutputType | null;
-    _min: ServiceCategoryMinAggregateOutputType | null;
-    _max: ServiceCategoryMaxAggregateOutputType | null;
+  export type AggregateCategory = {
+    _count: CategoryCountAggregateOutputType | null;
+    _avg: CategoryAvgAggregateOutputType | null;
+    _sum: CategorySumAggregateOutputType | null;
+    _min: CategoryMinAggregateOutputType | null;
+    _max: CategoryMaxAggregateOutputType | null;
   };
 
-  export type ServiceCategoryAvgAggregateOutputType = {
+  export type CategoryAvgAggregateOutputType = {
     order: number | null;
   };
 
-  export type ServiceCategorySumAggregateOutputType = {
+  export type CategorySumAggregateOutputType = {
     order: number | null;
   };
 
-  export type ServiceCategoryMinAggregateOutputType = {
+  export type CategoryMinAggregateOutputType = {
     id: string | null;
     code: string | null;
+    type: $Enums.CategoryType | null;
     order: number | null;
     isActive: boolean | null;
   };
 
-  export type ServiceCategoryMaxAggregateOutputType = {
+  export type CategoryMaxAggregateOutputType = {
     id: string | null;
     code: string | null;
+    type: $Enums.CategoryType | null;
     order: number | null;
     isActive: boolean | null;
   };
 
-  export type ServiceCategoryCountAggregateOutputType = {
+  export type CategoryCountAggregateOutputType = {
     id: number;
     code: number;
+    type: number;
     order: number;
     isActive: number;
     _all: number;
   };
 
-  export type ServiceCategoryAvgAggregateInputType = {
+  export type CategoryAvgAggregateInputType = {
     order?: true;
   };
 
-  export type ServiceCategorySumAggregateInputType = {
+  export type CategorySumAggregateInputType = {
     order?: true;
   };
 
-  export type ServiceCategoryMinAggregateInputType = {
+  export type CategoryMinAggregateInputType = {
     id?: true;
     code?: true;
+    type?: true;
     order?: true;
     isActive?: true;
   };
 
-  export type ServiceCategoryMaxAggregateInputType = {
+  export type CategoryMaxAggregateInputType = {
     id?: true;
     code?: true;
+    type?: true;
     order?: true;
     isActive?: true;
   };
 
-  export type ServiceCategoryCountAggregateInputType = {
+  export type CategoryCountAggregateInputType = {
     id?: true;
     code?: true;
+    type?: true;
     order?: true;
     isActive?: true;
     _all?: true;
   };
 
-  export type ServiceCategoryAggregateArgs<
+  export type CategoryAggregateArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Filter which ServiceCategory to aggregate.
+     * Filter which Category to aggregate.
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategories to fetch.
+     * Determine the order of Categories to fetch.
      */
     orderBy?:
-      | ServiceCategoryOrderByWithRelationInput
-      | ServiceCategoryOrderByWithRelationInput[];
+      | CategoryOrderByWithRelationInput
+      | CategoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
      * Sets the start position
      */
-    cursor?: ServiceCategoryWhereUniqueInput;
+    cursor?: CategoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategories from the position of the cursor.
+     * Take `±n` Categories from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategories.
+     * Skip the first `n` Categories.
      */
     skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
-     * Count returned ServiceCategories
+     * Count returned Categories
      **/
-    _count?: true | ServiceCategoryCountAggregateInputType;
+    _count?: true | CategoryCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to average
      **/
-    _avg?: ServiceCategoryAvgAggregateInputType;
+    _avg?: CategoryAvgAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to sum
      **/
-    _sum?: ServiceCategorySumAggregateInputType;
+    _sum?: CategorySumAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to find the minimum value
      **/
-    _min?: ServiceCategoryMinAggregateInputType;
+    _min?: CategoryMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to find the maximum value
      **/
-    _max?: ServiceCategoryMaxAggregateInputType;
+    _max?: CategoryMaxAggregateInputType;
   };
 
-  export type GetServiceCategoryAggregateType<
-    T extends ServiceCategoryAggregateArgs,
-  > = {
-    [P in keyof T & keyof AggregateServiceCategory]: P extends
-      | '_count'
-      | 'count'
+  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
+    [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateServiceCategory[P]>
-      : GetScalarType<T[P], AggregateServiceCategory[P]>;
+        : GetScalarType<T[P], AggregateCategory[P]>
+      : GetScalarType<T[P], AggregateCategory[P]>;
   };
 
-  export type ServiceCategoryGroupByArgs<
+  export type CategoryGroupByArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     orderBy?:
-      | ServiceCategoryOrderByWithAggregationInput
-      | ServiceCategoryOrderByWithAggregationInput[];
-    by: ServiceCategoryScalarFieldEnum[] | ServiceCategoryScalarFieldEnum;
-    having?: ServiceCategoryScalarWhereWithAggregatesInput;
+      | CategoryOrderByWithAggregationInput
+      | CategoryOrderByWithAggregationInput[];
+    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum;
+    having?: CategoryScalarWhereWithAggregatesInput;
     take?: number;
     skip?: number;
-    _count?: ServiceCategoryCountAggregateInputType | true;
-    _avg?: ServiceCategoryAvgAggregateInputType;
-    _sum?: ServiceCategorySumAggregateInputType;
-    _min?: ServiceCategoryMinAggregateInputType;
-    _max?: ServiceCategoryMaxAggregateInputType;
+    _count?: CategoryCountAggregateInputType | true;
+    _avg?: CategoryAvgAggregateInputType;
+    _sum?: CategorySumAggregateInputType;
+    _min?: CategoryMinAggregateInputType;
+    _max?: CategoryMaxAggregateInputType;
   };
 
-  export type ServiceCategoryGroupByOutputType = {
+  export type CategoryGroupByOutputType = {
     id: string;
     code: string;
+    type: $Enums.CategoryType;
     order: number;
     isActive: boolean;
-    _count: ServiceCategoryCountAggregateOutputType | null;
-    _avg: ServiceCategoryAvgAggregateOutputType | null;
-    _sum: ServiceCategorySumAggregateOutputType | null;
-    _min: ServiceCategoryMinAggregateOutputType | null;
-    _max: ServiceCategoryMaxAggregateOutputType | null;
+    _count: CategoryCountAggregateOutputType | null;
+    _avg: CategoryAvgAggregateOutputType | null;
+    _sum: CategorySumAggregateOutputType | null;
+    _min: CategoryMinAggregateOutputType | null;
+    _max: CategoryMaxAggregateOutputType | null;
   };
 
-  type GetServiceCategoryGroupByPayload<T extends ServiceCategoryGroupByArgs> =
+  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> =
     Prisma.PrismaPromise<
       Array<
-        PickEnumerable<ServiceCategoryGroupByOutputType, T['by']> & {
-          [P in keyof T &
-            keyof ServiceCategoryGroupByOutputType]: P extends '_count'
+        PickEnumerable<CategoryGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof CategoryGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
-            : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>;
+              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoryGroupByOutputType[P]>;
         }
       >
     >;
 
-  export type ServiceCategorySelect<
+  export type CategorySelect<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetSelect<
     {
       id?: boolean;
       code?: boolean;
+      type?: boolean;
       order?: boolean;
       isActive?: boolean;
-      services?: boolean | ServiceCategory$servicesArgs<ExtArgs>;
-      translations?: boolean | ServiceCategory$translationsArgs<ExtArgs>;
-      _count?: boolean | ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>;
+      services?: boolean | Category$servicesArgs<ExtArgs>;
+      contacts?: boolean | Category$contactsArgs<ExtArgs>;
+      translations?: boolean | Category$translationsArgs<ExtArgs>;
+      _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>;
     },
-    ExtArgs['result']['serviceCategory']
+    ExtArgs['result']['category']
   >;
 
-  export type ServiceCategorySelectCreateManyAndReturn<
+  export type CategorySelectCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetSelect<
     {
       id?: boolean;
       code?: boolean;
+      type?: boolean;
       order?: boolean;
       isActive?: boolean;
     },
-    ExtArgs['result']['serviceCategory']
+    ExtArgs['result']['category']
   >;
 
-  export type ServiceCategorySelectUpdateManyAndReturn<
+  export type CategorySelectUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetSelect<
     {
       id?: boolean;
       code?: boolean;
+      type?: boolean;
       order?: boolean;
       isActive?: boolean;
     },
-    ExtArgs['result']['serviceCategory']
+    ExtArgs['result']['category']
   >;
 
-  export type ServiceCategorySelectScalar = {
+  export type CategorySelectScalar = {
     id?: boolean;
     code?: boolean;
+    type?: boolean;
     order?: boolean;
     isActive?: boolean;
   };
 
-  export type ServiceCategoryOmit<
+  export type CategoryOmit<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetOmit<
-    'id' | 'code' | 'order' | 'isActive',
-    ExtArgs['result']['serviceCategory']
+    'id' | 'code' | 'type' | 'order' | 'isActive',
+    ExtArgs['result']['category']
   >;
-  export type ServiceCategoryInclude<
+  export type CategoryInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    services?: boolean | ServiceCategory$servicesArgs<ExtArgs>;
-    translations?: boolean | ServiceCategory$translationsArgs<ExtArgs>;
-    _count?: boolean | ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>;
+    services?: boolean | Category$servicesArgs<ExtArgs>;
+    contacts?: boolean | Category$contactsArgs<ExtArgs>;
+    translations?: boolean | Category$translationsArgs<ExtArgs>;
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>;
   };
-  export type ServiceCategoryIncludeCreateManyAndReturn<
+  export type CategoryIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {};
-  export type ServiceCategoryIncludeUpdateManyAndReturn<
+  export type CategoryIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {};
 
-  export type $ServiceCategoryPayload<
+  export type $CategoryPayload<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    name: 'ServiceCategory';
+    name: 'Category';
     objects: {
       services: Prisma.$ServicePayload<ExtArgs>[];
-      translations: Prisma.$ServiceCategoryTranslationPayload<ExtArgs>[];
+      contacts: Prisma.$ContactPayload<ExtArgs>[];
+      translations: Prisma.$CategoryTranslationPayload<ExtArgs>[];
     };
     scalars: $Extensions.GetPayloadResult<
       {
         id: string;
         code: string;
+        type: $Enums.CategoryType;
         order: number;
         isActive: boolean;
       },
-      ExtArgs['result']['serviceCategory']
+      ExtArgs['result']['category']
     >;
     composites: {};
   };
 
-  type ServiceCategoryGetPayload<
-    S extends boolean | null | undefined | ServiceCategoryDefaultArgs,
-  > = $Result.GetResult<Prisma.$ServiceCategoryPayload, S>;
+  type CategoryGetPayload<
+    S extends boolean | null | undefined | CategoryDefaultArgs,
+  > = $Result.GetResult<Prisma.$CategoryPayload, S>;
 
-  type ServiceCategoryCountArgs<
+  type CategoryCountArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = Omit<
-    ServiceCategoryFindManyArgs,
-    'select' | 'include' | 'distinct' | 'omit'
-  > & {
-    select?: ServiceCategoryCountAggregateInputType | true;
+  > = Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: CategoryCountAggregateInputType | true;
   };
 
-  export interface ServiceCategoryDelegate<
+  export interface CategoryDelegate<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
     GlobalOmitOptions = {},
   > {
     [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategory'];
-      meta: { name: 'ServiceCategory' };
+      types: Prisma.TypeMap<ExtArgs>['model']['Category'];
+      meta: { name: 'Category' };
     };
     /**
-     * Find zero or one ServiceCategory that matches the filter.
-     * @param {ServiceCategoryFindUniqueArgs} args - Arguments to find a ServiceCategory
+     * Find zero or one Category that matches the filter.
+     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
      * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findUnique({
+     * // Get one Category
+     * const category = await prisma.category.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ServiceCategoryFindUniqueArgs>(
-      args: SelectSubset<T, ServiceCategoryFindUniqueArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    findUnique<T extends CategoryFindUniqueArgs>(
+      args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'findUnique',
         GlobalOmitOptions
@@ -5989,22 +6239,22 @@ export namespace Prisma {
     >;
 
     /**
-     * Find one ServiceCategory that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ServiceCategoryFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategory
+     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
      * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findUniqueOrThrow({
+     * // Get one Category
+     * const category = await prisma.category.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ServiceCategoryFindUniqueOrThrowArgs>(
-      args: SelectSubset<T, ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'findUniqueOrThrow',
         GlobalOmitOptions
@@ -6015,23 +6265,23 @@ export namespace Prisma {
     >;
 
     /**
-     * Find the first ServiceCategory that matches the filter.
+     * Find the first Category that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFindFirstArgs} args - Arguments to find a ServiceCategory
+     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
      * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findFirst({
+     * // Get one Category
+     * const category = await prisma.category.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ServiceCategoryFindFirstArgs>(
-      args?: SelectSubset<T, ServiceCategoryFindFirstArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    findFirst<T extends CategoryFindFirstArgs>(
+      args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'findFirst',
         GlobalOmitOptions
@@ -6042,24 +6292,24 @@ export namespace Prisma {
     >;
 
     /**
-     * Find the first ServiceCategory that matches the filter or
+     * Find the first Category that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFindFirstOrThrowArgs} args - Arguments to find a ServiceCategory
+     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
      * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findFirstOrThrow({
+     * // Get one Category
+     * const category = await prisma.category.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ServiceCategoryFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, ServiceCategoryFindFirstOrThrowArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'findFirstOrThrow',
         GlobalOmitOptions
@@ -6070,26 +6320,26 @@ export namespace Prisma {
     >;
 
     /**
-     * Find zero or more ServiceCategories that matches the filter.
+     * Find zero or more Categories that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all ServiceCategories
-     * const serviceCategories = await prisma.serviceCategory.findMany()
+     * // Get all Categories
+     * const categories = await prisma.category.findMany()
      *
-     * // Get first 10 ServiceCategories
-     * const serviceCategories = await prisma.serviceCategory.findMany({ take: 10 })
+     * // Get first 10 Categories
+     * const categories = await prisma.category.findMany({ take: 10 })
      *
      * // Only select the `id`
-     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.findMany({ select: { id: true } })
+     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
      *
      */
-    findMany<T extends ServiceCategoryFindManyArgs>(
-      args?: SelectSubset<T, ServiceCategoryFindManyArgs<ExtArgs>>,
+    findMany<T extends CategoryFindManyArgs>(
+      args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -6097,22 +6347,22 @@ export namespace Prisma {
     >;
 
     /**
-     * Create a ServiceCategory.
-     * @param {ServiceCategoryCreateArgs} args - Arguments to create a ServiceCategory.
+     * Create a Category.
+     * @param {CategoryCreateArgs} args - Arguments to create a Category.
      * @example
-     * // Create one ServiceCategory
-     * const ServiceCategory = await prisma.serviceCategory.create({
+     * // Create one Category
+     * const Category = await prisma.category.create({
      *   data: {
-     *     // ... data to create a ServiceCategory
+     *     // ... data to create a Category
      *   }
      * })
      *
      */
-    create<T extends ServiceCategoryCreateArgs>(
-      args: SelectSubset<T, ServiceCategoryCreateArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    create<T extends CategoryCreateArgs>(
+      args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'create',
         GlobalOmitOptions
@@ -6123,34 +6373,34 @@ export namespace Prisma {
     >;
 
     /**
-     * Create many ServiceCategories.
-     * @param {ServiceCategoryCreateManyArgs} args - Arguments to create many ServiceCategories.
+     * Create many Categories.
+     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
      * @example
-     * // Create many ServiceCategories
-     * const serviceCategory = await prisma.serviceCategory.createMany({
+     * // Create many Categories
+     * const category = await prisma.category.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *
      */
-    createMany<T extends ServiceCategoryCreateManyArgs>(
-      args?: SelectSubset<T, ServiceCategoryCreateManyArgs<ExtArgs>>,
+    createMany<T extends CategoryCreateManyArgs>(
+      args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
-     * Create many ServiceCategories and returns the data saved in the database.
-     * @param {ServiceCategoryCreateManyAndReturnArgs} args - Arguments to create many ServiceCategories.
+     * Create many Categories and returns the data saved in the database.
+     * @param {CategoryCreateManyAndReturnArgs} args - Arguments to create many Categories.
      * @example
-     * // Create many ServiceCategories
-     * const serviceCategory = await prisma.serviceCategory.createManyAndReturn({
+     * // Create many Categories
+     * const category = await prisma.category.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *
-     * // Create many ServiceCategories and only return the `id`
-     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.createManyAndReturn({
+     * // Create many Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -6160,11 +6410,11 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      *
      */
-    createManyAndReturn<T extends ServiceCategoryCreateManyAndReturnArgs>(
-      args?: SelectSubset<T, ServiceCategoryCreateManyAndReturnArgs<ExtArgs>>,
+    createManyAndReturn<T extends CategoryCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, CategoryCreateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'createManyAndReturn',
         GlobalOmitOptions
@@ -6172,22 +6422,22 @@ export namespace Prisma {
     >;
 
     /**
-     * Delete a ServiceCategory.
-     * @param {ServiceCategoryDeleteArgs} args - Arguments to delete one ServiceCategory.
+     * Delete a Category.
+     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
      * @example
-     * // Delete one ServiceCategory
-     * const ServiceCategory = await prisma.serviceCategory.delete({
+     * // Delete one Category
+     * const Category = await prisma.category.delete({
      *   where: {
-     *     // ... filter to delete one ServiceCategory
+     *     // ... filter to delete one Category
      *   }
      * })
      *
      */
-    delete<T extends ServiceCategoryDeleteArgs>(
-      args: SelectSubset<T, ServiceCategoryDeleteArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    delete<T extends CategoryDeleteArgs>(
+      args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'delete',
         GlobalOmitOptions
@@ -6198,11 +6448,11 @@ export namespace Prisma {
     >;
 
     /**
-     * Update one ServiceCategory.
-     * @param {ServiceCategoryUpdateArgs} args - Arguments to update one ServiceCategory.
+     * Update one Category.
+     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
      * @example
-     * // Update one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.update({
+     * // Update one Category
+     * const category = await prisma.category.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6212,11 +6462,11 @@ export namespace Prisma {
      * })
      *
      */
-    update<T extends ServiceCategoryUpdateArgs>(
-      args: SelectSubset<T, ServiceCategoryUpdateArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    update<T extends CategoryUpdateArgs>(
+      args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'update',
         GlobalOmitOptions
@@ -6227,29 +6477,29 @@ export namespace Prisma {
     >;
 
     /**
-     * Delete zero or more ServiceCategories.
-     * @param {ServiceCategoryDeleteManyArgs} args - Arguments to filter ServiceCategories to delete.
+     * Delete zero or more Categories.
+     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
      * @example
-     * // Delete a few ServiceCategories
-     * const { count } = await prisma.serviceCategory.deleteMany({
+     * // Delete a few Categories
+     * const { count } = await prisma.category.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      *
      */
-    deleteMany<T extends ServiceCategoryDeleteManyArgs>(
-      args?: SelectSubset<T, ServiceCategoryDeleteManyArgs<ExtArgs>>,
+    deleteMany<T extends CategoryDeleteManyArgs>(
+      args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
-     * Update zero or more ServiceCategories.
+     * Update zero or more Categories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many ServiceCategories
-     * const serviceCategory = await prisma.serviceCategory.updateMany({
+     * // Update many Categories
+     * const category = await prisma.category.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6259,16 +6509,16 @@ export namespace Prisma {
      * })
      *
      */
-    updateMany<T extends ServiceCategoryUpdateManyArgs>(
-      args: SelectSubset<T, ServiceCategoryUpdateManyArgs<ExtArgs>>,
+    updateMany<T extends CategoryUpdateManyArgs>(
+      args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
-     * Update zero or more ServiceCategories and returns the data updated in the database.
-     * @param {ServiceCategoryUpdateManyAndReturnArgs} args - Arguments to update many ServiceCategories.
+     * Update zero or more Categories and returns the data updated in the database.
+     * @param {CategoryUpdateManyAndReturnArgs} args - Arguments to update many Categories.
      * @example
-     * // Update many ServiceCategories
-     * const serviceCategory = await prisma.serviceCategory.updateManyAndReturn({
+     * // Update many Categories
+     * const category = await prisma.category.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -6277,8 +6527,8 @@ export namespace Prisma {
      *   ]
      * })
      *
-     * // Update zero or more ServiceCategories and only return the `id`
-     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.updateManyAndReturn({
+     * // Update zero or more Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -6291,11 +6541,11 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      *
      */
-    updateManyAndReturn<T extends ServiceCategoryUpdateManyAndReturnArgs>(
-      args: SelectSubset<T, ServiceCategoryUpdateManyAndReturnArgs<ExtArgs>>,
+    updateManyAndReturn<T extends CategoryUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, CategoryUpdateManyAndReturnArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'updateManyAndReturn',
         GlobalOmitOptions
@@ -6303,27 +6553,27 @@ export namespace Prisma {
     >;
 
     /**
-     * Create or update one ServiceCategory.
-     * @param {ServiceCategoryUpsertArgs} args - Arguments to update or create a ServiceCategory.
+     * Create or update one Category.
+     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
      * @example
-     * // Update or create a ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.upsert({
+     * // Update or create a Category
+     * const category = await prisma.category.upsert({
      *   create: {
-     *     // ... data to create a ServiceCategory
+     *     // ... data to create a Category
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the ServiceCategory we want to update
+     *     // ... the filter for the Category we want to update
      *   }
      * })
      */
-    upsert<T extends ServiceCategoryUpsertArgs>(
-      args: SelectSubset<T, ServiceCategoryUpsertArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    upsert<T extends CategoryUpsertArgs>(
+      args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryPayload<ExtArgs>,
+        Prisma.$CategoryPayload<ExtArgs>,
         T,
         'upsert',
         GlobalOmitOptions
@@ -6334,33 +6584,33 @@ export namespace Prisma {
     >;
 
     /**
-     * Count the number of ServiceCategories.
+     * Count the number of Categories.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryCountArgs} args - Arguments to filter ServiceCategories to count.
+     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
      * @example
-     * // Count the number of ServiceCategories
-     * const count = await prisma.serviceCategory.count({
+     * // Count the number of Categories
+     * const count = await prisma.category.count({
      *   where: {
-     *     // ... the filter for the ServiceCategories we want to count
+     *     // ... the filter for the Categories we want to count
      *   }
      * })
      **/
-    count<T extends ServiceCategoryCountArgs>(
-      args?: Subset<T, ServiceCategoryCountArgs>,
+    count<T extends CategoryCountArgs>(
+      args?: Subset<T, CategoryCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ServiceCategoryCountAggregateOutputType>
+          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
         : number
     >;
 
     /**
-     * Allows you to perform aggregations operations on a ServiceCategory.
+     * Allows you to perform aggregations operations on a Category.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -6380,15 +6630,15 @@ export namespace Prisma {
      *   take: 10,
      * })
      **/
-    aggregate<T extends ServiceCategoryAggregateArgs>(
-      args: Subset<T, ServiceCategoryAggregateArgs>,
-    ): Prisma.PrismaPromise<GetServiceCategoryAggregateType<T>>;
+    aggregate<T extends CategoryAggregateArgs>(
+      args: Subset<T, CategoryAggregateArgs>,
+    ): Prisma.PrismaPromise<GetCategoryAggregateType<T>>;
 
     /**
-     * Group by ServiceCategory.
+     * Group by Category.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryGroupByArgs} args - Group by arguments.
+     * @param {CategoryGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -6403,14 +6653,14 @@ export namespace Prisma {
      *
      **/
     groupBy<
-      T extends ServiceCategoryGroupByArgs,
+      T extends CategoryGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceCategoryGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceCategoryGroupByArgs['orderBy'] },
+        ? { orderBy: CategoryGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<
         Keys<MaybeTupleToUnion<T['orderBy']>>
       >,
@@ -6462,32 +6712,32 @@ export namespace Prisma {
                       : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                   }[OrderFields],
     >(
-      args: SubsetIntersection<T, ServiceCategoryGroupByArgs, OrderByArg> &
+      args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> &
         InputErrors,
     ): {} extends InputErrors
-      ? GetServiceCategoryGroupByPayload<T>
+      ? GetCategoryGroupByPayload<T>
       : Prisma.PrismaPromise<InputErrors>;
     /**
-     * Fields of the ServiceCategory model
+     * Fields of the Category model
      */
-    readonly fields: ServiceCategoryFieldRefs;
+    readonly fields: CategoryFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ServiceCategory.
+   * The delegate class that acts as a "Promise-like" for Category.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ServiceCategoryClient<
+  export interface Prisma__CategoryClient<
     T,
     Null = never,
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
-    services<T extends ServiceCategory$servicesArgs<ExtArgs> = {}>(
-      args?: Subset<T, ServiceCategory$servicesArgs<ExtArgs>>,
+    services<T extends Category$servicesArgs<ExtArgs> = {}>(
+      args?: Subset<T, Category$servicesArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
       | $Result.GetResult<
           Prisma.$ServicePayload<ExtArgs>,
@@ -6497,11 +6747,22 @@ export namespace Prisma {
         >
       | Null
     >;
-    translations<T extends ServiceCategory$translationsArgs<ExtArgs> = {}>(
-      args?: Subset<T, ServiceCategory$translationsArgs<ExtArgs>>,
+    contacts<T extends Category$contactsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Category$contactsArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
       | $Result.GetResult<
-          Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+          Prisma.$ContactPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
+    translations<T extends Category$translationsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Category$translationsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$CategoryTranslationPayload<ExtArgs>,
           T,
           'findMany',
           GlobalOmitOptions
@@ -6545,455 +6806,444 @@ export namespace Prisma {
   }
 
   /**
-   * Fields of the ServiceCategory model
+   * Fields of the Category model
    */
-  interface ServiceCategoryFieldRefs {
-    readonly id: FieldRef<'ServiceCategory', 'String'>;
-    readonly code: FieldRef<'ServiceCategory', 'String'>;
-    readonly order: FieldRef<'ServiceCategory', 'Int'>;
-    readonly isActive: FieldRef<'ServiceCategory', 'Boolean'>;
+  interface CategoryFieldRefs {
+    readonly id: FieldRef<'Category', 'String'>;
+    readonly code: FieldRef<'Category', 'String'>;
+    readonly type: FieldRef<'Category', 'CategoryType'>;
+    readonly order: FieldRef<'Category', 'Int'>;
+    readonly isActive: FieldRef<'Category', 'Boolean'>;
   }
 
   // Custom InputTypes
   /**
-   * ServiceCategory findUnique
+   * Category findUnique
    */
-  export type ServiceCategoryFindUniqueArgs<
+  export type CategoryFindUniqueArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategory to fetch.
+     * Filter, which Category to fetch.
      */
-    where: ServiceCategoryWhereUniqueInput;
+    where: CategoryWhereUniqueInput;
   };
 
   /**
-   * ServiceCategory findUniqueOrThrow
+   * Category findUniqueOrThrow
    */
-  export type ServiceCategoryFindUniqueOrThrowArgs<
+  export type CategoryFindUniqueOrThrowArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategory to fetch.
+     * Filter, which Category to fetch.
      */
-    where: ServiceCategoryWhereUniqueInput;
+    where: CategoryWhereUniqueInput;
   };
 
   /**
-   * ServiceCategory findFirst
+   * Category findFirst
    */
-  export type ServiceCategoryFindFirstArgs<
+  export type CategoryFindFirstArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategory to fetch.
+     * Filter, which Category to fetch.
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategories to fetch.
+     * Determine the order of Categories to fetch.
      */
     orderBy?:
-      | ServiceCategoryOrderByWithRelationInput
-      | ServiceCategoryOrderByWithRelationInput[];
+      | CategoryOrderByWithRelationInput
+      | CategoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for searching for ServiceCategories.
+     * Sets the position for searching for Categories.
      */
-    cursor?: ServiceCategoryWhereUniqueInput;
+    cursor?: CategoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategories from the position of the cursor.
+     * Take `±n` Categories from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategories.
+     * Skip the first `n` Categories.
      */
     skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      *
-     * Filter by unique combinations of ServiceCategories.
+     * Filter by unique combinations of Categories.
      */
-    distinct?:
-      | ServiceCategoryScalarFieldEnum
-      | ServiceCategoryScalarFieldEnum[];
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategory findFirstOrThrow
+   * Category findFirstOrThrow
    */
-  export type ServiceCategoryFindFirstOrThrowArgs<
+  export type CategoryFindFirstOrThrowArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategory to fetch.
+     * Filter, which Category to fetch.
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategories to fetch.
+     * Determine the order of Categories to fetch.
      */
     orderBy?:
-      | ServiceCategoryOrderByWithRelationInput
-      | ServiceCategoryOrderByWithRelationInput[];
+      | CategoryOrderByWithRelationInput
+      | CategoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for searching for ServiceCategories.
+     * Sets the position for searching for Categories.
      */
-    cursor?: ServiceCategoryWhereUniqueInput;
+    cursor?: CategoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategories from the position of the cursor.
+     * Take `±n` Categories from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategories.
+     * Skip the first `n` Categories.
      */
     skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      *
-     * Filter by unique combinations of ServiceCategories.
+     * Filter by unique combinations of Categories.
      */
-    distinct?:
-      | ServiceCategoryScalarFieldEnum
-      | ServiceCategoryScalarFieldEnum[];
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategory findMany
+   * Category findMany
    */
-  export type ServiceCategoryFindManyArgs<
+  export type CategoryFindManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategories to fetch.
+     * Filter, which Categories to fetch.
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategories to fetch.
+     * Determine the order of Categories to fetch.
      */
     orderBy?:
-      | ServiceCategoryOrderByWithRelationInput
-      | ServiceCategoryOrderByWithRelationInput[];
+      | CategoryOrderByWithRelationInput
+      | CategoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for listing ServiceCategories.
+     * Sets the position for listing Categories.
      */
-    cursor?: ServiceCategoryWhereUniqueInput;
+    cursor?: CategoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategories from the position of the cursor.
+     * Take `±n` Categories from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategories.
+     * Skip the first `n` Categories.
      */
     skip?: number;
-    distinct?:
-      | ServiceCategoryScalarFieldEnum
-      | ServiceCategoryScalarFieldEnum[];
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategory create
+   * Category create
    */
-  export type ServiceCategoryCreateArgs<
+  export type CategoryCreateArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * The data needed to create a ServiceCategory.
+     * The data needed to create a Category.
      */
-    data: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>;
+    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>;
   };
 
   /**
-   * ServiceCategory createMany
+   * Category createMany
    */
-  export type ServiceCategoryCreateManyArgs<
+  export type CategoryCreateManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * The data used to create many ServiceCategories.
+     * The data used to create many Categories.
      */
-    data: ServiceCategoryCreateManyInput | ServiceCategoryCreateManyInput[];
+    data: CategoryCreateManyInput | CategoryCreateManyInput[];
     skipDuplicates?: boolean;
   };
 
   /**
-   * ServiceCategory createManyAndReturn
+   * Category createManyAndReturn
    */
-  export type ServiceCategoryCreateManyAndReturnArgs<
+  export type CategoryCreateManyAndReturnArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelectCreateManyAndReturn<ExtArgs> | null;
+    select?: CategorySelectCreateManyAndReturn<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
-     * The data used to create many ServiceCategories.
+     * The data used to create many Categories.
      */
-    data: ServiceCategoryCreateManyInput | ServiceCategoryCreateManyInput[];
+    data: CategoryCreateManyInput | CategoryCreateManyInput[];
     skipDuplicates?: boolean;
   };
 
   /**
-   * ServiceCategory update
+   * Category update
    */
-  export type ServiceCategoryUpdateArgs<
+  export type CategoryUpdateArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * The data needed to update a ServiceCategory.
+     * The data needed to update a Category.
      */
-    data: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>;
+    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>;
     /**
-     * Choose, which ServiceCategory to update.
+     * Choose, which Category to update.
      */
-    where: ServiceCategoryWhereUniqueInput;
+    where: CategoryWhereUniqueInput;
   };
 
   /**
-   * ServiceCategory updateMany
+   * Category updateMany
    */
-  export type ServiceCategoryUpdateManyArgs<
+  export type CategoryUpdateManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * The data used to update ServiceCategories.
+     * The data used to update Categories.
      */
     data: XOR<
-      ServiceCategoryUpdateManyMutationInput,
-      ServiceCategoryUncheckedUpdateManyInput
+      CategoryUpdateManyMutationInput,
+      CategoryUncheckedUpdateManyInput
     >;
     /**
-     * Filter which ServiceCategories to update
+     * Filter which Categories to update
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
-     * Limit how many ServiceCategories to update.
+     * Limit how many Categories to update.
      */
     limit?: number;
   };
 
   /**
-   * ServiceCategory updateManyAndReturn
+   * Category updateManyAndReturn
    */
-  export type ServiceCategoryUpdateManyAndReturnArgs<
+  export type CategoryUpdateManyAndReturnArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelectUpdateManyAndReturn<ExtArgs> | null;
+    select?: CategorySelectUpdateManyAndReturn<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
-     * The data used to update ServiceCategories.
+     * The data used to update Categories.
      */
     data: XOR<
-      ServiceCategoryUpdateManyMutationInput,
-      ServiceCategoryUncheckedUpdateManyInput
+      CategoryUpdateManyMutationInput,
+      CategoryUncheckedUpdateManyInput
     >;
     /**
-     * Filter which ServiceCategories to update
+     * Filter which Categories to update
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
-     * Limit how many ServiceCategories to update.
+     * Limit how many Categories to update.
      */
     limit?: number;
   };
 
   /**
-   * ServiceCategory upsert
+   * Category upsert
    */
-  export type ServiceCategoryUpsertArgs<
+  export type CategoryUpsertArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * The filter to search for the ServiceCategory to update in case it exists.
+     * The filter to search for the Category to update in case it exists.
      */
-    where: ServiceCategoryWhereUniqueInput;
+    where: CategoryWhereUniqueInput;
     /**
-     * In case the ServiceCategory found by the `where` argument doesn't exist, create a new ServiceCategory with this data.
+     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
      */
-    create: XOR<
-      ServiceCategoryCreateInput,
-      ServiceCategoryUncheckedCreateInput
-    >;
+    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>;
     /**
-     * In case the ServiceCategory was found with the provided `where` argument, update it with this data.
+     * In case the Category was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<
-      ServiceCategoryUpdateInput,
-      ServiceCategoryUncheckedUpdateInput
-    >;
+    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>;
   };
 
   /**
-   * ServiceCategory delete
+   * Category delete
    */
-  export type ServiceCategoryDeleteArgs<
+  export type CategoryDeleteArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
     /**
-     * Filter which ServiceCategory to delete.
+     * Filter which Category to delete.
      */
-    where: ServiceCategoryWhereUniqueInput;
+    where: CategoryWhereUniqueInput;
   };
 
   /**
-   * ServiceCategory deleteMany
+   * Category deleteMany
    */
-  export type ServiceCategoryDeleteManyArgs<
+  export type CategoryDeleteManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Filter which ServiceCategories to delete
+     * Filter which Categories to delete
      */
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
     /**
-     * Limit how many ServiceCategories to delete.
+     * Limit how many Categories to delete.
      */
     limit?: number;
   };
 
   /**
-   * ServiceCategory.services
+   * Category.services
    */
-  export type ServiceCategory$servicesArgs<
+  export type Category$servicesArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
@@ -7019,66 +7269,94 @@ export namespace Prisma {
   };
 
   /**
-   * ServiceCategory.translations
+   * Category.contacts
    */
-  export type ServiceCategory$translationsArgs<
+  export type Category$contactsArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the Contact
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: ContactSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the Contact
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: ContactOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
-    where?: ServiceCategoryTranslationWhereInput;
+    include?: ContactInclude<ExtArgs> | null;
+    where?: ContactWhereInput;
     orderBy?:
-      | ServiceCategoryTranslationOrderByWithRelationInput
-      | ServiceCategoryTranslationOrderByWithRelationInput[];
-    cursor?: ServiceCategoryTranslationWhereUniqueInput;
+      | ContactOrderByWithRelationInput
+      | ContactOrderByWithRelationInput[];
+    cursor?: ContactWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[];
+  };
+
+  /**
+   * Category.translations
+   */
+  export type Category$translationsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the CategoryTranslation
+     */
+    select?: CategoryTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the CategoryTranslation
+     */
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryTranslationInclude<ExtArgs> | null;
+    where?: CategoryTranslationWhereInput;
+    orderBy?:
+      | CategoryTranslationOrderByWithRelationInput
+      | CategoryTranslationOrderByWithRelationInput[];
+    cursor?: CategoryTranslationWhereUniqueInput;
     take?: number;
     skip?: number;
     distinct?:
-      | ServiceCategoryTranslationScalarFieldEnum
-      | ServiceCategoryTranslationScalarFieldEnum[];
+      | CategoryTranslationScalarFieldEnum
+      | CategoryTranslationScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategory without action
+   * Category without action
    */
-  export type ServiceCategoryDefaultArgs<
+  export type CategoryDefaultArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategory
+     * Select specific fields to fetch from the Category
      */
-    select?: ServiceCategorySelect<ExtArgs> | null;
+    select?: CategorySelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategory
+     * Omit specific fields from the Category
      */
-    omit?: ServiceCategoryOmit<ExtArgs> | null;
+    omit?: CategoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryInclude<ExtArgs> | null;
+    include?: CategoryInclude<ExtArgs> | null;
   };
 
   /**
-   * Model ServiceCategoryTranslation
+   * Model CategoryTranslation
    */
 
-  export type AggregateServiceCategoryTranslation = {
-    _count: ServiceCategoryTranslationCountAggregateOutputType | null;
-    _min: ServiceCategoryTranslationMinAggregateOutputType | null;
-    _max: ServiceCategoryTranslationMaxAggregateOutputType | null;
+  export type AggregateCategoryTranslation = {
+    _count: CategoryTranslationCountAggregateOutputType | null;
+    _min: CategoryTranslationMinAggregateOutputType | null;
+    _max: CategoryTranslationMaxAggregateOutputType | null;
   };
 
-  export type ServiceCategoryTranslationMinAggregateOutputType = {
+  export type CategoryTranslationMinAggregateOutputType = {
     id: string | null;
     categoryId: string | null;
     locale: $Enums.Locale | null;
@@ -7086,7 +7364,7 @@ export namespace Prisma {
     slug: string | null;
   };
 
-  export type ServiceCategoryTranslationMaxAggregateOutputType = {
+  export type CategoryTranslationMaxAggregateOutputType = {
     id: string | null;
     categoryId: string | null;
     locale: $Enums.Locale | null;
@@ -7094,7 +7372,7 @@ export namespace Prisma {
     slug: string | null;
   };
 
-  export type ServiceCategoryTranslationCountAggregateOutputType = {
+  export type CategoryTranslationCountAggregateOutputType = {
     id: number;
     categoryId: number;
     locale: number;
@@ -7103,7 +7381,7 @@ export namespace Prisma {
     _all: number;
   };
 
-  export type ServiceCategoryTranslationMinAggregateInputType = {
+  export type CategoryTranslationMinAggregateInputType = {
     id?: true;
     categoryId?: true;
     locale?: true;
@@ -7111,7 +7389,7 @@ export namespace Prisma {
     slug?: true;
   };
 
-  export type ServiceCategoryTranslationMaxAggregateInputType = {
+  export type CategoryTranslationMaxAggregateInputType = {
     id?: true;
     categoryId?: true;
     locale?: true;
@@ -7119,7 +7397,7 @@ export namespace Prisma {
     slug?: true;
   };
 
-  export type ServiceCategoryTranslationCountAggregateInputType = {
+  export type CategoryTranslationCountAggregateInputType = {
     id?: true;
     categoryId?: true;
     locale?: true;
@@ -7128,119 +7406,116 @@ export namespace Prisma {
     _all?: true;
   };
 
-  export type ServiceCategoryTranslationAggregateArgs<
+  export type CategoryTranslationAggregateArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Filter which ServiceCategoryTranslation to aggregate.
+     * Filter which CategoryTranslation to aggregate.
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategoryTranslations to fetch.
+     * Determine the order of CategoryTranslations to fetch.
      */
     orderBy?:
-      | ServiceCategoryTranslationOrderByWithRelationInput
-      | ServiceCategoryTranslationOrderByWithRelationInput[];
+      | CategoryTranslationOrderByWithRelationInput
+      | CategoryTranslationOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
      * Sets the start position
      */
-    cursor?: ServiceCategoryTranslationWhereUniqueInput;
+    cursor?: CategoryTranslationWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategoryTranslations from the position of the cursor.
+     * Take `±n` CategoryTranslations from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategoryTranslations.
+     * Skip the first `n` CategoryTranslations.
      */
     skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
-     * Count returned ServiceCategoryTranslations
+     * Count returned CategoryTranslations
      **/
-    _count?: true | ServiceCategoryTranslationCountAggregateInputType;
+    _count?: true | CategoryTranslationCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to find the minimum value
      **/
-    _min?: ServiceCategoryTranslationMinAggregateInputType;
+    _min?: CategoryTranslationMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      *
      * Select which fields to find the maximum value
      **/
-    _max?: ServiceCategoryTranslationMaxAggregateInputType;
+    _max?: CategoryTranslationMaxAggregateInputType;
   };
 
-  export type GetServiceCategoryTranslationAggregateType<
-    T extends ServiceCategoryTranslationAggregateArgs,
+  export type GetCategoryTranslationAggregateType<
+    T extends CategoryTranslationAggregateArgs,
   > = {
-    [P in keyof T & keyof AggregateServiceCategoryTranslation]: P extends
+    [P in keyof T & keyof AggregateCategoryTranslation]: P extends
       | '_count'
       | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateServiceCategoryTranslation[P]>
-      : GetScalarType<T[P], AggregateServiceCategoryTranslation[P]>;
+        : GetScalarType<T[P], AggregateCategoryTranslation[P]>
+      : GetScalarType<T[P], AggregateCategoryTranslation[P]>;
   };
 
-  export type ServiceCategoryTranslationGroupByArgs<
+  export type CategoryTranslationGroupByArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     orderBy?:
-      | ServiceCategoryTranslationOrderByWithAggregationInput
-      | ServiceCategoryTranslationOrderByWithAggregationInput[];
+      | CategoryTranslationOrderByWithAggregationInput
+      | CategoryTranslationOrderByWithAggregationInput[];
     by:
-      | ServiceCategoryTranslationScalarFieldEnum[]
-      | ServiceCategoryTranslationScalarFieldEnum;
-    having?: ServiceCategoryTranslationScalarWhereWithAggregatesInput;
+      | CategoryTranslationScalarFieldEnum[]
+      | CategoryTranslationScalarFieldEnum;
+    having?: CategoryTranslationScalarWhereWithAggregatesInput;
     take?: number;
     skip?: number;
-    _count?: ServiceCategoryTranslationCountAggregateInputType | true;
-    _min?: ServiceCategoryTranslationMinAggregateInputType;
-    _max?: ServiceCategoryTranslationMaxAggregateInputType;
+    _count?: CategoryTranslationCountAggregateInputType | true;
+    _min?: CategoryTranslationMinAggregateInputType;
+    _max?: CategoryTranslationMaxAggregateInputType;
   };
 
-  export type ServiceCategoryTranslationGroupByOutputType = {
+  export type CategoryTranslationGroupByOutputType = {
     id: string;
     categoryId: string;
     locale: $Enums.Locale;
     label: string;
     slug: string;
-    _count: ServiceCategoryTranslationCountAggregateOutputType | null;
-    _min: ServiceCategoryTranslationMinAggregateOutputType | null;
-    _max: ServiceCategoryTranslationMaxAggregateOutputType | null;
+    _count: CategoryTranslationCountAggregateOutputType | null;
+    _min: CategoryTranslationMinAggregateOutputType | null;
+    _max: CategoryTranslationMaxAggregateOutputType | null;
   };
 
-  type GetServiceCategoryTranslationGroupByPayload<
-    T extends ServiceCategoryTranslationGroupByArgs,
+  type GetCategoryTranslationGroupByPayload<
+    T extends CategoryTranslationGroupByArgs,
   > = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ServiceCategoryTranslationGroupByOutputType, T['by']> & {
+      PickEnumerable<CategoryTranslationGroupByOutputType, T['by']> & {
         [P in keyof T &
-          keyof ServiceCategoryTranslationGroupByOutputType]: P extends '_count'
+          keyof CategoryTranslationGroupByOutputType]: P extends '_count'
           ? T[P] extends boolean
             ? number
-            : GetScalarType<
-                T[P],
-                ServiceCategoryTranslationGroupByOutputType[P]
-              >
-          : GetScalarType<T[P], ServiceCategoryTranslationGroupByOutputType[P]>;
+            : GetScalarType<T[P], CategoryTranslationGroupByOutputType[P]>
+          : GetScalarType<T[P], CategoryTranslationGroupByOutputType[P]>;
       }
     >
   >;
 
-  export type ServiceCategoryTranslationSelect<
+  export type CategoryTranslationSelect<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetSelect<
     {
@@ -7249,12 +7524,12 @@ export namespace Prisma {
       locale?: boolean;
       label?: boolean;
       slug?: boolean;
-      category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
     },
-    ExtArgs['result']['serviceCategoryTranslation']
+    ExtArgs['result']['categoryTranslation']
   >;
 
-  export type ServiceCategoryTranslationSelectCreateManyAndReturn<
+  export type CategoryTranslationSelectCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetSelect<
     {
@@ -7263,12 +7538,12 @@ export namespace Prisma {
       locale?: boolean;
       label?: boolean;
       slug?: boolean;
-      category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
     },
-    ExtArgs['result']['serviceCategoryTranslation']
+    ExtArgs['result']['categoryTranslation']
   >;
 
-  export type ServiceCategoryTranslationSelectUpdateManyAndReturn<
+  export type CategoryTranslationSelectUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetSelect<
     {
@@ -7277,12 +7552,12 @@ export namespace Prisma {
       locale?: boolean;
       label?: boolean;
       slug?: boolean;
-      category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
     },
-    ExtArgs['result']['serviceCategoryTranslation']
+    ExtArgs['result']['categoryTranslation']
   >;
 
-  export type ServiceCategoryTranslationSelectScalar = {
+  export type CategoryTranslationSelectScalar = {
     id?: boolean;
     categoryId?: boolean;
     locale?: boolean;
@@ -7290,34 +7565,34 @@ export namespace Prisma {
     slug?: boolean;
   };
 
-  export type ServiceCategoryTranslationOmit<
+  export type CategoryTranslationOmit<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = $Extensions.GetOmit<
     'id' | 'categoryId' | 'locale' | 'label' | 'slug',
-    ExtArgs['result']['serviceCategoryTranslation']
+    ExtArgs['result']['categoryTranslation']
   >;
-  export type ServiceCategoryTranslationInclude<
+  export type CategoryTranslationInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
   };
-  export type ServiceCategoryTranslationIncludeCreateManyAndReturn<
+  export type CategoryTranslationIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
   };
-  export type ServiceCategoryTranslationIncludeUpdateManyAndReturn<
+  export type CategoryTranslationIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
   };
 
-  export type $ServiceCategoryTranslationPayload<
+  export type $CategoryTranslationPayload<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    name: 'ServiceCategoryTranslation';
+    name: 'CategoryTranslation';
     objects: {
-      category: Prisma.$ServiceCategoryPayload<ExtArgs>;
+      category: Prisma.$CategoryPayload<ExtArgs>;
     };
     scalars: $Extensions.GetPayloadResult<
       {
@@ -7327,52 +7602,48 @@ export namespace Prisma {
         label: string;
         slug: string;
       },
-      ExtArgs['result']['serviceCategoryTranslation']
+      ExtArgs['result']['categoryTranslation']
     >;
     composites: {};
   };
 
-  type ServiceCategoryTranslationGetPayload<
-    S extends
-      | boolean
-      | null
-      | undefined
-      | ServiceCategoryTranslationDefaultArgs,
-  > = $Result.GetResult<Prisma.$ServiceCategoryTranslationPayload, S>;
+  type CategoryTranslationGetPayload<
+    S extends boolean | null | undefined | CategoryTranslationDefaultArgs,
+  > = $Result.GetResult<Prisma.$CategoryTranslationPayload, S>;
 
-  type ServiceCategoryTranslationCountArgs<
+  type CategoryTranslationCountArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = Omit<
-    ServiceCategoryTranslationFindManyArgs,
+    CategoryTranslationFindManyArgs,
     'select' | 'include' | 'distinct' | 'omit'
   > & {
-    select?: ServiceCategoryTranslationCountAggregateInputType | true;
+    select?: CategoryTranslationCountAggregateInputType | true;
   };
 
-  export interface ServiceCategoryTranslationDelegate<
+  export interface CategoryTranslationDelegate<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
     GlobalOmitOptions = {},
   > {
     [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategoryTranslation'];
-      meta: { name: 'ServiceCategoryTranslation' };
+      types: Prisma.TypeMap<ExtArgs>['model']['CategoryTranslation'];
+      meta: { name: 'CategoryTranslation' };
     };
     /**
-     * Find zero or one ServiceCategoryTranslation that matches the filter.
-     * @param {ServiceCategoryTranslationFindUniqueArgs} args - Arguments to find a ServiceCategoryTranslation
+     * Find zero or one CategoryTranslation that matches the filter.
+     * @param {CategoryTranslationFindUniqueArgs} args - Arguments to find a CategoryTranslation
      * @example
-     * // Get one ServiceCategoryTranslation
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.findUnique({
+     * // Get one CategoryTranslation
+     * const categoryTranslation = await prisma.categoryTranslation.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ServiceCategoryTranslationFindUniqueArgs>(
-      args: SelectSubset<T, ServiceCategoryTranslationFindUniqueArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryTranslationClient<
+    findUnique<T extends CategoryTranslationFindUniqueArgs>(
+      args: SelectSubset<T, CategoryTranslationFindUniqueArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'findUnique',
         GlobalOmitOptions
@@ -7383,27 +7654,22 @@ export namespace Prisma {
     >;
 
     /**
-     * Find one ServiceCategoryTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * Find one CategoryTranslation that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ServiceCategoryTranslationFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategoryTranslation
+     * @param {CategoryTranslationFindUniqueOrThrowArgs} args - Arguments to find a CategoryTranslation
      * @example
-     * // Get one ServiceCategoryTranslation
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.findUniqueOrThrow({
+     * // Get one CategoryTranslation
+     * const categoryTranslation = await prisma.categoryTranslation.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<
-      T extends ServiceCategoryTranslationFindUniqueOrThrowArgs,
-    >(
-      args: SelectSubset<
-        T,
-        ServiceCategoryTranslationFindUniqueOrThrowArgs<ExtArgs>
-      >,
-    ): Prisma__ServiceCategoryTranslationClient<
+    findUniqueOrThrow<T extends CategoryTranslationFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, CategoryTranslationFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'findUniqueOrThrow',
         GlobalOmitOptions
@@ -7414,23 +7680,23 @@ export namespace Prisma {
     >;
 
     /**
-     * Find the first ServiceCategoryTranslation that matches the filter.
+     * Find the first CategoryTranslation that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationFindFirstArgs} args - Arguments to find a ServiceCategoryTranslation
+     * @param {CategoryTranslationFindFirstArgs} args - Arguments to find a CategoryTranslation
      * @example
-     * // Get one ServiceCategoryTranslation
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.findFirst({
+     * // Get one CategoryTranslation
+     * const categoryTranslation = await prisma.categoryTranslation.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ServiceCategoryTranslationFindFirstArgs>(
-      args?: SelectSubset<T, ServiceCategoryTranslationFindFirstArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryTranslationClient<
+    findFirst<T extends CategoryTranslationFindFirstArgs>(
+      args?: SelectSubset<T, CategoryTranslationFindFirstArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'findFirst',
         GlobalOmitOptions
@@ -7441,27 +7707,24 @@ export namespace Prisma {
     >;
 
     /**
-     * Find the first ServiceCategoryTranslation that matches the filter or
+     * Find the first CategoryTranslation that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationFindFirstOrThrowArgs} args - Arguments to find a ServiceCategoryTranslation
+     * @param {CategoryTranslationFindFirstOrThrowArgs} args - Arguments to find a CategoryTranslation
      * @example
-     * // Get one ServiceCategoryTranslation
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.findFirstOrThrow({
+     * // Get one CategoryTranslation
+     * const categoryTranslation = await prisma.categoryTranslation.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ServiceCategoryTranslationFindFirstOrThrowArgs>(
-      args?: SelectSubset<
-        T,
-        ServiceCategoryTranslationFindFirstOrThrowArgs<ExtArgs>
-      >,
-    ): Prisma__ServiceCategoryTranslationClient<
+    findFirstOrThrow<T extends CategoryTranslationFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, CategoryTranslationFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'findFirstOrThrow',
         GlobalOmitOptions
@@ -7472,26 +7735,26 @@ export namespace Prisma {
     >;
 
     /**
-     * Find zero or more ServiceCategoryTranslations that matches the filter.
+     * Find zero or more CategoryTranslations that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {CategoryTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all ServiceCategoryTranslations
-     * const serviceCategoryTranslations = await prisma.serviceCategoryTranslation.findMany()
+     * // Get all CategoryTranslations
+     * const categoryTranslations = await prisma.categoryTranslation.findMany()
      *
-     * // Get first 10 ServiceCategoryTranslations
-     * const serviceCategoryTranslations = await prisma.serviceCategoryTranslation.findMany({ take: 10 })
+     * // Get first 10 CategoryTranslations
+     * const categoryTranslations = await prisma.categoryTranslation.findMany({ take: 10 })
      *
      * // Only select the `id`
-     * const serviceCategoryTranslationWithIdOnly = await prisma.serviceCategoryTranslation.findMany({ select: { id: true } })
+     * const categoryTranslationWithIdOnly = await prisma.categoryTranslation.findMany({ select: { id: true } })
      *
      */
-    findMany<T extends ServiceCategoryTranslationFindManyArgs>(
-      args?: SelectSubset<T, ServiceCategoryTranslationFindManyArgs<ExtArgs>>,
+    findMany<T extends CategoryTranslationFindManyArgs>(
+      args?: SelectSubset<T, CategoryTranslationFindManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -7499,22 +7762,22 @@ export namespace Prisma {
     >;
 
     /**
-     * Create a ServiceCategoryTranslation.
-     * @param {ServiceCategoryTranslationCreateArgs} args - Arguments to create a ServiceCategoryTranslation.
+     * Create a CategoryTranslation.
+     * @param {CategoryTranslationCreateArgs} args - Arguments to create a CategoryTranslation.
      * @example
-     * // Create one ServiceCategoryTranslation
-     * const ServiceCategoryTranslation = await prisma.serviceCategoryTranslation.create({
+     * // Create one CategoryTranslation
+     * const CategoryTranslation = await prisma.categoryTranslation.create({
      *   data: {
-     *     // ... data to create a ServiceCategoryTranslation
+     *     // ... data to create a CategoryTranslation
      *   }
      * })
      *
      */
-    create<T extends ServiceCategoryTranslationCreateArgs>(
-      args: SelectSubset<T, ServiceCategoryTranslationCreateArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryTranslationClient<
+    create<T extends CategoryTranslationCreateArgs>(
+      args: SelectSubset<T, CategoryTranslationCreateArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'create',
         GlobalOmitOptions
@@ -7525,34 +7788,34 @@ export namespace Prisma {
     >;
 
     /**
-     * Create many ServiceCategoryTranslations.
-     * @param {ServiceCategoryTranslationCreateManyArgs} args - Arguments to create many ServiceCategoryTranslations.
+     * Create many CategoryTranslations.
+     * @param {CategoryTranslationCreateManyArgs} args - Arguments to create many CategoryTranslations.
      * @example
-     * // Create many ServiceCategoryTranslations
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.createMany({
+     * // Create many CategoryTranslations
+     * const categoryTranslation = await prisma.categoryTranslation.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *
      */
-    createMany<T extends ServiceCategoryTranslationCreateManyArgs>(
-      args?: SelectSubset<T, ServiceCategoryTranslationCreateManyArgs<ExtArgs>>,
+    createMany<T extends CategoryTranslationCreateManyArgs>(
+      args?: SelectSubset<T, CategoryTranslationCreateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
-     * Create many ServiceCategoryTranslations and returns the data saved in the database.
-     * @param {ServiceCategoryTranslationCreateManyAndReturnArgs} args - Arguments to create many ServiceCategoryTranslations.
+     * Create many CategoryTranslations and returns the data saved in the database.
+     * @param {CategoryTranslationCreateManyAndReturnArgs} args - Arguments to create many CategoryTranslations.
      * @example
-     * // Create many ServiceCategoryTranslations
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.createManyAndReturn({
+     * // Create many CategoryTranslations
+     * const categoryTranslation = await prisma.categoryTranslation.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *
-     * // Create many ServiceCategoryTranslations and only return the `id`
-     * const serviceCategoryTranslationWithIdOnly = await prisma.serviceCategoryTranslation.createManyAndReturn({
+     * // Create many CategoryTranslations and only return the `id`
+     * const categoryTranslationWithIdOnly = await prisma.categoryTranslation.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -7562,16 +7825,14 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      *
      */
-    createManyAndReturn<
-      T extends ServiceCategoryTranslationCreateManyAndReturnArgs,
-    >(
+    createManyAndReturn<T extends CategoryTranslationCreateManyAndReturnArgs>(
       args?: SelectSubset<
         T,
-        ServiceCategoryTranslationCreateManyAndReturnArgs<ExtArgs>
+        CategoryTranslationCreateManyAndReturnArgs<ExtArgs>
       >,
     ): Prisma.PrismaPromise<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'createManyAndReturn',
         GlobalOmitOptions
@@ -7579,22 +7840,22 @@ export namespace Prisma {
     >;
 
     /**
-     * Delete a ServiceCategoryTranslation.
-     * @param {ServiceCategoryTranslationDeleteArgs} args - Arguments to delete one ServiceCategoryTranslation.
+     * Delete a CategoryTranslation.
+     * @param {CategoryTranslationDeleteArgs} args - Arguments to delete one CategoryTranslation.
      * @example
-     * // Delete one ServiceCategoryTranslation
-     * const ServiceCategoryTranslation = await prisma.serviceCategoryTranslation.delete({
+     * // Delete one CategoryTranslation
+     * const CategoryTranslation = await prisma.categoryTranslation.delete({
      *   where: {
-     *     // ... filter to delete one ServiceCategoryTranslation
+     *     // ... filter to delete one CategoryTranslation
      *   }
      * })
      *
      */
-    delete<T extends ServiceCategoryTranslationDeleteArgs>(
-      args: SelectSubset<T, ServiceCategoryTranslationDeleteArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryTranslationClient<
+    delete<T extends CategoryTranslationDeleteArgs>(
+      args: SelectSubset<T, CategoryTranslationDeleteArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'delete',
         GlobalOmitOptions
@@ -7605,11 +7866,11 @@ export namespace Prisma {
     >;
 
     /**
-     * Update one ServiceCategoryTranslation.
-     * @param {ServiceCategoryTranslationUpdateArgs} args - Arguments to update one ServiceCategoryTranslation.
+     * Update one CategoryTranslation.
+     * @param {CategoryTranslationUpdateArgs} args - Arguments to update one CategoryTranslation.
      * @example
-     * // Update one ServiceCategoryTranslation
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.update({
+     * // Update one CategoryTranslation
+     * const categoryTranslation = await prisma.categoryTranslation.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7619,11 +7880,11 @@ export namespace Prisma {
      * })
      *
      */
-    update<T extends ServiceCategoryTranslationUpdateArgs>(
-      args: SelectSubset<T, ServiceCategoryTranslationUpdateArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryTranslationClient<
+    update<T extends CategoryTranslationUpdateArgs>(
+      args: SelectSubset<T, CategoryTranslationUpdateArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'update',
         GlobalOmitOptions
@@ -7634,29 +7895,29 @@ export namespace Prisma {
     >;
 
     /**
-     * Delete zero or more ServiceCategoryTranslations.
-     * @param {ServiceCategoryTranslationDeleteManyArgs} args - Arguments to filter ServiceCategoryTranslations to delete.
+     * Delete zero or more CategoryTranslations.
+     * @param {CategoryTranslationDeleteManyArgs} args - Arguments to filter CategoryTranslations to delete.
      * @example
-     * // Delete a few ServiceCategoryTranslations
-     * const { count } = await prisma.serviceCategoryTranslation.deleteMany({
+     * // Delete a few CategoryTranslations
+     * const { count } = await prisma.categoryTranslation.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      *
      */
-    deleteMany<T extends ServiceCategoryTranslationDeleteManyArgs>(
-      args?: SelectSubset<T, ServiceCategoryTranslationDeleteManyArgs<ExtArgs>>,
+    deleteMany<T extends CategoryTranslationDeleteManyArgs>(
+      args?: SelectSubset<T, CategoryTranslationDeleteManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
-     * Update zero or more ServiceCategoryTranslations.
+     * Update zero or more CategoryTranslations.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {CategoryTranslationUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many ServiceCategoryTranslations
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.updateMany({
+     * // Update many CategoryTranslations
+     * const categoryTranslation = await prisma.categoryTranslation.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7666,16 +7927,16 @@ export namespace Prisma {
      * })
      *
      */
-    updateMany<T extends ServiceCategoryTranslationUpdateManyArgs>(
-      args: SelectSubset<T, ServiceCategoryTranslationUpdateManyArgs<ExtArgs>>,
+    updateMany<T extends CategoryTranslationUpdateManyArgs>(
+      args: SelectSubset<T, CategoryTranslationUpdateManyArgs<ExtArgs>>,
     ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
-     * Update zero or more ServiceCategoryTranslations and returns the data updated in the database.
-     * @param {ServiceCategoryTranslationUpdateManyAndReturnArgs} args - Arguments to update many ServiceCategoryTranslations.
+     * Update zero or more CategoryTranslations and returns the data updated in the database.
+     * @param {CategoryTranslationUpdateManyAndReturnArgs} args - Arguments to update many CategoryTranslations.
      * @example
-     * // Update many ServiceCategoryTranslations
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.updateManyAndReturn({
+     * // Update many CategoryTranslations
+     * const categoryTranslation = await prisma.categoryTranslation.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -7684,8 +7945,8 @@ export namespace Prisma {
      *   ]
      * })
      *
-     * // Update zero or more ServiceCategoryTranslations and only return the `id`
-     * const serviceCategoryTranslationWithIdOnly = await prisma.serviceCategoryTranslation.updateManyAndReturn({
+     * // Update zero or more CategoryTranslations and only return the `id`
+     * const categoryTranslationWithIdOnly = await prisma.categoryTranslation.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -7698,16 +7959,14 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      *
      */
-    updateManyAndReturn<
-      T extends ServiceCategoryTranslationUpdateManyAndReturnArgs,
-    >(
+    updateManyAndReturn<T extends CategoryTranslationUpdateManyAndReturnArgs>(
       args: SelectSubset<
         T,
-        ServiceCategoryTranslationUpdateManyAndReturnArgs<ExtArgs>
+        CategoryTranslationUpdateManyAndReturnArgs<ExtArgs>
       >,
     ): Prisma.PrismaPromise<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'updateManyAndReturn',
         GlobalOmitOptions
@@ -7715,27 +7974,27 @@ export namespace Prisma {
     >;
 
     /**
-     * Create or update one ServiceCategoryTranslation.
-     * @param {ServiceCategoryTranslationUpsertArgs} args - Arguments to update or create a ServiceCategoryTranslation.
+     * Create or update one CategoryTranslation.
+     * @param {CategoryTranslationUpsertArgs} args - Arguments to update or create a CategoryTranslation.
      * @example
-     * // Update or create a ServiceCategoryTranslation
-     * const serviceCategoryTranslation = await prisma.serviceCategoryTranslation.upsert({
+     * // Update or create a CategoryTranslation
+     * const categoryTranslation = await prisma.categoryTranslation.upsert({
      *   create: {
-     *     // ... data to create a ServiceCategoryTranslation
+     *     // ... data to create a CategoryTranslation
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the ServiceCategoryTranslation we want to update
+     *     // ... the filter for the CategoryTranslation we want to update
      *   }
      * })
      */
-    upsert<T extends ServiceCategoryTranslationUpsertArgs>(
-      args: SelectSubset<T, ServiceCategoryTranslationUpsertArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryTranslationClient<
+    upsert<T extends CategoryTranslationUpsertArgs>(
+      args: SelectSubset<T, CategoryTranslationUpsertArgs<ExtArgs>>,
+    ): Prisma__CategoryTranslationClient<
       $Result.GetResult<
-        Prisma.$ServiceCategoryTranslationPayload<ExtArgs>,
+        Prisma.$CategoryTranslationPayload<ExtArgs>,
         T,
         'upsert',
         GlobalOmitOptions
@@ -7746,36 +8005,36 @@ export namespace Prisma {
     >;
 
     /**
-     * Count the number of ServiceCategoryTranslations.
+     * Count the number of CategoryTranslations.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationCountArgs} args - Arguments to filter ServiceCategoryTranslations to count.
+     * @param {CategoryTranslationCountArgs} args - Arguments to filter CategoryTranslations to count.
      * @example
-     * // Count the number of ServiceCategoryTranslations
-     * const count = await prisma.serviceCategoryTranslation.count({
+     * // Count the number of CategoryTranslations
+     * const count = await prisma.categoryTranslation.count({
      *   where: {
-     *     // ... the filter for the ServiceCategoryTranslations we want to count
+     *     // ... the filter for the CategoryTranslations we want to count
      *   }
      * })
      **/
-    count<T extends ServiceCategoryTranslationCountArgs>(
-      args?: Subset<T, ServiceCategoryTranslationCountArgs>,
+    count<T extends CategoryTranslationCountArgs>(
+      args?: Subset<T, CategoryTranslationCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
           : GetScalarType<
               T['select'],
-              ServiceCategoryTranslationCountAggregateOutputType
+              CategoryTranslationCountAggregateOutputType
             >
         : number
     >;
 
     /**
-     * Allows you to perform aggregations operations on a ServiceCategoryTranslation.
+     * Allows you to perform aggregations operations on a CategoryTranslation.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {CategoryTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -7795,15 +8054,15 @@ export namespace Prisma {
      *   take: 10,
      * })
      **/
-    aggregate<T extends ServiceCategoryTranslationAggregateArgs>(
-      args: Subset<T, ServiceCategoryTranslationAggregateArgs>,
-    ): Prisma.PrismaPromise<GetServiceCategoryTranslationAggregateType<T>>;
+    aggregate<T extends CategoryTranslationAggregateArgs>(
+      args: Subset<T, CategoryTranslationAggregateArgs>,
+    ): Prisma.PrismaPromise<GetCategoryTranslationAggregateType<T>>;
 
     /**
-     * Group by ServiceCategoryTranslation.
+     * Group by CategoryTranslation.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryTranslationGroupByArgs} args - Group by arguments.
+     * @param {CategoryTranslationGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -7818,14 +8077,14 @@ export namespace Prisma {
      *
      **/
     groupBy<
-      T extends ServiceCategoryTranslationGroupByArgs,
+      T extends CategoryTranslationGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceCategoryTranslationGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceCategoryTranslationGroupByArgs['orderBy'] },
+        ? { orderBy: CategoryTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryTranslationGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<
         Keys<MaybeTupleToUnion<T['orderBy']>>
       >,
@@ -7877,39 +8136,35 @@ export namespace Prisma {
                       : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                   }[OrderFields],
     >(
-      args: SubsetIntersection<
-        T,
-        ServiceCategoryTranslationGroupByArgs,
-        OrderByArg
-      > &
+      args: SubsetIntersection<T, CategoryTranslationGroupByArgs, OrderByArg> &
         InputErrors,
     ): {} extends InputErrors
-      ? GetServiceCategoryTranslationGroupByPayload<T>
+      ? GetCategoryTranslationGroupByPayload<T>
       : Prisma.PrismaPromise<InputErrors>;
     /**
-     * Fields of the ServiceCategoryTranslation model
+     * Fields of the CategoryTranslation model
      */
-    readonly fields: ServiceCategoryTranslationFieldRefs;
+    readonly fields: CategoryTranslationFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ServiceCategoryTranslation.
+   * The delegate class that acts as a "Promise-like" for CategoryTranslation.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ServiceCategoryTranslationClient<
+  export interface Prisma__CategoryTranslationClient<
     T,
     Null = never,
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
-    category<T extends ServiceCategoryDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, ServiceCategoryDefaultArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CategoryDefaultArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       | $Result.GetResult<
-          Prisma.$ServiceCategoryPayload<ExtArgs>,
+          Prisma.$CategoryPayload<ExtArgs>,
           T,
           'findUniqueOrThrow',
           GlobalOmitOptions
@@ -7956,488 +8211,488 @@ export namespace Prisma {
   }
 
   /**
-   * Fields of the ServiceCategoryTranslation model
+   * Fields of the CategoryTranslation model
    */
-  interface ServiceCategoryTranslationFieldRefs {
-    readonly id: FieldRef<'ServiceCategoryTranslation', 'String'>;
-    readonly categoryId: FieldRef<'ServiceCategoryTranslation', 'String'>;
-    readonly locale: FieldRef<'ServiceCategoryTranslation', 'Locale'>;
-    readonly label: FieldRef<'ServiceCategoryTranslation', 'String'>;
-    readonly slug: FieldRef<'ServiceCategoryTranslation', 'String'>;
+  interface CategoryTranslationFieldRefs {
+    readonly id: FieldRef<'CategoryTranslation', 'String'>;
+    readonly categoryId: FieldRef<'CategoryTranslation', 'String'>;
+    readonly locale: FieldRef<'CategoryTranslation', 'Locale'>;
+    readonly label: FieldRef<'CategoryTranslation', 'String'>;
+    readonly slug: FieldRef<'CategoryTranslation', 'String'>;
   }
 
   // Custom InputTypes
   /**
-   * ServiceCategoryTranslation findUnique
+   * CategoryTranslation findUnique
    */
-  export type ServiceCategoryTranslationFindUniqueArgs<
+  export type CategoryTranslationFindUniqueArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategoryTranslation to fetch.
+     * Filter, which CategoryTranslation to fetch.
      */
-    where: ServiceCategoryTranslationWhereUniqueInput;
+    where: CategoryTranslationWhereUniqueInput;
   };
 
   /**
-   * ServiceCategoryTranslation findUniqueOrThrow
+   * CategoryTranslation findUniqueOrThrow
    */
-  export type ServiceCategoryTranslationFindUniqueOrThrowArgs<
+  export type CategoryTranslationFindUniqueOrThrowArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategoryTranslation to fetch.
+     * Filter, which CategoryTranslation to fetch.
      */
-    where: ServiceCategoryTranslationWhereUniqueInput;
+    where: CategoryTranslationWhereUniqueInput;
   };
 
   /**
-   * ServiceCategoryTranslation findFirst
+   * CategoryTranslation findFirst
    */
-  export type ServiceCategoryTranslationFindFirstArgs<
+  export type CategoryTranslationFindFirstArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategoryTranslation to fetch.
+     * Filter, which CategoryTranslation to fetch.
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategoryTranslations to fetch.
+     * Determine the order of CategoryTranslations to fetch.
      */
     orderBy?:
-      | ServiceCategoryTranslationOrderByWithRelationInput
-      | ServiceCategoryTranslationOrderByWithRelationInput[];
+      | CategoryTranslationOrderByWithRelationInput
+      | CategoryTranslationOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for searching for ServiceCategoryTranslations.
+     * Sets the position for searching for CategoryTranslations.
      */
-    cursor?: ServiceCategoryTranslationWhereUniqueInput;
+    cursor?: CategoryTranslationWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategoryTranslations from the position of the cursor.
+     * Take `±n` CategoryTranslations from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategoryTranslations.
+     * Skip the first `n` CategoryTranslations.
      */
     skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      *
-     * Filter by unique combinations of ServiceCategoryTranslations.
+     * Filter by unique combinations of CategoryTranslations.
      */
     distinct?:
-      | ServiceCategoryTranslationScalarFieldEnum
-      | ServiceCategoryTranslationScalarFieldEnum[];
+      | CategoryTranslationScalarFieldEnum
+      | CategoryTranslationScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategoryTranslation findFirstOrThrow
+   * CategoryTranslation findFirstOrThrow
    */
-  export type ServiceCategoryTranslationFindFirstOrThrowArgs<
+  export type CategoryTranslationFindFirstOrThrowArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategoryTranslation to fetch.
+     * Filter, which CategoryTranslation to fetch.
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategoryTranslations to fetch.
+     * Determine the order of CategoryTranslations to fetch.
      */
     orderBy?:
-      | ServiceCategoryTranslationOrderByWithRelationInput
-      | ServiceCategoryTranslationOrderByWithRelationInput[];
+      | CategoryTranslationOrderByWithRelationInput
+      | CategoryTranslationOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for searching for ServiceCategoryTranslations.
+     * Sets the position for searching for CategoryTranslations.
      */
-    cursor?: ServiceCategoryTranslationWhereUniqueInput;
+    cursor?: CategoryTranslationWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategoryTranslations from the position of the cursor.
+     * Take `±n` CategoryTranslations from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategoryTranslations.
+     * Skip the first `n` CategoryTranslations.
      */
     skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      *
-     * Filter by unique combinations of ServiceCategoryTranslations.
+     * Filter by unique combinations of CategoryTranslations.
      */
     distinct?:
-      | ServiceCategoryTranslationScalarFieldEnum
-      | ServiceCategoryTranslationScalarFieldEnum[];
+      | CategoryTranslationScalarFieldEnum
+      | CategoryTranslationScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategoryTranslation findMany
+   * CategoryTranslation findMany
    */
-  export type ServiceCategoryTranslationFindManyArgs<
+  export type CategoryTranslationFindManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * Filter, which ServiceCategoryTranslations to fetch.
+     * Filter, which CategoryTranslations to fetch.
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      *
-     * Determine the order of ServiceCategoryTranslations to fetch.
+     * Determine the order of CategoryTranslations to fetch.
      */
     orderBy?:
-      | ServiceCategoryTranslationOrderByWithRelationInput
-      | ServiceCategoryTranslationOrderByWithRelationInput[];
+      | CategoryTranslationOrderByWithRelationInput
+      | CategoryTranslationOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      *
-     * Sets the position for listing ServiceCategoryTranslations.
+     * Sets the position for listing CategoryTranslations.
      */
-    cursor?: ServiceCategoryTranslationWhereUniqueInput;
+    cursor?: CategoryTranslationWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Take `±n` ServiceCategoryTranslations from the position of the cursor.
+     * Take `±n` CategoryTranslations from the position of the cursor.
      */
     take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      *
-     * Skip the first `n` ServiceCategoryTranslations.
+     * Skip the first `n` CategoryTranslations.
      */
     skip?: number;
     distinct?:
-      | ServiceCategoryTranslationScalarFieldEnum
-      | ServiceCategoryTranslationScalarFieldEnum[];
+      | CategoryTranslationScalarFieldEnum
+      | CategoryTranslationScalarFieldEnum[];
   };
 
   /**
-   * ServiceCategoryTranslation create
+   * CategoryTranslation create
    */
-  export type ServiceCategoryTranslationCreateArgs<
+  export type CategoryTranslationCreateArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * The data needed to create a ServiceCategoryTranslation.
+     * The data needed to create a CategoryTranslation.
      */
     data: XOR<
-      ServiceCategoryTranslationCreateInput,
-      ServiceCategoryTranslationUncheckedCreateInput
+      CategoryTranslationCreateInput,
+      CategoryTranslationUncheckedCreateInput
     >;
   };
 
   /**
-   * ServiceCategoryTranslation createMany
+   * CategoryTranslation createMany
    */
-  export type ServiceCategoryTranslationCreateManyArgs<
+  export type CategoryTranslationCreateManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * The data used to create many ServiceCategoryTranslations.
+     * The data used to create many CategoryTranslations.
      */
     data:
-      | ServiceCategoryTranslationCreateManyInput
-      | ServiceCategoryTranslationCreateManyInput[];
+      | CategoryTranslationCreateManyInput
+      | CategoryTranslationCreateManyInput[];
     skipDuplicates?: boolean;
   };
 
   /**
-   * ServiceCategoryTranslation createManyAndReturn
+   * CategoryTranslation createManyAndReturn
    */
-  export type ServiceCategoryTranslationCreateManyAndReturnArgs<
+  export type CategoryTranslationCreateManyAndReturnArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelectCreateManyAndReturn<ExtArgs> | null;
+    select?: CategoryTranslationSelectCreateManyAndReturn<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
-     * The data used to create many ServiceCategoryTranslations.
+     * The data used to create many CategoryTranslations.
      */
     data:
-      | ServiceCategoryTranslationCreateManyInput
-      | ServiceCategoryTranslationCreateManyInput[];
+      | CategoryTranslationCreateManyInput
+      | CategoryTranslationCreateManyInput[];
     skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationIncludeCreateManyAndReturn<ExtArgs> | null;
+    include?: CategoryTranslationIncludeCreateManyAndReturn<ExtArgs> | null;
   };
 
   /**
-   * ServiceCategoryTranslation update
+   * CategoryTranslation update
    */
-  export type ServiceCategoryTranslationUpdateArgs<
+  export type CategoryTranslationUpdateArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * The data needed to update a ServiceCategoryTranslation.
+     * The data needed to update a CategoryTranslation.
      */
     data: XOR<
-      ServiceCategoryTranslationUpdateInput,
-      ServiceCategoryTranslationUncheckedUpdateInput
+      CategoryTranslationUpdateInput,
+      CategoryTranslationUncheckedUpdateInput
     >;
     /**
-     * Choose, which ServiceCategoryTranslation to update.
+     * Choose, which CategoryTranslation to update.
      */
-    where: ServiceCategoryTranslationWhereUniqueInput;
+    where: CategoryTranslationWhereUniqueInput;
   };
 
   /**
-   * ServiceCategoryTranslation updateMany
+   * CategoryTranslation updateMany
    */
-  export type ServiceCategoryTranslationUpdateManyArgs<
+  export type CategoryTranslationUpdateManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * The data used to update ServiceCategoryTranslations.
+     * The data used to update CategoryTranslations.
      */
     data: XOR<
-      ServiceCategoryTranslationUpdateManyMutationInput,
-      ServiceCategoryTranslationUncheckedUpdateManyInput
+      CategoryTranslationUpdateManyMutationInput,
+      CategoryTranslationUncheckedUpdateManyInput
     >;
     /**
-     * Filter which ServiceCategoryTranslations to update
+     * Filter which CategoryTranslations to update
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
-     * Limit how many ServiceCategoryTranslations to update.
+     * Limit how many CategoryTranslations to update.
      */
     limit?: number;
   };
 
   /**
-   * ServiceCategoryTranslation updateManyAndReturn
+   * CategoryTranslation updateManyAndReturn
    */
-  export type ServiceCategoryTranslationUpdateManyAndReturnArgs<
+  export type CategoryTranslationUpdateManyAndReturnArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelectUpdateManyAndReturn<ExtArgs> | null;
+    select?: CategoryTranslationSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
-     * The data used to update ServiceCategoryTranslations.
+     * The data used to update CategoryTranslations.
      */
     data: XOR<
-      ServiceCategoryTranslationUpdateManyMutationInput,
-      ServiceCategoryTranslationUncheckedUpdateManyInput
+      CategoryTranslationUpdateManyMutationInput,
+      CategoryTranslationUncheckedUpdateManyInput
     >;
     /**
-     * Filter which ServiceCategoryTranslations to update
+     * Filter which CategoryTranslations to update
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
-     * Limit how many ServiceCategoryTranslations to update.
+     * Limit how many CategoryTranslations to update.
      */
     limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationIncludeUpdateManyAndReturn<ExtArgs> | null;
+    include?: CategoryTranslationIncludeUpdateManyAndReturn<ExtArgs> | null;
   };
 
   /**
-   * ServiceCategoryTranslation upsert
+   * CategoryTranslation upsert
    */
-  export type ServiceCategoryTranslationUpsertArgs<
+  export type CategoryTranslationUpsertArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * The filter to search for the ServiceCategoryTranslation to update in case it exists.
+     * The filter to search for the CategoryTranslation to update in case it exists.
      */
-    where: ServiceCategoryTranslationWhereUniqueInput;
+    where: CategoryTranslationWhereUniqueInput;
     /**
-     * In case the ServiceCategoryTranslation found by the `where` argument doesn't exist, create a new ServiceCategoryTranslation with this data.
+     * In case the CategoryTranslation found by the `where` argument doesn't exist, create a new CategoryTranslation with this data.
      */
     create: XOR<
-      ServiceCategoryTranslationCreateInput,
-      ServiceCategoryTranslationUncheckedCreateInput
+      CategoryTranslationCreateInput,
+      CategoryTranslationUncheckedCreateInput
     >;
     /**
-     * In case the ServiceCategoryTranslation was found with the provided `where` argument, update it with this data.
+     * In case the CategoryTranslation was found with the provided `where` argument, update it with this data.
      */
     update: XOR<
-      ServiceCategoryTranslationUpdateInput,
-      ServiceCategoryTranslationUncheckedUpdateInput
+      CategoryTranslationUpdateInput,
+      CategoryTranslationUncheckedUpdateInput
     >;
   };
 
   /**
-   * ServiceCategoryTranslation delete
+   * CategoryTranslation delete
    */
-  export type ServiceCategoryTranslationDeleteArgs<
+  export type CategoryTranslationDeleteArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
     /**
-     * Filter which ServiceCategoryTranslation to delete.
+     * Filter which CategoryTranslation to delete.
      */
-    where: ServiceCategoryTranslationWhereUniqueInput;
+    where: CategoryTranslationWhereUniqueInput;
   };
 
   /**
-   * ServiceCategoryTranslation deleteMany
+   * CategoryTranslation deleteMany
    */
-  export type ServiceCategoryTranslationDeleteManyArgs<
+  export type CategoryTranslationDeleteManyArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Filter which ServiceCategoryTranslations to delete
+     * Filter which CategoryTranslations to delete
      */
-    where?: ServiceCategoryTranslationWhereInput;
+    where?: CategoryTranslationWhereInput;
     /**
-     * Limit how many ServiceCategoryTranslations to delete.
+     * Limit how many CategoryTranslations to delete.
      */
     limit?: number;
   };
 
   /**
-   * ServiceCategoryTranslation without action
+   * CategoryTranslation without action
    */
-  export type ServiceCategoryTranslationDefaultArgs<
+  export type CategoryTranslationDefaultArgs<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     /**
-     * Select specific fields to fetch from the ServiceCategoryTranslation
+     * Select specific fields to fetch from the CategoryTranslation
      */
-    select?: ServiceCategoryTranslationSelect<ExtArgs> | null;
+    select?: CategoryTranslationSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the ServiceCategoryTranslation
+     * Omit specific fields from the CategoryTranslation
      */
-    omit?: ServiceCategoryTranslationOmit<ExtArgs> | null;
+    omit?: CategoryTranslationOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ServiceCategoryTranslationInclude<ExtArgs> | null;
+    include?: CategoryTranslationInclude<ExtArgs> | null;
   };
 
   /**
@@ -8684,7 +8939,7 @@ export namespace Prisma {
       role?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
-      category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
       translations?: boolean | Service$translationsArgs<ExtArgs>;
       _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>;
     },
@@ -8705,7 +8960,7 @@ export namespace Prisma {
       role?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
-      category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['service']
   >;
@@ -8724,7 +8979,7 @@ export namespace Prisma {
       role?: boolean;
       createdAt?: boolean;
       updatedAt?: boolean;
-      category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
     },
     ExtArgs['result']['service']
   >;
@@ -8760,19 +9015,19 @@ export namespace Prisma {
   export type ServiceInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
     translations?: boolean | Service$translationsArgs<ExtArgs>;
     _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>;
   };
   export type ServiceIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
   };
   export type ServiceIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    category?: boolean | ServiceCategoryDefaultArgs<ExtArgs>;
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
   };
 
   export type $ServicePayload<
@@ -8780,7 +9035,7 @@ export namespace Prisma {
   > = {
     name: 'Service';
     objects: {
-      category: Prisma.$ServiceCategoryPayload<ExtArgs>;
+      category: Prisma.$CategoryPayload<ExtArgs>;
       translations: Prisma.$ServiceTranslationPayload<ExtArgs>[];
     };
     scalars: $Extensions.GetPayloadResult<
@@ -9341,11 +9596,11 @@ export namespace Prisma {
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
-    category<T extends ServiceCategoryDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, ServiceCategoryDefaultArgs<ExtArgs>>,
-    ): Prisma__ServiceCategoryClient<
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CategoryDefaultArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
       | $Result.GetResult<
-          Prisma.$ServiceCategoryPayload<ExtArgs>,
+          Prisma.$CategoryPayload<ExtArgs>,
           T,
           'findUniqueOrThrow',
           GlobalOmitOptions
@@ -11252,6 +11507,2817 @@ export namespace Prisma {
   };
 
   /**
+   * Model Contact
+   */
+
+  export type AggregateContact = {
+    _count: ContactCountAggregateOutputType | null;
+    _avg: ContactAvgAggregateOutputType | null;
+    _sum: ContactSumAggregateOutputType | null;
+    _min: ContactMinAggregateOutputType | null;
+    _max: ContactMaxAggregateOutputType | null;
+  };
+
+  export type ContactAvgAggregateOutputType = {
+    order: number | null;
+  };
+
+  export type ContactSumAggregateOutputType = {
+    order: number | null;
+  };
+
+  export type ContactMinAggregateOutputType = {
+    id: string | null;
+    categoryId: string | null;
+    icon: string | null;
+    externalUrl: string | null;
+    order: number | null;
+    isActive: boolean | null;
+    requiresAuth: boolean | null;
+    role: $Enums.Role | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
+
+  export type ContactMaxAggregateOutputType = {
+    id: string | null;
+    categoryId: string | null;
+    icon: string | null;
+    externalUrl: string | null;
+    order: number | null;
+    isActive: boolean | null;
+    requiresAuth: boolean | null;
+    role: $Enums.Role | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+  };
+
+  export type ContactCountAggregateOutputType = {
+    id: number;
+    categoryId: number;
+    icon: number;
+    externalUrl: number;
+    order: number;
+    isActive: number;
+    requiresAuth: number;
+    role: number;
+    createdAt: number;
+    updatedAt: number;
+    _all: number;
+  };
+
+  export type ContactAvgAggregateInputType = {
+    order?: true;
+  };
+
+  export type ContactSumAggregateInputType = {
+    order?: true;
+  };
+
+  export type ContactMinAggregateInputType = {
+    id?: true;
+    categoryId?: true;
+    icon?: true;
+    externalUrl?: true;
+    order?: true;
+    isActive?: true;
+    requiresAuth?: true;
+    role?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
+
+  export type ContactMaxAggregateInputType = {
+    id?: true;
+    categoryId?: true;
+    icon?: true;
+    externalUrl?: true;
+    order?: true;
+    isActive?: true;
+    requiresAuth?: true;
+    role?: true;
+    createdAt?: true;
+    updatedAt?: true;
+  };
+
+  export type ContactCountAggregateInputType = {
+    id?: true;
+    categoryId?: true;
+    icon?: true;
+    externalUrl?: true;
+    order?: true;
+    isActive?: true;
+    requiresAuth?: true;
+    role?: true;
+    createdAt?: true;
+    updatedAt?: true;
+    _all?: true;
+  };
+
+  export type ContactAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Filter which Contact to aggregate.
+     */
+    where?: ContactWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?:
+      | ContactOrderByWithRelationInput
+      | ContactOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: ContactWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Contacts.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned Contacts
+     **/
+    _count?: true | ContactCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+     **/
+    _avg?: ContactAvgAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+     **/
+    _sum?: ContactSumAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+     **/
+    _min?: ContactMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+     **/
+    _max?: ContactMaxAggregateInputType;
+  };
+
+  export type GetContactAggregateType<T extends ContactAggregateArgs> = {
+    [P in keyof T & keyof AggregateContact]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContact[P]>
+      : GetScalarType<T[P], AggregateContact[P]>;
+  };
+
+  export type ContactGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: ContactWhereInput;
+    orderBy?:
+      | ContactOrderByWithAggregationInput
+      | ContactOrderByWithAggregationInput[];
+    by: ContactScalarFieldEnum[] | ContactScalarFieldEnum;
+    having?: ContactScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: ContactCountAggregateInputType | true;
+    _avg?: ContactAvgAggregateInputType;
+    _sum?: ContactSumAggregateInputType;
+    _min?: ContactMinAggregateInputType;
+    _max?: ContactMaxAggregateInputType;
+  };
+
+  export type ContactGroupByOutputType = {
+    id: string;
+    categoryId: string;
+    icon: string;
+    externalUrl: string | null;
+    order: number;
+    isActive: boolean;
+    requiresAuth: boolean;
+    role: $Enums.Role | null;
+    createdAt: Date;
+    updatedAt: Date;
+    _count: ContactCountAggregateOutputType | null;
+    _avg: ContactAvgAggregateOutputType | null;
+    _sum: ContactSumAggregateOutputType | null;
+    _min: ContactMinAggregateOutputType | null;
+    _max: ContactMaxAggregateOutputType | null;
+  };
+
+  type GetContactGroupByPayload<T extends ContactGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<ContactGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof ContactGroupByOutputType]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactGroupByOutputType[P]>;
+        }
+      >
+    >;
+
+  export type ContactSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      categoryId?: boolean;
+      icon?: boolean;
+      externalUrl?: boolean;
+      order?: boolean;
+      isActive?: boolean;
+      requiresAuth?: boolean;
+      role?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
+      translations?: boolean | Contact$translationsArgs<ExtArgs>;
+      _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['contact']
+  >;
+
+  export type ContactSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      categoryId?: boolean;
+      icon?: boolean;
+      externalUrl?: boolean;
+      order?: boolean;
+      isActive?: boolean;
+      requiresAuth?: boolean;
+      role?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['contact']
+  >;
+
+  export type ContactSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      categoryId?: boolean;
+      icon?: boolean;
+      externalUrl?: boolean;
+      order?: boolean;
+      isActive?: boolean;
+      requiresAuth?: boolean;
+      role?: boolean;
+      createdAt?: boolean;
+      updatedAt?: boolean;
+      category?: boolean | CategoryDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['contact']
+  >;
+
+  export type ContactSelectScalar = {
+    id?: boolean;
+    categoryId?: boolean;
+    icon?: boolean;
+    externalUrl?: boolean;
+    order?: boolean;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: boolean;
+    createdAt?: boolean;
+    updatedAt?: boolean;
+  };
+
+  export type ContactOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'id'
+    | 'categoryId'
+    | 'icon'
+    | 'externalUrl'
+    | 'order'
+    | 'isActive'
+    | 'requiresAuth'
+    | 'role'
+    | 'createdAt'
+    | 'updatedAt',
+    ExtArgs['result']['contact']
+  >;
+  export type ContactInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
+    translations?: boolean | Contact$translationsArgs<ExtArgs>;
+    _count?: boolean | ContactCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type ContactIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
+  };
+  export type ContactIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    category?: boolean | CategoryDefaultArgs<ExtArgs>;
+  };
+
+  export type $ContactPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Contact';
+    objects: {
+      category: Prisma.$CategoryPayload<ExtArgs>;
+      translations: Prisma.$ContactTranslationPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        categoryId: string;
+        icon: string;
+        externalUrl: string | null;
+        order: number;
+        isActive: boolean;
+        requiresAuth: boolean;
+        role: $Enums.Role | null;
+        createdAt: Date;
+        updatedAt: Date;
+      },
+      ExtArgs['result']['contact']
+    >;
+    composites: {};
+  };
+
+  type ContactGetPayload<
+    S extends boolean | null | undefined | ContactDefaultArgs,
+  > = $Result.GetResult<Prisma.$ContactPayload, S>;
+
+  type ContactCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<ContactFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: ContactCountAggregateInputType | true;
+  };
+
+  export interface ContactDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Contact'];
+      meta: { name: 'Contact' };
+    };
+    /**
+     * Find zero or one Contact that matches the filter.
+     * @param {ContactFindUniqueArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactFindUniqueArgs>(
+      args: SelectSubset<T, ContactFindUniqueArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find one Contact that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactFindUniqueOrThrowArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, ContactFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first Contact that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactFindFirstArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactFindFirstArgs>(
+      args?: SelectSubset<T, ContactFindFirstArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first Contact that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactFindFirstOrThrowArgs} args - Arguments to find a Contact
+     * @example
+     * // Get one Contact
+     * const contact = await prisma.contact.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ContactFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find zero or more Contacts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Contacts
+     * const contacts = await prisma.contact.findMany()
+     *
+     * // Get first 10 Contacts
+     * const contacts = await prisma.contact.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const contactWithIdOnly = await prisma.contact.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends ContactFindManyArgs>(
+      args?: SelectSubset<T, ContactFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create a Contact.
+     * @param {ContactCreateArgs} args - Arguments to create a Contact.
+     * @example
+     * // Create one Contact
+     * const Contact = await prisma.contact.create({
+     *   data: {
+     *     // ... data to create a Contact
+     *   }
+     * })
+     *
+     */
+    create<T extends ContactCreateArgs>(
+      args: SelectSubset<T, ContactCreateArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Create many Contacts.
+     * @param {ContactCreateManyArgs} args - Arguments to create many Contacts.
+     * @example
+     * // Create many Contacts
+     * const contact = await prisma.contact.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends ContactCreateManyArgs>(
+      args?: SelectSubset<T, ContactCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Create many Contacts and returns the data saved in the database.
+     * @param {ContactCreateManyAndReturnArgs} args - Arguments to create many Contacts.
+     * @example
+     * // Create many Contacts
+     * const contact = await prisma.contact.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many Contacts and only return the `id`
+     * const contactWithIdOnly = await prisma.contact.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends ContactCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, ContactCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Delete a Contact.
+     * @param {ContactDeleteArgs} args - Arguments to delete one Contact.
+     * @example
+     * // Delete one Contact
+     * const Contact = await prisma.contact.delete({
+     *   where: {
+     *     // ... filter to delete one Contact
+     *   }
+     * })
+     *
+     */
+    delete<T extends ContactDeleteArgs>(
+      args: SelectSubset<T, ContactDeleteArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Update one Contact.
+     * @param {ContactUpdateArgs} args - Arguments to update one Contact.
+     * @example
+     * // Update one Contact
+     * const contact = await prisma.contact.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends ContactUpdateArgs>(
+      args: SelectSubset<T, ContactUpdateArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Delete zero or more Contacts.
+     * @param {ContactDeleteManyArgs} args - Arguments to filter Contacts to delete.
+     * @example
+     * // Delete a few Contacts
+     * const { count } = await prisma.contact.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends ContactDeleteManyArgs>(
+      args?: SelectSubset<T, ContactDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more Contacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Contacts
+     * const contact = await prisma.contact.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends ContactUpdateManyArgs>(
+      args: SelectSubset<T, ContactUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more Contacts and returns the data updated in the database.
+     * @param {ContactUpdateManyAndReturnArgs} args - Arguments to update many Contacts.
+     * @example
+     * // Update many Contacts
+     * const contact = await prisma.contact.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more Contacts and only return the `id`
+     * const contactWithIdOnly = await prisma.contact.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends ContactUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, ContactUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create or update one Contact.
+     * @param {ContactUpsertArgs} args - Arguments to update or create a Contact.
+     * @example
+     * // Update or create a Contact
+     * const contact = await prisma.contact.upsert({
+     *   create: {
+     *     // ... data to create a Contact
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Contact we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactUpsertArgs>(
+      args: SelectSubset<T, ContactUpsertArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      $Result.GetResult<
+        Prisma.$ContactPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Count the number of Contacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactCountArgs} args - Arguments to filter Contacts to count.
+     * @example
+     * // Count the number of Contacts
+     * const count = await prisma.contact.count({
+     *   where: {
+     *     // ... the filter for the Contacts we want to count
+     *   }
+     * })
+     **/
+    count<T extends ContactCountArgs>(
+      args?: Subset<T, ContactCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactCountAggregateOutputType>
+        : number
+    >;
+
+    /**
+     * Allows you to perform aggregations operations on a Contact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+     **/
+    aggregate<T extends ContactAggregateArgs>(
+      args: Subset<T, ContactAggregateArgs>,
+    ): Prisma.PrismaPromise<GetContactAggregateType<T>>;
+
+    /**
+     * Group by Contact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+     **/
+    groupBy<
+      T extends ContactGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactGroupByArgs['orderBy'] }
+        : { orderBy?: ContactGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, ContactGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors
+      ? GetContactGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Contact model
+     */
+    readonly fields: ContactFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Contact.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    category<T extends CategoryDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CategoryDefaultArgs<ExtArgs>>,
+    ): Prisma__CategoryClient<
+      | $Result.GetResult<
+          Prisma.$CategoryPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    translations<T extends Contact$translationsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Contact$translationsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$ContactTranslationPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+  /**
+   * Fields of the Contact model
+   */
+  interface ContactFieldRefs {
+    readonly id: FieldRef<'Contact', 'String'>;
+    readonly categoryId: FieldRef<'Contact', 'String'>;
+    readonly icon: FieldRef<'Contact', 'String'>;
+    readonly externalUrl: FieldRef<'Contact', 'String'>;
+    readonly order: FieldRef<'Contact', 'Int'>;
+    readonly isActive: FieldRef<'Contact', 'Boolean'>;
+    readonly requiresAuth: FieldRef<'Contact', 'Boolean'>;
+    readonly role: FieldRef<'Contact', 'Role'>;
+    readonly createdAt: FieldRef<'Contact', 'DateTime'>;
+    readonly updatedAt: FieldRef<'Contact', 'DateTime'>;
+  }
+
+  // Custom InputTypes
+  /**
+   * Contact findUnique
+   */
+  export type ContactFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where: ContactWhereUniqueInput;
+  };
+
+  /**
+   * Contact findUniqueOrThrow
+   */
+  export type ContactFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where: ContactWhereUniqueInput;
+  };
+
+  /**
+   * Contact findFirst
+   */
+  export type ContactFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where?: ContactWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?:
+      | ContactOrderByWithRelationInput
+      | ContactOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Contacts.
+     */
+    cursor?: ContactWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Contacts.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Contacts.
+     */
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[];
+  };
+
+  /**
+   * Contact findFirstOrThrow
+   */
+  export type ContactFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * Filter, which Contact to fetch.
+     */
+    where?: ContactWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?:
+      | ContactOrderByWithRelationInput
+      | ContactOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for Contacts.
+     */
+    cursor?: ContactWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Contacts.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of Contacts.
+     */
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[];
+  };
+
+  /**
+   * Contact findMany
+   */
+  export type ContactFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * Filter, which Contacts to fetch.
+     */
+    where?: ContactWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of Contacts to fetch.
+     */
+    orderBy?:
+      | ContactOrderByWithRelationInput
+      | ContactOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing Contacts.
+     */
+    cursor?: ContactWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` Contacts from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` Contacts.
+     */
+    skip?: number;
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[];
+  };
+
+  /**
+   * Contact create
+   */
+  export type ContactCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a Contact.
+     */
+    data: XOR<ContactCreateInput, ContactUncheckedCreateInput>;
+  };
+
+  /**
+   * Contact createMany
+   */
+  export type ContactCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * The data used to create many Contacts.
+     */
+    data: ContactCreateManyInput | ContactCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
+
+  /**
+   * Contact createManyAndReturn
+   */
+  export type ContactCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * The data used to create many Contacts.
+     */
+    data: ContactCreateManyInput | ContactCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
+
+  /**
+   * Contact update
+   */
+  export type ContactUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a Contact.
+     */
+    data: XOR<ContactUpdateInput, ContactUncheckedUpdateInput>;
+    /**
+     * Choose, which Contact to update.
+     */
+    where: ContactWhereUniqueInput;
+  };
+
+  /**
+   * Contact updateMany
+   */
+  export type ContactUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * The data used to update Contacts.
+     */
+    data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyInput>;
+    /**
+     * Filter which Contacts to update
+     */
+    where?: ContactWhereInput;
+    /**
+     * Limit how many Contacts to update.
+     */
+    limit?: number;
+  };
+
+  /**
+   * Contact updateManyAndReturn
+   */
+  export type ContactUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * The data used to update Contacts.
+     */
+    data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyInput>;
+    /**
+     * Filter which Contacts to update
+     */
+    where?: ContactWhereInput;
+    /**
+     * Limit how many Contacts to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
+
+  /**
+   * Contact upsert
+   */
+  export type ContactUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the Contact to update in case it exists.
+     */
+    where: ContactWhereUniqueInput;
+    /**
+     * In case the Contact found by the `where` argument doesn't exist, create a new Contact with this data.
+     */
+    create: XOR<ContactCreateInput, ContactUncheckedCreateInput>;
+    /**
+     * In case the Contact was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactUpdateInput, ContactUncheckedUpdateInput>;
+  };
+
+  /**
+   * Contact delete
+   */
+  export type ContactDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+    /**
+     * Filter which Contact to delete.
+     */
+    where: ContactWhereUniqueInput;
+  };
+
+  /**
+   * Contact deleteMany
+   */
+  export type ContactDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Filter which Contacts to delete
+     */
+    where?: ContactWhereInput;
+    /**
+     * Limit how many Contacts to delete.
+     */
+    limit?: number;
+  };
+
+  /**
+   * Contact.translations
+   */
+  export type Contact$translationsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    where?: ContactTranslationWhereInput;
+    orderBy?:
+      | ContactTranslationOrderByWithRelationInput
+      | ContactTranslationOrderByWithRelationInput[];
+    cursor?: ContactTranslationWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?:
+      | ContactTranslationScalarFieldEnum
+      | ContactTranslationScalarFieldEnum[];
+  };
+
+  /**
+   * Contact without action
+   */
+  export type ContactDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the Contact
+     */
+    select?: ContactSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Contact
+     */
+    omit?: ContactOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactInclude<ExtArgs> | null;
+  };
+
+  /**
+   * Model ContactTranslation
+   */
+
+  export type AggregateContactTranslation = {
+    _count: ContactTranslationCountAggregateOutputType | null;
+    _min: ContactTranslationMinAggregateOutputType | null;
+    _max: ContactTranslationMaxAggregateOutputType | null;
+  };
+
+  export type ContactTranslationMinAggregateOutputType = {
+    id: string | null;
+    contactId: string | null;
+    locale: $Enums.Locale | null;
+    title: string | null;
+    description: string | null;
+    slug: string | null;
+  };
+
+  export type ContactTranslationMaxAggregateOutputType = {
+    id: string | null;
+    contactId: string | null;
+    locale: $Enums.Locale | null;
+    title: string | null;
+    description: string | null;
+    slug: string | null;
+  };
+
+  export type ContactTranslationCountAggregateOutputType = {
+    id: number;
+    contactId: number;
+    locale: number;
+    title: number;
+    description: number;
+    slug: number;
+    _all: number;
+  };
+
+  export type ContactTranslationMinAggregateInputType = {
+    id?: true;
+    contactId?: true;
+    locale?: true;
+    title?: true;
+    description?: true;
+    slug?: true;
+  };
+
+  export type ContactTranslationMaxAggregateInputType = {
+    id?: true;
+    contactId?: true;
+    locale?: true;
+    title?: true;
+    description?: true;
+    slug?: true;
+  };
+
+  export type ContactTranslationCountAggregateInputType = {
+    id?: true;
+    contactId?: true;
+    locale?: true;
+    title?: true;
+    description?: true;
+    slug?: true;
+    _all?: true;
+  };
+
+  export type ContactTranslationAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Filter which ContactTranslation to aggregate.
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ContactTranslations to fetch.
+     */
+    orderBy?:
+      | ContactTranslationOrderByWithRelationInput
+      | ContactTranslationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: ContactTranslationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ContactTranslations from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ContactTranslations.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned ContactTranslations
+     **/
+    _count?: true | ContactTranslationCountAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+     **/
+    _min?: ContactTranslationMinAggregateInputType;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+     **/
+    _max?: ContactTranslationMaxAggregateInputType;
+  };
+
+  export type GetContactTranslationAggregateType<
+    T extends ContactTranslationAggregateArgs,
+  > = {
+    [P in keyof T & keyof AggregateContactTranslation]: P extends
+      | '_count'
+      | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactTranslation[P]>
+      : GetScalarType<T[P], AggregateContactTranslation[P]>;
+  };
+
+  export type ContactTranslationGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: ContactTranslationWhereInput;
+    orderBy?:
+      | ContactTranslationOrderByWithAggregationInput
+      | ContactTranslationOrderByWithAggregationInput[];
+    by: ContactTranslationScalarFieldEnum[] | ContactTranslationScalarFieldEnum;
+    having?: ContactTranslationScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: ContactTranslationCountAggregateInputType | true;
+    _min?: ContactTranslationMinAggregateInputType;
+    _max?: ContactTranslationMaxAggregateInputType;
+  };
+
+  export type ContactTranslationGroupByOutputType = {
+    id: string;
+    contactId: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+    _count: ContactTranslationCountAggregateOutputType | null;
+    _min: ContactTranslationMinAggregateOutputType | null;
+    _max: ContactTranslationMaxAggregateOutputType | null;
+  };
+
+  type GetContactTranslationGroupByPayload<
+    T extends ContactTranslationGroupByArgs,
+  > = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactTranslationGroupByOutputType, T['by']> & {
+        [P in keyof T &
+          keyof ContactTranslationGroupByOutputType]: P extends '_count'
+          ? T[P] extends boolean
+            ? number
+            : GetScalarType<T[P], ContactTranslationGroupByOutputType[P]>
+          : GetScalarType<T[P], ContactTranslationGroupByOutputType[P]>;
+      }
+    >
+  >;
+
+  export type ContactTranslationSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      contactId?: boolean;
+      locale?: boolean;
+      title?: boolean;
+      description?: boolean;
+      slug?: boolean;
+      contact?: boolean | ContactDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['contactTranslation']
+  >;
+
+  export type ContactTranslationSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      contactId?: boolean;
+      locale?: boolean;
+      title?: boolean;
+      description?: boolean;
+      slug?: boolean;
+      contact?: boolean | ContactDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['contactTranslation']
+  >;
+
+  export type ContactTranslationSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      contactId?: boolean;
+      locale?: boolean;
+      title?: boolean;
+      description?: boolean;
+      slug?: boolean;
+      contact?: boolean | ContactDefaultArgs<ExtArgs>;
+    },
+    ExtArgs['result']['contactTranslation']
+  >;
+
+  export type ContactTranslationSelectScalar = {
+    id?: boolean;
+    contactId?: boolean;
+    locale?: boolean;
+    title?: boolean;
+    description?: boolean;
+    slug?: boolean;
+  };
+
+  export type ContactTranslationOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    'id' | 'contactId' | 'locale' | 'title' | 'description' | 'slug',
+    ExtArgs['result']['contactTranslation']
+  >;
+  export type ContactTranslationInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    contact?: boolean | ContactDefaultArgs<ExtArgs>;
+  };
+  export type ContactTranslationIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    contact?: boolean | ContactDefaultArgs<ExtArgs>;
+  };
+  export type ContactTranslationIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    contact?: boolean | ContactDefaultArgs<ExtArgs>;
+  };
+
+  export type $ContactTranslationPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'ContactTranslation';
+    objects: {
+      contact: Prisma.$ContactPayload<ExtArgs>;
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        contactId: string;
+        locale: $Enums.Locale;
+        title: string;
+        description: string;
+        slug: string;
+      },
+      ExtArgs['result']['contactTranslation']
+    >;
+    composites: {};
+  };
+
+  type ContactTranslationGetPayload<
+    S extends boolean | null | undefined | ContactTranslationDefaultArgs,
+  > = $Result.GetResult<Prisma.$ContactTranslationPayload, S>;
+
+  type ContactTranslationCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    ContactTranslationFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: ContactTranslationCountAggregateInputType | true;
+  };
+
+  export interface ContactTranslationDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['ContactTranslation'];
+      meta: { name: 'ContactTranslation' };
+    };
+    /**
+     * Find zero or one ContactTranslation that matches the filter.
+     * @param {ContactTranslationFindUniqueArgs} args - Arguments to find a ContactTranslation
+     * @example
+     * // Get one ContactTranslation
+     * const contactTranslation = await prisma.contactTranslation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactTranslationFindUniqueArgs>(
+      args: SelectSubset<T, ContactTranslationFindUniqueArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find one ContactTranslation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactTranslationFindUniqueOrThrowArgs} args - Arguments to find a ContactTranslation
+     * @example
+     * // Get one ContactTranslation
+     * const contactTranslation = await prisma.contactTranslation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactTranslationFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, ContactTranslationFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first ContactTranslation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationFindFirstArgs} args - Arguments to find a ContactTranslation
+     * @example
+     * // Get one ContactTranslation
+     * const contactTranslation = await prisma.contactTranslation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactTranslationFindFirstArgs>(
+      args?: SelectSubset<T, ContactTranslationFindFirstArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find the first ContactTranslation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationFindFirstOrThrowArgs} args - Arguments to find a ContactTranslation
+     * @example
+     * // Get one ContactTranslation
+     * const contactTranslation = await prisma.contactTranslation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactTranslationFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ContactTranslationFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Find zero or more ContactTranslations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContactTranslations
+     * const contactTranslations = await prisma.contactTranslation.findMany()
+     *
+     * // Get first 10 ContactTranslations
+     * const contactTranslations = await prisma.contactTranslation.findMany({ take: 10 })
+     *
+     * // Only select the `id`
+     * const contactTranslationWithIdOnly = await prisma.contactTranslation.findMany({ select: { id: true } })
+     *
+     */
+    findMany<T extends ContactTranslationFindManyArgs>(
+      args?: SelectSubset<T, ContactTranslationFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create a ContactTranslation.
+     * @param {ContactTranslationCreateArgs} args - Arguments to create a ContactTranslation.
+     * @example
+     * // Create one ContactTranslation
+     * const ContactTranslation = await prisma.contactTranslation.create({
+     *   data: {
+     *     // ... data to create a ContactTranslation
+     *   }
+     * })
+     *
+     */
+    create<T extends ContactTranslationCreateArgs>(
+      args: SelectSubset<T, ContactTranslationCreateArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Create many ContactTranslations.
+     * @param {ContactTranslationCreateManyArgs} args - Arguments to create many ContactTranslations.
+     * @example
+     * // Create many ContactTranslations
+     * const contactTranslation = await prisma.contactTranslation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends ContactTranslationCreateManyArgs>(
+      args?: SelectSubset<T, ContactTranslationCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Create many ContactTranslations and returns the data saved in the database.
+     * @param {ContactTranslationCreateManyAndReturnArgs} args - Arguments to create many ContactTranslations.
+     * @example
+     * // Create many ContactTranslations
+     * const contactTranslation = await prisma.contactTranslation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many ContactTranslations and only return the `id`
+     * const contactTranslationWithIdOnly = await prisma.contactTranslation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends ContactTranslationCreateManyAndReturnArgs>(
+      args?: SelectSubset<
+        T,
+        ContactTranslationCreateManyAndReturnArgs<ExtArgs>
+      >,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Delete a ContactTranslation.
+     * @param {ContactTranslationDeleteArgs} args - Arguments to delete one ContactTranslation.
+     * @example
+     * // Delete one ContactTranslation
+     * const ContactTranslation = await prisma.contactTranslation.delete({
+     *   where: {
+     *     // ... filter to delete one ContactTranslation
+     *   }
+     * })
+     *
+     */
+    delete<T extends ContactTranslationDeleteArgs>(
+      args: SelectSubset<T, ContactTranslationDeleteArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Update one ContactTranslation.
+     * @param {ContactTranslationUpdateArgs} args - Arguments to update one ContactTranslation.
+     * @example
+     * // Update one ContactTranslation
+     * const contactTranslation = await prisma.contactTranslation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends ContactTranslationUpdateArgs>(
+      args: SelectSubset<T, ContactTranslationUpdateArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Delete zero or more ContactTranslations.
+     * @param {ContactTranslationDeleteManyArgs} args - Arguments to filter ContactTranslations to delete.
+     * @example
+     * // Delete a few ContactTranslations
+     * const { count } = await prisma.contactTranslation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends ContactTranslationDeleteManyArgs>(
+      args?: SelectSubset<T, ContactTranslationDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more ContactTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContactTranslations
+     * const contactTranslation = await prisma.contactTranslation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends ContactTranslationUpdateManyArgs>(
+      args: SelectSubset<T, ContactTranslationUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
+
+    /**
+     * Update zero or more ContactTranslations and returns the data updated in the database.
+     * @param {ContactTranslationUpdateManyAndReturnArgs} args - Arguments to update many ContactTranslations.
+     * @example
+     * // Update many ContactTranslations
+     * const contactTranslation = await prisma.contactTranslation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more ContactTranslations and only return the `id`
+     * const contactTranslationWithIdOnly = await prisma.contactTranslation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends ContactTranslationUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, ContactTranslationUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >;
+
+    /**
+     * Create or update one ContactTranslation.
+     * @param {ContactTranslationUpsertArgs} args - Arguments to update or create a ContactTranslation.
+     * @example
+     * // Update or create a ContactTranslation
+     * const contactTranslation = await prisma.contactTranslation.upsert({
+     *   create: {
+     *     // ... data to create a ContactTranslation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactTranslation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactTranslationUpsertArgs>(
+      args: SelectSubset<T, ContactTranslationUpsertArgs<ExtArgs>>,
+    ): Prisma__ContactTranslationClient<
+      $Result.GetResult<
+        Prisma.$ContactTranslationPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+
+    /**
+     * Count the number of ContactTranslations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationCountArgs} args - Arguments to filter ContactTranslations to count.
+     * @example
+     * // Count the number of ContactTranslations
+     * const count = await prisma.contactTranslation.count({
+     *   where: {
+     *     // ... the filter for the ContactTranslations we want to count
+     *   }
+     * })
+     **/
+    count<T extends ContactTranslationCountArgs>(
+      args?: Subset<T, ContactTranslationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<
+              T['select'],
+              ContactTranslationCountAggregateOutputType
+            >
+        : number
+    >;
+
+    /**
+     * Allows you to perform aggregations operations on a ContactTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+     **/
+    aggregate<T extends ContactTranslationAggregateArgs>(
+      args: Subset<T, ContactTranslationAggregateArgs>,
+    ): Prisma.PrismaPromise<GetContactTranslationAggregateType<T>>;
+
+    /**
+     * Group by ContactTranslation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactTranslationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+     **/
+    groupBy<
+      T extends ContactTranslationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactTranslationGroupByArgs['orderBy'] }
+        : { orderBy?: ContactTranslationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ];
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, ContactTranslationGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetContactTranslationGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the ContactTranslation model
+     */
+    readonly fields: ContactTranslationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactTranslation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactTranslationClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    contact<T extends ContactDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, ContactDefaultArgs<ExtArgs>>,
+    ): Prisma__ContactClient<
+      | $Result.GetResult<
+          Prisma.$ContactPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+  /**
+   * Fields of the ContactTranslation model
+   */
+  interface ContactTranslationFieldRefs {
+    readonly id: FieldRef<'ContactTranslation', 'String'>;
+    readonly contactId: FieldRef<'ContactTranslation', 'String'>;
+    readonly locale: FieldRef<'ContactTranslation', 'Locale'>;
+    readonly title: FieldRef<'ContactTranslation', 'String'>;
+    readonly description: FieldRef<'ContactTranslation', 'String'>;
+    readonly slug: FieldRef<'ContactTranslation', 'String'>;
+  }
+
+  // Custom InputTypes
+  /**
+   * ContactTranslation findUnique
+   */
+  export type ContactTranslationFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * Filter, which ContactTranslation to fetch.
+     */
+    where: ContactTranslationWhereUniqueInput;
+  };
+
+  /**
+   * ContactTranslation findUniqueOrThrow
+   */
+  export type ContactTranslationFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * Filter, which ContactTranslation to fetch.
+     */
+    where: ContactTranslationWhereUniqueInput;
+  };
+
+  /**
+   * ContactTranslation findFirst
+   */
+  export type ContactTranslationFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * Filter, which ContactTranslation to fetch.
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ContactTranslations to fetch.
+     */
+    orderBy?:
+      | ContactTranslationOrderByWithRelationInput
+      | ContactTranslationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for ContactTranslations.
+     */
+    cursor?: ContactTranslationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ContactTranslations from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ContactTranslations.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of ContactTranslations.
+     */
+    distinct?:
+      | ContactTranslationScalarFieldEnum
+      | ContactTranslationScalarFieldEnum[];
+  };
+
+  /**
+   * ContactTranslation findFirstOrThrow
+   */
+  export type ContactTranslationFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * Filter, which ContactTranslation to fetch.
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ContactTranslations to fetch.
+     */
+    orderBy?:
+      | ContactTranslationOrderByWithRelationInput
+      | ContactTranslationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for ContactTranslations.
+     */
+    cursor?: ContactTranslationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ContactTranslations from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ContactTranslations.
+     */
+    skip?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of ContactTranslations.
+     */
+    distinct?:
+      | ContactTranslationScalarFieldEnum
+      | ContactTranslationScalarFieldEnum[];
+  };
+
+  /**
+   * ContactTranslation findMany
+   */
+  export type ContactTranslationFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * Filter, which ContactTranslations to fetch.
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of ContactTranslations to fetch.
+     */
+    orderBy?:
+      | ContactTranslationOrderByWithRelationInput
+      | ContactTranslationOrderByWithRelationInput[];
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing ContactTranslations.
+     */
+    cursor?: ContactTranslationWhereUniqueInput;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` ContactTranslations from the position of the cursor.
+     */
+    take?: number;
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` ContactTranslations.
+     */
+    skip?: number;
+    distinct?:
+      | ContactTranslationScalarFieldEnum
+      | ContactTranslationScalarFieldEnum[];
+  };
+
+  /**
+   * ContactTranslation create
+   */
+  export type ContactTranslationCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * The data needed to create a ContactTranslation.
+     */
+    data: XOR<
+      ContactTranslationCreateInput,
+      ContactTranslationUncheckedCreateInput
+    >;
+  };
+
+  /**
+   * ContactTranslation createMany
+   */
+  export type ContactTranslationCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * The data used to create many ContactTranslations.
+     */
+    data:
+      | ContactTranslationCreateManyInput
+      | ContactTranslationCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
+
+  /**
+   * ContactTranslation createManyAndReturn
+   */
+  export type ContactTranslationCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelectCreateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * The data used to create many ContactTranslations.
+     */
+    data:
+      | ContactTranslationCreateManyInput
+      | ContactTranslationCreateManyInput[];
+    skipDuplicates?: boolean;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
+
+  /**
+   * ContactTranslation update
+   */
+  export type ContactTranslationUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * The data needed to update a ContactTranslation.
+     */
+    data: XOR<
+      ContactTranslationUpdateInput,
+      ContactTranslationUncheckedUpdateInput
+    >;
+    /**
+     * Choose, which ContactTranslation to update.
+     */
+    where: ContactTranslationWhereUniqueInput;
+  };
+
+  /**
+   * ContactTranslation updateMany
+   */
+  export type ContactTranslationUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * The data used to update ContactTranslations.
+     */
+    data: XOR<
+      ContactTranslationUpdateManyMutationInput,
+      ContactTranslationUncheckedUpdateManyInput
+    >;
+    /**
+     * Filter which ContactTranslations to update
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * Limit how many ContactTranslations to update.
+     */
+    limit?: number;
+  };
+
+  /**
+   * ContactTranslation updateManyAndReturn
+   */
+  export type ContactTranslationUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelectUpdateManyAndReturn<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * The data used to update ContactTranslations.
+     */
+    data: XOR<
+      ContactTranslationUpdateManyMutationInput,
+      ContactTranslationUncheckedUpdateManyInput
+    >;
+    /**
+     * Filter which ContactTranslations to update
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * Limit how many ContactTranslations to update.
+     */
+    limit?: number;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
+
+  /**
+   * ContactTranslation upsert
+   */
+  export type ContactTranslationUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * The filter to search for the ContactTranslation to update in case it exists.
+     */
+    where: ContactTranslationWhereUniqueInput;
+    /**
+     * In case the ContactTranslation found by the `where` argument doesn't exist, create a new ContactTranslation with this data.
+     */
+    create: XOR<
+      ContactTranslationCreateInput,
+      ContactTranslationUncheckedCreateInput
+    >;
+    /**
+     * In case the ContactTranslation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<
+      ContactTranslationUpdateInput,
+      ContactTranslationUncheckedUpdateInput
+    >;
+  };
+
+  /**
+   * ContactTranslation delete
+   */
+  export type ContactTranslationDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+    /**
+     * Filter which ContactTranslation to delete.
+     */
+    where: ContactTranslationWhereUniqueInput;
+  };
+
+  /**
+   * ContactTranslation deleteMany
+   */
+  export type ContactTranslationDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Filter which ContactTranslations to delete
+     */
+    where?: ContactTranslationWhereInput;
+    /**
+     * Limit how many ContactTranslations to delete.
+     */
+    limit?: number;
+  };
+
+  /**
+   * ContactTranslation without action
+   */
+  export type ContactTranslationDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the ContactTranslation
+     */
+    select?: ContactTranslationSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the ContactTranslation
+     */
+    omit?: ContactTranslationOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactTranslationInclude<ExtArgs> | null;
+  };
+
+  /**
    * Enums
    */
 
@@ -11297,17 +14363,18 @@ export namespace Prisma {
   export type PasswordResetTokenScalarFieldEnum =
     (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum];
 
-  export const ServiceCategoryScalarFieldEnum: {
+  export const CategoryScalarFieldEnum: {
     id: 'id';
     code: 'code';
+    type: 'type';
     order: 'order';
     isActive: 'isActive';
   };
 
-  export type ServiceCategoryScalarFieldEnum =
-    (typeof ServiceCategoryScalarFieldEnum)[keyof typeof ServiceCategoryScalarFieldEnum];
+  export type CategoryScalarFieldEnum =
+    (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum];
 
-  export const ServiceCategoryTranslationScalarFieldEnum: {
+  export const CategoryTranslationScalarFieldEnum: {
     id: 'id';
     categoryId: 'categoryId';
     locale: 'locale';
@@ -11315,8 +14382,8 @@ export namespace Prisma {
     slug: 'slug';
   };
 
-  export type ServiceCategoryTranslationScalarFieldEnum =
-    (typeof ServiceCategoryTranslationScalarFieldEnum)[keyof typeof ServiceCategoryTranslationScalarFieldEnum];
+  export type CategoryTranslationScalarFieldEnum =
+    (typeof CategoryTranslationScalarFieldEnum)[keyof typeof CategoryTranslationScalarFieldEnum];
 
   export const ServiceScalarFieldEnum: {
     id: 'id';
@@ -11345,6 +14412,34 @@ export namespace Prisma {
 
   export type ServiceTranslationScalarFieldEnum =
     (typeof ServiceTranslationScalarFieldEnum)[keyof typeof ServiceTranslationScalarFieldEnum];
+
+  export const ContactScalarFieldEnum: {
+    id: 'id';
+    categoryId: 'categoryId';
+    icon: 'icon';
+    externalUrl: 'externalUrl';
+    order: 'order';
+    isActive: 'isActive';
+    requiresAuth: 'requiresAuth';
+    role: 'role';
+    createdAt: 'createdAt';
+    updatedAt: 'updatedAt';
+  };
+
+  export type ContactScalarFieldEnum =
+    (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum];
+
+  export const ContactTranslationScalarFieldEnum: {
+    id: 'id';
+    contactId: 'contactId';
+    locale: 'locale';
+    title: 'title';
+    description: 'description';
+    slug: 'slug';
+  };
+
+  export type ContactTranslationScalarFieldEnum =
+    (typeof ContactTranslationScalarFieldEnum)[keyof typeof ContactTranslationScalarFieldEnum];
 
   export const SortOrder: {
     asc: 'asc';
@@ -11426,6 +14521,20 @@ export namespace Prisma {
     $PrismaModel,
     'DateTime[]'
   >;
+
+  /**
+   * Reference to a field of type 'CategoryType'
+   */
+  export type EnumCategoryTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'CategoryType'
+  >;
+
+  /**
+   * Reference to a field of type 'CategoryType[]'
+   */
+  export type ListEnumCategoryTypeFieldRefInput<$PrismaModel> =
+    FieldRefInputType<$PrismaModel, 'CategoryType[]'>;
 
   /**
    * Reference to a field of type 'Int'
@@ -11666,148 +14775,142 @@ export namespace Prisma {
       | string;
   };
 
-  export type ServiceCategoryWhereInput = {
-    AND?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[];
-    OR?: ServiceCategoryWhereInput[];
-    NOT?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[];
-    id?: StringFilter<'ServiceCategory'> | string;
-    code?: StringFilter<'ServiceCategory'> | string;
-    order?: IntFilter<'ServiceCategory'> | number;
-    isActive?: BoolFilter<'ServiceCategory'> | boolean;
+  export type CategoryWhereInput = {
+    AND?: CategoryWhereInput | CategoryWhereInput[];
+    OR?: CategoryWhereInput[];
+    NOT?: CategoryWhereInput | CategoryWhereInput[];
+    id?: StringFilter<'Category'> | string;
+    code?: StringFilter<'Category'> | string;
+    type?: EnumCategoryTypeFilter<'Category'> | $Enums.CategoryType;
+    order?: IntFilter<'Category'> | number;
+    isActive?: BoolFilter<'Category'> | boolean;
     services?: ServiceListRelationFilter;
-    translations?: ServiceCategoryTranslationListRelationFilter;
+    contacts?: ContactListRelationFilter;
+    translations?: CategoryTranslationListRelationFilter;
   };
 
-  export type ServiceCategoryOrderByWithRelationInput = {
+  export type CategoryOrderByWithRelationInput = {
     id?: SortOrder;
     code?: SortOrder;
+    type?: SortOrder;
     order?: SortOrder;
     isActive?: SortOrder;
     services?: ServiceOrderByRelationAggregateInput;
-    translations?: ServiceCategoryTranslationOrderByRelationAggregateInput;
+    contacts?: ContactOrderByRelationAggregateInput;
+    translations?: CategoryTranslationOrderByRelationAggregateInput;
   };
 
-  export type ServiceCategoryWhereUniqueInput = Prisma.AtLeast<
+  export type CategoryWhereUniqueInput = Prisma.AtLeast<
     {
       id?: string;
       code?: string;
-      AND?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[];
-      OR?: ServiceCategoryWhereInput[];
-      NOT?: ServiceCategoryWhereInput | ServiceCategoryWhereInput[];
-      order?: IntFilter<'ServiceCategory'> | number;
-      isActive?: BoolFilter<'ServiceCategory'> | boolean;
+      AND?: CategoryWhereInput | CategoryWhereInput[];
+      OR?: CategoryWhereInput[];
+      NOT?: CategoryWhereInput | CategoryWhereInput[];
+      type?: EnumCategoryTypeFilter<'Category'> | $Enums.CategoryType;
+      order?: IntFilter<'Category'> | number;
+      isActive?: BoolFilter<'Category'> | boolean;
       services?: ServiceListRelationFilter;
-      translations?: ServiceCategoryTranslationListRelationFilter;
+      contacts?: ContactListRelationFilter;
+      translations?: CategoryTranslationListRelationFilter;
     },
     'id' | 'code'
   >;
 
-  export type ServiceCategoryOrderByWithAggregationInput = {
+  export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder;
     code?: SortOrder;
+    type?: SortOrder;
     order?: SortOrder;
     isActive?: SortOrder;
-    _count?: ServiceCategoryCountOrderByAggregateInput;
-    _avg?: ServiceCategoryAvgOrderByAggregateInput;
-    _max?: ServiceCategoryMaxOrderByAggregateInput;
-    _min?: ServiceCategoryMinOrderByAggregateInput;
-    _sum?: ServiceCategorySumOrderByAggregateInput;
+    _count?: CategoryCountOrderByAggregateInput;
+    _avg?: CategoryAvgOrderByAggregateInput;
+    _max?: CategoryMaxOrderByAggregateInput;
+    _min?: CategoryMinOrderByAggregateInput;
+    _sum?: CategorySumOrderByAggregateInput;
   };
 
-  export type ServiceCategoryScalarWhereWithAggregatesInput = {
+  export type CategoryScalarWhereWithAggregatesInput = {
     AND?:
-      | ServiceCategoryScalarWhereWithAggregatesInput
-      | ServiceCategoryScalarWhereWithAggregatesInput[];
-    OR?: ServiceCategoryScalarWhereWithAggregatesInput[];
+      | CategoryScalarWhereWithAggregatesInput
+      | CategoryScalarWhereWithAggregatesInput[];
+    OR?: CategoryScalarWhereWithAggregatesInput[];
     NOT?:
-      | ServiceCategoryScalarWhereWithAggregatesInput
-      | ServiceCategoryScalarWhereWithAggregatesInput[];
-    id?: StringWithAggregatesFilter<'ServiceCategory'> | string;
-    code?: StringWithAggregatesFilter<'ServiceCategory'> | string;
-    order?: IntWithAggregatesFilter<'ServiceCategory'> | number;
-    isActive?: BoolWithAggregatesFilter<'ServiceCategory'> | boolean;
+      | CategoryScalarWhereWithAggregatesInput
+      | CategoryScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'Category'> | string;
+    code?: StringWithAggregatesFilter<'Category'> | string;
+    type?:
+      | EnumCategoryTypeWithAggregatesFilter<'Category'>
+      | $Enums.CategoryType;
+    order?: IntWithAggregatesFilter<'Category'> | number;
+    isActive?: BoolWithAggregatesFilter<'Category'> | boolean;
   };
 
-  export type ServiceCategoryTranslationWhereInput = {
-    AND?:
-      | ServiceCategoryTranslationWhereInput
-      | ServiceCategoryTranslationWhereInput[];
-    OR?: ServiceCategoryTranslationWhereInput[];
-    NOT?:
-      | ServiceCategoryTranslationWhereInput
-      | ServiceCategoryTranslationWhereInput[];
-    id?: StringFilter<'ServiceCategoryTranslation'> | string;
-    categoryId?: StringFilter<'ServiceCategoryTranslation'> | string;
-    locale?: EnumLocaleFilter<'ServiceCategoryTranslation'> | $Enums.Locale;
-    label?: StringFilter<'ServiceCategoryTranslation'> | string;
-    slug?: StringFilter<'ServiceCategoryTranslation'> | string;
-    category?: XOR<
-      ServiceCategoryScalarRelationFilter,
-      ServiceCategoryWhereInput
-    >;
+  export type CategoryTranslationWhereInput = {
+    AND?: CategoryTranslationWhereInput | CategoryTranslationWhereInput[];
+    OR?: CategoryTranslationWhereInput[];
+    NOT?: CategoryTranslationWhereInput | CategoryTranslationWhereInput[];
+    id?: StringFilter<'CategoryTranslation'> | string;
+    categoryId?: StringFilter<'CategoryTranslation'> | string;
+    locale?: EnumLocaleFilter<'CategoryTranslation'> | $Enums.Locale;
+    label?: StringFilter<'CategoryTranslation'> | string;
+    slug?: StringFilter<'CategoryTranslation'> | string;
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>;
   };
 
-  export type ServiceCategoryTranslationOrderByWithRelationInput = {
+  export type CategoryTranslationOrderByWithRelationInput = {
     id?: SortOrder;
     categoryId?: SortOrder;
     locale?: SortOrder;
     label?: SortOrder;
     slug?: SortOrder;
-    category?: ServiceCategoryOrderByWithRelationInput;
+    category?: CategoryOrderByWithRelationInput;
   };
 
-  export type ServiceCategoryTranslationWhereUniqueInput = Prisma.AtLeast<
+  export type CategoryTranslationWhereUniqueInput = Prisma.AtLeast<
     {
       id?: string;
-      categoryId_locale?: ServiceCategoryTranslationCategoryIdLocaleCompoundUniqueInput;
-      locale_slug?: ServiceCategoryTranslationLocaleSlugCompoundUniqueInput;
-      AND?:
-        | ServiceCategoryTranslationWhereInput
-        | ServiceCategoryTranslationWhereInput[];
-      OR?: ServiceCategoryTranslationWhereInput[];
-      NOT?:
-        | ServiceCategoryTranslationWhereInput
-        | ServiceCategoryTranslationWhereInput[];
-      categoryId?: StringFilter<'ServiceCategoryTranslation'> | string;
-      locale?: EnumLocaleFilter<'ServiceCategoryTranslation'> | $Enums.Locale;
-      label?: StringFilter<'ServiceCategoryTranslation'> | string;
-      slug?: StringFilter<'ServiceCategoryTranslation'> | string;
-      category?: XOR<
-        ServiceCategoryScalarRelationFilter,
-        ServiceCategoryWhereInput
-      >;
+      categoryId_locale?: CategoryTranslationCategoryIdLocaleCompoundUniqueInput;
+      locale_slug?: CategoryTranslationLocaleSlugCompoundUniqueInput;
+      AND?: CategoryTranslationWhereInput | CategoryTranslationWhereInput[];
+      OR?: CategoryTranslationWhereInput[];
+      NOT?: CategoryTranslationWhereInput | CategoryTranslationWhereInput[];
+      categoryId?: StringFilter<'CategoryTranslation'> | string;
+      locale?: EnumLocaleFilter<'CategoryTranslation'> | $Enums.Locale;
+      label?: StringFilter<'CategoryTranslation'> | string;
+      slug?: StringFilter<'CategoryTranslation'> | string;
+      category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>;
     },
     'id' | 'categoryId_locale' | 'locale_slug'
   >;
 
-  export type ServiceCategoryTranslationOrderByWithAggregationInput = {
+  export type CategoryTranslationOrderByWithAggregationInput = {
     id?: SortOrder;
     categoryId?: SortOrder;
     locale?: SortOrder;
     label?: SortOrder;
     slug?: SortOrder;
-    _count?: ServiceCategoryTranslationCountOrderByAggregateInput;
-    _max?: ServiceCategoryTranslationMaxOrderByAggregateInput;
-    _min?: ServiceCategoryTranslationMinOrderByAggregateInput;
+    _count?: CategoryTranslationCountOrderByAggregateInput;
+    _max?: CategoryTranslationMaxOrderByAggregateInput;
+    _min?: CategoryTranslationMinOrderByAggregateInput;
   };
 
-  export type ServiceCategoryTranslationScalarWhereWithAggregatesInput = {
+  export type CategoryTranslationScalarWhereWithAggregatesInput = {
     AND?:
-      | ServiceCategoryTranslationScalarWhereWithAggregatesInput
-      | ServiceCategoryTranslationScalarWhereWithAggregatesInput[];
-    OR?: ServiceCategoryTranslationScalarWhereWithAggregatesInput[];
+      | CategoryTranslationScalarWhereWithAggregatesInput
+      | CategoryTranslationScalarWhereWithAggregatesInput[];
+    OR?: CategoryTranslationScalarWhereWithAggregatesInput[];
     NOT?:
-      | ServiceCategoryTranslationScalarWhereWithAggregatesInput
-      | ServiceCategoryTranslationScalarWhereWithAggregatesInput[];
-    id?: StringWithAggregatesFilter<'ServiceCategoryTranslation'> | string;
-    categoryId?:
-      | StringWithAggregatesFilter<'ServiceCategoryTranslation'>
-      | string;
+      | CategoryTranslationScalarWhereWithAggregatesInput
+      | CategoryTranslationScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'CategoryTranslation'> | string;
+    categoryId?: StringWithAggregatesFilter<'CategoryTranslation'> | string;
     locale?:
-      | EnumLocaleWithAggregatesFilter<'ServiceCategoryTranslation'>
+      | EnumLocaleWithAggregatesFilter<'CategoryTranslation'>
       | $Enums.Locale;
-    label?: StringWithAggregatesFilter<'ServiceCategoryTranslation'> | string;
-    slug?: StringWithAggregatesFilter<'ServiceCategoryTranslation'> | string;
+    label?: StringWithAggregatesFilter<'CategoryTranslation'> | string;
+    slug?: StringWithAggregatesFilter<'CategoryTranslation'> | string;
   };
 
   export type ServiceWhereInput = {
@@ -11824,10 +14927,7 @@ export namespace Prisma {
     role?: EnumRoleNullableFilter<'Service'> | $Enums.Role | null;
     createdAt?: DateTimeFilter<'Service'> | Date | string;
     updatedAt?: DateTimeFilter<'Service'> | Date | string;
-    category?: XOR<
-      ServiceCategoryScalarRelationFilter,
-      ServiceCategoryWhereInput
-    >;
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>;
     translations?: ServiceTranslationListRelationFilter;
   };
 
@@ -11842,7 +14942,7 @@ export namespace Prisma {
     role?: SortOrderInput | SortOrder;
     createdAt?: SortOrder;
     updatedAt?: SortOrder;
-    category?: ServiceCategoryOrderByWithRelationInput;
+    category?: CategoryOrderByWithRelationInput;
     translations?: ServiceTranslationOrderByRelationAggregateInput;
   };
 
@@ -11861,10 +14961,7 @@ export namespace Prisma {
       role?: EnumRoleNullableFilter<'Service'> | $Enums.Role | null;
       createdAt?: DateTimeFilter<'Service'> | Date | string;
       updatedAt?: DateTimeFilter<'Service'> | Date | string;
-      category?: XOR<
-        ServiceCategoryScalarRelationFilter,
-        ServiceCategoryWhereInput
-      >;
+      category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>;
       translations?: ServiceTranslationListRelationFilter;
     },
     'id'
@@ -11977,6 +15074,169 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<'ServiceTranslation'> | string;
     description?: StringWithAggregatesFilter<'ServiceTranslation'> | string;
     slug?: StringWithAggregatesFilter<'ServiceTranslation'> | string;
+  };
+
+  export type ContactWhereInput = {
+    AND?: ContactWhereInput | ContactWhereInput[];
+    OR?: ContactWhereInput[];
+    NOT?: ContactWhereInput | ContactWhereInput[];
+    id?: StringFilter<'Contact'> | string;
+    categoryId?: StringFilter<'Contact'> | string;
+    icon?: StringFilter<'Contact'> | string;
+    externalUrl?: StringNullableFilter<'Contact'> | string | null;
+    order?: IntFilter<'Contact'> | number;
+    isActive?: BoolFilter<'Contact'> | boolean;
+    requiresAuth?: BoolFilter<'Contact'> | boolean;
+    role?: EnumRoleNullableFilter<'Contact'> | $Enums.Role | null;
+    createdAt?: DateTimeFilter<'Contact'> | Date | string;
+    updatedAt?: DateTimeFilter<'Contact'> | Date | string;
+    category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>;
+    translations?: ContactTranslationListRelationFilter;
+  };
+
+  export type ContactOrderByWithRelationInput = {
+    id?: SortOrder;
+    categoryId?: SortOrder;
+    icon?: SortOrder;
+    externalUrl?: SortOrderInput | SortOrder;
+    order?: SortOrder;
+    isActive?: SortOrder;
+    requiresAuth?: SortOrder;
+    role?: SortOrderInput | SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    category?: CategoryOrderByWithRelationInput;
+    translations?: ContactTranslationOrderByRelationAggregateInput;
+  };
+
+  export type ContactWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: ContactWhereInput | ContactWhereInput[];
+      OR?: ContactWhereInput[];
+      NOT?: ContactWhereInput | ContactWhereInput[];
+      categoryId?: StringFilter<'Contact'> | string;
+      icon?: StringFilter<'Contact'> | string;
+      externalUrl?: StringNullableFilter<'Contact'> | string | null;
+      order?: IntFilter<'Contact'> | number;
+      isActive?: BoolFilter<'Contact'> | boolean;
+      requiresAuth?: BoolFilter<'Contact'> | boolean;
+      role?: EnumRoleNullableFilter<'Contact'> | $Enums.Role | null;
+      createdAt?: DateTimeFilter<'Contact'> | Date | string;
+      updatedAt?: DateTimeFilter<'Contact'> | Date | string;
+      category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>;
+      translations?: ContactTranslationListRelationFilter;
+    },
+    'id'
+  >;
+
+  export type ContactOrderByWithAggregationInput = {
+    id?: SortOrder;
+    categoryId?: SortOrder;
+    icon?: SortOrder;
+    externalUrl?: SortOrderInput | SortOrder;
+    order?: SortOrder;
+    isActive?: SortOrder;
+    requiresAuth?: SortOrder;
+    role?: SortOrderInput | SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+    _count?: ContactCountOrderByAggregateInput;
+    _avg?: ContactAvgOrderByAggregateInput;
+    _max?: ContactMaxOrderByAggregateInput;
+    _min?: ContactMinOrderByAggregateInput;
+    _sum?: ContactSumOrderByAggregateInput;
+  };
+
+  export type ContactScalarWhereWithAggregatesInput = {
+    AND?:
+      | ContactScalarWhereWithAggregatesInput
+      | ContactScalarWhereWithAggregatesInput[];
+    OR?: ContactScalarWhereWithAggregatesInput[];
+    NOT?:
+      | ContactScalarWhereWithAggregatesInput
+      | ContactScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'Contact'> | string;
+    categoryId?: StringWithAggregatesFilter<'Contact'> | string;
+    icon?: StringWithAggregatesFilter<'Contact'> | string;
+    externalUrl?: StringNullableWithAggregatesFilter<'Contact'> | string | null;
+    order?: IntWithAggregatesFilter<'Contact'> | number;
+    isActive?: BoolWithAggregatesFilter<'Contact'> | boolean;
+    requiresAuth?: BoolWithAggregatesFilter<'Contact'> | boolean;
+    role?: EnumRoleNullableWithAggregatesFilter<'Contact'> | $Enums.Role | null;
+    createdAt?: DateTimeWithAggregatesFilter<'Contact'> | Date | string;
+    updatedAt?: DateTimeWithAggregatesFilter<'Contact'> | Date | string;
+  };
+
+  export type ContactTranslationWhereInput = {
+    AND?: ContactTranslationWhereInput | ContactTranslationWhereInput[];
+    OR?: ContactTranslationWhereInput[];
+    NOT?: ContactTranslationWhereInput | ContactTranslationWhereInput[];
+    id?: StringFilter<'ContactTranslation'> | string;
+    contactId?: StringFilter<'ContactTranslation'> | string;
+    locale?: EnumLocaleFilter<'ContactTranslation'> | $Enums.Locale;
+    title?: StringFilter<'ContactTranslation'> | string;
+    description?: StringFilter<'ContactTranslation'> | string;
+    slug?: StringFilter<'ContactTranslation'> | string;
+    contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>;
+  };
+
+  export type ContactTranslationOrderByWithRelationInput = {
+    id?: SortOrder;
+    contactId?: SortOrder;
+    locale?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    slug?: SortOrder;
+    contact?: ContactOrderByWithRelationInput;
+  };
+
+  export type ContactTranslationWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      contactId_locale?: ContactTranslationContactIdLocaleCompoundUniqueInput;
+      locale_slug?: ContactTranslationLocaleSlugCompoundUniqueInput;
+      AND?: ContactTranslationWhereInput | ContactTranslationWhereInput[];
+      OR?: ContactTranslationWhereInput[];
+      NOT?: ContactTranslationWhereInput | ContactTranslationWhereInput[];
+      contactId?: StringFilter<'ContactTranslation'> | string;
+      locale?: EnumLocaleFilter<'ContactTranslation'> | $Enums.Locale;
+      title?: StringFilter<'ContactTranslation'> | string;
+      description?: StringFilter<'ContactTranslation'> | string;
+      slug?: StringFilter<'ContactTranslation'> | string;
+      contact?: XOR<ContactScalarRelationFilter, ContactWhereInput>;
+    },
+    'id' | 'contactId_locale' | 'locale_slug'
+  >;
+
+  export type ContactTranslationOrderByWithAggregationInput = {
+    id?: SortOrder;
+    contactId?: SortOrder;
+    locale?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    slug?: SortOrder;
+    _count?: ContactTranslationCountOrderByAggregateInput;
+    _max?: ContactTranslationMaxOrderByAggregateInput;
+    _min?: ContactTranslationMinOrderByAggregateInput;
+  };
+
+  export type ContactTranslationScalarWhereWithAggregatesInput = {
+    AND?:
+      | ContactTranslationScalarWhereWithAggregatesInput
+      | ContactTranslationScalarWhereWithAggregatesInput[];
+    OR?: ContactTranslationScalarWhereWithAggregatesInput[];
+    NOT?:
+      | ContactTranslationScalarWhereWithAggregatesInput
+      | ContactTranslationScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<'ContactTranslation'> | string;
+    contactId?: StringWithAggregatesFilter<'ContactTranslation'> | string;
+    locale?:
+      | EnumLocaleWithAggregatesFilter<'ContactTranslation'>
+      | $Enums.Locale;
+    title?: StringWithAggregatesFilter<'ContactTranslation'> | string;
+    description?: StringWithAggregatesFilter<'ContactTranslation'> | string;
+    slug?: StringWithAggregatesFilter<'ContactTranslation'> | string;
   };
 
   export type UserCreateInput = {
@@ -12146,72 +15406,83 @@ export namespace Prisma {
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
-  export type ServiceCategoryCreateInput = {
+  export type CategoryCreateInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
     services?: ServiceCreateNestedManyWithoutCategoryInput;
-    translations?: ServiceCategoryTranslationCreateNestedManyWithoutCategoryInput;
+    contacts?: ContactCreateNestedManyWithoutCategoryInput;
+    translations?: CategoryTranslationCreateNestedManyWithoutCategoryInput;
   };
 
-  export type ServiceCategoryUncheckedCreateInput = {
+  export type CategoryUncheckedCreateInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
     services?: ServiceUncheckedCreateNestedManyWithoutCategoryInput;
-    translations?: ServiceCategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput;
+    contacts?: ContactUncheckedCreateNestedManyWithoutCategoryInput;
+    translations?: CategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput;
   };
 
-  export type ServiceCategoryUpdateInput = {
+  export type CategoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
     services?: ServiceUpdateManyWithoutCategoryNestedInput;
-    translations?: ServiceCategoryTranslationUpdateManyWithoutCategoryNestedInput;
+    contacts?: ContactUpdateManyWithoutCategoryNestedInput;
+    translations?: CategoryTranslationUpdateManyWithoutCategoryNestedInput;
   };
 
-  export type ServiceCategoryUncheckedUpdateInput = {
+  export type CategoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
     services?: ServiceUncheckedUpdateManyWithoutCategoryNestedInput;
-    translations?: ServiceCategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput;
+    contacts?: ContactUncheckedUpdateManyWithoutCategoryNestedInput;
+    translations?: CategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput;
   };
 
-  export type ServiceCategoryCreateManyInput = {
+  export type CategoryCreateManyInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
   };
 
-  export type ServiceCategoryUpdateManyMutationInput = {
+  export type CategoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
   };
 
-  export type ServiceCategoryUncheckedUpdateManyInput = {
+  export type CategoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
   };
 
-  export type ServiceCategoryTranslationCreateInput = {
+  export type CategoryTranslationCreateInput = {
     id?: string;
     locale: $Enums.Locale;
     label: string;
     slug: string;
-    category: ServiceCategoryCreateNestedOneWithoutTranslationsInput;
+    category: CategoryCreateNestedOneWithoutTranslationsInput;
   };
 
-  export type ServiceCategoryTranslationUncheckedCreateInput = {
+  export type CategoryTranslationUncheckedCreateInput = {
     id?: string;
     categoryId: string;
     locale: $Enums.Locale;
@@ -12219,15 +15490,15 @@ export namespace Prisma {
     slug: string;
   };
 
-  export type ServiceCategoryTranslationUpdateInput = {
+  export type CategoryTranslationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
     label?: StringFieldUpdateOperationsInput | string;
     slug?: StringFieldUpdateOperationsInput | string;
-    category?: ServiceCategoryUpdateOneRequiredWithoutTranslationsNestedInput;
+    category?: CategoryUpdateOneRequiredWithoutTranslationsNestedInput;
   };
 
-  export type ServiceCategoryTranslationUncheckedUpdateInput = {
+  export type CategoryTranslationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string;
     categoryId?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
@@ -12235,7 +15506,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string;
   };
 
-  export type ServiceCategoryTranslationCreateManyInput = {
+  export type CategoryTranslationCreateManyInput = {
     id?: string;
     categoryId: string;
     locale: $Enums.Locale;
@@ -12243,14 +15514,14 @@ export namespace Prisma {
     slug: string;
   };
 
-  export type ServiceCategoryTranslationUpdateManyMutationInput = {
+  export type CategoryTranslationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
     label?: StringFieldUpdateOperationsInput | string;
     slug?: StringFieldUpdateOperationsInput | string;
   };
 
-  export type ServiceCategoryTranslationUncheckedUpdateManyInput = {
+  export type CategoryTranslationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string;
     categoryId?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
@@ -12268,7 +15539,7 @@ export namespace Prisma {
     role?: $Enums.Role | null;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    category: ServiceCategoryCreateNestedOneWithoutServicesInput;
+    category: CategoryCreateNestedOneWithoutServicesInput;
     translations?: ServiceTranslationCreateNestedManyWithoutServiceInput;
   };
 
@@ -12296,7 +15567,7 @@ export namespace Prisma {
     role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput;
+    category?: CategoryUpdateOneRequiredWithoutServicesNestedInput;
     translations?: ServiceTranslationUpdateManyWithoutServiceNestedInput;
   };
 
@@ -12408,6 +15679,162 @@ export namespace Prisma {
   export type ServiceTranslationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string;
     serviceId?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
+
+  export type ContactCreateInput = {
+    id?: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    category: CategoryCreateNestedOneWithoutContactsInput;
+    translations?: ContactTranslationCreateNestedManyWithoutContactInput;
+  };
+
+  export type ContactUncheckedCreateInput = {
+    id?: string;
+    categoryId: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    translations?: ContactTranslationUncheckedCreateNestedManyWithoutContactInput;
+  };
+
+  export type ContactUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    category?: CategoryUpdateOneRequiredWithoutContactsNestedInput;
+    translations?: ContactTranslationUpdateManyWithoutContactNestedInput;
+  };
+
+  export type ContactUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    categoryId?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    translations?: ContactTranslationUncheckedUpdateManyWithoutContactNestedInput;
+  };
+
+  export type ContactCreateManyInput = {
+    id?: string;
+    categoryId: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type ContactUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type ContactUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    categoryId?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type ContactTranslationCreateInput = {
+    id?: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+    contact: ContactCreateNestedOneWithoutTranslationsInput;
+  };
+
+  export type ContactTranslationUncheckedCreateInput = {
+    id?: string;
+    contactId: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+  };
+
+  export type ContactTranslationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+    contact?: ContactUpdateOneRequiredWithoutTranslationsNestedInput;
+  };
+
+  export type ContactTranslationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    contactId?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
+
+  export type ContactTranslationCreateManyInput = {
+    id?: string;
+    contactId: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+  };
+
+  export type ContactTranslationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
+
+  export type ContactTranslationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    contactId?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
     title?: StringFieldUpdateOperationsInput | string;
     description?: StringFieldUpdateOperationsInput | string;
@@ -12596,6 +16023,17 @@ export namespace Prisma {
     expiresAt?: SortOrder;
   };
 
+  export type EnumCategoryTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryType | EnumCategoryTypeFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.CategoryType[]
+      | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.CategoryType[]
+      | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+    not?: NestedEnumCategoryTypeFilter<$PrismaModel> | $Enums.CategoryType;
+  };
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>;
     in?: number[] | ListIntFieldRefInput<$PrismaModel>;
@@ -12613,47 +16051,76 @@ export namespace Prisma {
     none?: ServiceWhereInput;
   };
 
-  export type ServiceCategoryTranslationListRelationFilter = {
-    every?: ServiceCategoryTranslationWhereInput;
-    some?: ServiceCategoryTranslationWhereInput;
-    none?: ServiceCategoryTranslationWhereInput;
+  export type ContactListRelationFilter = {
+    every?: ContactWhereInput;
+    some?: ContactWhereInput;
+    none?: ContactWhereInput;
+  };
+
+  export type CategoryTranslationListRelationFilter = {
+    every?: CategoryTranslationWhereInput;
+    some?: CategoryTranslationWhereInput;
+    none?: CategoryTranslationWhereInput;
   };
 
   export type ServiceOrderByRelationAggregateInput = {
     _count?: SortOrder;
   };
 
-  export type ServiceCategoryTranslationOrderByRelationAggregateInput = {
+  export type ContactOrderByRelationAggregateInput = {
     _count?: SortOrder;
   };
 
-  export type ServiceCategoryCountOrderByAggregateInput = {
+  export type CategoryTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder;
+  };
+
+  export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder;
     code?: SortOrder;
+    type?: SortOrder;
     order?: SortOrder;
     isActive?: SortOrder;
   };
 
-  export type ServiceCategoryAvgOrderByAggregateInput = {
+  export type CategoryAvgOrderByAggregateInput = {
     order?: SortOrder;
   };
 
-  export type ServiceCategoryMaxOrderByAggregateInput = {
+  export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder;
     code?: SortOrder;
+    type?: SortOrder;
     order?: SortOrder;
     isActive?: SortOrder;
   };
 
-  export type ServiceCategoryMinOrderByAggregateInput = {
+  export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder;
     code?: SortOrder;
+    type?: SortOrder;
     order?: SortOrder;
     isActive?: SortOrder;
   };
 
-  export type ServiceCategorySumOrderByAggregateInput = {
+  export type CategorySumOrderByAggregateInput = {
     order?: SortOrder;
+  };
+
+  export type EnumCategoryTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryType | EnumCategoryTypeFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.CategoryType[]
+      | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.CategoryType[]
+      | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+    not?:
+      | NestedEnumCategoryTypeWithAggregatesFilter<$PrismaModel>
+      | $Enums.CategoryType;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedEnumCategoryTypeFilter<$PrismaModel>;
+    _max?: NestedEnumCategoryTypeFilter<$PrismaModel>;
   };
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -12679,22 +16146,22 @@ export namespace Prisma {
     not?: NestedEnumLocaleFilter<$PrismaModel> | $Enums.Locale;
   };
 
-  export type ServiceCategoryScalarRelationFilter = {
-    is?: ServiceCategoryWhereInput;
-    isNot?: ServiceCategoryWhereInput;
+  export type CategoryScalarRelationFilter = {
+    is?: CategoryWhereInput;
+    isNot?: CategoryWhereInput;
   };
 
-  export type ServiceCategoryTranslationCategoryIdLocaleCompoundUniqueInput = {
+  export type CategoryTranslationCategoryIdLocaleCompoundUniqueInput = {
     categoryId: string;
     locale: $Enums.Locale;
   };
 
-  export type ServiceCategoryTranslationLocaleSlugCompoundUniqueInput = {
+  export type CategoryTranslationLocaleSlugCompoundUniqueInput = {
     locale: $Enums.Locale;
     slug: string;
   };
 
-  export type ServiceCategoryTranslationCountOrderByAggregateInput = {
+  export type CategoryTranslationCountOrderByAggregateInput = {
     id?: SortOrder;
     categoryId?: SortOrder;
     locale?: SortOrder;
@@ -12702,7 +16169,7 @@ export namespace Prisma {
     slug?: SortOrder;
   };
 
-  export type ServiceCategoryTranslationMaxOrderByAggregateInput = {
+  export type CategoryTranslationMaxOrderByAggregateInput = {
     id?: SortOrder;
     categoryId?: SortOrder;
     locale?: SortOrder;
@@ -12710,7 +16177,7 @@ export namespace Prisma {
     slug?: SortOrder;
   };
 
-  export type ServiceCategoryTranslationMinOrderByAggregateInput = {
+  export type CategoryTranslationMinOrderByAggregateInput = {
     id?: SortOrder;
     categoryId?: SortOrder;
     locale?: SortOrder;
@@ -12882,6 +16349,105 @@ export namespace Prisma {
   export type ServiceTranslationMinOrderByAggregateInput = {
     id?: SortOrder;
     serviceId?: SortOrder;
+    locale?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    slug?: SortOrder;
+  };
+
+  export type ContactTranslationListRelationFilter = {
+    every?: ContactTranslationWhereInput;
+    some?: ContactTranslationWhereInput;
+    none?: ContactTranslationWhereInput;
+  };
+
+  export type ContactTranslationOrderByRelationAggregateInput = {
+    _count?: SortOrder;
+  };
+
+  export type ContactCountOrderByAggregateInput = {
+    id?: SortOrder;
+    categoryId?: SortOrder;
+    icon?: SortOrder;
+    externalUrl?: SortOrder;
+    order?: SortOrder;
+    isActive?: SortOrder;
+    requiresAuth?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
+
+  export type ContactAvgOrderByAggregateInput = {
+    order?: SortOrder;
+  };
+
+  export type ContactMaxOrderByAggregateInput = {
+    id?: SortOrder;
+    categoryId?: SortOrder;
+    icon?: SortOrder;
+    externalUrl?: SortOrder;
+    order?: SortOrder;
+    isActive?: SortOrder;
+    requiresAuth?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
+
+  export type ContactMinOrderByAggregateInput = {
+    id?: SortOrder;
+    categoryId?: SortOrder;
+    icon?: SortOrder;
+    externalUrl?: SortOrder;
+    order?: SortOrder;
+    isActive?: SortOrder;
+    requiresAuth?: SortOrder;
+    role?: SortOrder;
+    createdAt?: SortOrder;
+    updatedAt?: SortOrder;
+  };
+
+  export type ContactSumOrderByAggregateInput = {
+    order?: SortOrder;
+  };
+
+  export type ContactScalarRelationFilter = {
+    is?: ContactWhereInput;
+    isNot?: ContactWhereInput;
+  };
+
+  export type ContactTranslationContactIdLocaleCompoundUniqueInput = {
+    contactId: string;
+    locale: $Enums.Locale;
+  };
+
+  export type ContactTranslationLocaleSlugCompoundUniqueInput = {
+    locale: $Enums.Locale;
+    slug: string;
+  };
+
+  export type ContactTranslationCountOrderByAggregateInput = {
+    id?: SortOrder;
+    contactId?: SortOrder;
+    locale?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    slug?: SortOrder;
+  };
+
+  export type ContactTranslationMaxOrderByAggregateInput = {
+    id?: SortOrder;
+    contactId?: SortOrder;
+    locale?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    slug?: SortOrder;
+  };
+
+  export type ContactTranslationMinOrderByAggregateInput = {
+    id?: SortOrder;
+    contactId?: SortOrder;
     locale?: SortOrder;
     title?: SortOrder;
     description?: SortOrder;
@@ -13167,21 +16733,36 @@ export namespace Prisma {
     connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[];
   };
 
-  export type ServiceCategoryTranslationCreateNestedManyWithoutCategoryInput = {
+  export type ContactCreateNestedManyWithoutCategoryInput = {
     create?:
       | XOR<
-          ServiceCategoryTranslationCreateWithoutCategoryInput,
-          ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput
+          ContactCreateWithoutCategoryInput,
+          ContactUncheckedCreateWithoutCategoryInput
         >
-      | ServiceCategoryTranslationCreateWithoutCategoryInput[]
-      | ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput[];
+      | ContactCreateWithoutCategoryInput[]
+      | ContactUncheckedCreateWithoutCategoryInput[];
     connectOrCreate?:
-      | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput
-      | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput[];
-    createMany?: ServiceCategoryTranslationCreateManyCategoryInputEnvelope;
+      | ContactCreateOrConnectWithoutCategoryInput
+      | ContactCreateOrConnectWithoutCategoryInput[];
+    createMany?: ContactCreateManyCategoryInputEnvelope;
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+  };
+
+  export type CategoryTranslationCreateNestedManyWithoutCategoryInput = {
+    create?:
+      | XOR<
+          CategoryTranslationCreateWithoutCategoryInput,
+          CategoryTranslationUncheckedCreateWithoutCategoryInput
+        >
+      | CategoryTranslationCreateWithoutCategoryInput[]
+      | CategoryTranslationUncheckedCreateWithoutCategoryInput[];
+    connectOrCreate?:
+      | CategoryTranslationCreateOrConnectWithoutCategoryInput
+      | CategoryTranslationCreateOrConnectWithoutCategoryInput[];
+    createMany?: CategoryTranslationCreateManyCategoryInputEnvelope;
     connect?:
-      | ServiceCategoryTranslationWhereUniqueInput
-      | ServiceCategoryTranslationWhereUniqueInput[];
+      | CategoryTranslationWhereUniqueInput
+      | CategoryTranslationWhereUniqueInput[];
   };
 
   export type ServiceUncheckedCreateNestedManyWithoutCategoryInput = {
@@ -13199,23 +16780,42 @@ export namespace Prisma {
     connect?: ServiceWhereUniqueInput | ServiceWhereUniqueInput[];
   };
 
-  export type ServiceCategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput =
+  export type ContactUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?:
+      | XOR<
+          ContactCreateWithoutCategoryInput,
+          ContactUncheckedCreateWithoutCategoryInput
+        >
+      | ContactCreateWithoutCategoryInput[]
+      | ContactUncheckedCreateWithoutCategoryInput[];
+    connectOrCreate?:
+      | ContactCreateOrConnectWithoutCategoryInput
+      | ContactCreateOrConnectWithoutCategoryInput[];
+    createMany?: ContactCreateManyCategoryInputEnvelope;
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+  };
+
+  export type CategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput =
     {
       create?:
         | XOR<
-            ServiceCategoryTranslationCreateWithoutCategoryInput,
-            ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput
+            CategoryTranslationCreateWithoutCategoryInput,
+            CategoryTranslationUncheckedCreateWithoutCategoryInput
           >
-        | ServiceCategoryTranslationCreateWithoutCategoryInput[]
-        | ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput[];
+        | CategoryTranslationCreateWithoutCategoryInput[]
+        | CategoryTranslationUncheckedCreateWithoutCategoryInput[];
       connectOrCreate?:
-        | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput
-        | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput[];
-      createMany?: ServiceCategoryTranslationCreateManyCategoryInputEnvelope;
+        | CategoryTranslationCreateOrConnectWithoutCategoryInput
+        | CategoryTranslationCreateOrConnectWithoutCategoryInput[];
+      createMany?: CategoryTranslationCreateManyCategoryInputEnvelope;
       connect?:
-        | ServiceCategoryTranslationWhereUniqueInput
-        | ServiceCategoryTranslationWhereUniqueInput[];
+        | CategoryTranslationWhereUniqueInput
+        | CategoryTranslationWhereUniqueInput[];
     };
+
+  export type EnumCategoryTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CategoryType;
+  };
 
   export type IntFieldUpdateOperationsInput = {
     set?: number;
@@ -13253,42 +16853,70 @@ export namespace Prisma {
     deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[];
   };
 
-  export type ServiceCategoryTranslationUpdateManyWithoutCategoryNestedInput = {
+  export type ContactUpdateManyWithoutCategoryNestedInput = {
     create?:
       | XOR<
-          ServiceCategoryTranslationCreateWithoutCategoryInput,
-          ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput
+          ContactCreateWithoutCategoryInput,
+          ContactUncheckedCreateWithoutCategoryInput
         >
-      | ServiceCategoryTranslationCreateWithoutCategoryInput[]
-      | ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput[];
+      | ContactCreateWithoutCategoryInput[]
+      | ContactUncheckedCreateWithoutCategoryInput[];
     connectOrCreate?:
-      | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput
-      | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput[];
+      | ContactCreateOrConnectWithoutCategoryInput
+      | ContactCreateOrConnectWithoutCategoryInput[];
     upsert?:
-      | ServiceCategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput
-      | ServiceCategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput[];
-    createMany?: ServiceCategoryTranslationCreateManyCategoryInputEnvelope;
-    set?:
-      | ServiceCategoryTranslationWhereUniqueInput
-      | ServiceCategoryTranslationWhereUniqueInput[];
-    disconnect?:
-      | ServiceCategoryTranslationWhereUniqueInput
-      | ServiceCategoryTranslationWhereUniqueInput[];
-    delete?:
-      | ServiceCategoryTranslationWhereUniqueInput
-      | ServiceCategoryTranslationWhereUniqueInput[];
-    connect?:
-      | ServiceCategoryTranslationWhereUniqueInput
-      | ServiceCategoryTranslationWhereUniqueInput[];
+      | ContactUpsertWithWhereUniqueWithoutCategoryInput
+      | ContactUpsertWithWhereUniqueWithoutCategoryInput[];
+    createMany?: ContactCreateManyCategoryInputEnvelope;
+    set?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    disconnect?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    delete?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
     update?:
-      | ServiceCategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput
-      | ServiceCategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput[];
+      | ContactUpdateWithWhereUniqueWithoutCategoryInput
+      | ContactUpdateWithWhereUniqueWithoutCategoryInput[];
     updateMany?:
-      | ServiceCategoryTranslationUpdateManyWithWhereWithoutCategoryInput
-      | ServiceCategoryTranslationUpdateManyWithWhereWithoutCategoryInput[];
+      | ContactUpdateManyWithWhereWithoutCategoryInput
+      | ContactUpdateManyWithWhereWithoutCategoryInput[];
+    deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[];
+  };
+
+  export type CategoryTranslationUpdateManyWithoutCategoryNestedInput = {
+    create?:
+      | XOR<
+          CategoryTranslationCreateWithoutCategoryInput,
+          CategoryTranslationUncheckedCreateWithoutCategoryInput
+        >
+      | CategoryTranslationCreateWithoutCategoryInput[]
+      | CategoryTranslationUncheckedCreateWithoutCategoryInput[];
+    connectOrCreate?:
+      | CategoryTranslationCreateOrConnectWithoutCategoryInput
+      | CategoryTranslationCreateOrConnectWithoutCategoryInput[];
+    upsert?:
+      | CategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput
+      | CategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput[];
+    createMany?: CategoryTranslationCreateManyCategoryInputEnvelope;
+    set?:
+      | CategoryTranslationWhereUniqueInput
+      | CategoryTranslationWhereUniqueInput[];
+    disconnect?:
+      | CategoryTranslationWhereUniqueInput
+      | CategoryTranslationWhereUniqueInput[];
+    delete?:
+      | CategoryTranslationWhereUniqueInput
+      | CategoryTranslationWhereUniqueInput[];
+    connect?:
+      | CategoryTranslationWhereUniqueInput
+      | CategoryTranslationWhereUniqueInput[];
+    update?:
+      | CategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput
+      | CategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput[];
+    updateMany?:
+      | CategoryTranslationUpdateManyWithWhereWithoutCategoryInput
+      | CategoryTranslationUpdateManyWithWhereWithoutCategoryInput[];
     deleteMany?:
-      | ServiceCategoryTranslationScalarWhereInput
-      | ServiceCategoryTranslationScalarWhereInput[];
+      | CategoryTranslationScalarWhereInput
+      | CategoryTranslationScalarWhereInput[];
   };
 
   export type ServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
@@ -13319,82 +16947,110 @@ export namespace Prisma {
     deleteMany?: ServiceScalarWhereInput | ServiceScalarWhereInput[];
   };
 
-  export type ServiceCategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput =
+  export type ContactUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?:
+      | XOR<
+          ContactCreateWithoutCategoryInput,
+          ContactUncheckedCreateWithoutCategoryInput
+        >
+      | ContactCreateWithoutCategoryInput[]
+      | ContactUncheckedCreateWithoutCategoryInput[];
+    connectOrCreate?:
+      | ContactCreateOrConnectWithoutCategoryInput
+      | ContactCreateOrConnectWithoutCategoryInput[];
+    upsert?:
+      | ContactUpsertWithWhereUniqueWithoutCategoryInput
+      | ContactUpsertWithWhereUniqueWithoutCategoryInput[];
+    createMany?: ContactCreateManyCategoryInputEnvelope;
+    set?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    disconnect?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    delete?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[];
+    update?:
+      | ContactUpdateWithWhereUniqueWithoutCategoryInput
+      | ContactUpdateWithWhereUniqueWithoutCategoryInput[];
+    updateMany?:
+      | ContactUpdateManyWithWhereWithoutCategoryInput
+      | ContactUpdateManyWithWhereWithoutCategoryInput[];
+    deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[];
+  };
+
+  export type CategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput =
     {
       create?:
         | XOR<
-            ServiceCategoryTranslationCreateWithoutCategoryInput,
-            ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput
+            CategoryTranslationCreateWithoutCategoryInput,
+            CategoryTranslationUncheckedCreateWithoutCategoryInput
           >
-        | ServiceCategoryTranslationCreateWithoutCategoryInput[]
-        | ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput[];
+        | CategoryTranslationCreateWithoutCategoryInput[]
+        | CategoryTranslationUncheckedCreateWithoutCategoryInput[];
       connectOrCreate?:
-        | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput
-        | ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput[];
+        | CategoryTranslationCreateOrConnectWithoutCategoryInput
+        | CategoryTranslationCreateOrConnectWithoutCategoryInput[];
       upsert?:
-        | ServiceCategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput
-        | ServiceCategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput[];
-      createMany?: ServiceCategoryTranslationCreateManyCategoryInputEnvelope;
+        | CategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput
+        | CategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput[];
+      createMany?: CategoryTranslationCreateManyCategoryInputEnvelope;
       set?:
-        | ServiceCategoryTranslationWhereUniqueInput
-        | ServiceCategoryTranslationWhereUniqueInput[];
+        | CategoryTranslationWhereUniqueInput
+        | CategoryTranslationWhereUniqueInput[];
       disconnect?:
-        | ServiceCategoryTranslationWhereUniqueInput
-        | ServiceCategoryTranslationWhereUniqueInput[];
+        | CategoryTranslationWhereUniqueInput
+        | CategoryTranslationWhereUniqueInput[];
       delete?:
-        | ServiceCategoryTranslationWhereUniqueInput
-        | ServiceCategoryTranslationWhereUniqueInput[];
+        | CategoryTranslationWhereUniqueInput
+        | CategoryTranslationWhereUniqueInput[];
       connect?:
-        | ServiceCategoryTranslationWhereUniqueInput
-        | ServiceCategoryTranslationWhereUniqueInput[];
+        | CategoryTranslationWhereUniqueInput
+        | CategoryTranslationWhereUniqueInput[];
       update?:
-        | ServiceCategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput
-        | ServiceCategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput[];
+        | CategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput
+        | CategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput[];
       updateMany?:
-        | ServiceCategoryTranslationUpdateManyWithWhereWithoutCategoryInput
-        | ServiceCategoryTranslationUpdateManyWithWhereWithoutCategoryInput[];
+        | CategoryTranslationUpdateManyWithWhereWithoutCategoryInput
+        | CategoryTranslationUpdateManyWithWhereWithoutCategoryInput[];
       deleteMany?:
-        | ServiceCategoryTranslationScalarWhereInput
-        | ServiceCategoryTranslationScalarWhereInput[];
+        | CategoryTranslationScalarWhereInput
+        | CategoryTranslationScalarWhereInput[];
     };
 
-  export type ServiceCategoryCreateNestedOneWithoutTranslationsInput = {
+  export type CategoryCreateNestedOneWithoutTranslationsInput = {
     create?: XOR<
-      ServiceCategoryCreateWithoutTranslationsInput,
-      ServiceCategoryUncheckedCreateWithoutTranslationsInput
+      CategoryCreateWithoutTranslationsInput,
+      CategoryUncheckedCreateWithoutTranslationsInput
     >;
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutTranslationsInput;
-    connect?: ServiceCategoryWhereUniqueInput;
+    connectOrCreate?: CategoryCreateOrConnectWithoutTranslationsInput;
+    connect?: CategoryWhereUniqueInput;
   };
 
   export type EnumLocaleFieldUpdateOperationsInput = {
     set?: $Enums.Locale;
   };
 
-  export type ServiceCategoryUpdateOneRequiredWithoutTranslationsNestedInput = {
+  export type CategoryUpdateOneRequiredWithoutTranslationsNestedInput = {
     create?: XOR<
-      ServiceCategoryCreateWithoutTranslationsInput,
-      ServiceCategoryUncheckedCreateWithoutTranslationsInput
+      CategoryCreateWithoutTranslationsInput,
+      CategoryUncheckedCreateWithoutTranslationsInput
     >;
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutTranslationsInput;
-    upsert?: ServiceCategoryUpsertWithoutTranslationsInput;
-    connect?: ServiceCategoryWhereUniqueInput;
+    connectOrCreate?: CategoryCreateOrConnectWithoutTranslationsInput;
+    upsert?: CategoryUpsertWithoutTranslationsInput;
+    connect?: CategoryWhereUniqueInput;
     update?: XOR<
       XOR<
-        ServiceCategoryUpdateToOneWithWhereWithoutTranslationsInput,
-        ServiceCategoryUpdateWithoutTranslationsInput
+        CategoryUpdateToOneWithWhereWithoutTranslationsInput,
+        CategoryUpdateWithoutTranslationsInput
       >,
-      ServiceCategoryUncheckedUpdateWithoutTranslationsInput
+      CategoryUncheckedUpdateWithoutTranslationsInput
     >;
   };
 
-  export type ServiceCategoryCreateNestedOneWithoutServicesInput = {
+  export type CategoryCreateNestedOneWithoutServicesInput = {
     create?: XOR<
-      ServiceCategoryCreateWithoutServicesInput,
-      ServiceCategoryUncheckedCreateWithoutServicesInput
+      CategoryCreateWithoutServicesInput,
+      CategoryUncheckedCreateWithoutServicesInput
     >;
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput;
-    connect?: ServiceCategoryWhereUniqueInput;
+    connectOrCreate?: CategoryCreateOrConnectWithoutServicesInput;
+    connect?: CategoryWhereUniqueInput;
   };
 
   export type ServiceTranslationCreateNestedManyWithoutServiceInput = {
@@ -13439,20 +17095,20 @@ export namespace Prisma {
     set?: $Enums.Role | null;
   };
 
-  export type ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput = {
+  export type CategoryUpdateOneRequiredWithoutServicesNestedInput = {
     create?: XOR<
-      ServiceCategoryCreateWithoutServicesInput,
-      ServiceCategoryUncheckedCreateWithoutServicesInput
+      CategoryCreateWithoutServicesInput,
+      CategoryUncheckedCreateWithoutServicesInput
     >;
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput;
-    upsert?: ServiceCategoryUpsertWithoutServicesInput;
-    connect?: ServiceCategoryWhereUniqueInput;
+    connectOrCreate?: CategoryCreateOrConnectWithoutServicesInput;
+    upsert?: CategoryUpsertWithoutServicesInput;
+    connect?: CategoryWhereUniqueInput;
     update?: XOR<
       XOR<
-        ServiceCategoryUpdateToOneWithWhereWithoutServicesInput,
-        ServiceCategoryUpdateWithoutServicesInput
+        CategoryUpdateToOneWithWhereWithoutServicesInput,
+        CategoryUpdateWithoutServicesInput
       >,
-      ServiceCategoryUncheckedUpdateWithoutServicesInput
+      CategoryUncheckedUpdateWithoutServicesInput
     >;
   };
 
@@ -13558,6 +17214,168 @@ export namespace Prisma {
     >;
   };
 
+  export type CategoryCreateNestedOneWithoutContactsInput = {
+    create?: XOR<
+      CategoryCreateWithoutContactsInput,
+      CategoryUncheckedCreateWithoutContactsInput
+    >;
+    connectOrCreate?: CategoryCreateOrConnectWithoutContactsInput;
+    connect?: CategoryWhereUniqueInput;
+  };
+
+  export type ContactTranslationCreateNestedManyWithoutContactInput = {
+    create?:
+      | XOR<
+          ContactTranslationCreateWithoutContactInput,
+          ContactTranslationUncheckedCreateWithoutContactInput
+        >
+      | ContactTranslationCreateWithoutContactInput[]
+      | ContactTranslationUncheckedCreateWithoutContactInput[];
+    connectOrCreate?:
+      | ContactTranslationCreateOrConnectWithoutContactInput
+      | ContactTranslationCreateOrConnectWithoutContactInput[];
+    createMany?: ContactTranslationCreateManyContactInputEnvelope;
+    connect?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+  };
+
+  export type ContactTranslationUncheckedCreateNestedManyWithoutContactInput = {
+    create?:
+      | XOR<
+          ContactTranslationCreateWithoutContactInput,
+          ContactTranslationUncheckedCreateWithoutContactInput
+        >
+      | ContactTranslationCreateWithoutContactInput[]
+      | ContactTranslationUncheckedCreateWithoutContactInput[];
+    connectOrCreate?:
+      | ContactTranslationCreateOrConnectWithoutContactInput
+      | ContactTranslationCreateOrConnectWithoutContactInput[];
+    createMany?: ContactTranslationCreateManyContactInputEnvelope;
+    connect?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+  };
+
+  export type CategoryUpdateOneRequiredWithoutContactsNestedInput = {
+    create?: XOR<
+      CategoryCreateWithoutContactsInput,
+      CategoryUncheckedCreateWithoutContactsInput
+    >;
+    connectOrCreate?: CategoryCreateOrConnectWithoutContactsInput;
+    upsert?: CategoryUpsertWithoutContactsInput;
+    connect?: CategoryWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        CategoryUpdateToOneWithWhereWithoutContactsInput,
+        CategoryUpdateWithoutContactsInput
+      >,
+      CategoryUncheckedUpdateWithoutContactsInput
+    >;
+  };
+
+  export type ContactTranslationUpdateManyWithoutContactNestedInput = {
+    create?:
+      | XOR<
+          ContactTranslationCreateWithoutContactInput,
+          ContactTranslationUncheckedCreateWithoutContactInput
+        >
+      | ContactTranslationCreateWithoutContactInput[]
+      | ContactTranslationUncheckedCreateWithoutContactInput[];
+    connectOrCreate?:
+      | ContactTranslationCreateOrConnectWithoutContactInput
+      | ContactTranslationCreateOrConnectWithoutContactInput[];
+    upsert?:
+      | ContactTranslationUpsertWithWhereUniqueWithoutContactInput
+      | ContactTranslationUpsertWithWhereUniqueWithoutContactInput[];
+    createMany?: ContactTranslationCreateManyContactInputEnvelope;
+    set?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    disconnect?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    delete?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    connect?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    update?:
+      | ContactTranslationUpdateWithWhereUniqueWithoutContactInput
+      | ContactTranslationUpdateWithWhereUniqueWithoutContactInput[];
+    updateMany?:
+      | ContactTranslationUpdateManyWithWhereWithoutContactInput
+      | ContactTranslationUpdateManyWithWhereWithoutContactInput[];
+    deleteMany?:
+      | ContactTranslationScalarWhereInput
+      | ContactTranslationScalarWhereInput[];
+  };
+
+  export type ContactTranslationUncheckedUpdateManyWithoutContactNestedInput = {
+    create?:
+      | XOR<
+          ContactTranslationCreateWithoutContactInput,
+          ContactTranslationUncheckedCreateWithoutContactInput
+        >
+      | ContactTranslationCreateWithoutContactInput[]
+      | ContactTranslationUncheckedCreateWithoutContactInput[];
+    connectOrCreate?:
+      | ContactTranslationCreateOrConnectWithoutContactInput
+      | ContactTranslationCreateOrConnectWithoutContactInput[];
+    upsert?:
+      | ContactTranslationUpsertWithWhereUniqueWithoutContactInput
+      | ContactTranslationUpsertWithWhereUniqueWithoutContactInput[];
+    createMany?: ContactTranslationCreateManyContactInputEnvelope;
+    set?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    disconnect?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    delete?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    connect?:
+      | ContactTranslationWhereUniqueInput
+      | ContactTranslationWhereUniqueInput[];
+    update?:
+      | ContactTranslationUpdateWithWhereUniqueWithoutContactInput
+      | ContactTranslationUpdateWithWhereUniqueWithoutContactInput[];
+    updateMany?:
+      | ContactTranslationUpdateManyWithWhereWithoutContactInput
+      | ContactTranslationUpdateManyWithWhereWithoutContactInput[];
+    deleteMany?:
+      | ContactTranslationScalarWhereInput
+      | ContactTranslationScalarWhereInput[];
+  };
+
+  export type ContactCreateNestedOneWithoutTranslationsInput = {
+    create?: XOR<
+      ContactCreateWithoutTranslationsInput,
+      ContactUncheckedCreateWithoutTranslationsInput
+    >;
+    connectOrCreate?: ContactCreateOrConnectWithoutTranslationsInput;
+    connect?: ContactWhereUniqueInput;
+  };
+
+  export type ContactUpdateOneRequiredWithoutTranslationsNestedInput = {
+    create?: XOR<
+      ContactCreateWithoutTranslationsInput,
+      ContactUncheckedCreateWithoutTranslationsInput
+    >;
+    connectOrCreate?: ContactCreateOrConnectWithoutTranslationsInput;
+    upsert?: ContactUpsertWithoutTranslationsInput;
+    connect?: ContactWhereUniqueInput;
+    update?: XOR<
+      XOR<
+        ContactUpdateToOneWithWhereWithoutTranslationsInput,
+        ContactUpdateWithoutTranslationsInput
+      >,
+      ContactUncheckedUpdateWithoutTranslationsInput
+    >;
+  };
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>;
     in?: string[] | ListStringFieldRefInput<$PrismaModel>;
@@ -13654,6 +17472,36 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>;
     _max?: NestedDateTimeFilter<$PrismaModel>;
   };
+
+  export type NestedEnumCategoryTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CategoryType | EnumCategoryTypeFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.CategoryType[]
+      | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.CategoryType[]
+      | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+    not?: NestedEnumCategoryTypeFilter<$PrismaModel> | $Enums.CategoryType;
+  };
+
+  export type NestedEnumCategoryTypeWithAggregatesFilter<$PrismaModel = never> =
+    {
+      equals?:
+        | $Enums.CategoryType
+        | EnumCategoryTypeFieldRefInput<$PrismaModel>;
+      in?:
+        | $Enums.CategoryType[]
+        | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+      notIn?:
+        | $Enums.CategoryType[]
+        | ListEnumCategoryTypeFieldRefInput<$PrismaModel>;
+      not?:
+        | NestedEnumCategoryTypeWithAggregatesFilter<$PrismaModel>
+        | $Enums.CategoryType;
+      _count?: NestedIntFilter<$PrismaModel>;
+      _min?: NestedEnumCategoryTypeFilter<$PrismaModel>;
+      _max?: NestedEnumCategoryTypeFilter<$PrismaModel>;
+    };
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>;
@@ -14072,32 +17920,71 @@ export namespace Prisma {
     skipDuplicates?: boolean;
   };
 
-  export type ServiceCategoryTranslationCreateWithoutCategoryInput = {
+  export type ContactCreateWithoutCategoryInput = {
     id?: string;
-    locale: $Enums.Locale;
-    label: string;
-    slug: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    translations?: ContactTranslationCreateNestedManyWithoutContactInput;
   };
 
-  export type ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput = {
+  export type ContactUncheckedCreateWithoutCategoryInput = {
     id?: string;
-    locale: $Enums.Locale;
-    label: string;
-    slug: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    translations?: ContactTranslationUncheckedCreateNestedManyWithoutContactInput;
   };
 
-  export type ServiceCategoryTranslationCreateOrConnectWithoutCategoryInput = {
-    where: ServiceCategoryTranslationWhereUniqueInput;
+  export type ContactCreateOrConnectWithoutCategoryInput = {
+    where: ContactWhereUniqueInput;
     create: XOR<
-      ServiceCategoryTranslationCreateWithoutCategoryInput,
-      ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput
+      ContactCreateWithoutCategoryInput,
+      ContactUncheckedCreateWithoutCategoryInput
     >;
   };
 
-  export type ServiceCategoryTranslationCreateManyCategoryInputEnvelope = {
+  export type ContactCreateManyCategoryInputEnvelope = {
+    data: ContactCreateManyCategoryInput | ContactCreateManyCategoryInput[];
+    skipDuplicates?: boolean;
+  };
+
+  export type CategoryTranslationCreateWithoutCategoryInput = {
+    id?: string;
+    locale: $Enums.Locale;
+    label: string;
+    slug: string;
+  };
+
+  export type CategoryTranslationUncheckedCreateWithoutCategoryInput = {
+    id?: string;
+    locale: $Enums.Locale;
+    label: string;
+    slug: string;
+  };
+
+  export type CategoryTranslationCreateOrConnectWithoutCategoryInput = {
+    where: CategoryTranslationWhereUniqueInput;
+    create: XOR<
+      CategoryTranslationCreateWithoutCategoryInput,
+      CategoryTranslationUncheckedCreateWithoutCategoryInput
+    >;
+  };
+
+  export type CategoryTranslationCreateManyCategoryInputEnvelope = {
     data:
-      | ServiceCategoryTranslationCreateManyCategoryInput
-      | ServiceCategoryTranslationCreateManyCategoryInput[];
+      | CategoryTranslationCreateManyCategoryInput
+      | CategoryTranslationCreateManyCategoryInput[];
     skipDuplicates?: boolean;
   };
 
@@ -14145,133 +18032,186 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<'Service'> | Date | string;
   };
 
-  export type ServiceCategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput =
-    {
-      where: ServiceCategoryTranslationWhereUniqueInput;
-      update: XOR<
-        ServiceCategoryTranslationUpdateWithoutCategoryInput,
-        ServiceCategoryTranslationUncheckedUpdateWithoutCategoryInput
-      >;
-      create: XOR<
-        ServiceCategoryTranslationCreateWithoutCategoryInput,
-        ServiceCategoryTranslationUncheckedCreateWithoutCategoryInput
-      >;
-    };
-
-  export type ServiceCategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput =
-    {
-      where: ServiceCategoryTranslationWhereUniqueInput;
-      data: XOR<
-        ServiceCategoryTranslationUpdateWithoutCategoryInput,
-        ServiceCategoryTranslationUncheckedUpdateWithoutCategoryInput
-      >;
-    };
-
-  export type ServiceCategoryTranslationUpdateManyWithWhereWithoutCategoryInput =
-    {
-      where: ServiceCategoryTranslationScalarWhereInput;
-      data: XOR<
-        ServiceCategoryTranslationUpdateManyMutationInput,
-        ServiceCategoryTranslationUncheckedUpdateManyWithoutCategoryInput
-      >;
-    };
-
-  export type ServiceCategoryTranslationScalarWhereInput = {
-    AND?:
-      | ServiceCategoryTranslationScalarWhereInput
-      | ServiceCategoryTranslationScalarWhereInput[];
-    OR?: ServiceCategoryTranslationScalarWhereInput[];
-    NOT?:
-      | ServiceCategoryTranslationScalarWhereInput
-      | ServiceCategoryTranslationScalarWhereInput[];
-    id?: StringFilter<'ServiceCategoryTranslation'> | string;
-    categoryId?: StringFilter<'ServiceCategoryTranslation'> | string;
-    locale?: EnumLocaleFilter<'ServiceCategoryTranslation'> | $Enums.Locale;
-    label?: StringFilter<'ServiceCategoryTranslation'> | string;
-    slug?: StringFilter<'ServiceCategoryTranslation'> | string;
+  export type ContactUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: ContactWhereUniqueInput;
+    update: XOR<
+      ContactUpdateWithoutCategoryInput,
+      ContactUncheckedUpdateWithoutCategoryInput
+    >;
+    create: XOR<
+      ContactCreateWithoutCategoryInput,
+      ContactUncheckedCreateWithoutCategoryInput
+    >;
   };
 
-  export type ServiceCategoryCreateWithoutTranslationsInput = {
+  export type ContactUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: ContactWhereUniqueInput;
+    data: XOR<
+      ContactUpdateWithoutCategoryInput,
+      ContactUncheckedUpdateWithoutCategoryInput
+    >;
+  };
+
+  export type ContactUpdateManyWithWhereWithoutCategoryInput = {
+    where: ContactScalarWhereInput;
+    data: XOR<
+      ContactUpdateManyMutationInput,
+      ContactUncheckedUpdateManyWithoutCategoryInput
+    >;
+  };
+
+  export type ContactScalarWhereInput = {
+    AND?: ContactScalarWhereInput | ContactScalarWhereInput[];
+    OR?: ContactScalarWhereInput[];
+    NOT?: ContactScalarWhereInput | ContactScalarWhereInput[];
+    id?: StringFilter<'Contact'> | string;
+    categoryId?: StringFilter<'Contact'> | string;
+    icon?: StringFilter<'Contact'> | string;
+    externalUrl?: StringNullableFilter<'Contact'> | string | null;
+    order?: IntFilter<'Contact'> | number;
+    isActive?: BoolFilter<'Contact'> | boolean;
+    requiresAuth?: BoolFilter<'Contact'> | boolean;
+    role?: EnumRoleNullableFilter<'Contact'> | $Enums.Role | null;
+    createdAt?: DateTimeFilter<'Contact'> | Date | string;
+    updatedAt?: DateTimeFilter<'Contact'> | Date | string;
+  };
+
+  export type CategoryTranslationUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: CategoryTranslationWhereUniqueInput;
+    update: XOR<
+      CategoryTranslationUpdateWithoutCategoryInput,
+      CategoryTranslationUncheckedUpdateWithoutCategoryInput
+    >;
+    create: XOR<
+      CategoryTranslationCreateWithoutCategoryInput,
+      CategoryTranslationUncheckedCreateWithoutCategoryInput
+    >;
+  };
+
+  export type CategoryTranslationUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: CategoryTranslationWhereUniqueInput;
+    data: XOR<
+      CategoryTranslationUpdateWithoutCategoryInput,
+      CategoryTranslationUncheckedUpdateWithoutCategoryInput
+    >;
+  };
+
+  export type CategoryTranslationUpdateManyWithWhereWithoutCategoryInput = {
+    where: CategoryTranslationScalarWhereInput;
+    data: XOR<
+      CategoryTranslationUpdateManyMutationInput,
+      CategoryTranslationUncheckedUpdateManyWithoutCategoryInput
+    >;
+  };
+
+  export type CategoryTranslationScalarWhereInput = {
+    AND?:
+      | CategoryTranslationScalarWhereInput
+      | CategoryTranslationScalarWhereInput[];
+    OR?: CategoryTranslationScalarWhereInput[];
+    NOT?:
+      | CategoryTranslationScalarWhereInput
+      | CategoryTranslationScalarWhereInput[];
+    id?: StringFilter<'CategoryTranslation'> | string;
+    categoryId?: StringFilter<'CategoryTranslation'> | string;
+    locale?: EnumLocaleFilter<'CategoryTranslation'> | $Enums.Locale;
+    label?: StringFilter<'CategoryTranslation'> | string;
+    slug?: StringFilter<'CategoryTranslation'> | string;
+  };
+
+  export type CategoryCreateWithoutTranslationsInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
     services?: ServiceCreateNestedManyWithoutCategoryInput;
+    contacts?: ContactCreateNestedManyWithoutCategoryInput;
   };
 
-  export type ServiceCategoryUncheckedCreateWithoutTranslationsInput = {
+  export type CategoryUncheckedCreateWithoutTranslationsInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
     services?: ServiceUncheckedCreateNestedManyWithoutCategoryInput;
+    contacts?: ContactUncheckedCreateNestedManyWithoutCategoryInput;
   };
 
-  export type ServiceCategoryCreateOrConnectWithoutTranslationsInput = {
-    where: ServiceCategoryWhereUniqueInput;
+  export type CategoryCreateOrConnectWithoutTranslationsInput = {
+    where: CategoryWhereUniqueInput;
     create: XOR<
-      ServiceCategoryCreateWithoutTranslationsInput,
-      ServiceCategoryUncheckedCreateWithoutTranslationsInput
+      CategoryCreateWithoutTranslationsInput,
+      CategoryUncheckedCreateWithoutTranslationsInput
     >;
   };
 
-  export type ServiceCategoryUpsertWithoutTranslationsInput = {
+  export type CategoryUpsertWithoutTranslationsInput = {
     update: XOR<
-      ServiceCategoryUpdateWithoutTranslationsInput,
-      ServiceCategoryUncheckedUpdateWithoutTranslationsInput
+      CategoryUpdateWithoutTranslationsInput,
+      CategoryUncheckedUpdateWithoutTranslationsInput
     >;
     create: XOR<
-      ServiceCategoryCreateWithoutTranslationsInput,
-      ServiceCategoryUncheckedCreateWithoutTranslationsInput
+      CategoryCreateWithoutTranslationsInput,
+      CategoryUncheckedCreateWithoutTranslationsInput
     >;
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
   };
 
-  export type ServiceCategoryUpdateToOneWithWhereWithoutTranslationsInput = {
-    where?: ServiceCategoryWhereInput;
+  export type CategoryUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: CategoryWhereInput;
     data: XOR<
-      ServiceCategoryUpdateWithoutTranslationsInput,
-      ServiceCategoryUncheckedUpdateWithoutTranslationsInput
+      CategoryUpdateWithoutTranslationsInput,
+      CategoryUncheckedUpdateWithoutTranslationsInput
     >;
   };
 
-  export type ServiceCategoryUpdateWithoutTranslationsInput = {
+  export type CategoryUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
     services?: ServiceUpdateManyWithoutCategoryNestedInput;
+    contacts?: ContactUpdateManyWithoutCategoryNestedInput;
   };
 
-  export type ServiceCategoryUncheckedUpdateWithoutTranslationsInput = {
+  export type CategoryUncheckedUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
     services?: ServiceUncheckedUpdateManyWithoutCategoryNestedInput;
+    contacts?: ContactUncheckedUpdateManyWithoutCategoryNestedInput;
   };
 
-  export type ServiceCategoryCreateWithoutServicesInput = {
+  export type CategoryCreateWithoutServicesInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
-    translations?: ServiceCategoryTranslationCreateNestedManyWithoutCategoryInput;
+    contacts?: ContactCreateNestedManyWithoutCategoryInput;
+    translations?: CategoryTranslationCreateNestedManyWithoutCategoryInput;
   };
 
-  export type ServiceCategoryUncheckedCreateWithoutServicesInput = {
+  export type CategoryUncheckedCreateWithoutServicesInput = {
     id?: string;
     code: string;
+    type: $Enums.CategoryType;
     order?: number;
     isActive?: boolean;
-    translations?: ServiceCategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput;
+    contacts?: ContactUncheckedCreateNestedManyWithoutCategoryInput;
+    translations?: CategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput;
   };
 
-  export type ServiceCategoryCreateOrConnectWithoutServicesInput = {
-    where: ServiceCategoryWhereUniqueInput;
+  export type CategoryCreateOrConnectWithoutServicesInput = {
+    where: CategoryWhereUniqueInput;
     create: XOR<
-      ServiceCategoryCreateWithoutServicesInput,
-      ServiceCategoryUncheckedCreateWithoutServicesInput
+      CategoryCreateWithoutServicesInput,
+      CategoryUncheckedCreateWithoutServicesInput
     >;
   };
 
@@ -14306,40 +18246,44 @@ export namespace Prisma {
     skipDuplicates?: boolean;
   };
 
-  export type ServiceCategoryUpsertWithoutServicesInput = {
+  export type CategoryUpsertWithoutServicesInput = {
     update: XOR<
-      ServiceCategoryUpdateWithoutServicesInput,
-      ServiceCategoryUncheckedUpdateWithoutServicesInput
+      CategoryUpdateWithoutServicesInput,
+      CategoryUncheckedUpdateWithoutServicesInput
     >;
     create: XOR<
-      ServiceCategoryCreateWithoutServicesInput,
-      ServiceCategoryUncheckedCreateWithoutServicesInput
+      CategoryCreateWithoutServicesInput,
+      CategoryUncheckedCreateWithoutServicesInput
     >;
-    where?: ServiceCategoryWhereInput;
+    where?: CategoryWhereInput;
   };
 
-  export type ServiceCategoryUpdateToOneWithWhereWithoutServicesInput = {
-    where?: ServiceCategoryWhereInput;
+  export type CategoryUpdateToOneWithWhereWithoutServicesInput = {
+    where?: CategoryWhereInput;
     data: XOR<
-      ServiceCategoryUpdateWithoutServicesInput,
-      ServiceCategoryUncheckedUpdateWithoutServicesInput
+      CategoryUpdateWithoutServicesInput,
+      CategoryUncheckedUpdateWithoutServicesInput
     >;
   };
 
-  export type ServiceCategoryUpdateWithoutServicesInput = {
+  export type CategoryUpdateWithoutServicesInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
-    translations?: ServiceCategoryTranslationUpdateManyWithoutCategoryNestedInput;
+    contacts?: ContactUpdateManyWithoutCategoryNestedInput;
+    translations?: CategoryTranslationUpdateManyWithoutCategoryNestedInput;
   };
 
-  export type ServiceCategoryUncheckedUpdateWithoutServicesInput = {
+  export type CategoryUncheckedUpdateWithoutServicesInput = {
     id?: StringFieldUpdateOperationsInput | string;
     code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
     order?: IntFieldUpdateOperationsInput | number;
     isActive?: BoolFieldUpdateOperationsInput | boolean;
-    translations?: ServiceCategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput;
+    contacts?: ContactUncheckedUpdateManyWithoutCategoryNestedInput;
+    translations?: CategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput;
   };
 
   export type ServiceTranslationUpsertWithWhereUniqueWithoutServiceInput = {
@@ -14396,7 +18340,7 @@ export namespace Prisma {
     role?: $Enums.Role | null;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    category: ServiceCategoryCreateNestedOneWithoutServicesInput;
+    category: CategoryCreateNestedOneWithoutServicesInput;
   };
 
   export type ServiceUncheckedCreateWithoutTranslationsInput = {
@@ -14450,10 +18394,233 @@ export namespace Prisma {
     role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
-    category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput;
+    category?: CategoryUpdateOneRequiredWithoutServicesNestedInput;
   };
 
   export type ServiceUncheckedUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    categoryId?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CategoryCreateWithoutContactsInput = {
+    id?: string;
+    code: string;
+    type: $Enums.CategoryType;
+    order?: number;
+    isActive?: boolean;
+    services?: ServiceCreateNestedManyWithoutCategoryInput;
+    translations?: CategoryTranslationCreateNestedManyWithoutCategoryInput;
+  };
+
+  export type CategoryUncheckedCreateWithoutContactsInput = {
+    id?: string;
+    code: string;
+    type: $Enums.CategoryType;
+    order?: number;
+    isActive?: boolean;
+    services?: ServiceUncheckedCreateNestedManyWithoutCategoryInput;
+    translations?: CategoryTranslationUncheckedCreateNestedManyWithoutCategoryInput;
+  };
+
+  export type CategoryCreateOrConnectWithoutContactsInput = {
+    where: CategoryWhereUniqueInput;
+    create: XOR<
+      CategoryCreateWithoutContactsInput,
+      CategoryUncheckedCreateWithoutContactsInput
+    >;
+  };
+
+  export type ContactTranslationCreateWithoutContactInput = {
+    id?: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+  };
+
+  export type ContactTranslationUncheckedCreateWithoutContactInput = {
+    id?: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+  };
+
+  export type ContactTranslationCreateOrConnectWithoutContactInput = {
+    where: ContactTranslationWhereUniqueInput;
+    create: XOR<
+      ContactTranslationCreateWithoutContactInput,
+      ContactTranslationUncheckedCreateWithoutContactInput
+    >;
+  };
+
+  export type ContactTranslationCreateManyContactInputEnvelope = {
+    data:
+      | ContactTranslationCreateManyContactInput
+      | ContactTranslationCreateManyContactInput[];
+    skipDuplicates?: boolean;
+  };
+
+  export type CategoryUpsertWithoutContactsInput = {
+    update: XOR<
+      CategoryUpdateWithoutContactsInput,
+      CategoryUncheckedUpdateWithoutContactsInput
+    >;
+    create: XOR<
+      CategoryCreateWithoutContactsInput,
+      CategoryUncheckedCreateWithoutContactsInput
+    >;
+    where?: CategoryWhereInput;
+  };
+
+  export type CategoryUpdateToOneWithWhereWithoutContactsInput = {
+    where?: CategoryWhereInput;
+    data: XOR<
+      CategoryUpdateWithoutContactsInput,
+      CategoryUncheckedUpdateWithoutContactsInput
+    >;
+  };
+
+  export type CategoryUpdateWithoutContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    services?: ServiceUpdateManyWithoutCategoryNestedInput;
+    translations?: CategoryTranslationUpdateManyWithoutCategoryNestedInput;
+  };
+
+  export type CategoryUncheckedUpdateWithoutContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    code?: StringFieldUpdateOperationsInput | string;
+    type?: EnumCategoryTypeFieldUpdateOperationsInput | $Enums.CategoryType;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    services?: ServiceUncheckedUpdateManyWithoutCategoryNestedInput;
+    translations?: CategoryTranslationUncheckedUpdateManyWithoutCategoryNestedInput;
+  };
+
+  export type ContactTranslationUpsertWithWhereUniqueWithoutContactInput = {
+    where: ContactTranslationWhereUniqueInput;
+    update: XOR<
+      ContactTranslationUpdateWithoutContactInput,
+      ContactTranslationUncheckedUpdateWithoutContactInput
+    >;
+    create: XOR<
+      ContactTranslationCreateWithoutContactInput,
+      ContactTranslationUncheckedCreateWithoutContactInput
+    >;
+  };
+
+  export type ContactTranslationUpdateWithWhereUniqueWithoutContactInput = {
+    where: ContactTranslationWhereUniqueInput;
+    data: XOR<
+      ContactTranslationUpdateWithoutContactInput,
+      ContactTranslationUncheckedUpdateWithoutContactInput
+    >;
+  };
+
+  export type ContactTranslationUpdateManyWithWhereWithoutContactInput = {
+    where: ContactTranslationScalarWhereInput;
+    data: XOR<
+      ContactTranslationUpdateManyMutationInput,
+      ContactTranslationUncheckedUpdateManyWithoutContactInput
+    >;
+  };
+
+  export type ContactTranslationScalarWhereInput = {
+    AND?:
+      | ContactTranslationScalarWhereInput
+      | ContactTranslationScalarWhereInput[];
+    OR?: ContactTranslationScalarWhereInput[];
+    NOT?:
+      | ContactTranslationScalarWhereInput
+      | ContactTranslationScalarWhereInput[];
+    id?: StringFilter<'ContactTranslation'> | string;
+    contactId?: StringFilter<'ContactTranslation'> | string;
+    locale?: EnumLocaleFilter<'ContactTranslation'> | $Enums.Locale;
+    title?: StringFilter<'ContactTranslation'> | string;
+    description?: StringFilter<'ContactTranslation'> | string;
+    slug?: StringFilter<'ContactTranslation'> | string;
+  };
+
+  export type ContactCreateWithoutTranslationsInput = {
+    id?: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    category: CategoryCreateNestedOneWithoutContactsInput;
+  };
+
+  export type ContactUncheckedCreateWithoutTranslationsInput = {
+    id?: string;
+    categoryId: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type ContactCreateOrConnectWithoutTranslationsInput = {
+    where: ContactWhereUniqueInput;
+    create: XOR<
+      ContactCreateWithoutTranslationsInput,
+      ContactUncheckedCreateWithoutTranslationsInput
+    >;
+  };
+
+  export type ContactUpsertWithoutTranslationsInput = {
+    update: XOR<
+      ContactUpdateWithoutTranslationsInput,
+      ContactUncheckedUpdateWithoutTranslationsInput
+    >;
+    create: XOR<
+      ContactCreateWithoutTranslationsInput,
+      ContactUncheckedCreateWithoutTranslationsInput
+    >;
+    where?: ContactWhereInput;
+  };
+
+  export type ContactUpdateToOneWithWhereWithoutTranslationsInput = {
+    where?: ContactWhereInput;
+    data: XOR<
+      ContactUpdateWithoutTranslationsInput,
+      ContactUncheckedUpdateWithoutTranslationsInput
+    >;
+  };
+
+  export type ContactUpdateWithoutTranslationsInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    category?: CategoryUpdateOneRequiredWithoutContactsNestedInput;
+  };
+
+  export type ContactUncheckedUpdateWithoutTranslationsInput = {
     id?: StringFieldUpdateOperationsInput | string;
     categoryId?: StringFieldUpdateOperationsInput | string;
     icon?: StringFieldUpdateOperationsInput | string;
@@ -14526,7 +18693,19 @@ export namespace Prisma {
     updatedAt?: Date | string;
   };
 
-  export type ServiceCategoryTranslationCreateManyCategoryInput = {
+  export type ContactCreateManyCategoryInput = {
+    id?: string;
+    icon: string;
+    externalUrl?: string | null;
+    order?: number;
+    isActive?: boolean;
+    requiresAuth?: boolean;
+    role?: $Enums.Role | null;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+  export type CategoryTranslationCreateManyCategoryInput = {
     id?: string;
     locale: $Enums.Locale;
     label: string;
@@ -14571,27 +18750,64 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
   };
 
-  export type ServiceCategoryTranslationUpdateWithoutCategoryInput = {
+  export type ContactUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    translations?: ContactTranslationUpdateManyWithoutContactNestedInput;
+  };
+
+  export type ContactUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    translations?: ContactTranslationUncheckedUpdateManyWithoutContactNestedInput;
+  };
+
+  export type ContactUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    icon?: StringFieldUpdateOperationsInput | string;
+    externalUrl?: NullableStringFieldUpdateOperationsInput | string | null;
+    order?: IntFieldUpdateOperationsInput | number;
+    isActive?: BoolFieldUpdateOperationsInput | boolean;
+    requiresAuth?: BoolFieldUpdateOperationsInput | boolean;
+    role?: NullableEnumRoleFieldUpdateOperationsInput | $Enums.Role | null;
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+  export type CategoryTranslationUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
     label?: StringFieldUpdateOperationsInput | string;
     slug?: StringFieldUpdateOperationsInput | string;
   };
 
-  export type ServiceCategoryTranslationUncheckedUpdateWithoutCategoryInput = {
+  export type CategoryTranslationUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
     label?: StringFieldUpdateOperationsInput | string;
     slug?: StringFieldUpdateOperationsInput | string;
   };
 
-  export type ServiceCategoryTranslationUncheckedUpdateManyWithoutCategoryInput =
-    {
-      id?: StringFieldUpdateOperationsInput | string;
-      locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
-      label?: StringFieldUpdateOperationsInput | string;
-      slug?: StringFieldUpdateOperationsInput | string;
-    };
+  export type CategoryTranslationUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    label?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ServiceTranslationCreateManyServiceInput = {
     id?: string;
@@ -14618,6 +18834,38 @@ export namespace Prisma {
   };
 
   export type ServiceTranslationUncheckedUpdateManyWithoutServiceInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
+
+  export type ContactTranslationCreateManyContactInput = {
+    id?: string;
+    locale: $Enums.Locale;
+    title: string;
+    description: string;
+    slug: string;
+  };
+
+  export type ContactTranslationUpdateWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
+
+  export type ContactTranslationUncheckedUpdateWithoutContactInput = {
+    id?: StringFieldUpdateOperationsInput | string;
+    locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    slug?: StringFieldUpdateOperationsInput | string;
+  };
+
+  export type ContactTranslationUncheckedUpdateManyWithoutContactInput = {
     id?: StringFieldUpdateOperationsInput | string;
     locale?: EnumLocaleFieldUpdateOperationsInput | $Enums.Locale;
     title?: StringFieldUpdateOperationsInput | string;

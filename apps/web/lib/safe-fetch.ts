@@ -12,6 +12,13 @@ export async function safeFetch<T>(
   options?: RequestInit,
 ): Promise<T> {
   const url = `${env.NEXT_PUBLIC_API_URL}${endpoint}`;
+  // Debug log for URL and env
+  if (typeof window !== 'undefined') {
+    // eslint-disable-next-line no-console
+    console.log('safeFetch URL:', url);
+    // eslint-disable-next-line no-console
+    console.log('safeFetch env.NEXT_PUBLIC_API_URL:', env.NEXT_PUBLIC_API_URL);
+  }
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',

@@ -9,9 +9,16 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
 import { ServicesModule } from './content/services/services.module.js';
 import { PrismaModule } from './db/prisma.module.js';
 import { UsersModule } from './users/users.module.js';
+import { CategoriesModule } from './content/categories/categories.module.js';
 
 @Module({
-  imports: [UsersModule, PrismaModule, ServicesModule, AuthModule],
+  imports: [
+    UsersModule,
+    PrismaModule,
+    ServicesModule,
+    AuthModule,
+    CategoriesModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,

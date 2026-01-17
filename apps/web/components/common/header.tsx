@@ -1,16 +1,20 @@
-import { ROUTES } from '@invicity/constants';
+import { Locale, ROUTES } from '@invicity/constants';
 import { Link } from '@invicity/i18n/navigation';
 
 import { Navbar } from '@/components/navigation/navbar';
 import { NavbarIcons } from '@/components/navigation/navbar-icons';
 
 import { HeaderUtils } from './header-utils';
+import { getCategories } from '@/lib/api/categories';
+import { CategoryListResponse, CategoryResponse } from '@invicity/contracts';
 
-export async function Header() {
-  // get all serviceCategories
-  // get all ContactCategories (update seed first)
-  // make one request to get all data needed for header
-
+export type HeaderProps = {
+  categories: {
+    service: CategoryListResponse;
+    contact: CategoryListResponse;
+  };
+};
+export async function Header({ categories }: HeaderProps) {
   return (
     <header className="w-full bg-background border-b border-border">
       <div className="mx-auto max-w-7xl px-6">
@@ -23,11 +27,11 @@ export async function Header() {
           {/* Right cluster */}
           <div className="flex items-center">
             {/* Desktop nav */}
-            <Navbar />
+            <Navbar categories={categories} />
 
             {/* Mobile nav icons */}
             <div className="flex md:hidden">
-              <NavbarIcons />
+              <NavbarIcons categories={categories} />
             </div>
 
             <HeaderUtils />

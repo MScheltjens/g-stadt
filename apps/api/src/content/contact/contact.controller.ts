@@ -8,23 +8,20 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-
 import { Public } from '@/common/decorators/public.decorator.js';
+import { ContactService } from './contact.service.js';
 
-import { ServicesService } from './services.service.js';
-
-@ApiTags('services')
+@ApiTags('contact')
 @Public()
-@Controller('services')
-export class ServicesController {
-  private readonly logger = new Logger(ServicesController.name);
-
-  constructor(private readonly servicesService: ServicesService) {}
+@Controller('contact')
+export class ContactController {
+  private readonly logger = new Logger(ContactController.name);
+  constructor(private readonly contactService: ContactService) {}
 
   /**
-   * Get all services ordered by category and filtered by locale
+   * Get all contact categories filtered by locale
    */
-  @Get()
+  @Get('contact-categories')
   @ApiQuery({
     name: 'locale',
     required: true,
@@ -33,26 +30,28 @@ export class ServicesController {
   })
   @ApiResponse({
     status: 200,
-    description: 'List of services by category',
+    description: 'List of contact categories',
     type: Object,
   })
-  async getAllServicesByCategory(@Query() query: LocaleQueryDto) {
+  async getAllContactCategories(@Query() query: LocaleQueryDto) {
     if (!query.locale) {
       this.logger.warn('Missing locale in query');
       throw new BadRequestException('Locale is required');
     }
     try {
-      return await this.servicesService.getAllServicesByCategory(query.locale);
+      return await this.contactService.getAllContactCategories(query.locale);
     } catch (error) {
       if (error instanceof Error) {
-        this.logger.error('Failed to get services by category', error.stack);
+        this.logger.error('Failed to get contact categories', error.stack);
       } else {
         this.logger.error(
-          'Failed to get services by category',
+          'Failed to get contact categories',
           JSON.stringify(error),
         );
       }
-      throw new InternalServerErrorException('Failed to fetch services');
+      throw new InternalServerErrorException(
+        'Failed to fetch contact categories',
+      );
     }
   }
 }

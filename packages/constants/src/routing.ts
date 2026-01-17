@@ -127,17 +127,6 @@ export const AUTH_ROUTES = [ROUTES.SIGNIN, ROUTES.SIGNOUT, ROUTES.REGISTER];
 export const DEFAULT_LOGIN_REDIRECT = ROUTES.DASHBOARD;
 export const TOP_NAV_ROUTES = [ROUTES.HOME, ROUTES.SERVICES, ROUTES.CONTACT];
 
-export const NAV_ROUTES = [
-  {
-    label: 'services',
-    href: ROUTES.SERVICES,
-    icon: 'ExclamationCircle',
-  },
-  { label: 'contact', href: ROUTES.CONTACT, icon: 'Mail' },
-] as const;
-
-// routing types //
-
 // All valid route keys (for pathnames, route arrays, etc.)
 export type Pathname = keyof typeof ROUTE_PATHNAMES;
 

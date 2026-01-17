@@ -23,6 +23,11 @@ enum Locale {
   de
 }
 
+enum CategoryType {
+  SERVICE
+  CONTACT
+}
+
 ////////////////////
 /// AUTH & CORE ///
 ////////////////////
@@ -64,19 +69,22 @@ model PasswordResetToken {
 
 /// SERVICES ///
 
-model ServiceCategory {
-  id       String  @id @default(uuid())
-  code     String  @unique
-  order    Int     @default(0)
-  isActive Boolean @default(true)
+model Category {
+  id       String       @id @default(uuid())
+  code     String       @unique
+  type     CategoryType
+  order    Int          @default(0)
+  isActive Boolean      @default(true)
 
   services     Service[]
-  translations ServiceCategoryTranslation[]
+  contacts     Contact[]
+  translations CategoryTranslation[]
 
   @@index([isActive])
+  @@index([type])
 }
 
-model ServiceCategoryTranslation {
+model CategoryTranslation {
   id         String @id @default(uuid())
   categoryId String
   locale     Locale
@@ -84,7 +92,7 @@ model ServiceCategoryTranslation {
   label String
   slug  String
 
-  category ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@unique([categoryId, locale])
   @@unique([locale, slug])
@@ -94,7 +102,7 @@ model Service {
   id String @id @default(uuid())
 
   categoryId String
-  category   ServiceCategory @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
 
   icon        String
   externalUrl String?
@@ -127,3 +135,51 @@ model ServiceTranslation {
   @@unique([serviceId, locale])
   @@unique([locale, slug])
 }
+
+//  CONTACTS ///
+
+// Removed ContactCategory and ContactCategoryTranslation models
+
+model Contact {
+  id String @id @default(uuid())
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  icon        String
+  externalUrl String?
+  order       Int     @default(0)
+
+  isActive     Boolean @default(true)
+  requiresAuth Boolean @default(false)
+  role         Role?
+
+  translations ContactTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId, isActive, order])
+}
+
+model ContactTranslation {
+  id String @id @default(uuid())
+
+  contactId String
+  locale    Locale
+
+  title       String
+  description String
+  slug        String
+
+  contact Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@unique([contactId, locale])
+  @@unique([locale, slug])
+}
+
+// 4 example categories for city website contact form
+// 1. General Inquiry
+// 2. Technical Support
+// 3. Feedback
+// 4. Report an Issue

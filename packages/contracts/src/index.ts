@@ -2,6 +2,7 @@ export * from './auth/auth.schema';
 export * from './auth/auth-user.schema';
 export * from './auth/jwt.schema';
 export * from './auth/role.schema';
+export * from './common/category.schema';
 export * from './common/params.schema';
 export * from './env/api.env.schema';
 export * from './env/base.env.schema';

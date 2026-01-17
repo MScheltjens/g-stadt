@@ -19,42 +19,20 @@ async function main() {
   // --- CLEAR ---
   await prisma.serviceTranslation.deleteMany();
   await prisma.service.deleteMany();
-  await prisma.serviceCategoryTranslation.deleteMany();
-  await prisma.serviceCategory.deleteMany();
+  await prisma.contactTranslation.deleteMany();
+  await prisma.contact.deleteMany();
+  await prisma.categoryTranslation.deleteMany();
+  await prisma.category.deleteMany();
   await prisma.user.deleteMany();
 
   console.log('🧹 Cleared existing data.');
 
-  // --- USERS ---
-  await prisma.user.createMany({
-    data: [
-      {
-        email: 'citizen@g-stadt.de',
-        passwordHash: '$2a$10$YourHashedPasswordHere',
-        role: 'CITIZEN',
-        isVerified: true,
-      },
-      {
-        email: 'staff@g-stadt.de',
-        passwordHash: '$2a$10$YourHashedPasswordHere',
-        role: 'STAFF',
-        isVerified: true,
-      },
-      {
-        email: 'admin@g-stadt.de',
-        passwordHash: '$2a$10$YourHashedPasswordHere',
-        role: 'ADMIN',
-        isVerified: true,
-      },
-    ],
-  });
-
-  console.log('✅ Created users');
-
-  // --- SERVICE CATEGORIES + SERVICES ---
+  // --- CATEGORIES + SERVICES + CONTACTS ---
   const categories = [
+    // Service categories
     {
       code: 'CITIZEN_SERVICES',
+      type: 'SERVICE',
       order: 1,
       icon: 'IdCard',
       translations: [
@@ -117,6 +95,7 @@ async function main() {
     },
     {
       code: 'CITY_ADMINISTRATION',
+      type: 'SERVICE',
       order: 2,
       icon: 'Building',
       translations: [
@@ -182,6 +161,7 @@ async function main() {
     },
     {
       code: 'ENVIRONMENT',
+      type: 'SERVICE',
       order: 3,
       icon: 'Leaf',
       translations: [
@@ -239,6 +219,7 @@ async function main() {
     },
     {
       code: 'CULTURE_SPORT',
+      type: 'SERVICE',
       order: 4,
       icon: 'Trophy',
       translations: [
@@ -293,16 +274,175 @@ async function main() {
         },
       ],
     },
+    // Contact categories
+    {
+      code: 'GENERAL_INQUIRY',
+      type: 'CONTACT',
+      order: 5,
+      icon: 'Mail',
+      translations: [
+        {
+          locale: 'de',
+          label: 'Allgemeine Anfrage',
+          slug: 'allgemeine-anfrage',
+        },
+        { locale: 'en', label: 'General Inquiry', slug: 'general-inquiry' },
+        { locale: 'fr', label: 'Demande générale', slug: 'demande-generale' },
+      ],
+      contacts: [
+        {
+          requiresAuth: false,
+          translations: [
+            {
+              locale: 'de',
+              title: 'Kontaktformular',
+              description: 'Senden Sie uns Ihre allgemeine Anfrage.',
+              slug: 'kontaktformular',
+            },
+            {
+              locale: 'en',
+              title: 'Contact Form',
+              description: 'Send us your general inquiry.',
+              slug: 'contact-form',
+            },
+            {
+              locale: 'fr',
+              title: 'Formulaire de contact',
+              description: 'Envoyez-nous votre demande générale.',
+              slug: 'formulaire-contact',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      code: 'TECH_SUPPORT',
+      type: 'CONTACT',
+      order: 6,
+      icon: 'Settings',
+      translations: [
+        {
+          locale: 'de',
+          label: 'Technischer Support',
+          slug: 'technischer-support',
+        },
+        { locale: 'en', label: 'Technical Support', slug: 'technical-support' },
+        { locale: 'fr', label: 'Support technique', slug: 'support-technique' },
+      ],
+      contacts: [
+        {
+          requiresAuth: false,
+          translations: [
+            {
+              locale: 'de',
+              title: 'Technische Hilfe',
+              description: 'Erhalten Sie technische Unterstützung.',
+              slug: 'technische-hilfe',
+            },
+            {
+              locale: 'en',
+              title: 'Technical Help',
+              description: 'Get technical support.',
+              slug: 'technical-help',
+            },
+            {
+              locale: 'fr',
+              title: 'Aide technique',
+              description: 'Obtenez de l’aide technique.',
+              slug: 'aide-technique',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      code: 'FEEDBACK',
+      type: 'CONTACT',
+      order: 7,
+      icon: 'MessageCircle',
+      translations: [
+        { locale: 'de', label: 'Feedback', slug: 'feedback' },
+        { locale: 'en', label: 'Feedback', slug: 'feedback' },
+        { locale: 'fr', label: 'Retour', slug: 'retour' },
+      ],
+      contacts: [
+        {
+          requiresAuth: false,
+          translations: [
+            {
+              locale: 'de',
+              title: 'Feedback geben',
+              description: 'Teilen Sie uns Ihr Feedback mit.',
+              slug: 'feedback-geben',
+            },
+            {
+              locale: 'en',
+              title: 'Give Feedback',
+              description: 'Share your feedback with us.',
+              slug: 'give-feedback',
+            },
+            {
+              locale: 'fr',
+              title: 'Donner un retour',
+              description: 'Partagez votre retour avec nous.',
+              slug: 'donner-retour',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      code: 'REPORT_ISSUE',
+      type: 'CONTACT',
+      order: 8,
+      icon: 'AlertCircle',
+      translations: [
+        { locale: 'de', label: 'Problem melden', slug: 'problem-melden' },
+        { locale: 'en', label: 'Report an Issue', slug: 'report-issue' },
+        {
+          locale: 'fr',
+          label: 'Signaler un problème',
+          slug: 'signaler-probleme',
+        },
+      ],
+      contacts: [
+        {
+          requiresAuth: false,
+          translations: [
+            {
+              locale: 'de',
+              title: 'Problem melden',
+              description: 'Melden Sie ein Problem mit der Stadt.',
+              slug: 'problem-melden',
+            },
+            {
+              locale: 'en',
+              title: 'Report a Problem',
+              description: 'Report a problem with the city.',
+              slug: 'report-problem',
+            },
+            {
+              locale: 'fr',
+              title: 'Signaler un problème',
+              description: 'Signalez un problème à la ville.',
+              slug: 'signaler-probleme',
+            },
+          ],
+        },
+      ],
+    },
   ];
 
   for (const cat of categories) {
-    const category = await prisma.serviceCategory.create({
+    const { icon, ...categoryData } = cat;
+    const category = await prisma.category.create({
       data: {
-        code: cat.code,
-        order: cat.order,
+        code: categoryData.code,
+        type: categoryData.type as 'SERVICE' | 'CONTACT',
+        order: categoryData.order,
         isActive: true,
         translations: {
-          create: cat.translations.map((t) => ({
+          create: categoryData.translations.map((t) => ({
             locale: t.locale as Locale,
             label: t.label,
             slug: t.slug,
@@ -311,30 +451,55 @@ async function main() {
       },
     });
 
-    let serviceOrder = 1;
-    for (const service of cat.services) {
-      await prisma.service.create({
-        data: {
-          categoryId: category.id,
-          icon: cat.icon,
-          order: serviceOrder++,
-          isActive: true,
-          requiresAuth:
-            'requiresAuth' in service ? !!service.requiresAuth : false,
-          translations: {
-            create: service.translations.map((t) => ({
-              locale: t.locale as Locale,
-              title: t.title,
-              description: t.description,
-              slug: t.slug,
-            })),
+    if (cat.type === 'SERVICE' && cat.services) {
+      let serviceOrder = 1;
+      for (const service of cat.services) {
+        await prisma.service.create({
+          data: {
+            categoryId: category.id,
+            icon: cat.icon,
+            order: serviceOrder++,
+            isActive: true,
+            requiresAuth:
+              'requiresAuth' in service ? !!service.requiresAuth : false,
+            translations: {
+              create: service.translations.map((t) => ({
+                locale: t.locale as Locale,
+                title: t.title,
+                description: t.description,
+                slug: t.slug,
+              })),
+            },
           },
-        },
-      });
+        });
+      }
+    }
+    if (cat.type === 'CONTACT' && cat.contacts) {
+      let contactOrder = 1;
+      for (const contact of cat.contacts) {
+        await prisma.contact.create({
+          data: {
+            categoryId: category.id,
+            icon: cat.icon,
+            order: contactOrder++,
+            isActive: true,
+            requiresAuth:
+              'requiresAuth' in contact ? !!contact.requiresAuth : false,
+            translations: {
+              create: contact.translations.map((t) => ({
+                locale: t.locale as Locale,
+                title: t.title,
+                description: t.description,
+                slug: t.slug,
+              })),
+            },
+          },
+        });
+      }
     }
   }
 
-  console.log('✅ Created service categories & services');
+  console.log('✅ Created categories, services & contacts');
   console.log('🎉 Database seeded successfully!');
 }
 

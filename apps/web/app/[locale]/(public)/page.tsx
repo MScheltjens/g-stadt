@@ -7,9 +7,5 @@ export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return (
-    <main className="flex flex-col">
-      <Hero />
-    </main>
-  );
+  return <Hero />;
 }

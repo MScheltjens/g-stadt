@@ -17,8 +17,8 @@
     ],
     "scripts": {
         "build:cjs": "tsc -p tsconfig.cjs.json",
-        "build:esm": "tsc -p tsconfig.esm.json",
-        "build": "pnpm build:cjs && pnpm build:esm",
+        "build:esm": "tsc -p tsconfig.esm.json --declaration false",
+        "build": "pnpm clean && pnpm build:cjs && pnpm build:esm",
         "lint": "eslint . --max-warnings 0",
         "lint:fix": "eslint . --fix --max-warnings 0",
         "clean": "npx rimraf dist"

@@ -109,14 +109,15 @@ exports.Prisma.PasswordResetTokenScalarFieldEnum = {
   expiresAt: 'expiresAt',
 };
 
-exports.Prisma.ServiceCategoryScalarFieldEnum = {
+exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   code: 'code',
+  type: 'type',
   order: 'order',
   isActive: 'isActive',
 };
 
-exports.Prisma.ServiceCategoryTranslationScalarFieldEnum = {
+exports.Prisma.CategoryTranslationScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
   locale: 'locale',
@@ -140,6 +141,28 @@ exports.Prisma.ServiceScalarFieldEnum = {
 exports.Prisma.ServiceTranslationScalarFieldEnum = {
   id: 'id',
   serviceId: 'serviceId',
+  locale: 'locale',
+  title: 'title',
+  description: 'description',
+  slug: 'slug',
+};
+
+exports.Prisma.ContactScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  icon: 'icon',
+  externalUrl: 'externalUrl',
+  order: 'order',
+  isActive: 'isActive',
+  requiresAuth: 'requiresAuth',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+};
+
+exports.Prisma.ContactTranslationScalarFieldEnum = {
+  id: 'id',
+  contactId: 'contactId',
   locale: 'locale',
   title: 'title',
   description: 'description',
@@ -172,14 +195,21 @@ exports.Locale = exports.$Enums.Locale = {
   de: 'de',
 };
 
+exports.CategoryType = exports.$Enums.CategoryType = {
+  SERVICE: 'SERVICE',
+  CONTACT: 'CONTACT',
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
   PasswordResetToken: 'PasswordResetToken',
-  ServiceCategory: 'ServiceCategory',
-  ServiceCategoryTranslation: 'ServiceCategoryTranslation',
+  Category: 'Category',
+  CategoryTranslation: 'CategoryTranslation',
   Service: 'Service',
   ServiceTranslation: 'ServiceTranslation',
+  Contact: 'Contact',
+  ContactTranslation: 'ContactTranslation',
 };
 /**
  * Create the Client
@@ -190,11 +220,11 @@ const config = {
   engineVersion: '0c8ef2ce45c83248ab3df073180d5eda9e8be7a3',
   activeProvider: 'postgresql',
   inlineSchema:
-    'generator client {\n  provider = "prisma-client-js"\n  output   = "./generated"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\n////////////////////\n/// GLOBAL ENUMS ///\n////////////////////\n\nenum Role {\n  CITIZEN\n  STAFF\n  ADMIN\n}\n\nenum Locale {\n  en\n  fr\n  de\n}\n\n////////////////////\n/// AUTH & CORE ///\n////////////////////\n\nmodel User {\n  id           String   @id @default(uuid())\n  email        String   @unique\n  passwordHash String\n  role         Role     @default(CITIZEN)\n  isVerified   Boolean  @default(false)\n  createdAt    DateTime @default(now())\n\n  refreshTokens       RefreshToken[]\n  passwordResetTokens PasswordResetToken[]\n}\n\nmodel RefreshToken {\n  id        String   @id @default(uuid())\n  tokenHash String\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n  expiresAt DateTime\n}\n\nmodel PasswordResetToken {\n  id        String   @id @default(uuid())\n  userId    String\n  tokenHash String\n  expiresAt DateTime\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@index([expiresAt])\n}\n\n////////////////////\n/// CONTENT CORE ///\n////////////////////\n\n/// SERVICES ///\n\nmodel ServiceCategory {\n  id       String  @id @default(uuid())\n  code     String  @unique\n  order    Int     @default(0)\n  isActive Boolean @default(true)\n\n  services     Service[]\n  translations ServiceCategoryTranslation[]\n\n  @@index([isActive])\n}\n\nmodel ServiceCategoryTranslation {\n  id         String @id @default(uuid())\n  categoryId String\n  locale     Locale\n\n  label String\n  slug  String\n\n  category ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)\n\n  @@unique([categoryId, locale])\n  @@unique([locale, slug])\n}\n\nmodel Service {\n  id String @id @default(uuid())\n\n  categoryId String\n  category   ServiceCategory @relation(fields: [categoryId], references: [id])\n\n  icon        String\n  externalUrl String?\n  order       Int     @default(0)\n\n  isActive     Boolean @default(true)\n  requiresAuth Boolean @default(false)\n  role         Role?\n\n  translations ServiceTranslation[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([categoryId, isActive, order])\n}\n\nmodel ServiceTranslation {\n  id String @id @default(uuid())\n\n  serviceId String\n  locale    Locale\n\n  title       String\n  description String\n  slug        String\n\n  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)\n\n  @@unique([serviceId, locale])\n  @@unique([locale, slug])\n}\n',
+    'generator client {\n  provider = "prisma-client-js"\n  output   = "./generated"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\n////////////////////\n/// GLOBAL ENUMS ///\n////////////////////\n\nenum Role {\n  CITIZEN\n  STAFF\n  ADMIN\n}\n\nenum Locale {\n  en\n  fr\n  de\n}\n\nenum CategoryType {\n  SERVICE\n  CONTACT\n}\n\n////////////////////\n/// AUTH & CORE ///\n////////////////////\n\nmodel User {\n  id           String   @id @default(uuid())\n  email        String   @unique\n  passwordHash String\n  role         Role     @default(CITIZEN)\n  isVerified   Boolean  @default(false)\n  createdAt    DateTime @default(now())\n\n  refreshTokens       RefreshToken[]\n  passwordResetTokens PasswordResetToken[]\n}\n\nmodel RefreshToken {\n  id        String   @id @default(uuid())\n  tokenHash String\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n  expiresAt DateTime\n}\n\nmodel PasswordResetToken {\n  id        String   @id @default(uuid())\n  userId    String\n  tokenHash String\n  expiresAt DateTime\n\n  user User @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@index([expiresAt])\n}\n\n////////////////////\n/// CONTENT CORE ///\n////////////////////\n\n/// SERVICES ///\n\nmodel Category {\n  id       String       @id @default(uuid())\n  code     String       @unique\n  type     CategoryType\n  order    Int          @default(0)\n  isActive Boolean      @default(true)\n\n  services     Service[]\n  contacts     Contact[]\n  translations CategoryTranslation[]\n\n  @@index([isActive])\n  @@index([type])\n}\n\nmodel CategoryTranslation {\n  id         String @id @default(uuid())\n  categoryId String\n  locale     Locale\n\n  label String\n  slug  String\n\n  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)\n\n  @@unique([categoryId, locale])\n  @@unique([locale, slug])\n}\n\nmodel Service {\n  id String @id @default(uuid())\n\n  categoryId String\n  category   Category @relation(fields: [categoryId], references: [id])\n\n  icon        String\n  externalUrl String?\n  order       Int     @default(0)\n\n  isActive     Boolean @default(true)\n  requiresAuth Boolean @default(false)\n  role         Role?\n\n  translations ServiceTranslation[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([categoryId, isActive, order])\n}\n\nmodel ServiceTranslation {\n  id String @id @default(uuid())\n\n  serviceId String\n  locale    Locale\n\n  title       String\n  description String\n  slug        String\n\n  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)\n\n  @@unique([serviceId, locale])\n  @@unique([locale, slug])\n}\n\n//  CONTACTS ///\n\n// Removed ContactCategory and ContactCategoryTranslation models\n\nmodel Contact {\n  id String @id @default(uuid())\n\n  categoryId String\n  category   Category @relation(fields: [categoryId], references: [id])\n\n  icon        String\n  externalUrl String?\n  order       Int     @default(0)\n\n  isActive     Boolean @default(true)\n  requiresAuth Boolean @default(false)\n  role         Role?\n\n  translations ContactTranslation[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@index([categoryId, isActive, order])\n}\n\nmodel ContactTranslation {\n  id String @id @default(uuid())\n\n  contactId String\n  locale    Locale\n\n  title       String\n  description String\n  slug        String\n\n  contact Contact @relation(fields: [contactId], references: [id], onDelete: Cascade)\n\n  @@unique([contactId, locale])\n  @@unique([locale, slug])\n}\n\n// 4 example categories for city website contact form\n// 1. General Inquiry\n// 2. Technical Support\n// 3. Feedback\n// 4. Report an Issue\n',
 };
 
 config.runtimeDataModel = JSON.parse(
-  '{"models":{"User":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"email","kind":"scalar","type":"String"},{"name":"passwordHash","kind":"scalar","type":"String"},{"name":"role","kind":"enum","type":"Role"},{"name":"isVerified","kind":"scalar","type":"Boolean"},{"name":"createdAt","kind":"scalar","type":"DateTime"},{"name":"refreshTokens","kind":"object","type":"RefreshToken","relationName":"RefreshTokenToUser"},{"name":"passwordResetTokens","kind":"object","type":"PasswordResetToken","relationName":"PasswordResetTokenToUser"}],"dbName":null},"RefreshToken":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"tokenHash","kind":"scalar","type":"String"},{"name":"userId","kind":"scalar","type":"String"},{"name":"user","kind":"object","type":"User","relationName":"RefreshTokenToUser"},{"name":"expiresAt","kind":"scalar","type":"DateTime"}],"dbName":null},"PasswordResetToken":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"userId","kind":"scalar","type":"String"},{"name":"tokenHash","kind":"scalar","type":"String"},{"name":"expiresAt","kind":"scalar","type":"DateTime"},{"name":"user","kind":"object","type":"User","relationName":"PasswordResetTokenToUser"}],"dbName":null},"ServiceCategory":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"code","kind":"scalar","type":"String"},{"name":"order","kind":"scalar","type":"Int"},{"name":"isActive","kind":"scalar","type":"Boolean"},{"name":"services","kind":"object","type":"Service","relationName":"ServiceToServiceCategory"},{"name":"translations","kind":"object","type":"ServiceCategoryTranslation","relationName":"ServiceCategoryToServiceCategoryTranslation"}],"dbName":null},"ServiceCategoryTranslation":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"categoryId","kind":"scalar","type":"String"},{"name":"locale","kind":"enum","type":"Locale"},{"name":"label","kind":"scalar","type":"String"},{"name":"slug","kind":"scalar","type":"String"},{"name":"category","kind":"object","type":"ServiceCategory","relationName":"ServiceCategoryToServiceCategoryTranslation"}],"dbName":null},"Service":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"categoryId","kind":"scalar","type":"String"},{"name":"category","kind":"object","type":"ServiceCategory","relationName":"ServiceToServiceCategory"},{"name":"icon","kind":"scalar","type":"String"},{"name":"externalUrl","kind":"scalar","type":"String"},{"name":"order","kind":"scalar","type":"Int"},{"name":"isActive","kind":"scalar","type":"Boolean"},{"name":"requiresAuth","kind":"scalar","type":"Boolean"},{"name":"role","kind":"enum","type":"Role"},{"name":"translations","kind":"object","type":"ServiceTranslation","relationName":"ServiceToServiceTranslation"},{"name":"createdAt","kind":"scalar","type":"DateTime"},{"name":"updatedAt","kind":"scalar","type":"DateTime"}],"dbName":null},"ServiceTranslation":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"serviceId","kind":"scalar","type":"String"},{"name":"locale","kind":"enum","type":"Locale"},{"name":"title","kind":"scalar","type":"String"},{"name":"description","kind":"scalar","type":"String"},{"name":"slug","kind":"scalar","type":"String"},{"name":"service","kind":"object","type":"Service","relationName":"ServiceToServiceTranslation"}],"dbName":null}},"enums":{},"types":{}}',
+  '{"models":{"User":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"email","kind":"scalar","type":"String"},{"name":"passwordHash","kind":"scalar","type":"String"},{"name":"role","kind":"enum","type":"Role"},{"name":"isVerified","kind":"scalar","type":"Boolean"},{"name":"createdAt","kind":"scalar","type":"DateTime"},{"name":"refreshTokens","kind":"object","type":"RefreshToken","relationName":"RefreshTokenToUser"},{"name":"passwordResetTokens","kind":"object","type":"PasswordResetToken","relationName":"PasswordResetTokenToUser"}],"dbName":null},"RefreshToken":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"tokenHash","kind":"scalar","type":"String"},{"name":"userId","kind":"scalar","type":"String"},{"name":"user","kind":"object","type":"User","relationName":"RefreshTokenToUser"},{"name":"expiresAt","kind":"scalar","type":"DateTime"}],"dbName":null},"PasswordResetToken":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"userId","kind":"scalar","type":"String"},{"name":"tokenHash","kind":"scalar","type":"String"},{"name":"expiresAt","kind":"scalar","type":"DateTime"},{"name":"user","kind":"object","type":"User","relationName":"PasswordResetTokenToUser"}],"dbName":null},"Category":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"code","kind":"scalar","type":"String"},{"name":"type","kind":"enum","type":"CategoryType"},{"name":"order","kind":"scalar","type":"Int"},{"name":"isActive","kind":"scalar","type":"Boolean"},{"name":"services","kind":"object","type":"Service","relationName":"CategoryToService"},{"name":"contacts","kind":"object","type":"Contact","relationName":"CategoryToContact"},{"name":"translations","kind":"object","type":"CategoryTranslation","relationName":"CategoryToCategoryTranslation"}],"dbName":null},"CategoryTranslation":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"categoryId","kind":"scalar","type":"String"},{"name":"locale","kind":"enum","type":"Locale"},{"name":"label","kind":"scalar","type":"String"},{"name":"slug","kind":"scalar","type":"String"},{"name":"category","kind":"object","type":"Category","relationName":"CategoryToCategoryTranslation"}],"dbName":null},"Service":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"categoryId","kind":"scalar","type":"String"},{"name":"category","kind":"object","type":"Category","relationName":"CategoryToService"},{"name":"icon","kind":"scalar","type":"String"},{"name":"externalUrl","kind":"scalar","type":"String"},{"name":"order","kind":"scalar","type":"Int"},{"name":"isActive","kind":"scalar","type":"Boolean"},{"name":"requiresAuth","kind":"scalar","type":"Boolean"},{"name":"role","kind":"enum","type":"Role"},{"name":"translations","kind":"object","type":"ServiceTranslation","relationName":"ServiceToServiceTranslation"},{"name":"createdAt","kind":"scalar","type":"DateTime"},{"name":"updatedAt","kind":"scalar","type":"DateTime"}],"dbName":null},"ServiceTranslation":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"serviceId","kind":"scalar","type":"String"},{"name":"locale","kind":"enum","type":"Locale"},{"name":"title","kind":"scalar","type":"String"},{"name":"description","kind":"scalar","type":"String"},{"name":"slug","kind":"scalar","type":"String"},{"name":"service","kind":"object","type":"Service","relationName":"ServiceToServiceTranslation"}],"dbName":null},"Contact":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"categoryId","kind":"scalar","type":"String"},{"name":"category","kind":"object","type":"Category","relationName":"CategoryToContact"},{"name":"icon","kind":"scalar","type":"String"},{"name":"externalUrl","kind":"scalar","type":"String"},{"name":"order","kind":"scalar","type":"Int"},{"name":"isActive","kind":"scalar","type":"Boolean"},{"name":"requiresAuth","kind":"scalar","type":"Boolean"},{"name":"role","kind":"enum","type":"Role"},{"name":"translations","kind":"object","type":"ContactTranslation","relationName":"ContactToContactTranslation"},{"name":"createdAt","kind":"scalar","type":"DateTime"},{"name":"updatedAt","kind":"scalar","type":"DateTime"}],"dbName":null},"ContactTranslation":{"fields":[{"name":"id","kind":"scalar","type":"String"},{"name":"contactId","kind":"scalar","type":"String"},{"name":"locale","kind":"enum","type":"Locale"},{"name":"title","kind":"scalar","type":"String"},{"name":"description","kind":"scalar","type":"String"},{"name":"slug","kind":"scalar","type":"String"},{"name":"contact","kind":"object","type":"Contact","relationName":"ContactToContactTranslation"}],"dbName":null}},"enums":{},"types":{}}',
 );
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel);
 config.compilerWasm = {

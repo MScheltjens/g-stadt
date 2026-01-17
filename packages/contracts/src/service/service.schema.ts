@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { RoleSchema } from '../auth/role.schema';
+import { CategoryResponseSchema } from '../common/category.schema';
 import { LocaleSchema } from '../routing/locale.schema';
 
 /* =========================
@@ -65,7 +66,10 @@ export type CategoryWithServicesResponse = z.infer<
 // All categories with their services
 
 export const ServicesByCategoryResponseSchema = z.array(
-  CategoryWithServicesResponseSchema,
+  CategoryResponseSchema.extend({
+    type: z.literal('SERVICE'),
+    services: z.array(ServiceSchema),
+  }),
 );
 
 export type ServicesByCategoryResponse = z.infer<
