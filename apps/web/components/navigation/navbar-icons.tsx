@@ -1,9 +1,7 @@
 'use client';
 
-import { ROUTES } from '@invicity/constants';
 import { Link } from '@invicity/i18n/navigation';
-import { useTranslations } from '@invicity/i18n/next-intl';
-import { AlertCircle, Mail, MapPin } from '@invicity/ui/components/icons';
+import { AlertCircle, Mail } from '@invicity/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,15 +13,7 @@ import { cn } from '@invicity/ui/lib/utils';
 
 import { HeaderProps } from '../common/header';
 
-const iconMap: Record<string, React.ReactNode> = {
-  home: <MapPin className="h-4 w-4" />,
-  services: <AlertCircle className="h-4 w-4" />,
-  contact: <Mail className="h-4 w-4" />,
-};
-
 export function NavbarIcons({ categories }: HeaderProps) {
-  const t = useTranslations('navbar');
-
   return (
     <nav className="md:hidden">
       <NavigationMenu viewport={false}>
@@ -50,12 +40,10 @@ export function NavbarIcons({ categories }: HeaderProps) {
                     .map((cat) => (
                       <Link
                         key={cat.id}
-                        // @ts-ignore -- TypeScript will validate that only known `params`
-                        // are used in combination with a given `pathname`. Since the two will
-                        // always match for the current route, we can skip runtime checks.
+                        // @ts-expect-error -- TypeScript will validate that only known `params`
                         href={
-                          cat.translations[0]?.slug
-                            ? `/services/${cat.translations[0]?.slug}`
+                          cat.translations[0].slug
+                            ? `/services/${cat.translations[0].slug}`
                             : '#'
                         }
                         className="block px-4 py-2 hover:bg-gray-100"
@@ -90,7 +78,12 @@ export function NavbarIcons({ categories }: HeaderProps) {
                     .map((cat) => (
                       <Link
                         key={cat.id}
-                        href={ROUTES.CONTACT}
+                        // @ts-expect-error -- TypeScript will validate that only known `params`
+                        href={
+                          cat.translations[0].slug
+                            ? `/contacts/${cat.translations[0].slug}`
+                            : '#'
+                        }
                         className="block px-4 py-2 hover:bg-gray-100"
                       >
                         {cat.translations[0]?.label || cat.id}

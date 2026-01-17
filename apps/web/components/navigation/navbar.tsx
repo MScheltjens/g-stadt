@@ -35,7 +35,7 @@ export function Navbar({ categories }: HeaderProps) {
                 {categories.service.map((cat) => (
                   <Link
                     key={cat.id}
-                    // @ts-ignore -- TypeScript will validate that only known `params`
+                    // @ts-expect-error -- TypeScript will validate that only known `params`
                     // are used in combination with a given `pathname`. Since the two will
                     // always match for the current route, we can skip runtime checks.
                     href={
@@ -70,7 +70,7 @@ export function Navbar({ categories }: HeaderProps) {
                 {categories.contact.map((cat) => (
                   <Link
                     key={cat.id}
-                    // @ts-ignore -- TypeScript will validate that only known `params`
+                    // @ts-expect-error -- TypeScript will validate that only known `params`
                     // are used in combination with a given `pathname`. Since the two will
                     // always match for the current route, we can skip runtime checks.
                     href={

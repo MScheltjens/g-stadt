@@ -1,8 +1,8 @@
 import { Locale } from '@invicity/constants';
-import { type CategoriesResponse } from '@invicity/contracts';
+import { type CategoryListResponse } from '@invicity/contracts';
 import { Injectable, Logger } from '@nestjs/common';
 
-import { CategoriesService } from '../categories/categories.service.js';
+import { CategoriesService } from '@/content/categories/categories.service.js';
 
 @Injectable()
 export class ContactService {
@@ -12,7 +12,8 @@ export class ContactService {
   /**
    * Fetch all active contact categories, filtered by locale.
    */
-  async getAllContactCategories(locale: Locale): Promise<CategoriesResponse> {
+  async getAllContactCategories(locale: Locale): Promise<CategoryListResponse> {
+    this.logger.log(`Fetching contact categories for locale: ${locale}`);
     return this.categoriesService.getCategories(locale, 'CONTACT');
   }
 }

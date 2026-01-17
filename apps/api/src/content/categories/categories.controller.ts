@@ -1,5 +1,5 @@
 import { Public } from '@api/src/common/decorators/public.decorator.js';
-import { CategoriesResponse } from '@invicity/contracts';
+import { type CategoryListResponse } from '@invicity/contracts';
 import { Controller, Get, Logger, Query } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
@@ -36,7 +36,7 @@ export class CategoriesController {
   @ApiResponse({ status: 200, description: 'List of categories', type: Object }) // You can replace Object with a proper class if available
   async getAllCategories(
     @Query() query: CategoryQueryDto,
-  ): Promise<CategoriesResponse> {
+  ): Promise<CategoryListResponse> {
     this.logger.log('Fetching all categories');
     return this.categoriesService.getCategories(query.locale, query.type);
   }

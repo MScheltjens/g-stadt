@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 
-import { CategoriesModule } from '../categories/categories.module.js';
+import { CategoriesModule } from '@/content/categories/categories.module.js';
+
 import { ContactController } from './contact.controller.js';
 import { ContactService } from './contact.service.js';
 
