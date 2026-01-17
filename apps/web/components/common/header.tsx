@@ -8,7 +8,8 @@ import { HeaderUtils } from './header-utils';
 
 export async function Header() {
   // get all serviceCategories
-  // get all ContactCategories
+  // get all ContactCategories (update seed first)
+  // make one request to get all data needed for header
 
   return (
     <header className="w-full bg-background border-b border-border">
