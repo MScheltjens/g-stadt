@@ -3,7 +3,7 @@ import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pg from 'pg';
 
-import { Locale, PrismaClient } from './generated/client.js';
+import { PrismaClient } from '@prisma/client';
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 const adapter = new PrismaPg(pool);
@@ -443,7 +443,7 @@ async function main() {
         isActive: true,
         translations: {
           create: categoryData.translations.map((t) => ({
-            locale: t.locale as Locale,
+            locale: t.locale as string,
             label: t.label,
             slug: t.slug,
           })),
@@ -464,7 +464,7 @@ async function main() {
               'requiresAuth' in service ? !!service.requiresAuth : false,
             translations: {
               create: service.translations.map((t) => ({
-                locale: t.locale as Locale,
+                locale: t.locale as string,
                 title: t.title,
                 description: t.description,
                 slug: t.slug,
@@ -487,7 +487,7 @@ async function main() {
               'requiresAuth' in contact ? !!contact.requiresAuth : false,
             translations: {
               create: contact.translations.map((t) => ({
-                locale: t.locale as Locale,
+                locale: t.locale as string,
                 title: t.title,
                 description: t.description,
                 slug: t.slug,
