@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { LocaleSchema } from '../routing/locale.schema';
+import { LocaleSchema } from '../routing/locale.schema.js';
 
 /* =========================
    COMMON QUERY / PARAMS

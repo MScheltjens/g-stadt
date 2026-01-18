@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { RoleSchema } from './role.schema';
+import { RoleSchema } from './role.schema.js';
 
 /**
  * JWT payload contract

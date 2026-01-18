@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { RoleSchema } from '../auth/role.schema';
+import { RoleSchema } from '../auth/role.schema.js';
 
 /* =========================
    INPUTS (COMMANDS)

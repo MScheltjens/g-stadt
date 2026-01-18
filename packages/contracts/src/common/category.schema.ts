@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { LocaleSchema } from '../routing/locale.schema';
+import { LocaleSchema } from '../routing/locale.schema.js';
 
 // Category type schema
 export const CategoryTypeSchema = z.enum(['SERVICE', 'CONTACT']);

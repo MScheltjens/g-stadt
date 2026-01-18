@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { RoleSchema } from '../auth/role.schema';
-import { CategoryResponseSchema } from '../common/category.schema';
-import { LocaleSchema } from '../routing/locale.schema';
+import { RoleSchema } from '../auth/role.schema.js';
+import { CategoryResponseSchema } from '../common/category.schema.js';
+import { LocaleSchema } from '../routing/locale.schema.js';
 
 /* =========================
    TRANSLATIONS

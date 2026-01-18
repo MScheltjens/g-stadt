@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { AuthUserSchema } from './auth-user.schema';
+import { AuthUserSchema } from './auth-user.schema.js';
 
 /* =========================
    INPUTS (COMMANDS)
