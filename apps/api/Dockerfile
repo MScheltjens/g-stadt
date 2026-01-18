@@ -10,6 +10,7 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 
 # ---- Copy sources
 COPY apps ./apps
+COPY configs ./configs
 COPY packages ./packages
 
 # ---- Install deps
