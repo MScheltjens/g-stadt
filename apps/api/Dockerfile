@@ -4,20 +4,18 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Workspace files
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY configs ./configs
 COPY packages ./packages
 COPY apps ./apps
 
-# Install all workspace deps
 RUN pnpm install --frozen-lockfile
 
-# Build shared packages FIRST
+# Build shared packages
 RUN pnpm --filter @invicity/constants build
 RUN pnpm --filter @invicity/contracts build
 
-# Generate Prisma client BEFORE API build
+# Generate Prisma client
 RUN pnpm --filter api prisma generate
 
 # Build API
@@ -30,20 +28,15 @@ WORKDIR /app
 
 RUN corepack enable
 
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY apps ./apps
+COPY packages ./packages
+COPY configs ./configs
 
-# copy workspace packages
-COPY --from=builder /app/packages ./packages
-
-# Copy pnpm workspace node_modules
-COPY --from=builder /app/node_modules ./node_modules
-
-# copy the ENTIRE api package (includes its node_modules)
-COPY --from=builder /app/apps/api ./apps/api
-
-
+# 🔑 INSTALL AGAIN (runtime-safe layout)
+RUN pnpm install --prod --frozen-lockfile
 
 ENV NODE_ENV=production
 EXPOSE 3000
 
-WORKDIR /app/apps/api
-CMD ["node", "dist/main.js"]
+CMD ["node", "apps/api/dist/main.js"]
