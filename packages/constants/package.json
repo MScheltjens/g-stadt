@@ -3,12 +3,10 @@
     "version": "0.0.1",
     "private": true,
     "type": "module",
+    "main": "./dist/index.js",
     "sideEffects": false,
     "exports": {
-        ".": {
-            "import": "./dist/index.js",
-            "types": "./dist/index.d.ts"
-        }
+        ".": "./dist/index.js"
     },
     "files": [
         "dist"
@@ -18,9 +16,6 @@
         "build": "pnpm clean && tsc",
         "lint": "eslint . --max-warnings 0",
         "lint:fix": "eslint . --fix --max-warnings 0"
-    },
-    "dependencies": {
-        "zod": "^4.3.5"
     },
     "devDependencies": {
         "@invicity/eslint-config": "workspace:*",
