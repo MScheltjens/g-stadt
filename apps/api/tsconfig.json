@@ -1,5 +1,5 @@
 {
-  "extends": "@invicity/typescript-config/nestjs",
+  "extends": "../../configs/typescript-config/nestjs.json",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
