@@ -11,12 +11,16 @@ COPY apps ./apps
 
 RUN pnpm install --frozen-lockfile
 
+# Build shared packages FIRST
+RUN pnpm --filter @invicity/constants build
+RUN pnpm --filter @invicity/contracts build
 
-RUN pnpm --filter @invicity/constants
-RUN pnpm --filter @invicity/contracts 
-# Prisma client must be generated BEFORE build
+# Generate Prisma client BEFORE API build
 RUN pnpm --filter api prisma generate
+
+# Build API
 RUN pnpm --filter api build
+
 
 # ---------- runtime ----------
 FROM node:22-alpine
@@ -24,10 +28,13 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Copy only what runtime needs
+# Copy runtime essentials
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/prisma ./apps/api/prisma
-COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/apps/api/package.json ./apps/api/package.json
+COPY --from=builder /app/node_modules ./node_modules
+
+ENV NODE_ENV=production
+EXPOSE 3000
 
 CMD ["node", "apps/api/dist/main.js"]
