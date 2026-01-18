@@ -41,6 +41,7 @@ RUN pnpm install --prod
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/packages ./packages
+COPY  --from=builder :app/configs ./configs
 
 ENV NODE_ENV=production
 EXPOSE 3000
