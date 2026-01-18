@@ -4,11 +4,13 @@ WORKDIR /app
 
 RUN corepack enable
 
+# Workspace files
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY configs ./configs
 COPY packages ./packages
 COPY apps ./apps
 
+# Install all workspace deps
 RUN pnpm install --frozen-lockfile
 
 # Build shared packages FIRST
@@ -28,14 +30,14 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Copy runtime essentials
-COPY --from=builder /app/apps/api/dist ./apps/api/dist
-COPY --from=builder /app/apps/api/prisma ./apps/api/prisma
-COPY --from=builder /app/apps/api/package.json ./apps/api/package.json
+# Copy pnpm workspace node_modules
 COPY --from=builder /app/node_modules ./node_modules
 
+# ⚠️ CRITICAL: copy the ENTIRE api package (includes its node_modules)
+COPY --from=builder /app/apps/api ./apps/api
+
 ENV NODE_ENV=production
-ENV NODE_PATH=/app/node_modules
 EXPOSE 3000
 
-CMD ["node", "apps/api/dist/main.js"]
+WORKDIR /app/apps/api
+CMD ["node", "dist/main.js"]
