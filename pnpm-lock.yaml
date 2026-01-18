@@ -13,6 +13,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      tsconfig-paths:
+        specifier: ^4.2.0
+        version: 4.2.0
     devDependencies:
       '@invicity/eslint-config':
         specifier: workspace:*
