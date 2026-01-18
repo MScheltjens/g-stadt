@@ -141,12 +141,6 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
     devDependencies:
-      '@invicity/eslint-config':
-        specifier: workspace:*
-        version: link:../../configs/eslint-config
-      '@invicity/typescript-config':
-        specifier: workspace:*
-        version: link:../../configs/typescript-config
       '@nestjs/cli':
         specifier: ^11.0.0
         version: 11.0.16(@swc/cli@0.7.10)(@swc/core@1.15.8)(@types/node@22.19.7)
