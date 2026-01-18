@@ -22,10 +22,9 @@ async function bootstrap() {
 
   const env = getEnv();
 
-  await app.listen(env.PORT || 3000);
+  await app.listen(env.PORT || 3000, '0.0.0.0');
 
   console.log(`🚀 API running on port ${env.PORT}`);
-  console.log(`📚 Swagger docs at http://localhost:${env.PORT}/api/docs`);
 }
 
 void bootstrap();
