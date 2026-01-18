@@ -6,6 +6,7 @@ import { Footer } from '@/components/common/footer';
 import { Header } from '@/components/common/header';
 import { getCategories } from '@/lib/api/categories';
 import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
+import { normalizeLocale } from '@/lib/utils';
 
 export async function generateMetadata({
   params,
@@ -24,8 +25,10 @@ export async function generateMetadata({
 
 export default async function PublicLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
-  const allCategories = await getCategories(locale as Locale); // or your locale
+  const safeLocale = normalizeLocale(locale);
+  setRequestLocale(safeLocale);
+
+  const allCategories = await getCategories(safeLocale);
   const serviceCategories = allCategories.filter(
     (cat) => cat.type === 'SERVICE',
   );
