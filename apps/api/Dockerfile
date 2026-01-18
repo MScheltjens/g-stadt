@@ -30,6 +30,8 @@ RUN corepack enable
 
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps ./apps
+# Copy built packages from builder to ensure dist/ is present
+COPY --from=builder /app/packages ./packages
 
 # 🔑 INSTALL AGAIN (runtime-safe layout)
 RUN pnpm install --prod --frozen-lockfile
