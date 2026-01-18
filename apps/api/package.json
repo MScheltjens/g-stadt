@@ -39,8 +39,7 @@
     "pg": "^8.17.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "ts-node": "^10.9.2",
-    "strip-bom": "^4.0.0"
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@invicity/eslint-config": "workspace:*",

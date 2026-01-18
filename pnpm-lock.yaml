@@ -17,6 +17,9 @@ importers:
       json5:
         specifier: ^2.2.3
         version: 2.2.3
+      strip-bom:
+        specifier: ^4.0.0
+        version: 4.0.0
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
@@ -135,9 +138,6 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
-      strip-bom:
-        specifier: ^4.0.0
-        version: 4.0.0
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.15.8)(@types/node@22.19.7)(typescript@5.5.4)
