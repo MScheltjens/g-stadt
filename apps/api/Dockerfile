@@ -18,8 +18,6 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm --filter @invicity/constants build
 RUN pnpm --filter @invicity/contracts build
 
-# Generate Prisma client
-RUN pnpm --filter api prisma generate
 
 # Build API
 RUN pnpm --filter api build
