@@ -11,6 +11,9 @@ COPY apps ./apps
 
 RUN pnpm install --frozen-lockfile
 
+
+RUN pnpm --filter @invicity/constants
+RUN pnpm --filter @invicity/contracts 
 # Prisma client must be generated BEFORE build
 RUN pnpm --filter api prisma generate
 RUN pnpm --filter api build
