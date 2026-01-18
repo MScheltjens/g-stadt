@@ -15,7 +15,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/main.ts"
+    "src/main.ts",
+    "prisma/seed.ts"
   ],
   "exclude": [
     "dist",
