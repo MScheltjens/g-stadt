@@ -8,7 +8,7 @@
     "build": "nest build",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/src/main.js",
+    "start:prod": "node dist/main.js",
     "lint": "eslint . --ext .ts,.js --max-warnings 0",
     "lint:fix": "eslint . --ext .ts,.js --fix --max-warnings 0",
     "db:generate": "prisma generate --schema=./prisma/schema.prisma",
