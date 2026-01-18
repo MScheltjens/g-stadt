@@ -30,11 +30,17 @@ WORKDIR /app
 
 RUN corepack enable
 
+
+# 🔑 CRITICAL: copy workspace packages
+COPY --from=builder /app/packages ./packages
+
 # Copy pnpm workspace node_modules
 COPY --from=builder /app/node_modules ./node_modules
 
-# ⚠️ CRITICAL: copy the ENTIRE api package (includes its node_modules)
+# copy the ENTIRE api package (includes its node_modules)
 COPY --from=builder /app/apps/api ./apps/api
+
+
 
 ENV NODE_ENV=production
 EXPOSE 3000
