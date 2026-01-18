@@ -14,6 +14,9 @@ importers:
 
   .:
     dependencies:
+      json5:
+        specifier: ^2.2.3
+        version: 2.2.3
       tsconfig-paths:
         specifier: ^4.2.0
         version: 4.2.0
@@ -111,9 +114,6 @@ importers:
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
-      json5:
-        specifier: ^2.2.3
-        version: 2.2.3
       nestjs-zod:
         specifier: ^5.0.1
         version: 5.1.1(@nestjs/common@11.1.12)(@nestjs/swagger@11.2.5)(rxjs@7.8.2)(zod@4.3.5)
@@ -138,9 +138,6 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.15.8)(@types/node@22.19.7)(typescript@5.5.4)
-      tsconfig-paths:
-        specifier: ^4.2.0
-        version: 4.2.0
     devDependencies:
       '@invicity/eslint-config':
         specifier: workspace:*
