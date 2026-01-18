@@ -31,7 +31,6 @@ RUN corepack enable
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps ./apps
 COPY packages ./packages
-COPY configs ./configs
 
 # 🔑 INSTALL AGAIN (runtime-safe layout)
 RUN pnpm install --prod --frozen-lockfile
