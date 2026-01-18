@@ -36,7 +36,7 @@ COPY apps/api/package.json ./apps/api/
 COPY apps/api/prisma ./apps/api/prisma
 
 # Install production deps for API
-RUN pnpm install --prod --filter api...
+RUN pnpm install --prod
 
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
