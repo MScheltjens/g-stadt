@@ -28,11 +28,20 @@ WORKDIR /app
 
 RUN corepack enable
 
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY apps ./apps
+COPY packages ./packages
+COPY configs ./configs
+
+# 🔑 INSTALL AGAIN (runtime-safe layout)
+RUN pnpm install --prod --frozen-lockfile
+
 # Copy node_modules (pnpm workspace layout preserved)
 COPY --from=builder /app/node_modules ./node_modules
 
 # Copy the ENTIRE api app (guarantees dist/main.js exists)
 COPY --from=builder /app/apps/api ./apps/api
+
 
 ENV NODE_ENV=production
 EXPOSE 3000
