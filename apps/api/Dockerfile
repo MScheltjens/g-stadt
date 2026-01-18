@@ -35,8 +35,10 @@ COPY --from=builder /app/packages ./packages
 
 # 🔑 INSTALL AGAIN (runtime-safe layout)
 
-# Copy node_modules (pnpm workspace layout preserved)
+
+# Copy pnpm workspace store and node_modules
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.pnpm ./.pnpm
 
 # Copy the ENTIRE api app (guarantees dist/main.js exists)
 COPY --from=builder /app/apps/api ./apps/api
