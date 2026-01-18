@@ -9,6 +9,9 @@ COPY configs ./configs
 COPY packages ./packages
 COPY apps ./apps
 
+
+# Force pnpm to use a local .pnpm store in /app
+RUN pnpm config set store-dir .pnpm
 RUN pnpm install --frozen-lockfile
 
 # Build shared packages
