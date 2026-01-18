@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { join } from 'path';
 
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
@@ -13,6 +15,19 @@ import { UsersModule } from './users/users.module.js';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath:
+        process.env.NODE_ENV === 'production'
+          ? undefined
+          : [
+              // when running from apps/api
+              '.env.local',
+              // when running from repo root (turborepo)
+              join(process.cwd(), 'apps/api/.env.local'),
+            ],
+    }),
+
     UsersModule,
     PrismaModule,
     ServicesModule,
@@ -22,14 +37,8 @@ import { UsersModule } from './users/users.module.js';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_PIPE,
-      useClass: ZodValidationPipe,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
+    { provide: APP_PIPE, useClass: ZodValidationPipe },
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],
 })
 export class AppModule {}

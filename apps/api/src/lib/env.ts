@@ -1,13 +1,18 @@
-import 'dotenv/config';
-
 import { apiEnvSchema } from '@invicity/contracts';
 
-const parsed = apiEnvSchema.safeParse(process.env);
+let cachedEnv: ReturnType<typeof apiEnvSchema.parse> | null = null;
 
-if (!parsed.success) {
-  console.error('❌ Invalid API environment variables');
-  console.error(parsed.error.format());
-  process.exit(1);
+export function getEnv() {
+  if (cachedEnv) return cachedEnv;
+
+  const parsed = apiEnvSchema.safeParse(process.env);
+
+  if (!parsed.success) {
+    console.error('❌ Invalid API environment variables');
+    console.error(parsed.error.format());
+    process.exit(1);
+  }
+
+  cachedEnv = parsed.data;
+  return cachedEnv;
 }
-
-export const env = parsed.data;

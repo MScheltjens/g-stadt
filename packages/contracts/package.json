@@ -33,5 +33,6 @@
         "@invicity/typescript-config": "workspace:*",
         "@swc/core": "^1.15.8",
         "ts-node": "^10.9.2"
-    }
+    },
+    "packageManager": "pnpm@8.15.6"
 }

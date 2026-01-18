@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-import { baseEnvSchema } from './base.env.schema';
-
-export const webEnvSchema = baseEnvSchema.extend({
+export const webEnvSchema = z.object({
   NEXT_PUBLIC_API_URL: z.url(),
 });

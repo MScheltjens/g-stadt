@@ -5,7 +5,6 @@ export * from './auth/role.schema';
 export * from './common/category.schema';
 export * from './common/params.schema';
 export * from './env/api.env.schema';
-export * from './env/base.env.schema';
 export * from './env/web.env.schema';
 export * from './routing/locale.schema';
 export * from './service/service.schema';
