@@ -1,5 +1,5 @@
 {
-    "extends": "@invicity/typescript-config/react-library.json",
+    "extends": "../../configss/typescript-config/react-library.json",
     "compilerOptions": {
         "outDir": "dist"
     },
