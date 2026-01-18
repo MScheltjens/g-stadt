@@ -40,8 +40,12 @@ RUN pnpm install --prod --filter api...
 # Set a dummy DATABASE_URL for build-time Prisma commands
 ENV DATABASE_URL="postgresql://user:pass@localhost:5432/db"
 
-# Generate Prisma client for production
+
+# Generate Prisma client for production (for app runtime)
 RUN pnpm exec prisma generate
+
+# Generate Prisma client for seeding (for ts-node seed script)
+RUN pnpm exec prisma generate --schema=./prisma/schema.prisma
 
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./dist
@@ -49,4 +53,4 @@ COPY --from=builder /app/apps/api/dist ./dist
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["sh", "-c", "echo '--- ENV VARS ---' && env && echo '--- END ENV VARS ---' && npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
+CMD ["sh", "-c", "echo '--- ENV VARS ---' && env && echo '--- END ENV VARS ---' && pnpm exec prisma generate && npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
