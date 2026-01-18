@@ -1,5 +1,5 @@
 {
-  "extends": "./configs/typescript-config/base.json",
+  "extends": "@invicity/typescript-config/base.json",
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler"

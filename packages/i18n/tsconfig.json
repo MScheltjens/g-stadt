@@ -1,5 +1,5 @@
 {
-  "extends": "../../configs/typescript-config/i18n.json",
+  "extends": "@invicity/typescript-config/i18n.json",
   "compilerOptions": {
     "rootDir": "src",
   },
