@@ -35,13 +35,15 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps/api/package.json ./apps/api/
 COPY apps/api/prisma ./apps/api/prisma
 
+# Copy workspace packages and configs before install
+COPY --from=builder /app/packages ./packages
+COPY --from=builder /app/configs ./configs
+
 # Install production deps for API
 RUN pnpm install --prod
 
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
-COPY --from=builder /app/packages ./packages
-COPY  --from=builder :app/configs ./configs
 
 ENV NODE_ENV=production
 EXPOSE 3000
