@@ -6,6 +6,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "*.json"
+  ],
   "devDependencies": {
     "@swc/core": "^1.15.8",
     "ts-node": "^10.9.2"
