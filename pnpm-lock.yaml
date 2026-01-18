@@ -135,6 +135,9 @@ importers:
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
+      strip-bom:
+        specifier: ^4.0.0
+        version: 4.0.0
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.15.8)(@types/node@22.19.7)(typescript@5.5.4)
@@ -10376,7 +10379,6 @@ packages:
   /strip-bom@4.0.0:
     resolution: {integrity: sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==}
     engines: {node: '>=8'}
-    dev: true
 
   /strip-dirs@3.0.0:
     resolution: {integrity: sha512-I0sdgcFTfKQlUPZyAqPJmSG3HLO9rWDFnxonnIbskYNM3DwFOeTNB5KzVq3dA1GdRAc/25b5Y7UO2TQfKWw4aQ==}
