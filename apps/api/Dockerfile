@@ -35,6 +35,9 @@ COPY packages ./packages
 # 🔑 INSTALL AGAIN (runtime-safe layout)
 RUN pnpm install --prod --frozen-lockfile
 
+# Debug: check if tsconfig-paths is present in node_modules
+RUN ls -l /app/node_modules/tsconfig-paths || (echo 'tsconfig-paths not found!' && exit 1)
+
 # Copy node_modules (pnpm workspace layout preserved)
 COPY --from=builder /app/node_modules ./node_modules
 
