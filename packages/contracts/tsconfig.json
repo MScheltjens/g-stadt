@@ -1,0 +1,10 @@
+{
+    "extends": "@invicity/typescript-config/contracts",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}
