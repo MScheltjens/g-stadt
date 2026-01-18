@@ -47,8 +47,10 @@ RUN pnpm --filter api exec prisma generate
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 
+# Copy env file for local Docker (ignored on Railway)
+COPY apps/api/.env.prod .env
+
 ENV NODE_ENV=production
 EXPOSE 3000
-
 
 CMD ["sh", "-c", "pnpm --filter api exec prisma migrate deploy && pnpm --filter api exec prisma db seed && node apps/api/dist/main.js"]
