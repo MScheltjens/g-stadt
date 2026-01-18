@@ -39,8 +39,12 @@ COPY apps/api/prisma ./apps/api/prisma
 COPY --from=builder /app/packages ./packages
 COPY --from=builder /app/configs ./configs
 
+
 # Install production deps for API
 RUN pnpm install --prod
+
+# Generate Prisma client for production
+RUN pnpm --filter api prisma generate
 
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
