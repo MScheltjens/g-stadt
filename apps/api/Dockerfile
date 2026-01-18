@@ -49,4 +49,4 @@ COPY --from=builder /app/apps/api/dist ./dist
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
+CMD ["sh", "-c", "echo '--- ENV VARS ---' && env && echo '--- END ENV VARS ---' && npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
