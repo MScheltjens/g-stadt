@@ -50,4 +50,4 @@ COPY --from=builder /app/apps/api/dist ./apps/api/dist
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["sh", "-c", "pnpm --filter api exec prisma migrate deploy && pnpm --filter api exec prisma db seed && node apps/api/dist/main.js"]
+CMD ["sh", "-c", "cd apps/api && npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
