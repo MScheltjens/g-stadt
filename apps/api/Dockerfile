@@ -52,6 +52,7 @@ COPY tsconfig.*.json ./
 
 ENV NODE_ENV=production
 ENV NODE_PATH=/app/node_modules
+ENV NODE_OPTIONS=--preserve-symlinks
 EXPOSE 3000
 
 CMD ["node", "--require", "tsconfig-paths/register", "apps/api/dist/main.js"]
