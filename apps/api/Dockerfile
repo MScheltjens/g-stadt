@@ -31,28 +31,18 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Copy only minimal files for install
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY apps/api/package.json ./apps/api/
 COPY apps/api/prisma ./apps/api/prisma
-COPY apps/api/tsconfig.json ./apps/api/
-COPY apps/api/tsconfig.build.json ./apps/api/
-COPY packages ./packages
-COPY configs ./configs
 
-# Install only production dependencies for API and its deps
+# Install production deps for API
 RUN pnpm install --prod --filter api...
 
-# Copy built API dist from builder
+# Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
-
-# Copy all root tsconfig files for tsconfig-paths
-COPY tsconfig.json ./
-COPY tsconfig.*.json ./
+COPY --from=builder /app/packages ./packages
 
 ENV NODE_ENV=production
-ENV NODE_PATH=/app/node_modules
-ENV NODE_OPTIONS=--preserve-symlinks
 EXPOSE 3000
 
-CMD ["node", "--require", "tsconfig-paths/register", "apps/api/dist/main.js"]
+CMD ["node", "apps/api/dist/main.js"]

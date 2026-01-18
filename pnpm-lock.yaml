@@ -276,10 +276,6 @@ importers:
   configs/typescript-config: {}
 
   packages/constants:
-    dependencies:
-      zod:
-        specifier: ^4.3.5
-        version: 4.3.5
     devDependencies:
       '@invicity/eslint-config':
         specifier: workspace:*
