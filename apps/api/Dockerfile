@@ -32,6 +32,7 @@ RUN corepack enable
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ../../
 COPY apps/api/package.json ./
 COPY apps/api/prisma ./prisma
+COPY apps/api/prisma.config.ts ./prisma.config.ts
 # Copy workspace packages and configs before install
 COPY --from=builder /app/packages ../../packages
 COPY --from=builder /app/configs ../../configs
