@@ -66,8 +66,6 @@ model PasswordResetToken {
 /// CONTENT CORE ///
 ////////////////////
 
-/// SERVICES ///
-
 model Category {
     id       String       @id @default(uuid())
     code     String       @unique
@@ -98,33 +96,28 @@ model CategoryTranslation {
 }
 
 model Service {
-    id String @id @default(uuid())
-
-    categoryId String
-    category   Category @relation(fields: [categoryId], references: [id])
-
-    icon        String
-    externalUrl String?
-    order       Int     @default(0)
-
-    isActive     Boolean @default(true)
-    requiresAuth Boolean @default(false)
+    id           String   @id @default(uuid())
+    categoryId   String
+    icon         String
+    externalUrl  String?
+    order        Int      @default(0)
+    isActive     Boolean  @default(true)
+    requiresAuth Boolean  @default(false)
     role         Role?
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
 
+    category     Category             @relation(fields: [categoryId], references: [id])
     translations ServiceTranslation[]
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
+    @@unique([categoryId, order]) // For upsert by category and order
     @@index([categoryId, isActive, order])
 }
 
 model ServiceTranslation {
-    id String @id @default(uuid())
-
-    serviceId String
-    locale    Locale
-
+    id          String @id @default(uuid())
+    serviceId   String
+    locale      Locale
     title       String
     description String
     slug        String
@@ -135,38 +128,29 @@ model ServiceTranslation {
     @@unique([locale, slug])
 }
 
-//  CONTACTS ///
-
-// Removed ContactCategory and ContactCategoryTranslation models
-
 model Contact {
-    id String @id @default(uuid())
-
-    categoryId String
-    category   Category @relation(fields: [categoryId], references: [id])
-
-    icon        String
-    externalUrl String?
-    order       Int     @default(0)
-
-    isActive     Boolean @default(true)
-    requiresAuth Boolean @default(false)
+    id           String   @id @default(uuid())
+    categoryId   String
+    icon         String
+    externalUrl  String?
+    order        Int      @default(0)
+    isActive     Boolean  @default(true)
+    requiresAuth Boolean  @default(false)
     role         Role?
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
 
+    category     Category             @relation(fields: [categoryId], references: [id])
     translations ContactTranslation[]
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
+    @@unique([categoryId, order]) // For upsert by category and order
     @@index([categoryId, isActive, order])
 }
 
 model ContactTranslation {
-    id String @id @default(uuid())
-
-    contactId String
-    locale    Locale
-
+    id          String @id @default(uuid())
+    contactId   String
+    locale      Locale
     title       String
     description String
     slug        String
