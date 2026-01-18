@@ -34,13 +34,18 @@ COPY apps ./apps
 COPY --from=builder /app/packages ./packages
 
 # 🔑 INSTALL AGAIN (runtime-safe layout)
-RUN pnpm install --prod --frozen-lockfile
 
 # Copy node_modules (pnpm workspace layout preserved)
 COPY --from=builder /app/node_modules ./node_modules
 
 # Copy the ENTIRE api app (guarantees dist/main.js exists)
 COPY --from=builder /app/apps/api ./apps/api
+
+# Copy all root tsconfig files for tsconfig-paths
+COPY tsconfig.json ./
+COPY tsconfig.*.json ./
+COPY apps/api/tsconfig.json ./apps/api/
+COPY apps/api/tsconfig.build.json ./apps/api/
 
 
 ENV NODE_ENV=production
