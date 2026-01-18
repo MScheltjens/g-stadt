@@ -31,34 +31,27 @@ WORKDIR /app
 
 RUN corepack enable
 
+# Copy only minimal files for install
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
-COPY apps ./apps
-# Copy built packages from builder to ensure dist/ is present
-COPY --from=builder /app/packages ./packages
+COPY apps/api/package.json ./apps/api/
+COPY apps/api/prisma ./apps/api/prisma
+COPY apps/api/tsconfig.json ./apps/api/
+COPY apps/api/tsconfig.build.json ./apps/api/
+COPY packages ./packages
+COPY configs ./configs
 
-# 🔑 INSTALL AGAIN (runtime-safe layout)
+# Install only production dependencies for API and its deps
+RUN pnpm install --prod --filter api...
 
-
-# Copy pnpm workspace store and node_modules
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.pnpm ./.pnpm
-
-# Copy the ENTIRE api app (guarantees dist/main.js exists)
-COPY --from=builder /app/apps/api ./apps/api
+# Copy built API dist from builder
+COPY --from=builder /app/apps/api/dist ./apps/api/dist
 
 # Copy all root tsconfig files for tsconfig-paths
 COPY tsconfig.json ./
 COPY tsconfig.*.json ./
-COPY apps/api/tsconfig.json ./apps/api/
-COPY apps/api/tsconfig.build.json ./apps/api/
-
 
 ENV NODE_ENV=production
 ENV NODE_PATH=/app/node_modules
 EXPOSE 3000
-
-# Debug: list @prisma contents before starting
-RUN ls -l /app/node_modules/@prisma || true
-RUN ls -l /app/node_modules/.pnpm | grep prisma || true
 
 CMD ["node", "--require", "tsconfig-paths/register", "apps/api/dist/main.js"]
