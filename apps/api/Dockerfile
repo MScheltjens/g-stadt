@@ -31,7 +31,7 @@ WORKDIR /app
 RUN corepack enable
 
 
-# 🔑 CRITICAL: copy workspace packages
+# copy workspace packages
 COPY --from=builder /app/packages ./packages
 
 # Copy pnpm workspace node_modules
