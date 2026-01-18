@@ -21,6 +21,10 @@ playwright/.cache/
 playwright-report/
 
 
+apps/api/prisma/generated/
+
+
+
 # Turbo
 .turbo
 
