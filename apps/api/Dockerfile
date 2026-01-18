@@ -25,29 +25,28 @@ RUN pnpm --filter api build
 
 # ---------- runtime ----------
 FROM node:22-alpine
-WORKDIR /app
+WORKDIR /app/apps/api
 
 RUN corepack enable
 
-COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
-COPY apps/api/package.json ./apps/api/
-COPY apps/api/prisma ./apps/api/prisma
-
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ../../
+COPY apps/api/package.json ./
+COPY apps/api/prisma ./prisma
 # Copy workspace packages and configs before install
-COPY --from=builder /app/packages ./packages
-COPY --from=builder /app/configs ./configs
+COPY --from=builder /app/packages ../../packages
+COPY --from=builder /app/configs ../../configs
 
 
 # Install production deps for API and all its dependencies
 RUN pnpm install --prod --filter api...
 
 # Generate Prisma client for production
-RUN pnpm --filter api exec prisma generate
+RUN pnpm exec prisma generate
 
 # Copy built artifacts
-COPY --from=builder /app/apps/api/dist ./apps/api/dist
+COPY --from=builder /app/apps/api/dist ./dist
 
 ENV NODE_ENV=production
 EXPOSE 3000
 
-CMD ["sh", "-c", "cd apps/api && npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma db seed && node dist/main.js"]
