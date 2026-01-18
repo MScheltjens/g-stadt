@@ -44,6 +44,7 @@ COPY --from=builder /app/apps/api ./apps/api
 
 
 ENV NODE_ENV=production
+ENV NODE_PATH=/app/node_modules
 EXPOSE 3000
 
-CMD ["node", "apps/api/dist/main.js"]
+CMD ["node", "--require", "tsconfig-paths/register", "apps/api/dist/main.js"]
