@@ -306,9 +306,6 @@ importers:
 
   packages/constants:
     dependencies:
-      '@prisma/client':
-        specifier: ^7.2.0
-        version: 7.2.0(typescript@5.9.3)
       zod:
         specifier: ^4.3.5
         version: 4.3.5
@@ -319,21 +316,12 @@ importers:
       '@invicity/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
-      '@swc/core':
-        specifier: ^1.15.8
-        version: 1.15.8
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.15.8)(@types/node@22.19.7)(typescript@5.9.3)
 
   packages/contracts:
     dependencies:
       '@invicity/constants':
         specifier: workspace:*
         version: link:../constants
-      '@prisma/client':
-        specifier: ^7.2.0
-        version: 7.2.0(typescript@5.9.3)
       zod:
         specifier: ^4.3.5
         version: 4.3.5
@@ -344,12 +332,6 @@ importers:
       '@invicity/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
-      '@swc/core':
-        specifier: ^1.15.8
-        version: 1.15.8
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.15.8)(@types/node@22.19.7)(typescript@5.9.3)
 
   packages/i18n:
     dependencies:
