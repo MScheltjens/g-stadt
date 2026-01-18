@@ -1,4 +1,3 @@
-import { Locale } from '@invicity/constants';
 import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import { Metadata } from 'next';
 

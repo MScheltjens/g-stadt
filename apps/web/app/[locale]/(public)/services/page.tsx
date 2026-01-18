@@ -1,4 +1,5 @@
 import { setRequestLocale } from '@invicity/i18n/server';
+
 import { getAllServicesByCategory } from '@/lib/api/services';
 import { PageProps } from '@/lib/types/next-page';
 import { normalizeLocale } from '@/lib/utils';
