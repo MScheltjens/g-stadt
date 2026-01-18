@@ -57,4 +57,8 @@ ENV NODE_ENV=production
 ENV NODE_PATH=/app/node_modules
 EXPOSE 3000
 
+# Debug: list @prisma contents before starting
+RUN ls -l /app/node_modules/@prisma || true
+RUN ls -l /app/node_modules/.pnpm | grep prisma || true
+
 CMD ["node", "--require", "tsconfig-paths/register", "apps/api/dist/main.js"]
