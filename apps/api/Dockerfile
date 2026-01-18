@@ -35,6 +35,7 @@ COPY --from=builder /app/apps/api/package.json ./apps/api/package.json
 COPY --from=builder /app/node_modules ./node_modules
 
 ENV NODE_ENV=production
+ENV NODE_PATH=/app/node_modules
 EXPOSE 3000
 
 CMD ["node", "apps/api/dist/main.js"]
