@@ -28,8 +28,8 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.0",
     "@nestjs/swagger": "^11.2.4",
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.2.0",
+    "@prisma/adapter-pg": "7.2.0",
+    "@prisma/client": "7.2.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "nestjs-zod": "^5.0.1",
@@ -43,7 +43,7 @@
     "tsconfig-paths": "^4.2.0",
     "json5": "^2.2.3",
     "strip-bom": "^4.0.0",
-    "prisma": "^7.2.0"
+    "prisma": "7.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.0",
