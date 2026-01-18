@@ -9,7 +9,6 @@ COPY configs ./configs
 COPY packages ./packages
 COPY apps ./apps
 
-
 # Force pnpm to use a local .pnpm store in /app
 RUN pnpm config set store-dir .pnpm
 RUN pnpm install --frozen-lockfile
@@ -18,10 +17,8 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm --filter @invicity/constants build
 RUN pnpm --filter @invicity/contracts build
 
-
 # Build API
 RUN pnpm --filter api build
-
 
 # ---------- runtime ----------
 FROM node:22-alpine
@@ -37,9 +34,11 @@ COPY apps/api/prisma.config.ts ./prisma.config.ts
 COPY --from=builder /app/packages ../../packages
 COPY --from=builder /app/configs ../../configs
 
-
 # Install production deps for API and all its dependencies
 RUN pnpm install --prod --filter api...
+
+# Set a dummy DATABASE_URL for build-time Prisma commands
+ENV DATABASE_URL="postgresql://user:pass@localhost:5432/db"
 
 # Generate Prisma client for production
 RUN pnpm exec prisma generate
