@@ -7,14 +7,14 @@ import { AuthUserSchema } from './auth-user.schema.js';
    ========================= */
 
 export const LoginInputSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   password: z.string().min(8),
 });
 
 export type LoginInput = z.infer<typeof LoginInputSchema>;
 
 export const RegisterInputSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   password: z.string().min(8),
 });
 
