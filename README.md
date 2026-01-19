@@ -1,6 +1,19 @@
 # InviCity Monorepo
 
+**InviCity** is a modern, full-stack web application designed as a digital city portal. It features a Next.js frontend and a NestJS API backend, providing residents and visitors with news, events, and essential city services in one accessible platform.
+
+- 🌐 Web: [https://invicity-web.vercel.app/](https://invicity-web.vercel.app/)
+- 🛠️ API: [https://api-production-e0b0.up.railway.app/](https://api-production-e0b0.up.railway.app/)
+
 This repository is a monorepo for the InviCity project, a fictive website for a city, containing both backend (API) and frontend (web) applications, as well as shared packages and configurations.
+
+## Deployment
+
+The applications are deployed and publicly accessible:
+
+- **Web (Next.js, Vercel):** [https://invicity-web.vercel.app/](https://invicity-web.vercel.app/)  
+  This link is publicly available.
+- **API (NestJS, Railway):** [https://api-production-e0b0.up.railway.app/](https://api-production-e0b0.up.railway.app/)
 
 ## Project Structure
 
