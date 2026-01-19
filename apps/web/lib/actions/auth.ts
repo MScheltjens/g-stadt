@@ -32,12 +32,7 @@ type RegisterResult = ActionSuccess | ActionError;
 /* =========================
    LOGIN
    ========================= */
-export async function login(input: LoginInput): Promise<LoginResult> {
-  const parsedData = LoginInputSchema.parse(input);
-  const data = await safeFetch('/auth/login', AuthResponseSchema, {
-    method: 'POST',
-    body: JSON.stringify(parsedData),
-  });
+export async function login(data: LoginInput): Promise<LoginResult> {
   try {
     // Validate input
     const input = LoginInputSchema.parse(data);
@@ -61,16 +56,11 @@ export async function login(input: LoginInput): Promise<LoginResult> {
    REGISTER
    ========================= */
 export async function register(input: RegisterInput): Promise<RegisterResult> {
-  const data = await safeFetch('/auth/register', AuthResponseSchema, {
-    method: 'POST',
-    body: JSON.stringify(input),
-  });
   try {
-    // Validate input
-    const input = RegisterInputSchema.parse(data);
+    const validInput = RegisterInputSchema.parse(input);
     const authData = await safeFetch('/auth/register', AuthResponseSchema, {
       method: 'POST',
-      body: JSON.stringify(input),
+      body: JSON.stringify(validInput),
     });
     await setAuthCookies(
       authData.tokens.accessToken,
