@@ -7,8 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 
 import { Modal } from '@/components/common/modal';
-
-const STORAGE_KEY = 'invicity-demo-disclaimer-v1';
+import { STORAGE_KEY } from '@invicity/constants';
 
 export default function DemoDisclaimerModalPage() {
   const router = useRouter();
