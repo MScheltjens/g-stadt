@@ -33,8 +33,14 @@ type RegisterResult = ActionSuccess | ActionError;
 /* =========================
    LOGIN
    ========================= */
-export async function login(data: LoginInput): Promise<LoginResult> {
+export async function login(input: LoginInput): Promise<LoginResult> {
+  const parsedData = LoginInputSchema.parse(input);
+  const data = await safeFetch('/auth/login', AuthResponseSchema, {
+    method: 'POST',
+    body: JSON.stringify(parsedData),
+  });
   try {
+    // Validate input
     const input = LoginInputSchema.parse(data);
     const authData = await safeFetch('/auth/login', AuthResponseSchema, {
       method: 'POST',
@@ -55,11 +61,16 @@ export async function login(data: LoginInput): Promise<LoginResult> {
    REGISTER
    ========================= */
 export async function register(input: RegisterInput): Promise<RegisterResult> {
+  const data = await safeFetch('/auth/register', AuthResponseSchema, {
+    method: 'POST',
+    body: JSON.stringify(input),
+  });
   try {
-    const validInput = RegisterInputSchema.parse(input);
+    // Validate input
+    const input = RegisterInputSchema.parse(data);
     const authData = await safeFetch('/auth/register', AuthResponseSchema, {
       method: 'POST',
-      body: JSON.stringify(validInput),
+      body: JSON.stringify(input),
     });
     await setAuthCookies(
       authData.tokens.accessToken,
@@ -96,27 +107,36 @@ export async function logout(redirectTo: string = '/login') {
    REFRESH TOKEN
    ========================= */
 
-export async function refreshToken() {
+export async function refreshToken(): Promise<ActionSuccess | ActionError> {
   try {
     const { getRefreshToken } = await import('@/lib/auth');
     const refreshTokenValue = await getRefreshToken();
+
     if (!refreshTokenValue) {
       return { error: 'No refresh token available' };
     }
-    const input = RefreshTokenInputSchema.parse({
-      refreshToken: refreshTokenValue,
-    });
-    const authData = await safeFetch('/auth/refresh', AuthResponseSchema, {
+
+    const res = await fetch(`${API_URL}/auth/refresh`, {
       method: 'POST',
-      body: JSON.stringify(input),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        refreshToken: refreshTokenValue,
+      }),
     });
+
+    if (!res.ok) {
+      return { error: 'Token refresh failed' };
+    }
+
+    const authData: AuthResponse = await res.json();
     await setAuthCookies(
       authData.tokens.accessToken,
       authData.tokens.refreshToken,
     );
+
     return { success: true };
-  } catch (error: any) {
+  } catch (error) {
     console.error('Token refresh error:', error);
-    return { error: error.message || 'Token refresh failed' };
+    return { error: 'Network error during token refresh' };
   }
 }
