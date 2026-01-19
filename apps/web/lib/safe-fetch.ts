@@ -5,27 +5,22 @@
 import { ZodType } from 'zod';
 
 import { env } from './env';
+import { getLocale } from '@invicity/i18n/server';
 
 export async function safeFetch<T>(
   endpoint: string,
   schema: ZodType<T>,
   options?: RequestInit,
-  locale?: string,
 ): Promise<T> {
+  const locale = await getLocale(); // getLocale should return a string like 'en'
   const url = `${env.NEXT_PUBLIC_API_URL}${endpoint}`;
-  // Debug log for URL and env
-  if (typeof window !== 'undefined') {
-    console.log('safeFetch URL:', url);
-
-    console.log('safeFetch env.NEXT_PUBLIC_API_URL:', env.NEXT_PUBLIC_API_URL);
-  }
   const res = await fetch(url, {
+    ...options,
     headers: {
       'Content-Type': 'application/json',
       ...(options?.headers || {}),
-      'X-Locale': locale || 'en', // default or from app state
+      'X-Locale': locale,
     },
-    ...options,
   });
   if (!res.ok) {
     throw new Error(`API Error: ${res.status} ${res.statusText}`);
