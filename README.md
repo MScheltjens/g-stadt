@@ -13,7 +13,8 @@ The applications are deployed and publicly accessible:
 
 - **Web (Next.js, Vercel):** [https://invicity-web.vercel.app/](https://invicity-web.vercel.app/)  
   This link is publicly available.
-- **API (NestJS, Railway):** [https://api-production-e0b0.up.railway.app/](https://api-production-e0b0.up.railway.app/)
+- **API (NestJS, Railway):** [https://api-production-e0b0.up.railway.app/](https://api-production-e0b0.up.railway.app/)  
+  Deployed to Railway using a custom Dockerfile.
 
 ## Project Structure
 
