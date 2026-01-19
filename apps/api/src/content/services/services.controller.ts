@@ -11,6 +11,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Public } from '@/common/decorators/public.decorator.js';
 
 import { ServicesService } from './services.service.js';
+import { Locale } from '@invicity/constants';
 
 @ApiTags('services')
 @Public()
@@ -29,7 +30,7 @@ export class ServicesController {
     description: 'List of services by category',
     type: Object,
   })
-  async getAllServicesByCategory(@Req() req) {
+  async getAllServicesByCategory(@Req() req: Request & { locale: Locale }) {
     const locale = req.locale;
     if (!locale) {
       this.logger.warn('Missing locale in request');
