@@ -50,9 +50,10 @@ export async function login(input: LoginInput): Promise<LoginResult> {
       authData.tokens.refreshToken,
     );
     return { success: true, user: authData.user };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Login error:', error);
-    return { error: error.message || 'Login failed' };
+    const message = error instanceof Error ? error.message : 'Login failed';
+    return { error: message };
   }
 }
 
@@ -76,9 +77,11 @@ export async function register(input: RegisterInput): Promise<RegisterResult> {
       authData.tokens.refreshToken,
     );
     return { success: true, user: authData.user };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Registration error:', error);
-    return { error: error.message || 'Registration failed' };
+    const message =
+      error instanceof Error ? error.message : 'Registration failed';
+    return { error: message };
   }
 }
 
