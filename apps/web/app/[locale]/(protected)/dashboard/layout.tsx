@@ -1,9 +1,9 @@
 import { redirect } from '@invicity/i18n/navigation';
 import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import { Metadata } from 'next';
-import { env } from '@/lib/env';
 
 import { checkUserRole } from '@/lib/auth';
+import { env } from '@/lib/env';
 import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
 
 export async function generateMetadata({

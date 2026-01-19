@@ -4,11 +4,11 @@ import { PassportModule } from '@nestjs/passport';
 
 import { JwtStrategy } from '@/common/strategies/jwt.strategy.js';
 import { PrismaModule } from '@/db/prisma.module.js';
+import { getEnv } from '@/lib/env.js';
 import { UsersModule } from '@/users/users.module.js';
 
 import { AuthController } from './auth.controller.js';
 import { AuthService } from './auth.service.js';
-import { getEnv } from '@/lib/env.js';
 
 @Module({
   imports: [

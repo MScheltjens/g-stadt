@@ -8,6 +8,7 @@ import type {
 import { redirect } from 'next/navigation';
 
 import { clearAuthCookies, setAuthCookies } from '@/lib/auth';
+
 import { env } from '../env';
 
 const API_URL = env.NEXT_PUBLIC_API_URL;
