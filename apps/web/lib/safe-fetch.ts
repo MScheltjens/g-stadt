@@ -2,10 +2,10 @@
  * Safe fetch wrapper with Zod validation
  */
 
+import { getLocale } from '@invicity/i18n/server';
 import { ZodType } from 'zod';
 
 import { env } from './env';
-import { getLocale } from '@invicity/i18n/server';
 
 export async function safeFetch<T>(
   endpoint: string,

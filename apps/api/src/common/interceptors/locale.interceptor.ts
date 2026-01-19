@@ -1,4 +1,3 @@
-import { Locale } from '@invicity/constants';
 import { LocaleSchema } from '@invicity/contracts';
 import {
   CallHandler,

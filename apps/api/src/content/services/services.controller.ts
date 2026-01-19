@@ -6,7 +6,6 @@ import {
   Logger,
   Req,
 } from '@nestjs/common';
-import { Request } from 'express';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Public } from '@/common/decorators/public.decorator.js';

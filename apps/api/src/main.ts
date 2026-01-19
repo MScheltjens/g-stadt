@@ -3,8 +3,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ZodValidationPipe } from 'nestjs-zod';
 
 import { AppModule } from './app.module.js';
-import { getEnv } from './lib/env.js';
 import { LocaleInterceptor } from './common/interceptors/locale.interceptor.js';
+import { getEnv } from './lib/env.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
