@@ -12,7 +12,6 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Public } from '@/common/decorators/public.decorator.js';
 
 import { ServicesService } from './services.service.js';
-import { Locale } from '@invicity/constants';
 
 @ApiTags('services')
 @Public()
