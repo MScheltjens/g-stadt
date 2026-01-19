@@ -7,7 +7,18 @@ import { getEnv } from './lib/env.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+
+  if (process.env.NODE_ENV === 'production') {
+    app.enableCors({
+      origin: ['https://invicity-web.vercel.app/'], // production frontend only
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true,
+      maxAge: 86400,
+    });
+  } else {
+    app.enableCors('*');
+  }
 
   app.useGlobalPipes(new ZodValidationPipe());
 
