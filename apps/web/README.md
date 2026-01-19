@@ -13,6 +13,10 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
 
+## Modals
+
+Modals in this project are implemented the native Next.js way, using Next.js routing and navigation patterns instead of traditional React modal state. This approach leverages route changes and browser history for modal management.
+
 ## Learn More
 
 Learn more about `Next.js` with the following resources:

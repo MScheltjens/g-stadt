@@ -36,6 +36,14 @@ The applications are deployed and publicly accessible:
 └── README.md        # This file
 ```
 
+## Subproject Documentation
+
+For more details on each part of the monorepo, see their individual README files:
+
+- [Web App README](apps/web/README.md)
+- [API README](apps/api/README.md)
+- [ESLint Config README](configs/eslint-config/README.md)
+
 ## Packages Overview
 
 ### constants
