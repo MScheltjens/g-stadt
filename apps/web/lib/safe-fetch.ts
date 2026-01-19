@@ -10,6 +10,7 @@ export async function safeFetch<T>(
   endpoint: string,
   schema: ZodType<T>,
   options?: RequestInit,
+  locale?: string,
 ): Promise<T> {
   const url = `${env.NEXT_PUBLIC_API_URL}${endpoint}`;
   // Debug log for URL and env
@@ -21,7 +22,8 @@ export async function safeFetch<T>(
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      ...options?.headers,
+      ...(options?.headers || {}),
+      'X-Locale': locale || 'en', // default or from app state
     },
     ...options,
   });
