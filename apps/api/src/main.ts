@@ -4,9 +4,11 @@ import { ZodValidationPipe } from 'nestjs-zod';
 
 import { AppModule } from './app.module.js';
 import { getEnv } from './lib/env.js';
+import { LocaleInterceptor } from './common/interceptors/locale.interceptor.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalInterceptors(new LocaleInterceptor());
   const env = getEnv();
   app.enableCors({
     origin:

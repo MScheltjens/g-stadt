@@ -1,17 +1,18 @@
-import { LocaleQueryDto } from '@api/src/common/dto/locale-query.dto.js';
 import {
   BadRequestException,
   Controller,
   Get,
   InternalServerErrorException,
   Logger,
-  Query,
+  Req,
 } from '@nestjs/common';
-import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Public } from '@/common/decorators/public.decorator.js';
 
 import { ServicesService } from './services.service.js';
+import { Locale } from '@invicity/constants';
 
 @ApiTags('services')
 @Public()
@@ -25,24 +26,19 @@ export class ServicesController {
    * Get all services ordered by category and filtered by locale
    */
   @Get()
-  @ApiQuery({
-    name: 'locale',
-    required: true,
-    type: String,
-    description: 'Locale code (en, fr, de)',
-  })
   @ApiResponse({
     status: 200,
     description: 'List of services by category',
     type: Object,
   })
-  async getAllServicesByCategory(@Query() query: LocaleQueryDto) {
-    if (!query.locale) {
-      this.logger.warn('Missing locale in query');
+  async getAllServicesByCategory(@Req() req) {
+    const locale = req.locale;
+    if (!locale) {
+      this.logger.warn('Missing locale in request');
       throw new BadRequestException('Locale is required');
     }
     try {
-      return await this.servicesService.getAllServicesByCategory(query.locale);
+      return await this.servicesService.getAllServicesByCategory(locale);
     } catch (error) {
       if (error instanceof Error) {
         this.logger.error('Failed to get services by category', error.stack);
