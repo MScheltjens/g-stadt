@@ -15,8 +15,7 @@ import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 
 import { PrismaService } from '@/db/prisma.service.js';
-
-import { getEnv } from '../lib/env.js';
+import { getEnv } from '@/lib/env.js';
 
 @Injectable()
 export class AuthService {
