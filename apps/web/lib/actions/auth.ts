@@ -9,14 +9,13 @@ import {
   AuthResponseSchema,
   LoginInputSchema,
   RegisterInputSchema,
-  RefreshTokenInputSchema,
 } from '@invicity/contracts';
 import { redirect } from 'next/navigation';
 
 import { clearAuthCookies, setAuthCookies } from '@/lib/auth';
 
-import { safeFetch } from '../safe-fetch';
 import { env } from '../env';
+import { safeFetch } from '../safe-fetch';
 
 interface ActionError {
   error: string;
