@@ -176,5 +176,10 @@
     "title": "Bientôt disponible",
     "description": "Cette fonctionnalité est en cours de développement et sera bientôt disponible.",
     "note": "Veuillez revenir plus tard."
+  },
+  "demoDisclaimerModal": {
+    "title": "🚧 Projet Démo",
+    "description": "InviCity est une plateforme fictive construite comme projet démo & portfolio. Certaines fonctionnalités sont incomplètes ou simulées.",
+    "continue": "Continuer vers la démo"
   }
 }

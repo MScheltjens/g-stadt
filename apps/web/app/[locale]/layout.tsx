@@ -34,12 +34,14 @@ export const generateStaticParams = () => {
 
 type LocaleLayoutProps = LayoutProps & {
   auth?: React.ReactNode;
+  modal?: React.ReactNode;
 };
 
 export default async function LocaleLayout({
   children,
   params,
   auth,
+  modal,
 }: LocaleLayoutProps) {
   const { locale } = await params;
 
@@ -56,6 +58,7 @@ export default async function LocaleLayout({
         <Providers locale={locale} initialUser={user}>
           {children}
           {auth}
+          {modal}
         </Providers>
       </body>
     </html>

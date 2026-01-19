@@ -50,7 +50,7 @@ export function SignInForm() {
         setError(result.error);
       } else {
         // Force a hard navigation to ensure middleware picks up new cookies
-        window.location.href = '/dashboard';
+        window.location.href = ROUTES.DASHBOARD;
       }
     });
   }

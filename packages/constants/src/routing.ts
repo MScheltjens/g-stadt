@@ -23,6 +23,7 @@ export const ROUTES = {
   EVENTS: '/events',
   EVENTS_CATEGORY: `/events/${CATEGORY}`,
   EVENTS_ITEM: `/events/${CATEGORY}/${ITEM}`,
+  DEMO_DISCLAIMER: '/demo-disclaimer',
 } as const;
 
 export const ROUTE_PATHNAMES = {
@@ -97,6 +98,11 @@ export const ROUTE_PATHNAMES = {
     de: '/veranstaltungen/[categorySlug]/[itemSlug]',
     fr: '/evenements/[categorySlug]/[itemSlug]',
   },
+  [ROUTES.DEMO_DISCLAIMER]: {
+    en: '/demo-disclaimer',
+    de: '/demo-hinweis',
+    fr: '/avertissement-demo',
+  },
 } as const;
 
 export const API_AUTH_PREFIX = '/api/auth';
@@ -119,6 +125,7 @@ export const PUBLIC_ROUTES = [
   ROUTES.SERVICES,
   ROUTES.NEWS,
   ROUTES.EVENTS,
+  ROUTES.DEMO_DISCLAIMER,
   ...CATEGORY_SLUG_ROUTES,
   ...ITEM_SLUG_ROUTES,
 ];

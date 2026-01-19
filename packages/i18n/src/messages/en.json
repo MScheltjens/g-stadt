@@ -176,5 +176,10 @@
     "title": "Coming soon",
     "description": "This feature is under development and will be available soon.",
     "note": "Please check back soon."
+  },
+  "demoDisclaimerModal": {
+    "title": "🚧 Demo Project",
+    "description": "InviCity is a fictive city platform built as a demo & portfolio project. Some features are incomplete or simulated.",
+    "continue": "Continue to demo"
   }
 }

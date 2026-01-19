@@ -1,8 +1,6 @@
 /**
- * Modal wrapper component for authentication forms
- *
- * This component displays authentication forms in a modal overlay
- * when intercepted from another route.
+ * Modal wrapper
+ * @description A reusable modal component that overlays content on the screen.
  */
 
 'use client';
@@ -15,14 +13,20 @@ import { useCallback, useEffect } from 'react';
 
 interface ModalProps {
   children: React.ReactNode;
+  onClose?: () => void;
 }
 
-export function Modal({ children }: ModalProps) {
+export function Modal({ children, onClose }: ModalProps) {
   const router = useRouter();
 
   const handleClose = useCallback(() => {
-    router.back();
-  }, [router]);
+    if (onClose) {
+      // onClose will set the local storage prop in the demodisclaimer modal
+      onClose();
+    } else {
+      router.back();
+    }
+  }, [router, onClose]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {

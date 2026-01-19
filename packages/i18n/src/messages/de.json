@@ -176,5 +176,10 @@
     "title": "Demnächst verfügbar",
     "description": "Diese Funktion befindet sich in Entwicklung und wird bald verfügbar sein.",
     "note": "Bitte schauen Sie bald wieder vorbei."
+  },
+  "demoDisclaimerModal": {
+    "title": "🚧 Demo-Projekt",
+    "description": "InviCity ist eine fiktive Stadtplattform, die als Demo- & Portfolio-Projekt erstellt wurde. Einige Funktionen sind unvollständig oder simuliert.",
+    "continue": "Zur Demo fortfahren"
   }
 }
