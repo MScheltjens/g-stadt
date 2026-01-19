@@ -1,6 +1,7 @@
 import { redirect } from '@invicity/i18n/navigation';
 import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
 import { Metadata } from 'next';
+import { env } from '@/lib/env';
 
 import { checkUserRole } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
@@ -42,7 +43,7 @@ export default async function DashboardLayout({
 
   return (
     <>
-      {process.env.NODE_ENV === 'development' && (
+      {env.NODE_ENV === 'development' && (
         <div style={{ background: '#ffe', padding: 8, marginBottom: 8 }}>
           <strong>Debug:</strong> Role detected: {role}
         </div>

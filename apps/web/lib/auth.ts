@@ -13,6 +13,7 @@ import type { Role } from '@invicity/contracts';
 import { JwtPayloadSchema } from '@invicity/contracts';
 import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
+import { env } from './env';
 /**
  * Sets authentication tokens in HTTP-only cookies
  *
@@ -38,7 +39,7 @@ export async function setAuthCookies(
 
   cookieStore.set(COOKIE_NAMES.ACCESS_TOKEN, accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: env.NODE_ENV === 'production',
     sameSite: 'lax',
     maxAge: 15 * 60, // 15 minutes
     path: '/',
@@ -47,7 +48,7 @@ export async function setAuthCookies(
   if (refreshToken) {
     cookieStore.set(COOKIE_NAMES.REFRESH_TOKEN, refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60, // 7 days
       path: '/',

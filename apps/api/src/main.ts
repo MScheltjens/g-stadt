@@ -7,10 +7,10 @@ import { getEnv } from './lib/env.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  const env = getEnv();
   app.enableCors({
     origin:
-      process.env.NODE_ENV === 'production'
+      env.NODE_ENV === 'production'
         ? 'https://invicity-web.vercel.app/'
         : ['http://localhost:3000', 'https://invicity-web.vercel.app'], // production frontend only
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
@@ -29,8 +29,6 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, document);
-
-  const env = getEnv();
 
   await app.listen(env.PORT || 3000, '0.0.0.0');
 }

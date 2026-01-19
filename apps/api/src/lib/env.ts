@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { apiEnvSchema } from '@invicity/contracts';
 
 let cachedEnv: ReturnType<typeof apiEnvSchema.parse> | null = null;

@@ -12,13 +12,15 @@ import { CategoriesModule } from './content/categories/categories.module.js';
 import { ServicesModule } from './content/services/services.module.js';
 import { PrismaModule } from './db/prisma.module.js';
 import { UsersModule } from './users/users.module.js';
+import { getEnv } from './lib/env.js';
 
+const env = getEnv();
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath:
-        process.env.NODE_ENV === 'production'
+        env.NODE_ENV === 'production'
           ? undefined
           : [
               // when running from apps/api

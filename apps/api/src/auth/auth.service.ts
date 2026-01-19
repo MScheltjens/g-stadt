@@ -15,6 +15,7 @@ import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 
 import { PrismaService } from '@/db/prisma.service.js';
+import { getEnv } from '../lib/env.js';
 
 @Injectable()
 export class AuthService {
@@ -98,7 +99,7 @@ export class AuthService {
   async refreshToken(oldRefreshToken: string): Promise<AuthResponse> {
     try {
       const payload = this.jwtService.verify(oldRefreshToken, {
-        secret: process.env.JWT_REFRESH_SECRET!,
+        secret: getEnv().JWT_REFRESH_SECRET,
       });
 
       const stored = await this.prisma.refreshToken.findFirst({
@@ -273,7 +274,7 @@ export class AuthService {
     });
 
     const refreshToken = this.jwtService.sign(payload, {
-      secret: process.env.JWT_REFRESH_SECRET!,
+      secret: getEnv().JWT_REFRESH_SECRET,
       expiresIn: '7d',
     });
 

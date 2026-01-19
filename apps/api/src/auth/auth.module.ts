@@ -8,6 +8,7 @@ import { UsersModule } from '@/users/users.module.js';
 
 import { AuthController } from './auth.controller.js';
 import { AuthService } from './auth.service.js';
+import { getEnv } from '@/lib/env.js';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { AuthService } from './auth.service.js';
     PrismaModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'your-secret-key-change-this',
+      secret: getEnv().JWT_SECRET || 'your-secret-key-change-this',
       signOptions: { expiresIn: '15m' },
     }),
   ],
