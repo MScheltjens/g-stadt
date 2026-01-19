@@ -34,8 +34,6 @@ async function bootstrap() {
   const env = getEnv();
 
   await app.listen(env.PORT || 3000, '0.0.0.0');
-
-  console.log(`🚀 API running on port ${env.PORT}`);
 }
 
 void bootstrap();
