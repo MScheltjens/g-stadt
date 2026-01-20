@@ -12,23 +12,27 @@ import {
 import { cn } from '@invicity/ui/lib/utils';
 
 import { HeaderProps } from '../common/header';
+import { AlertCircle, Mail } from '@invicity/ui/components/icons';
 
 export function Navbar({ categories }: HeaderProps) {
   const t = useTranslations('navbar');
   return (
     <NavigationMenu viewport={false}>
-      <NavigationMenuList className="hidden md:flex items-center ">
+      <NavigationMenuList className="flex items-center ">
         {/* Service Categories Dropdown */}
         {categories?.service?.length > 0 && (
           <NavigationMenuItem>
             <NavigationMenuTrigger
               className={cn(
-                'bg-transparent px-4 text-sm font-medium rounded-none',
+                'bg-transparent text-sm font-medium rounded-none',
                 'hover:bg-transparent focus:bg-transparent',
                 'border-b-2 border-transparent data-[state=open]:border-primary',
               )}
             >
-              {t('services')}
+              <AlertCircle className="h-4 w-4" />
+              <span className="hidden md:inline-block ml-2">
+                {t('services')}
+              </span>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className="bg-white shadow-lg rounded-md mt-2 min-w-[200px] z-50">
@@ -63,7 +67,10 @@ export function Navbar({ categories }: HeaderProps) {
                 'border-b-2 border-transparent data-[state=open]:border-primary',
               )}
             >
-              {t('contact')}
+              <Mail className="h-4 w-4" />
+              <span className="hidden md:inline-block ml-2">
+                {t('contact')}
+              </span>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className="bg-white shadow-lg rounded-md mt-2 min-w-[200px] z-50">

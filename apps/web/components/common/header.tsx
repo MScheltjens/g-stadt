@@ -3,7 +3,6 @@ import { CategoryListResponse } from '@invicity/contracts';
 import { Link } from '@invicity/i18n/navigation';
 
 import { Navbar } from '@/components/navigation/navbar';
-import { NavbarIcons } from '@/components/navigation/navbar-icons';
 
 import { HeaderUtils } from './header-utils';
 
@@ -25,14 +24,7 @@ export async function Header({ categories }: HeaderProps) {
 
           {/* Right cluster */}
           <div className="flex items-center">
-            {/* Desktop nav */}
             <Navbar categories={categories} />
-
-            {/* Mobile nav icons */}
-            <div className="flex md:hidden">
-              <NavbarIcons categories={categories} />
-            </div>
-
             <HeaderUtils />
           </div>
         </div>

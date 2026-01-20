@@ -42,13 +42,15 @@ export function Modal({ children, onClose }: ModalProps) {
   return (
     <div
       className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+      // on mobile devices, the bg can render wrong (apple), so we set it manually
+      style={{ backgroundColor: 'rgba(255,255,255,0.85)' }}
       onClick={handleClose}
     >
       <div
-        className="fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%]"
+        className="fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] bg-white dark:bg-neutral-900 rounded-lg shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <Card className="relative">
+        <Card className="relative bg-white dark:bg-neutral-900">
           <Button
             onClick={handleClose}
             variant="ghost"
