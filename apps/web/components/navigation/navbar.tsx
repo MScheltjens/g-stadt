@@ -2,6 +2,7 @@
 
 import { Link } from '@invicity/i18n/navigation';
 import { useTranslations } from '@invicity/i18n/next-intl';
+import { AlertCircle, Mail } from '@invicity/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +13,6 @@ import {
 import { cn } from '@invicity/ui/lib/utils';
 
 import { HeaderProps } from '../common/header';
-import { AlertCircle, Mail } from '@invicity/ui/components/icons';
 
 export function Navbar({ categories }: HeaderProps) {
   const t = useTranslations('navbar');
