@@ -1,15 +1,14 @@
-import { setRequestLocale } from '@invicity/i18n/server';
+import { Locale } from '@invicity/constants';
+import { setRequestLocale } from '@invicity/i18n';
 
-import { getAllServicesByCategory } from '@/lib/api/services';
-import { PageProps } from '@/lib/types/next-page';
-import { normalizeLocale } from '@/lib/utils';
+import { getAllServicesByCategory } from '@/lib/api';
+import { PageProps } from '@/types';
 
 export default async function ServicesPage({ params }: PageProps) {
   const { locale } = await params;
-  const safeLocale = normalizeLocale(locale);
-  setRequestLocale(safeLocale);
+  setRequestLocale(locale);
 
-  const servicesList = await getAllServicesByCategory(safeLocale);
+  const servicesList = await getAllServicesByCategory(locale as Locale);
 
   return (
     <>

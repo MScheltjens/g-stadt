@@ -181,5 +181,8 @@
     "title": "🚧 Demo-Projekt",
     "description": "InviCity ist eine fiktive Stadtplattform, die als Demo- & Portfolio-Projekt erstellt wurde. Einige Funktionen sind unvollständig oder simuliert.",
     "continue": "Zur Demo fortfahren"
+  },
+  "backButton": {
+    "label": "Zurück"
   }
 }

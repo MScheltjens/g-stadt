@@ -1,7 +1,10 @@
-import { Public } from '@api/src/common/decorators/public.decorator.js';
+import { Locale } from '@invicity/constants';
 import { type CategoryListResponse } from '@invicity/contracts';
-import { Controller, Get, Logger, Query } from '@nestjs/common';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Logger, Query, Req } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+
+import { Public } from '@/common/decorators/public.decorator.js';
+import type { CustomRequest } from '@/types/custom-request.js';
 
 import { CategoriesService } from './categories.service.js';
 import { CategoryQueryDto } from './dto/type-query.dto.js';
@@ -14,30 +17,15 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Get()
-  @ApiQuery({
-    name: 'locale',
-    required: true,
-    type: String,
-    description: 'Locale code (en, fr, de)',
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'List of services by category',
-    type: Object,
-  })
-  @Get()
   @ApiOperation({ summary: 'Get all categories' })
-  @ApiQuery({
-    name: 'locale',
-    required: true,
-    type: String,
-    description: 'Locale code (en, fr, de)',
-  })
-  @ApiResponse({ status: 200, description: 'List of categories', type: Object }) // You can replace Object with a proper class if available
+  @ApiResponse({ status: 200, description: 'List of categories', type: Object }) // Replace Object with a DTO/class if available
   async getAllCategories(
+    @Req() req: CustomRequest,
     @Query() query: CategoryQueryDto,
   ): Promise<CategoryListResponse> {
     this.logger.log('Fetching all categories');
-    return this.categoriesService.getCategories(query.locale, query.type);
+    // Access locale from request headers (set by interceptor)
+    const locale = req.headers['locale'] as Locale;
+    return this.categoriesService.getCategories(locale, query.type);
   }
 }

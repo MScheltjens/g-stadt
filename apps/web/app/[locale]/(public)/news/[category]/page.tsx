@@ -1,5 +1,5 @@
-import { ComingSoon } from '@/components/common/coming-soon';
-import type { PageProps } from '@/lib/types/next-page';
+import { ComingSoon } from '@/components/marketing';
+import type { PageProps } from '@/types';
 
 // type NewsCategoryMetadataProps = MetadataProps<{
 //   category: string;

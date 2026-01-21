@@ -5,11 +5,11 @@
  * and shows the login form in a modal instead of a full page.
  */
 
-import { setRequestLocale } from '@invicity/i18n/server';
+import { setRequestLocale } from '@invicity/i18n';
 
-import { SignInForm } from '@/components/auth/sign-in-form';
-import { Modal } from '@/components/common/modal';
-import type { PageProps } from '@/lib/types/next-page';
+import { SignInForm } from '@/components/auth';
+import { Modal } from '@/components/ui';
+import type { PageProps } from '@/types';
 
 export default async function LoginModal({ params }: PageProps) {
   const { locale } = await params;

@@ -1,4 +1,3 @@
-import { Locale } from '@invicity/constants';
 import {
   BadRequestException,
   Controller,
@@ -30,8 +29,8 @@ export class ServicesController {
     description: 'List of services by category',
     type: Object,
   })
-  async getAllServicesByCategory(@Req() req: Request & { locale: Locale }) {
-    const locale = req.locale;
+  async getAllServicesByCategory(@Req() req: Request) {
+    const locale = req['locale'];
     if (!locale) {
       this.logger.warn('Missing locale in request');
       throw new BadRequestException('Locale is required');

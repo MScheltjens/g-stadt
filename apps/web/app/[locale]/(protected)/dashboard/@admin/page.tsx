@@ -1,6 +1,6 @@
-import { setRequestLocale } from '@invicity/i18n/server';
+import { setRequestLocale } from '@invicity/i18n';
 
-import type { PageProps } from '@/lib/types/next-page';
+import type { PageProps } from '@/types';
 
 export default async function AdminDashboardPage({ params }: PageProps) {
   const { locale } = await params;

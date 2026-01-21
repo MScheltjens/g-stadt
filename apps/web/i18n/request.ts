@@ -1,7 +1,4 @@
-import { messages } from '@invicity/i18n';
-import { hasLocale } from '@invicity/i18n/next-intl';
-import { routing } from '@invicity/i18n/routing';
-import { getRequestConfig } from '@invicity/i18n/server';
+import { getRequestConfig, hasLocale, MESSAGES, routing } from '@invicity/i18n';
 
 export const requestConfig = getRequestConfig(async ({ requestLocale }) => {
   // Typically corresponds to the `[locale]` segment
@@ -12,7 +9,7 @@ export const requestConfig = getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    messages: messages[locale as keyof typeof messages],
+    messages: MESSAGES[locale as keyof typeof MESSAGES],
     timeZone: 'Europe/Berlin',
     now: new Date(),
   };

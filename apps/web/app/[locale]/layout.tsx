@@ -1,17 +1,19 @@
 import '@invicity/ui/globals.css';
 
-import { hasLocale } from '@invicity/i18n/next-intl';
-import { routing } from '@invicity/i18n/routing';
-import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
+import {
+  getTranslations,
+  hasLocale,
+  routing,
+  setRequestLocale,
+} from '@invicity/i18n';
+import { cn } from '@invicity/ui/lib/utils';
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
-import { Providers } from '@/components/providers/providers';
+import { Providers } from '@/components/providers';
 import { getUser } from '@/lib/auth';
-import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
-
-import { Inter } from 'next/font/google';
-import { cn } from '@invicity/ui/lib/utils';
+import type { LayoutProps, MetadataProps } from '@/types';
 
 // font
 const inter = Inter({

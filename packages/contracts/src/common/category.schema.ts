@@ -9,8 +9,8 @@ export type CategoryType = z.infer<typeof CategoryTypeSchema>;
 //  Category query schema
 export const CategoryQuerySchema = z.object({
   type: z.optional(CategoryTypeSchema),
-  locale: LocaleSchema,
 });
+
 export type CategoryQuery = z.infer<typeof CategoryQuerySchema>;
 
 // Category translation schema
