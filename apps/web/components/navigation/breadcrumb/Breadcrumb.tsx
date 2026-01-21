@@ -1,8 +1,14 @@
-import { Link } from '@invicity/i18n';
-import { ChevronRight } from '@invicity/ui/components/icons';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@invicity/ui/components/breadcrumb';
+import { ROUTES } from '@invicity/constants';
+import { useTranslations } from '@invicity/i18n';
 import { cn } from '@invicity/ui/lib/utils';
-
-import { BackButton } from '../../ui';
 
 export interface BreadcrumbItem {
   label: string;
@@ -15,39 +21,27 @@ interface BreadcrumbProps {
   className?: string;
 }
 
-export const Breadcrumb = ({ items, className = '' }: BreadcrumbProps) => {
+export function BreadcrumbNav({ items, className = '' }: BreadcrumbProps) {
+  const t = useTranslations('breadcrumbs');
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className={cn(
-        'container mx-auto max-w-6xl flex justify-between',
-        className,
-      )}
-    >
-      <ol className="flex items-center space-x-2" role="list">
-        {items.map((item, idx) => (
-          <li key={item.href} className="flex items-center" role="listitem">
-            {idx > 0 && (
-              <span className="mx-1 text-gray-400" aria-hidden="true">
-                <ChevronRight />
-              </span>
-            )}
-            {item.isCurrent ? (
-              <span aria-current="page" className="text-gray-900 font-semibold">
-                {item.label}
-              </span>
-            ) : (
-              // @ts-expect-error -- TypeScript will validate that only known `params`
-              // are used in combination with a given `pathname`. Since the two will
-              // always match for the current route, we can skip runtime checks.
-              <Link href={item.href} className="text-blue-600 hover:underline">
-                {item.label}
-              </Link>
-            )}
-          </li>
+    <Breadcrumb className={cn('py-4 pl-6', className)}>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href={ROUTES.HOME}>{t('home')}</BreadcrumbLink>
+        </BreadcrumbItem>
+        {items.map((item, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <BreadcrumbSeparator />
+            <BreadcrumbItem key={index}>
+              {item.isCurrent ? (
+                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          </div>
         ))}
-      </ol>
-      <BackButton />
-    </nav>
+      </BreadcrumbList>
+    </Breadcrumb>
   );
-};
+}

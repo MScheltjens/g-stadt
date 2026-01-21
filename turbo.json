@@ -87,6 +87,14 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "shadcn:add": {
+      "dependsOn": [],
+      "outputs": [],
+      "cache": false,
+      "inputs": [
+        "packages/ui/package.json"
+      ]
     }
   }
 }

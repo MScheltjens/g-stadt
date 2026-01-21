@@ -4,7 +4,7 @@ import { useTranslations } from '@invicity/i18n';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
-import { Breadcrumb } from '@/components/navigation/breadcrumb/Breadcrumb';
+import { BreadcrumbNav } from '@/components/navigation/breadcrumb';
 
 type BreadcrumbsProps = {
   slugToLabel?: Record<string, string>;
@@ -15,6 +15,7 @@ const HIDDEN: string[] = Object.values(LOCALES) as string[];
 export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
   const t = useTranslations('breadcrumbs');
   const pathname = usePathname();
+
   const items = useMemo(() => {
     if (!pathname) return [];
     const segments = pathname.split('/').filter(Boolean);
@@ -32,14 +33,10 @@ export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
         isCurrent: idx === visibleSegments.length - 1,
       };
     });
-    // Add Home link at the start
-    return [
-      { label: t('home'), href: ROUTES.HOME, isCurrent: crumbs.length === 0 },
-      ...crumbs,
-    ];
+    return crumbs;
   }, [pathname, slugToLabel, t]);
 
   if (items.length === 0) return null;
 
-  return <Breadcrumb items={items} />;
+  return <BreadcrumbNav items={items} />;
 }

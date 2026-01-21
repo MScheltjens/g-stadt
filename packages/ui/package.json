@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "shadcn:add": "pnpm dlx shadcn@latest add",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix --max-warnings 0",
     "clean": "npx rimraf dist"

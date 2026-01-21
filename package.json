@@ -11,6 +11,7 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "shadcn:add": "pnpm --filter ./packages/ui run shadcn:add",
     "clean:packages": "pnpm -r clean",
     "clean:root": "npx rimraf node_modules pnpm-lock.yaml .turbo .cache || exit 0",
     "clean": "pnpm clean:packages && pnpm clean:root",
