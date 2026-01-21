@@ -12,6 +12,7 @@ import { notFound } from 'next/navigation';
 import { Providers } from '@/components/providers';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/types';
+import { LOCALES } from '@invicity/constants';
 
 export async function generateMetadata({
   params,
@@ -32,7 +33,7 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = () => {
-  return routing.locales.map((locale) => ({ locale }));
+  return Object.values(LOCALES).map((locale) => ({ locale }));
 };
 
 type LocaleLayoutProps = LayoutProps & {
