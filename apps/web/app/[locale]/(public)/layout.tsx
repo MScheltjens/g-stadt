@@ -1,11 +1,9 @@
-import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
+import { getTranslations, setRequestLocale } from '@invicity/i18n';
 import { Metadata } from 'next';
 
-import { Footer } from '@/components/common/footer';
-import { Header } from '@/components/common/header';
-import { getCategories } from '@/lib/api/categories';
-import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
-import { normalizeLocale } from '@/lib/utils';
+import { Footer, Header } from '@/components/layout';
+import { getCategories } from '@/lib/api/categories.api';
+import type { LayoutProps, MetadataProps } from '@/types/next-page.types';
 
 export async function generateMetadata({
   params,
@@ -24,10 +22,9 @@ export async function generateMetadata({
 
 export default async function PublicLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
-  const safeLocale = normalizeLocale(locale);
-  setRequestLocale(safeLocale);
 
-  const allCategories = await getCategories(safeLocale);
+  setRequestLocale(locale);
+  const allCategories = await getCategories();
   const serviceCategories = allCategories.filter(
     (cat) => cat.type === 'SERVICE',
   );

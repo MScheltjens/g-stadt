@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 import { checkUserRole } from '@/lib/auth';
 import { env } from '@/lib/env';
-import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
+import type { LayoutProps, MetadataProps } from '@/types/next-page';
 
 export async function generateMetadata({
   params,

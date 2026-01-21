@@ -1,13 +1,11 @@
 'use client';
 
-import { ROUTES } from '@invicity/constants';
-import { STORAGE_KEY } from '@invicity/constants';
-import { useTranslations } from '@invicity/i18n/next-intl';
+import { ROUTES, STORAGE_KEY } from '@invicity/constants';
+import { useRouter, useTranslations } from '@invicity/i18n';
 import { Button } from '@invicity/ui/components/button';
-import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 
-import { Modal } from '@/components/common/modal';
+import { Modal } from '@/components/ui/modal/modal';
 
 export default function DemoDisclaimerModalPage() {
   const router = useRouter();

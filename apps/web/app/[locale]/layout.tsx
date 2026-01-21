@@ -1,14 +1,17 @@
 import '@invicity/ui/globals.css';
 
-import { hasLocale } from '@invicity/i18n/next-intl';
-import { routing } from '@invicity/i18n/routing';
-import { getTranslations, setRequestLocale } from '@invicity/i18n/server';
+import {
+  getTranslations,
+  hasLocale,
+  routing,
+  setRequestLocale,
+} from '@invicity/i18n';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { Providers } from '@/components/providers/providers';
+import { Providers } from '@/components/providers';
 import { getUser } from '@/lib/auth';
-import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
+import type { LayoutProps, MetadataProps } from '@/types/next-page';
 
 export async function generateMetadata({
   params,

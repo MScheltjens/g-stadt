@@ -1,14 +1,14 @@
 import {
   AUTH_ROUTES,
+  COOKIE_NAMES,
   LocalizedPathnames,
   Pathname,
   Pathnames,
   PROTECTED_ROUTES,
+  ROUTES,
 } from '@invicity/constants';
-import { ROUTES } from '@invicity/constants';
-import { COOKIE_NAMES } from '@invicity/constants';
+import { routing } from '@invicity/i18n';
 import createIntlMiddleware from '@invicity/i18n/middleware';
-import { routing } from '@invicity/i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**
