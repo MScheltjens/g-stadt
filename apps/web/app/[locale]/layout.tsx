@@ -8,22 +8,12 @@ import {
 } from '@invicity/i18n';
 import { cn } from '@invicity/ui/lib/utils';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Comic_Neue } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
 import { Providers } from '@/components/providers';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/types';
-
-// font
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-});
-
-// metadata
 
 export async function generateMetadata({
   params,
@@ -69,7 +59,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={cn('min-h-screen flex flex-col', inter.variable)}>
+      <body className="flex flex-col min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
         <Providers locale={locale} initialUser={user}>
           {children}
           {auth}

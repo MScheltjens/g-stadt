@@ -72,6 +72,8 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
+
+  --font-inter: 'Inter', sans-serif;
 }
 
 /* --------------------------------------------------
@@ -174,5 +176,10 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter), sans-serif;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
