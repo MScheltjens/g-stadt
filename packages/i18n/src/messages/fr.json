@@ -81,8 +81,8 @@
       "title": "Bienvenue à",
       "cityName": "Invicity",
       "description": "Vivre. Travailler. Construire l’avenir – toutes les informations et services de votre ville en un seul endroit.",
-      "actionNews": "Actualités",
-      "actionEvents": "Événements"
+      "actionServices": "Services",
+      "actionNews": "Actualités"
     }
   },
   "services": {

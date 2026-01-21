@@ -54,20 +54,20 @@ export async function Hero() {
         {/* News / Events */}
         <div className="mt-8 flex flex-wrap items-center gap-5">
           <Link
-            href={ROUTES.NEWS}
+            href={ROUTES.SERVICES}
             className={buttonVariants({ variant: 'default', size: 'lg' })}
           >
-            {t('actionNews')}
+            {t('actionServices')}
           </Link>
 
           <Link
-            href={ROUTES.EVENTS}
+            href={ROUTES.NEWS}
             className={cn(
               buttonVariants({ size: 'lg' }),
               'bg-transparent border border-border text-foreground hover:bg-background hover:border-ring',
             )}
           >
-            {t('actionEvents')}
+            {t('actionNews')}
           </Link>
         </div>
       </div>
