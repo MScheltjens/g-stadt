@@ -6,18 +6,8 @@
  * When intercepted from another route, shows as a modal.
  */
 
-import { setRequestLocale } from '@invicity/i18n';
-
 import { SignInForm } from '@/components/auth';
-import type { PageProps } from '@/types';
 
-export default async function SignInPage({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
-  return (
-    <div className="max-w-md mx-auto my-10 p-6 bg-white rounded-md shadow-md">
-      <SignInForm />
-    </div>
-  );
+export default async function SignInPage() {
+  return <SignInForm />;
 }

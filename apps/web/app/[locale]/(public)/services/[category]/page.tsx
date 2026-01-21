@@ -1,5 +1,4 @@
 import { ComingSoon } from '@/components/marketing';
-import type { PageProps } from '@/types';
 
 // type ServicesCategoryMetadataProps = MetadataProps<{
 //   category: string;
@@ -23,19 +22,6 @@ import type { PageProps } from '@/types';
 //   };
 // }
 
-type ServicesCategoryPageProps = PageProps<{
-  category: string;
-}>;
-
-export default async function ServicesCategoryPage({
-  params,
-}: ServicesCategoryPageProps) {
-  const { locale, category } = await params;
-  console.log(
-    'Services Category Page - Locale:',
-    locale,
-    'Category:',
-    category,
-  );
+export default async function ServicesCategoryPage() {
   return <ComingSoon />;
 }

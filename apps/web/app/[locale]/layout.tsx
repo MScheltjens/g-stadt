@@ -51,8 +51,10 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
   // Enable static rendering for this page
   setRequestLocale(locale);
+
   const user = await getUser();
 
   return (

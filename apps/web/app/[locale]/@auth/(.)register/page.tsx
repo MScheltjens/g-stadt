@@ -5,16 +5,10 @@
  * and shows the registration form in a modal instead of a full page.
  */
 
-import { setRequestLocale } from '@invicity/i18n';
-
 import { RegisterForm } from '@/components/auth';
 import { Modal } from '@/components/ui';
-import type { PageProps } from '@/types';
 
-export default async function RegisterModal({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
+export default async function RegisterModal() {
   return (
     <Modal>
       <RegisterForm />

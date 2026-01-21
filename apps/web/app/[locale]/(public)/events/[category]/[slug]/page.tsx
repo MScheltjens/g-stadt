@@ -1,7 +1,4 @@
-import { setRequestLocale } from '@invicity/i18n';
-
 import { ComingSoon } from '@/components/marketing';
-import type { PageProps } from '@/types';
 
 // type EventPageMetaDataProps = MetadataProps<{
 //   category: string;
@@ -24,22 +21,6 @@ import type { PageProps } from '@/types';
 //   };
 // }
 
-type EventPageProps = PageProps<{
-  category: string;
-  slug: string;
-}>;
-
-export default async function EventPage({ params }: EventPageProps) {
-  const { locale, category, slug } = await params;
-  setRequestLocale(locale);
-  console.log(
-    'Event Page - Locale:',
-    locale,
-    'Category:',
-    category,
-    'Slug:',
-    slug,
-  );
-
+export default async function EventPage() {
   return <ComingSoon />;
 }

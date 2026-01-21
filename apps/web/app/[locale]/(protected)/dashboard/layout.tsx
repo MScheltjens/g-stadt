@@ -1,4 +1,4 @@
-import { getTranslations, redirect, setRequestLocale } from '@invicity/i18n';
+import { getTranslations, redirect } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { checkUserRole } from '@/lib/auth';
@@ -32,7 +32,6 @@ export default async function DashboardLayout({
   params,
 }: DashboardLayoutProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
 
   const role = await checkUserRole();
 

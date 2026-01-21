@@ -1,7 +1,4 @@
-import { setRequestLocale } from '@invicity/i18n';
-
 import { ComingSoon } from '@/components/marketing';
-import type { PageProps } from '@/types';
 
 // type ServicePageMetadataProps = MetadataProps<{
 //   category: string;
@@ -24,23 +21,6 @@ import type { PageProps } from '@/types';
 //   };
 // }
 
-type ServiceItemPageProps = PageProps<{
-  category: string;
-  slug: string;
-}>;
-
-export default async function ServiceItemPage({
-  params,
-}: ServiceItemPageProps) {
-  const { locale, category, slug } = await params;
-  setRequestLocale(locale);
-  console.log(
-    'Service Item Page - Locale:',
-    locale,
-    'Category:',
-    category,
-    'Slug:',
-    slug,
-  );
+export default async function ServiceItemPage() {
   return <ComingSoon />;
 }

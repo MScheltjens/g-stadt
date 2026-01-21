@@ -1,5 +1,4 @@
 import { ComingSoon } from '@/components/marketing';
-import type { PageProps } from '@/types';
 
 // type EventCategoryMetaDataProps = MetadataProps<{
 //   category: string;
@@ -21,14 +20,6 @@ import type { PageProps } from '@/types';
 //   };
 // }
 
-type EventCategoryPageProps = PageProps<{
-  category: string;
-}>;
-
-export default async function EventCategoryPage({
-  params,
-}: EventCategoryPageProps) {
-  const { locale, category } = await params;
-  console.log('Event Category Page - Locale:', locale, 'Category:', category);
+export default async function EventCategoryPage() {
   return <ComingSoon />;
 }

@@ -1,5 +1,5 @@
 import { Locale } from '@invicity/constants';
-import { getTranslations, setRequestLocale } from '@invicity/i18n';
+import { getTranslations } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { Footer, Header } from '@/components/layout';
@@ -23,7 +23,6 @@ export async function generateMetadata({
 
 export default async function PublicLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
-  setRequestLocale(locale);
   const allCategories = await getCategories(locale as Locale);
   const serviceCategories = allCategories.filter(
     (cat) => cat.type === 'SERVICE',

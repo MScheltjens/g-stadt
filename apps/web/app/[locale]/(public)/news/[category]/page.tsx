@@ -1,5 +1,4 @@
 import { ComingSoon } from '@/components/marketing';
-import type { PageProps } from '@/types';
 
 // type NewsCategoryMetadataProps = MetadataProps<{
 //   category: string;
@@ -17,14 +16,6 @@ import type { PageProps } from '@/types';
 //   };
 // }
 
-type NewsCategoryPageProps = PageProps<{
-  category: string;
-}>;
-
-export default async function NewsCategoryPage({
-  params,
-}: NewsCategoryPageProps) {
-  const { locale, category } = await params;
-  console.log('News Category Page - Locale:', locale, 'Category:', category);
+export default async function NewsCategoryPage() {
   return <ComingSoon />;
 }
