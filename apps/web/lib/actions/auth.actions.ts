@@ -1,12 +1,12 @@
 'use server';
-import { ROUTES } from '@invicity/constants';
+import { Locale, ROUTES } from '@invicity/constants';
 import {
   type AuthResponse,
   AuthResponseSchema,
-  type LoginInput,
-  LoginInputSchema,
   type RegisterInput,
   RegisterInputSchema,
+  type SignInInput,
+  SignInInputSchema,
 } from '@invicity/contracts';
 import { redirect } from 'next/navigation';
 
@@ -24,14 +24,22 @@ import { env } from '../env';
 /* =========================
    LOGIN
    ========================= */
-export async function login(data: LoginInput): Promise<LoginResult> {
+export async function SIGNIN(
+  data: SignInInput,
+  locale?: Locale,
+): Promise<LoginResult> {
   try {
     // Validate input
-    const input = LoginInputSchema.parse(data);
-    const authData = await safeFetch('/auth/login', AuthResponseSchema, {
-      method: 'POST',
-      body: JSON.stringify(input),
-    });
+    const input = SignInInputSchema.parse(data);
+    const authData = await safeFetch(
+      '/auth/login',
+      AuthResponseSchema,
+      locale,
+      {
+        method: 'POST',
+        body: JSON.stringify(input),
+      },
+    );
     await setAuthCookies(
       authData.tokens.accessToken,
       authData.tokens.refreshToken,
@@ -47,13 +55,21 @@ export async function login(data: LoginInput): Promise<LoginResult> {
 /* =========================
    REGISTER
    ========================= */
-export async function register(input: RegisterInput): Promise<RegisterResult> {
+export async function register(
+  input: RegisterInput,
+  locale?: Locale,
+): Promise<RegisterResult> {
   try {
     const validInput = RegisterInputSchema.parse(input);
-    const authData = await safeFetch('/auth/register', AuthResponseSchema, {
-      method: 'POST',
-      body: JSON.stringify(validInput),
-    });
+    const authData = await safeFetch(
+      '/auth/register',
+      AuthResponseSchema,
+      locale,
+      {
+        method: 'POST',
+        body: JSON.stringify(validInput),
+      },
+    );
     await setAuthCookies(
       authData.tokens.accessToken,
       authData.tokens.refreshToken,

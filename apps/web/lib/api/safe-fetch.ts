@@ -2,7 +2,7 @@
  * Safe fetch wrapper with Zod validation
  */
 
-import { getLocale } from '@invicity/i18n';
+import { Locale, LOCALES } from '@invicity/constants';
 import { ZodType } from 'zod';
 
 import { env } from '../env';
@@ -10,16 +10,16 @@ import { env } from '../env';
 export async function safeFetch<T>(
   endpoint: string,
   schema: ZodType<T>,
+  locale?: Locale,
   options?: RequestInit,
 ): Promise<T> {
-  const locale = await getLocale(); // getLocale should return a string like 'en'
   const url = `${env.NEXT_PUBLIC_API_URL}${endpoint}`;
   const res = await fetch(url, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
       ...(options?.headers || {}),
-      'X-Locale': locale,
+      'X-Locale': locale ?? LOCALES.en,
     },
   });
   if (!res.ok) {
