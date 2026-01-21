@@ -6,9 +6,7 @@ import {
   routing,
   setRequestLocale,
 } from '@invicity/i18n';
-import { cn } from '@invicity/ui/lib/utils';
 import type { Metadata } from 'next';
-import { Inter, Comic_Neue } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
 import { Providers } from '@/components/providers';

@@ -14,10 +14,10 @@ import { Public } from '@/common/decorators/public.decorator.js';
 import { AuthService } from './auth.service.js';
 import { ChangePasswordDto } from './dto/change-password.dto.js';
 import { ForgotPasswordDto } from './dto/forgot-password.dto.js';
-import { SignInDto } from './dto/sign-in.dto.js';
 import { RefreshTokenDto } from './dto/refresh-token.dto.js';
 import { RegisterDto } from './dto/register.dto.js';
 import { ResetPasswordDto } from './dto/reset-password.dto.js';
+import { SignInDto } from './dto/sign-in.dto.js';
 
 @Controller('auth')
 export class AuthController {
