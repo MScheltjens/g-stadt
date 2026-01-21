@@ -8,12 +8,10 @@ import { BackButton } from '@/components/ui';
 import { HeaderUtils } from './header-utils';
 
 export type HeaderProps = {
-  categories: {
-    service: CategoryListResponse;
-    contact: CategoryListResponse;
-  };
+  categories: CategoryListResponse;
 };
 export async function Header({ categories }: HeaderProps) {
+  console.log({ categories });
   return (
     <header className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-6  border-b border-border">
