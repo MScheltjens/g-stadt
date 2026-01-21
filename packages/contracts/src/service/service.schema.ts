@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 import { RoleSchema } from '../auth/role.schema.js';
-import { CategoryResponseSchema } from '../common/category.schema.js';
 import { LocaleSchema } from '../routing/locale.schema.js';
 
 /* =========================
@@ -50,7 +49,7 @@ export type Service = z.infer<typeof ServiceSchema>;
 
 // One category with its services
 
-export const CategoryWithServicesResponseSchema = z.object({
+export const ServiceCategoryResponseSchema = z.object({
   id: z.uuid(),
   code: z.string(),
   order: z.number(),
@@ -59,12 +58,12 @@ export const CategoryWithServicesResponseSchema = z.object({
   services: z.array(ServiceSchema),
 });
 
-export type CategoryWithServicesResponse = z.infer<
-  typeof CategoryWithServicesResponseSchema
+export type ServiceCategoryResponse = z.infer<
+  typeof ServiceCategoryResponseSchema
 >;
 
-// All categories with their services
-
+// All categories with their services (factory to avoid circular dependency)
+import { CategoryResponseSchema } from '../common/category.schema.js';
 export const ServicesByCategoryResponseSchema = z.array(
   CategoryResponseSchema.extend({
     type: z.literal('SERVICE'),

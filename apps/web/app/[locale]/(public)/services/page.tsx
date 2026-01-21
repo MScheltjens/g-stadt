@@ -1,17 +1,16 @@
-import { Locale } from '@invicity/constants';
-
-import { getAllServicesByCategory } from '@/lib/api';
-import { PageProps } from '@/types';
-import { PublicPageHeader } from '@/components/layout';
 import { getTranslations } from '@invicity/i18n';
 
-export default async function ServicesPage({ params }: PageProps) {
-  const { locale } = await params;
+import { PublicPageHeader } from '@/components/layout';
+import { Breadcrumbs } from '@/components/navigation/breadcrumb/Breadcrumbs';
+import { getAllServicesByCategory } from '@/lib/api';
+
+export default async function ServicesPage() {
   const t = await getTranslations('services');
-  const servicesList = await getAllServicesByCategory(locale as Locale);
+  const servicesList = await getAllServicesByCategory();
 
   return (
     <>
+      <Breadcrumbs slugToLabel={{ services: t('title') }} />
       <PublicPageHeader title={t('title')} />
       <pre>{JSON.stringify(servicesList, null, 2)}</pre>;
     </>

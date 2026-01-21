@@ -1,4 +1,3 @@
-import { Locale } from '@invicity/constants';
 import { getTranslations } from '@invicity/i18n';
 import { Metadata } from 'next';
 
@@ -21,9 +20,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function PublicLayout({ children, params }: LayoutProps) {
-  const { locale } = await params;
-  const categories = await getCategories(locale as Locale, 'CONTACT');
+export default async function PublicLayout({ children }: LayoutProps) {
+  const categories = await getCategories('CONTACT');
 
   return (
     <>

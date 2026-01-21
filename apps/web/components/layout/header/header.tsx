@@ -3,7 +3,6 @@ import { CategoryListResponse } from '@invicity/contracts';
 import { Link } from '@invicity/i18n';
 
 import { Navbar } from '@/components/navigation/';
-import { BackButton } from '@/components/ui';
 
 import { HeaderUtils } from './header-utils';
 
@@ -11,7 +10,6 @@ export type HeaderProps = {
   categories: CategoryListResponse;
 };
 export async function Header({ categories }: HeaderProps) {
-  console.log({ categories });
   return (
     <header className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-6  border-b border-border">
@@ -21,7 +19,6 @@ export async function Header({ categories }: HeaderProps) {
             <Link href={ROUTES.HOME} className="text-lg font-semibold">
               G-Stadt
             </Link>
-            <BackButton />
           </div>
 
           {/* Right cluster */}

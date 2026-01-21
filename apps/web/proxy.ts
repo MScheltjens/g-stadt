@@ -1,6 +1,7 @@
 import {
   AUTH_ROUTES,
   COOKIE_NAMES,
+  Locale,
   LocalizedPathnames,
   Pathname,
   Pathnames,
@@ -43,11 +44,24 @@ function matchesLocalizedRoute(pathname: string, routes: Pathnames): boolean {
 }
 
 /**
+ * Attach NEXT_LOCALE cookie to a response
+ */
+function withLocaleCookie(
+  response: NextResponse,
+  locale: Locale,
+): NextResponse {
+  response.cookies.set('NEXT_LOCALE', locale, {
+    path: '/',
+    httpOnly: false, // required so Next.js i18n can read it
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production',
+  });
+
+  return response;
+}
+
+/**
  * Main proxy middleware that handles both internationalization and authentication
- *
- * This middleware chains together:
- * 1. Authentication checks (redirect if needed)
- * 2. Internationalization routing
  */
 export function proxy(req: NextRequest) {
   const accessToken = req.cookies.get(COOKIE_NAMES.ACCESS_TOKEN)?.value;
@@ -60,6 +74,7 @@ export function proxy(req: NextRequest) {
   )
     ? segments[0]
     : routing.defaultLocale;
+
   const pathnameWithoutLocale = '/' + segments.slice(1).join('/') || '/';
 
   // Redirect authenticated users away from auth pages to dashboard
@@ -74,9 +89,11 @@ export function proxy(req: NextRequest) {
         ? dashboardPath
         : dashboardPath[locale as keyof typeof dashboardPath];
 
-    return NextResponse.redirect(
+    const res = NextResponse.redirect(
       new URL(`/${locale}${localizedDashboardPath}`, req.url),
     );
+
+    return withLocaleCookie(res, locale as Locale);
   }
 
   // Redirect unauthenticated users from protected routes to login
@@ -89,13 +106,17 @@ export function proxy(req: NextRequest) {
       typeof loginPath === 'string'
         ? loginPath
         : loginPath[locale as keyof typeof loginPath];
-    return NextResponse.redirect(
+
+    const res = NextResponse.redirect(
       new URL(`/${locale}${localizedLogin}`, req.url),
     );
+
+    return withLocaleCookie(res, locale as Locale);
   }
 
   // Continue with internationalization middleware
-  return createIntlMiddleware({ ...routing })(req);
+  const intlResponse = createIntlMiddleware({ ...routing })(req);
+  return withLocaleCookie(intlResponse, locale as Locale);
 }
 
 export const config = {

@@ -184,5 +184,8 @@
   },
   "backButton": {
     "label": "Retour"
+  },
+  "breadcrumbs": {
+    "home": "Accueil"
   }
 }

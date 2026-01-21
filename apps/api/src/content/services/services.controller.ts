@@ -1,3 +1,4 @@
+import { Locale } from '@invicity/constants';
 import {
   BadRequestException,
   Controller,
@@ -7,6 +8,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import type { Request } from 'express';
 
 import { Public } from '@/common/decorators/public.decorator.js';
 
@@ -29,14 +31,13 @@ export class ServicesController {
     description: 'List of services by category',
     type: Object,
   })
-  async getAllServicesByCategory(@Req() req: Request) {
-    const locale = req['locale'];
-    if (!locale) {
+  async getAllServicesByCategory(@Req() req: Request & { locale?: Locale }) {
+    if (!req.locale) {
       this.logger.warn('Missing locale in request');
       throw new BadRequestException('Locale is required');
     }
     try {
-      return await this.servicesService.getAllServicesByCategory(locale);
+      return await this.servicesService.getAllServicesByCategory(req.locale);
     } catch (error) {
       if (error instanceof Error) {
         this.logger.error('Failed to get services by category', error.stack);

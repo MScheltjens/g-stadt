@@ -1,4 +1,4 @@
-import { LOCALES } from '@invicity/constants';
+import { DEFAULT_LOCALE, LOCALES } from '@invicity/constants';
 import { LocaleSchema } from '@invicity/contracts';
 import {
   CallHandler,
@@ -6,16 +6,53 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
+import { Locale } from '@prisma/client';
+import { Request } from 'express';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class LocaleInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const req = context.switchToHttp().getRequest();
-    const rawLocale =
-      req.headers['x-locale'] || req.headers['accept-language'] || LOCALES.en;
+    const req = context
+      .switchToHttp()
+      .getRequest<Request & { locale?: string }>();
+
+    let rawLocale: string | undefined;
+
+    // 1. Check NEXT_LOCALE cookie (set in safeFetch and proxy) first
+    if (req.cookies && req.cookies.NEXT_LOCALE) {
+      rawLocale = req.cookies.NEXT_LOCALE;
+    }
+
+    // 2. Check locale in URL (e.g., /de/...) if not found in cookie
+    if (!rawLocale && req.url) {
+      const urlLocale = req.url.split('/')[1];
+      if (urlLocale && Object.values(LOCALES).includes(urlLocale as Locale)) {
+        rawLocale = urlLocale;
+      }
+    }
+
+    // 3. Check Accept-Language header if not found in cookie or URL
+    if (!rawLocale && req.headers['accept-language']) {
+      const acceptLang = req.headers['accept-language']
+        .split(',')[0]
+        .split('-')[0];
+      if (acceptLang && Object.values(LOCALES).includes(acceptLang as Locale)) {
+        rawLocale = acceptLang;
+      }
+    }
+
+    // 4. Fallback to DEFAULT_LOCALE
+    if (!rawLocale) {
+      rawLocale = DEFAULT_LOCALE;
+    }
+
+    // Validate locale
     const parseResult = LocaleSchema.safeParse(rawLocale);
-    req.locale = parseResult.success ? parseResult.data : LOCALES.en;
+    req.locale = parseResult.success
+      ? parseResult.data
+      : (DEFAULT_LOCALE as Locale);
+
     return next.handle();
   }
 }

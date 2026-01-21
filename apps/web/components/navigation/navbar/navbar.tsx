@@ -1,7 +1,7 @@
 'use client';
 
 import { Link, useLocale, useTranslations } from '@invicity/i18n';
-import { AlertCircle, Mail } from '@invicity/ui/components/icons';
+import { Mail } from '@invicity/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,7 +12,6 @@ import {
 import { cn } from '@invicity/ui/lib/utils';
 
 import { HeaderProps } from '@/components/layout/header/header';
-import { tr } from 'zod/locales';
 
 export function Navbar({ categories }: HeaderProps) {
   const locale = useLocale();
@@ -38,7 +37,6 @@ export function Navbar({ categories }: HeaderProps) {
             <NavigationMenuContent>
               <div className="bg-white shadow-lg rounded-md mt-2 min-w-[200px] z-50">
                 {categories.map((cat) => {
-                  console.log(cat.translations);
                   return (
                     <Link
                       key={cat.id}
