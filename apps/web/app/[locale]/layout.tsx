@@ -1,5 +1,6 @@
 import '@invicity/ui/globals.css';
 
+import { LOCALES } from '@invicity/constants';
 import {
   getTranslations,
   hasLocale,
@@ -12,7 +13,6 @@ import { notFound } from 'next/navigation';
 import { Providers } from '@/components/providers';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/types';
-import { LOCALES } from '@invicity/constants';
 
 export async function generateMetadata({
   params,
