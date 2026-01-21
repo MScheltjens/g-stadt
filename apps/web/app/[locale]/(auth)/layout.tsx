@@ -1,7 +1,7 @@
 import { getTranslations } from '@invicity/i18n';
 import { Metadata } from 'next/types';
 
-import { LayoutProps, MetadataProps } from '@/types/next-page';
+import { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({
   params,

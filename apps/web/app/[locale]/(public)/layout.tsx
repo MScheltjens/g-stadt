@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import { Footer, Header } from '@/components/layout';
 import { getCategories } from '@/lib/api/categories.api';
-import type { LayoutProps, MetadataProps } from '@/types/next-page.types';
+import type { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({
   params,

@@ -1,6 +1,6 @@
 import { setRequestLocale } from '@invicity/i18n';
 
-import type { PageProps } from '@/types/next-page';
+import type { PageProps } from '@/types';
 
 export default async function UserDashboardPage({ params }: PageProps) {
   const { locale } = await params;

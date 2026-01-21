@@ -9,7 +9,7 @@
 import { setRequestLocale } from '@invicity/i18n';
 
 import { RegisterForm } from '@/components/auth';
-import type { PageProps } from '@/types/next-page';
+import type { PageProps } from '@/types';
 
 export default async function RegisterPage({ params }: PageProps) {
   const { locale } = await params;

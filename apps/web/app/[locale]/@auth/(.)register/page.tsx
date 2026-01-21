@@ -9,7 +9,7 @@ import { setRequestLocale } from '@invicity/i18n';
 
 import { RegisterForm } from '@/components/auth';
 import { Modal } from '@/components/ui';
-import type { PageProps } from '@/types/next-page';
+import type { PageProps } from '@/types';
 
 export default async function RegisterModal({ params }: PageProps) {
   const { locale } = await params;
