@@ -1,6 +1,6 @@
 'use client';
-import { LOCALES, ROUTES } from '@invicity/constants';
-import { useTranslations } from '@invicity/i18n';
+
+import { LOCALES } from '@invicity/constants';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
@@ -13,7 +13,6 @@ type BreadcrumbsProps = {
 const HIDDEN: string[] = Object.values(LOCALES) as string[];
 
 export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
-  const t = useTranslations('breadcrumbs');
   const pathname = usePathname();
 
   const items = useMemo(() => {
@@ -34,7 +33,7 @@ export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
       };
     });
     return crumbs;
-  }, [pathname, slugToLabel, t]);
+  }, [pathname, slugToLabel]);
 
   if (items.length === 0) return null;
 

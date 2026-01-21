@@ -1,3 +1,5 @@
+import { ROUTES } from '@invicity/constants';
+import { useTranslations } from '@invicity/i18n';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,8 +8,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@invicity/ui/components/breadcrumb';
-import { ROUTES } from '@invicity/constants';
-import { useTranslations } from '@invicity/i18n';
 import { cn } from '@invicity/ui/lib/utils';
 
 export interface BreadcrumbItem {
