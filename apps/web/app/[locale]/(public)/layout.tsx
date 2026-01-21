@@ -1,10 +1,10 @@
+import { Locale } from '@invicity/constants';
 import { getTranslations, setRequestLocale } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { Footer, Header } from '@/components/layout';
 import { getCategories } from '@/lib/api/categories.api';
 import type { LayoutProps, MetadataProps } from '@/types';
-import { Locale } from '@invicity/constants';
 
 export async function generateMetadata({
   params,
