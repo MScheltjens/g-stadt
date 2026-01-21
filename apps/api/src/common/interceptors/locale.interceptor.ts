@@ -1,3 +1,4 @@
+import { LOCALES } from '@invicity/constants';
 import { LocaleSchema } from '@invicity/contracts';
 import {
   CallHandler,
@@ -12,9 +13,9 @@ export class LocaleInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest();
     const rawLocale =
-      req.headers['x-locale'] || req.headers['accept-language'] || 'en';
+      req.headers['x-locale'] || req.headers['accept-language'] || LOCALES.en;
     const parseResult = LocaleSchema.safeParse(rawLocale);
-    req.locale = parseResult.success ? parseResult.data : 'en';
+    req.locale = parseResult.success ? parseResult.data : LOCALES.en;
     return next.handle();
   }
 }
