@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { Footer, Header } from '@/components/layout';
 import { getCategories } from '@/lib/api/categories.api';
 import type { LayoutProps, MetadataProps } from '@/types';
+import { Locale } from '@invicity/constants';
 
 export async function generateMetadata({
   params,
@@ -22,9 +23,8 @@ export async function generateMetadata({
 
 export default async function PublicLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
-
   setRequestLocale(locale);
-  const allCategories = await getCategories();
+  const allCategories = await getCategories(locale as Locale);
   const serviceCategories = allCategories.filter(
     (cat) => cat.type === 'SERVICE',
   );

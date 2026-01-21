@@ -8,7 +8,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ROUTES } from '@invicity/constants';
-import { type LoginInput, LoginInputSchema } from '@invicity/contracts';
+import { type SignInInput, SignInInputSchema } from '@invicity/contracts';
 import { Link, useTranslations } from '@invicity/i18n';
 import { Alert, AlertDescription } from '@invicity/ui/components/alert';
 import { Button } from '@invicity/ui/components/button';
@@ -24,26 +24,26 @@ import { Input } from '@invicity/ui/components/input';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { login } from '@/lib/actions/auth.actions';
+import { signIn } from '@/lib/actions';
 
 export function SignInForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState<string>('');
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<LoginInput>({
-    resolver: zodResolver(LoginInputSchema),
+  const form = useForm<SignInInput>({
+    resolver: zodResolver(SignInInputSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  async function onSubmit(data: LoginInput) {
+  async function onSubmit(data: SignInInput) {
     setError('');
 
     startTransition(async () => {
-      const result = await login(data);
+      const result = await signIn(data);
 
       if ('error' in result) {
         setError(result.error);

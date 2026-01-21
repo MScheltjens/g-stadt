@@ -24,7 +24,7 @@ import { env } from '../env';
 /* =========================
    LOGIN
    ========================= */
-export async function SIGNIN(
+export async function signIn(
   data: SignInInput,
   locale?: Locale,
 ): Promise<LoginResult> {
