@@ -13,7 +13,7 @@ export function BackButton({ className }: { className?: string }) {
   if (pathname === ROUTES.HOME) return null;
 
   return (
-    <Button onClick={() => router.back()} className={className}>
+    <Button onClick={() => router.back()} className={className} variant="link">
       <ArrowLeftIcon className="w-4 h-4 mr-2" aria-hidden="true" />
       {t('label')}
     </Button>

@@ -17,11 +17,14 @@ export async function Header({ categories }: HeaderProps) {
   return (
     <header className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-6  border-b border-border">
-        <div className="flex items-center justify-between ">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href={ROUTES.HOME} className="text-lg font-semibold">
-            G-Stadt
-          </Link>
+          <div className="flex gap-2 items-center">
+            <Link href={ROUTES.HOME} className="text-lg font-semibold">
+              G-Stadt
+            </Link>
+            <BackButton />
+          </div>
 
           {/* Right cluster */}
           <div className="flex items-center">
@@ -30,7 +33,6 @@ export async function Header({ categories }: HeaderProps) {
           </div>
         </div>
       </div>
-      <BackButton className="ml-4 mt-2" />
     </header>
   );
 }
