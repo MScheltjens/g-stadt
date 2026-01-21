@@ -1,4 +1,4 @@
-import { getTranslations, setRequestLocale, redirect } from '@invicity/i18n';
+import { getTranslations, redirect, setRequestLocale } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { checkUserRole } from '@/lib/auth';
