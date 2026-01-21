@@ -10,6 +10,19 @@ import { Providers } from '@/components/providers/providers';
 import { getUser } from '@/lib/auth';
 import type { LayoutProps, MetadataProps } from '@/lib/types/next-page';
 
+import { Inter } from 'next/font/google';
+import { cn } from '@invicity/ui/lib/utils';
+
+// font
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+// metadata
+
 export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
@@ -54,7 +67,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col">
+      <body className={cn('min-h-screen flex flex-col', inter.variable)}>
         <Providers locale={locale} initialUser={user}>
           {children}
           {auth}
