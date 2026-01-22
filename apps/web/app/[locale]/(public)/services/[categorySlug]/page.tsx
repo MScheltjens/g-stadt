@@ -1,9 +1,11 @@
 import { Metadata } from 'next/types';
 
-import { PublicPageHeader } from '@/components/layout';
-import { Breadcrumbs } from '@/components/navigation/breadcrumb/Breadcrumbs';
+import { PageHeading } from '@/components/layout';
+import { Breadcrumbs } from '@/components/navigation';
 import { getCategoryWithServices } from '@/lib/api/categories.api';
 import { MetadataProps } from '@/types';
+import { notFound } from 'next/navigation';
+import { ComingSoon } from '@/components/marketing';
 
 type ServicesCategoryMetadataProps = MetadataProps<{
   categorySlug: string;
@@ -14,12 +16,6 @@ export async function generateMetadata({
 }: ServicesCategoryMetadataProps): Promise<Metadata> {
   const { categorySlug } = await params;
   const categoryData = await getCategoryWithServices(categorySlug);
-
-  if (!categoryData) {
-    return {
-      title: 'Services',
-    };
-  }
 
   return {
     title: categoryData.translations[0]?.label || 'Services',
@@ -43,16 +39,13 @@ export default async function ServicesCategoryPage({
         }
       : {};
 
-  if (categoryWithServices) {
-    return (
-      <>
-        <Breadcrumbs slugToLabel={slugToLabel} />
-        <PublicPageHeader title={slugToLabel[categorySlug] || 'Services'} />
-        {/* Render your category/services UI here */}
-        <pre>{JSON.stringify(categoryWithServices, null, 2)}</pre>
-      </>
-    );
-  }
+  if (!categoryWithServices) return notFound();
 
-  return <div>Category not found</div>;
+  return (
+    <>
+      <Breadcrumbs slugToLabel={slugToLabel} />
+      <PageHeading title={slugToLabel[categorySlug] || 'Services'} />
+      <ComingSoon />
+    </>
+  );
 }
