@@ -24,7 +24,6 @@ export async function generateMetadata({
 
 export default async function PublicLayout({ children }: LayoutProps) {
   const categories = await getCategories(CATEGORYTYPE.contact);
-  console.log('PublicLayout categories:', categories);
 
   return (
     <>
