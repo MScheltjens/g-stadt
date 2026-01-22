@@ -1,3 +1,8 @@
+DROP TYPE IF EXISTS "Role" CASCADE;
+
+DROP TYPE IF EXISTS "Locale" CASCADE;
+
+DROP TYPE IF EXISTS "CategoryType" CASCADE;
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('citizen', 'staff', 'admin');
 
@@ -15,7 +20,6 @@ CREATE TABLE "User" (
     "role" "Role" NOT NULL DEFAULT 'citizen',
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
@@ -25,7 +29,6 @@ CREATE TABLE "RefreshToken" (
     "tokenHash" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
-
     CONSTRAINT "RefreshToken_pkey" PRIMARY KEY ("id")
 );
 
@@ -35,7 +38,6 @@ CREATE TABLE "PasswordResetToken" (
     "userId" TEXT NOT NULL,
     "tokenHash" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
-
     CONSTRAINT "PasswordResetToken_pkey" PRIMARY KEY ("id")
 );
 
@@ -46,7 +48,6 @@ CREATE TABLE "Category" (
     "type" "CategoryType" NOT NULL,
     "order" INTEGER NOT NULL DEFAULT 0,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
-
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
 
@@ -57,7 +58,6 @@ CREATE TABLE "CategoryTranslation" (
     "locale" "Locale" NOT NULL,
     "label" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-
     CONSTRAINT "CategoryTranslation_pkey" PRIMARY KEY ("id")
 );
 
@@ -73,7 +73,6 @@ CREATE TABLE "Service" (
     "role" "Role",
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-
     CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
 );
 
@@ -85,7 +84,6 @@ CREATE TABLE "ServiceTranslation" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-
     CONSTRAINT "ServiceTranslation_pkey" PRIMARY KEY ("id")
 );
 
@@ -101,7 +99,6 @@ CREATE TABLE "Contact" (
     "role" "Role",
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-
     CONSTRAINT "Contact_pkey" PRIMARY KEY ("id")
 );
 
@@ -113,72 +110,86 @@ CREATE TABLE "ContactTranslation" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-
     CONSTRAINT "ContactTranslation_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "User" ("email");
 
 -- CreateIndex
-CREATE INDEX "PasswordResetToken_expiresAt_idx" ON "PasswordResetToken"("expiresAt");
+CREATE INDEX "PasswordResetToken_expiresAt_idx" ON "PasswordResetToken" ("expiresAt");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Category_code_key" ON "Category"("code");
+CREATE UNIQUE INDEX "Category_code_key" ON "Category" ("code");
 
 -- CreateIndex
-CREATE INDEX "Category_isActive_idx" ON "Category"("isActive");
+CREATE INDEX "Category_isActive_idx" ON "Category" ("isActive");
 
 -- CreateIndex
-CREATE INDEX "Category_type_idx" ON "Category"("type");
+CREATE INDEX "Category_type_idx" ON "Category" ("type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "CategoryTranslation_categoryId_locale_key" ON "CategoryTranslation"("categoryId", "locale");
+CREATE UNIQUE INDEX "CategoryTranslation_categoryId_locale_key" ON "CategoryTranslation" ("categoryId", "locale");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "CategoryTranslation_locale_slug_key" ON "CategoryTranslation"("locale", "slug");
+CREATE UNIQUE INDEX "CategoryTranslation_locale_slug_key" ON "CategoryTranslation" ("locale", "slug");
 
 -- CreateIndex
-CREATE INDEX "Service_categoryId_isActive_order_idx" ON "Service"("categoryId", "isActive", "order");
+CREATE INDEX "Service_categoryId_isActive_order_idx" ON "Service" (
+    "categoryId",
+    "isActive",
+    "order"
+);
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Service_categoryId_order_key" ON "Service"("categoryId", "order");
+CREATE UNIQUE INDEX "Service_categoryId_order_key" ON "Service" ("categoryId", "order");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ServiceTranslation_serviceId_locale_key" ON "ServiceTranslation"("serviceId", "locale");
+CREATE UNIQUE INDEX "ServiceTranslation_serviceId_locale_key" ON "ServiceTranslation" ("serviceId", "locale");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ServiceTranslation_locale_slug_key" ON "ServiceTranslation"("locale", "slug");
+CREATE UNIQUE INDEX "ServiceTranslation_locale_slug_key" ON "ServiceTranslation" ("locale", "slug");
 
 -- CreateIndex
-CREATE INDEX "Contact_categoryId_isActive_order_idx" ON "Contact"("categoryId", "isActive", "order");
+CREATE INDEX "Contact_categoryId_isActive_order_idx" ON "Contact" (
+    "categoryId",
+    "isActive",
+    "order"
+);
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Contact_categoryId_order_key" ON "Contact"("categoryId", "order");
+CREATE UNIQUE INDEX "Contact_categoryId_order_key" ON "Contact" ("categoryId", "order");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ContactTranslation_contactId_locale_key" ON "ContactTranslation"("contactId", "locale");
+CREATE UNIQUE INDEX "ContactTranslation_contactId_locale_key" ON "ContactTranslation" ("contactId", "locale");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ContactTranslation_locale_slug_key" ON "ContactTranslation"("locale", "slug");
+CREATE UNIQUE INDEX "ContactTranslation_locale_slug_key" ON "ContactTranslation" ("locale", "slug");
 
 -- AddForeignKey
-ALTER TABLE "RefreshToken" ADD CONSTRAINT "RefreshToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "RefreshToken"
+ADD CONSTRAINT "RefreshToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "PasswordResetToken" ADD CONSTRAINT "PasswordResetToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "PasswordResetToken"
+ADD CONSTRAINT "PasswordResetToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CategoryTranslation" ADD CONSTRAINT "CategoryTranslation_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "CategoryTranslation"
+ADD CONSTRAINT "CategoryTranslation_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Service" ADD CONSTRAINT "Service_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Service"
+ADD CONSTRAINT "Service_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ServiceTranslation" ADD CONSTRAINT "ServiceTranslation_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ServiceTranslation"
+ADD CONSTRAINT "ServiceTranslation_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Contact" ADD CONSTRAINT "Contact_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Contact"
+ADD CONSTRAINT "Contact_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ContactTranslation" ADD CONSTRAINT "ContactTranslation_contactId_fkey" FOREIGN KEY ("contactId") REFERENCES "Contact"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ContactTranslation"
+ADD CONSTRAINT "ContactTranslation_contactId_fkey" FOREIGN KEY ("contactId") REFERENCES "Contact" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
