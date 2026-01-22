@@ -4,7 +4,7 @@ import {
   ServiceCategoryResponseSchema,
 } from '@invicity/contracts';
 
-import { safeFetch } from '../../utils/safe-fetch';
+import { safeFetch } from '@/utils/safe-fetch';
 
 // Fetch all categories, optionally filtered by type, and by locale.
 export async function getCategories(type?: CategoryType) {
