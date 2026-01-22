@@ -4,7 +4,7 @@ import { ROUTES } from '@invicity/constants';
 import { Link, usePathname, useTranslations } from '@invicity/i18n';
 import { User } from '@invicity/ui/components/icons';
 
-import { LocaleSwitcher } from '@/components/navigation';
+import { LocaleSwitcher } from '@/components/navigation/locale-switcher';
 
 export function HeaderUtils() {
   const pathname = usePathname();
