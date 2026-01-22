@@ -1,11 +1,11 @@
+import { notFound } from 'next/navigation';
 import { Metadata } from 'next/types';
 
 import { PageHeading } from '@/components/layout';
+import { ComingSoon } from '@/components/marketing';
 import { Breadcrumbs } from '@/components/navigation';
 import { getCategoryWithServices } from '@/lib/api/categories.api';
 import { MetadataProps } from '@/types';
-import { notFound } from 'next/navigation';
-import { ComingSoon } from '@/components/marketing';
 
 type ServicesCategoryMetadataProps = MetadataProps<{
   categorySlug: string;
