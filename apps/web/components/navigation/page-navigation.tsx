@@ -1,5 +1,5 @@
-import { Breadcrumbs } from '@/components/navigation';
-import { BackButton } from '@/components/ui';
+import { BackButton } from '@/components/navigation/back-button';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
 
 interface PageNavigationProps {
   slugToLabel?: Record<string, string>;

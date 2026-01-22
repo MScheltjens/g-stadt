@@ -24,7 +24,7 @@ import { Input } from '@invicity/ui/components/input';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { signIn } from '@/lib/actions';
+import { signIn } from '@/server/actions';
 
 export function SignInForm() {
   const t = useTranslations('auth');

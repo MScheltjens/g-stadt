@@ -11,15 +11,18 @@ import {
 import { redirect } from 'next/navigation';
 
 import {
+  clearAuthCookies,
+  getRefreshToken,
+  setAuthCookies,
+} from '@/authentication/cookies';
+import {
   ActionError,
   ActionSuccess,
   LoginResult,
   RegisterResult,
 } from '@/types';
-
-import { safeFetch } from '..';
-import { clearAuthCookies, getRefreshToken, setAuthCookies } from '../auth';
-import { env } from '../env';
+import { env } from '@/utils/env';
+import { safeFetch } from '@/utils/safe-fetch';
 
 /* =========================
    LOGIN
