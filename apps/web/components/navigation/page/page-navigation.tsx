@@ -1,6 +1,5 @@
 import { Breadcrumbs } from '@/components/navigation';
 import { BackButton } from '@/components/ui';
-import { cn } from '@invicity/ui/lib/utils';
 
 interface PageNavigationProps {
   slugToLabel?: Record<string, string>;

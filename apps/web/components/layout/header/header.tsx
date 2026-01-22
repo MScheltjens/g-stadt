@@ -1,6 +1,4 @@
-import { ROUTES } from '@invicity/constants';
 import { CategoryListResponse } from '@invicity/contracts';
-import { Link } from '@invicity/i18n';
 
 import { Navbar } from '@/components/navigation/';
 

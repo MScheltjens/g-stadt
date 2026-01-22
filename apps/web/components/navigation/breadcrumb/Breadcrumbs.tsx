@@ -1,11 +1,11 @@
 'use client';
 
 import { LOCALES } from '@invicity/constants';
+import { capitalizeWords } from '@invicity/ui/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
 import { BreadcrumbNav } from '@/components/navigation/breadcrumb';
-import { capitalizeWords } from '@invicity/ui/lib/utils';
 
 type BreadcrumbsProps = {
   slugToLabel?: Record<string, string>;
