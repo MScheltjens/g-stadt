@@ -1,7 +1,6 @@
 import 'dotenv/config';
 
 import { CATEGORYTYPE, LOCALES } from '@invicity/constants';
-
 import pg from 'pg';
 
 import pkg from './generated/client.js';
