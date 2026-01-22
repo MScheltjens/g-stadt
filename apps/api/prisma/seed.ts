@@ -3,8 +3,7 @@ import 'dotenv/config';
 import { CATEGORYTYPE, LOCALES } from '@invicity/constants';
 import pg from 'pg';
 
-import pkg from './generated/client.js';
-const { PrismaClient } = pkg;
+import { PrismaClient } from '@prisma/client';
 
 import { PrismaPg } from '@prisma/adapter-pg';
 
