@@ -41,15 +41,14 @@ export function LocaleSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="link"
-          size="sm"
+          variant="ghost"
           className={cn(
-            'flex items-center gap-2 px-2 text-muted-foreground hover:text-foreground',
+            'flex items-center gap-2 px-2 text-muted-foreground hover:text-foreground rounded-none',
             isPending && 'opacity-60',
           )}
         >
-          <Globe className="h-4 w-4" />
-          <span className="hidden md:block text-xs font-medium uppercase">
+          <Globe />
+          <span className="hidden sm:block text-sm font-semibold tracking-wide uppercase">
             {locale}
           </span>
         </Button>

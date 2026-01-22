@@ -1,8 +1,6 @@
 import { CategoryListResponse } from '@invicity/contracts';
 
-import { Navbar } from '@/components/navigation/';
-
-import { HeaderUtils } from './header-utils';
+import { LocaleSwitcher, Navbar } from '@/components/navigation/';
 
 export type HeaderProps = {
   categories: CategoryListResponse;
@@ -10,14 +8,9 @@ export type HeaderProps = {
 export async function Header({ categories }: HeaderProps) {
   return (
     <header className="w-full bg-background">
-      <div className="mx-auto px-6  border-b border-border">
-        <div className="flex items-center justify-end">
-          {/* Right cluster */}
-          <div className="flex items-center">
-            <Navbar categories={categories} />
-            <HeaderUtils />
-          </div>
-        </div>
+      <div className="mx-auto border-b border-border flex items-end justify-end">
+        <Navbar categories={categories} />
+        <LocaleSwitcher />
       </div>
     </header>
   );

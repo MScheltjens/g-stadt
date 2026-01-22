@@ -10,14 +10,16 @@ export function HeaderUtils() {
   const pathname = usePathname();
   const t = useTranslations('header.utils');
   return (
-    <div className="flex items-center gap-3 border-l pl-2">
+    <div className="flex items-center gap-3">
       {pathname === '/' && <LocaleSwitcher />}
       <Link
         href={ROUTES.SIGNIN}
-        className="text-muted-foreground hover:text-foreground"
+        className="text-muted-foreground hover:text-foreground inline-flex items-center"
       >
         <User className="h-4 w-4" />
-        <span className="sr-only">{t('signIn')}</span>
+        <span className="ml-2 text-sm font-medium uppercase">
+          {t('signIn')}
+        </span>
       </Link>
     </div>
   );

@@ -1,7 +1,9 @@
 'use client';
 
+import { ROUTES } from '@invicity/constants';
 import { Link, useLocale, useTranslations } from '@invicity/i18n';
-import { Mail } from '@invicity/ui/components/icons';
+import { buttonVariants } from '@invicity/ui/components/button';
+import { CircleAlert, User } from '@invicity/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,7 +11,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@invicity/ui/components/navigation-menu';
-import { cn } from '@invicity/ui/lib/utils';
 
 import { HeaderProps } from '@/components/layout/header/header';
 
@@ -18,19 +19,19 @@ export function Navbar({ categories }: HeaderProps) {
   const t = useTranslations('navbar');
   return (
     <NavigationMenu viewport={false}>
-      <NavigationMenuList className="flex items-center ">
+      <NavigationMenuList>
         {/* Contact Categories Dropdown */}
         {categories?.length > 0 && (
           <NavigationMenuItem>
             <NavigationMenuTrigger
-              className={cn(
-                'bg-transparent px-4 text-sm font-medium rounded-none',
-                'hover:bg-transparent focus:bg-transparent',
-                'border-b-2 border-transparent data-[state=open]:border-primary',
-              )}
+              className={buttonVariants({
+                variant: 'ghost',
+                className:
+                  'tracking-wide font-semibold text-muted-foreground hover:text-foreground rounded-none border-r border-l',
+              })}
             >
-              <Mail className="h-4 w-4" />
-              <span className="hidden md:inline-block ml-2">
+              <CircleAlert size={20} />
+              <span className="hidden sm:inline-block ml-2">
                 {t('contact')}
               </span>
             </NavigationMenuTrigger>
@@ -64,6 +65,19 @@ export function Navbar({ categories }: HeaderProps) {
             </NavigationMenuContent>
           </NavigationMenuItem>
         )}
+        <NavigationMenuItem>
+          <Link
+            href={ROUTES.SIGNIN}
+            className={buttonVariants({
+              variant: 'ghost',
+              className:
+                ' tracking-wide font-semibold text-muted-foreground hover:text-foreground rounded-none border-r',
+            })}
+          >
+            <User size={20} />
+            <span className="hidden sm:inline-block ml-2">{t('signIn')}</span>
+          </Link>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

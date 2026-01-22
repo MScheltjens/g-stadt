@@ -159,10 +159,7 @@
     "retry": "Réessayer"
   },
   "navbar": {
-    "home": "Accueil",
-    "services": "Services",
-    "news": "Actualités",
-    "events": "Événements",
+    "signIn": "Se connecter",
     "contact": "Contact"
   },
   "itemCard": {
