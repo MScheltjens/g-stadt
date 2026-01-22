@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next/types';
 
-import { PageHeading } from '@/components/layout';
-import { ComingSoon } from '@/components/marketing';
-import { Breadcrumbs } from '@/components/navigation';
-import { getCategoryWithServices } from '@/lib/categories.api';
+import { PageHeading } from '@/components/layout/page-heading';
+import { ComingSoon } from '@/components/marketing/coming-soon';
+import { Breadcrumbs } from '@/components/navigation/Breadcrumbs';
+import { getCategoryWithServices } from '@/server/services/categories.service';
 import { MetadataProps } from '@/types';
 
 type ServicesCategoryMetadataProps = MetadataProps<{

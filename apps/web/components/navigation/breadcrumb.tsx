@@ -15,12 +15,12 @@ export interface BreadcrumbItem {
   isCurrent?: boolean;
 }
 
-interface BreadcrumbProps {
+interface BreadcrumbCompProps {
   items: BreadcrumbItem[];
   className?: string;
 }
 
-export function BreadcrumbNav({ items, className = '' }: BreadcrumbProps) {
+export function BreadcrumbComp({ items, className = '' }: BreadcrumbCompProps) {
   const t = useTranslations('breadcrumbs');
   return (
     <Breadcrumb className={className}>

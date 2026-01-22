@@ -1,6 +1,7 @@
 import { CategoryListResponse } from '@invicity/contracts';
 
-import { LocaleSwitcher, Navbar } from '@/components/navigation/';
+import { LocaleSwitcher } from '@/components/navigation/locale-switcher';
+import { Navbar } from '@/components/navigation/navbar';
 
 export type HeaderProps = {
   categories: CategoryListResponse;

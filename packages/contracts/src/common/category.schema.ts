@@ -1,9 +1,13 @@
+import { CATEGORYTYPE } from '@invicity/constants';
 import { z } from 'zod';
 
 import { LocaleSchema } from '../routing/locale.schema.js';
 
 // Category type schema
-export const CategoryTypeSchema = z.enum(['SERVICE', 'CONTACT']);
+export const CategoryTypeSchema = z.enum([
+  CATEGORYTYPE.service,
+  CATEGORYTYPE.contact,
+]);
 export type CategoryType = z.infer<typeof CategoryTypeSchema>;
 
 //  Category query schema

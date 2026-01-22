@@ -5,7 +5,7 @@
  * and shows the registration form in a modal instead of a full page.
  */
 
-import { RegisterForm } from '@/components/auth/register/register.form';
+import { RegisterForm } from '@/components/auth/register.form';
 import { Modal } from '@/components/ui/modal';
 
 export default async function RegisterModal() {

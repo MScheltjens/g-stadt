@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
 } from '@invicity/ui/components/navigation-menu';
 
-import { HeaderProps } from '@/components/layout/header/header';
+import { HeaderProps } from '@/components/layout/header';
 
 export function Navbar({ categories }: HeaderProps) {
   const locale = useLocale();
