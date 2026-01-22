@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
+// eslint-disable-next-line @typescript-eslint/no-duplicate-imports
 import pkg from '../../prisma/generated/client.js';
 const { PrismaClient } = pkg;
 
