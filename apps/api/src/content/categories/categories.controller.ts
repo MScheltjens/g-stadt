@@ -7,13 +7,13 @@ import {
   BadRequestException,
   Controller,
   Get,
-  Logger,
   NotFoundException,
   Param,
   Req,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { Public } from '@/common/decorators/public.decorator.js';
 
@@ -23,8 +23,11 @@ import { CategoriesService } from './categories.service.js';
 @Public()
 @Controller('categories')
 export class CategoriesController {
-  private readonly logger = new Logger(CategoriesController.name);
-  constructor(private readonly categoriesService: CategoriesService) {}
+  constructor(
+    private readonly categoriesService: CategoriesService,
+    @InjectPinoLogger(CategoriesController.name)
+    private readonly logger: PinoLogger,
+  ) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all categories' })
@@ -32,7 +35,7 @@ export class CategoriesController {
   async getAllCategories(
     @Req() req: Request & { locale?: Locale },
   ): Promise<CategoryListResponse> {
-    this.logger.log('Fetching all categories');
+    this.logger.info('Get all categories endpoint called');
     // Use NEXT_LOCALE cookie, fallback to URL or Accept-Language for SSR
     if (!req.locale) {
       this.logger.warn('Missing locale in cookies, URL, and Accept-Language');
@@ -54,7 +57,7 @@ export class CategoriesController {
     @Param('slug') slug: string,
     @Req() req: Request & { locale?: Locale },
   ): Promise<ServiceCategoryResponse> {
-    this.logger.log(`Fetching category with services for slug: ${slug}`);
+    this.logger.info({ slug }, 'Get category with services endpoint called');
 
     if (
       !slug ||

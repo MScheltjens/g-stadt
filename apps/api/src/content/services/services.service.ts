@@ -1,17 +1,19 @@
-import { Locale } from '@invicity/constants';
+import { CATEGORYTYPE, Locale } from '@invicity/constants';
 import {
   type ServicesByCategoryResponse,
   ServicesByCategoryResponseSchema,
 } from '@invicity/contracts';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { PrismaService } from '@/db/prisma.service.js';
 
 @Injectable()
 export class ServicesService {
-  private readonly logger = new Logger(ServicesService.name);
-
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    @InjectPinoLogger(ServicesService.name) private readonly logger: PinoLogger,
+  ) {}
 
   /**
    * Fetch all active service categories and their services, filtered by locale.
@@ -20,9 +22,13 @@ export class ServicesService {
   async getAllServicesByCategory(
     locale: Locale,
   ): Promise<ServicesByCategoryResponse> {
+    this.logger.info(
+      { locale },
+      'Fetching all service categories and their services',
+    );
     try {
       const data = await this.prisma.category.findMany({
-        where: { isActive: true, type: 'SERVICE' },
+        where: { isActive: true, type: CATEGORYTYPE.service },
         orderBy: { order: 'asc' },
         include: {
           translations: { where: { locale } },
@@ -35,6 +41,7 @@ export class ServicesService {
           },
         },
       });
+      this.logger.info('Fetched service categories count:', data.length);
       // validate the returned data
       return ServicesByCategoryResponseSchema.parse(data);
     } catch (error) {

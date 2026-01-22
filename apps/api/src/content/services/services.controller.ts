@@ -4,11 +4,11 @@ import {
   Controller,
   Get,
   InternalServerErrorException,
-  Logger,
   Req,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { Public } from '@/common/decorators/public.decorator.js';
 
@@ -18,9 +18,11 @@ import { ServicesService } from './services.service.js';
 @Public()
 @Controller('services')
 export class ServicesController {
-  private readonly logger = new Logger(ServicesController.name);
-
-  constructor(private readonly servicesService: ServicesService) {}
+  constructor(
+    private readonly servicesService: ServicesService,
+    @InjectPinoLogger(ServicesController.name)
+    private readonly logger: PinoLogger,
+  ) {}
 
   /**
    * Get all services ordered by category and filtered by locale
@@ -32,6 +34,7 @@ export class ServicesController {
     type: Object,
   })
   async getAllServicesByCategory(@Req() req: Request & { locale?: Locale }) {
+    this.logger.info('Get all services by category endpoint called');
     if (!req.locale) {
       this.logger.warn('Missing locale in request');
       throw new BadRequestException('Locale is required');

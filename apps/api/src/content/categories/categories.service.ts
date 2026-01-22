@@ -6,14 +6,18 @@ import {
   ServiceCategoryResponse,
   ServiceCategoryResponseSchema,
 } from '@invicity/contracts';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { PrismaService } from '@/db/prisma.service.js';
 
 @Injectable()
 export class CategoriesService {
-  private readonly logger = new Logger(CategoriesService.name);
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    @InjectPinoLogger(CategoriesService.name)
+    private readonly logger: PinoLogger,
+  ) {}
 
   /**
    * Fetch all categories, optionally filtered by type, and by locale.
@@ -22,6 +26,7 @@ export class CategoriesService {
     locale: Locale,
     type?: CategoryType,
   ): Promise<CategoryListResponse> {
+    this.logger.info({ locale, type }, 'Fetching all categories');
     try {
       const data = await this.prisma.category.findMany({
         where: {
@@ -33,10 +38,7 @@ export class CategoriesService {
           translations: { where: { locale } },
         },
       });
-      this.logger.log(
-        'Raw categories from Prisma:',
-        JSON.stringify(data, null, 2),
-      );
+      this.logger.info('Fetched categories count:', data.length);
 
       // validate the returned data
       return CategoryListResponseSchema.parse(data);
@@ -52,13 +54,17 @@ export class CategoriesService {
     slug: string,
     locale: Locale,
   ): Promise<ServiceCategoryResponse> {
+    this.logger.info({ slug, locale }, 'Fetching category with services');
     try {
       // Step 1: Find the category translation for the given slug and locale
       const translation = await this.prisma.categoryTranslation.findUnique({
         where: { locale_slug: { locale, slug } },
         select: { categoryId: true },
       });
-      if (!translation) return null;
+      if (!translation) {
+        this.logger.warn({ slug, locale }, 'Category translation not found');
+        return null;
+      }
 
       // Step 2: Fetch the category with its services and translations
       const data = await this.prisma.category.findUnique({
@@ -74,6 +80,7 @@ export class CategoriesService {
           },
         },
       });
+      this.logger.info('Fetched category with services:', !!data);
       // validate the returned data
       return ServiceCategoryResponseSchema.parse(data);
     } catch (error) {

@@ -2,8 +2,8 @@ import {
   AuthResponse,
   AuthResponseSchema,
   AuthUserSchema,
-  LoginInput,
   RegisterInput,
+  SignInInput,
 } from '@invicity/contracts';
 import {
   ConflictException,
@@ -13,6 +13,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { PrismaService } from '@/db/prisma.service.js';
 import { getEnv } from '@/lib/env.js';
@@ -22,6 +23,7 @@ export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
+    @InjectPinoLogger(AuthService.name) private readonly logger: PinoLogger,
   ) {}
 
   /* =========================
@@ -29,11 +31,16 @@ export class AuthService {
      ========================= */
 
   async register(input: RegisterInput): Promise<AuthResponse> {
+    this.logger.info({ email: input.email }, 'Attempting user registration');
     const existing = await this.prisma.user.findUnique({
       where: { email: input.email },
     });
 
     if (existing) {
+      this.logger.warn(
+        { email: input.email },
+        'Registration failed: user exists',
+      );
       throw new ConflictException('User with this email already exists');
     }
 
@@ -43,10 +50,11 @@ export class AuthService {
       data: {
         email: input.email,
         passwordHash,
-        role: 'CITIZEN',
+        role: 'citizen',
       },
     });
 
+    this.logger.info({ userId: user.id }, 'User registered successfully');
     const tokens = await this.generateTokens(user);
 
     return AuthResponseSchema.parse({
@@ -64,21 +72,28 @@ export class AuthService {
      LOGIN
      ========================= */
 
-  async login(input: LoginInput): Promise<AuthResponse> {
+  async login(input: SignInInput): Promise<AuthResponse> {
+    this.logger.info({ email: input.email }, 'Login attempt');
     const user = await this.prisma.user.findUnique({
       where: { email: input.email },
     });
 
     if (!user) {
+      this.logger.warn({ email: input.email }, 'Login failed: user not found');
       throw new UnauthorizedException('Invalid credentials');
     }
 
     const valid = await bcrypt.compare(input.password, user.passwordHash);
 
     if (!valid) {
+      this.logger.warn(
+        { email: input.email },
+        'Login failed: invalid password',
+      );
       throw new UnauthorizedException('Invalid credentials');
     }
 
+    this.logger.info({ userId: user.id }, 'Login successful');
     const tokens = await this.generateTokens(user);
 
     return AuthResponseSchema.parse({
@@ -97,6 +112,7 @@ export class AuthService {
      ========================= */
 
   async refreshToken(oldRefreshToken: string): Promise<AuthResponse> {
+    this.logger.info('Refresh token attempt');
     try {
       const payload = this.jwtService.verify(oldRefreshToken, {
         secret: getEnv().JWT_REFRESH_SECRET,
@@ -111,12 +127,20 @@ export class AuthService {
       });
 
       if (!stored) {
+        this.logger.warn(
+          { userId: payload.sub },
+          'Refresh token failed: not found or expired',
+        );
         throw new UnauthorizedException();
       }
 
       const valid = await bcrypt.compare(oldRefreshToken, stored.tokenHash);
 
       if (!valid) {
+        this.logger.warn(
+          { userId: payload.sub },
+          'Refresh token failed: invalid token',
+        );
         throw new UnauthorizedException();
       }
 
@@ -126,6 +150,7 @@ export class AuthService {
 
       const tokens = await this.generateTokens(stored.user);
 
+      this.logger.info({ userId: stored.user.id }, 'Refresh token successful');
       return AuthResponseSchema.parse({
         user: AuthUserSchema.parse({
           id: stored.user.id,
@@ -136,6 +161,7 @@ export class AuthService {
         tokens,
       });
     } catch {
+      this.logger.warn('Refresh token failed: invalid token');
       throw new UnauthorizedException('Invalid token');
     }
   }
@@ -145,9 +171,11 @@ export class AuthService {
      ========================= */
 
   async logout(userId: string): Promise<void> {
+    this.logger.info({ userId }, 'Logout attempt');
     await this.prisma.refreshToken.deleteMany({
       where: { userId },
     });
+    this.logger.info({ userId }, 'Logout successful');
   }
 
   /* =========================
@@ -155,12 +183,14 @@ export class AuthService {
      ========================= */
 
   async forgotPassword(email: string): Promise<void> {
+    this.logger.info({ email }, 'Forgot password attempt');
     const user = await this.prisma.user.findUnique({
       where: { email },
     });
 
     // Do NOT leak whether the user exists
     if (!user) {
+      this.logger.info({ email }, 'Forgot password: user not found');
       return;
     }
 
@@ -175,6 +205,7 @@ export class AuthService {
       },
     });
 
+    this.logger.info({ userId: user.id }, 'Forgot password token created');
     // TODO: send email
     // https://yourapp/reset-password?token=${token}
   }
@@ -184,6 +215,7 @@ export class AuthService {
      ========================= */
 
   async resetPassword(token: string, newPassword: string): Promise<void> {
+    this.logger.info('Reset password attempt');
     const tokens = await this.prisma.passwordResetToken.findMany({
       where: {
         expiresAt: { gt: new Date() },
@@ -199,6 +231,7 @@ export class AuthService {
     ).then((r) => r.find((x) => x.valid));
 
     if (!match) {
+      this.logger.warn('Reset password failed: invalid or expired token');
       throw new UnauthorizedException('Invalid or expired token');
     }
 
@@ -216,6 +249,10 @@ export class AuthService {
         where: { userId: match.token.userId },
       }),
     ]);
+    this.logger.info(
+      { userId: match.token.userId },
+      'Password reset successfully',
+    );
   }
 
   /* =========================
@@ -227,17 +264,23 @@ export class AuthService {
     currentPassword: string,
     newPassword: string,
   ): Promise<void> {
+    this.logger.info({ userId }, 'Change password attempt');
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
     });
 
     if (!user) {
+      this.logger.warn({ userId }, 'Change password failed: user not found');
       throw new UnauthorizedException();
     }
 
     const valid = await bcrypt.compare(currentPassword, user.passwordHash);
 
     if (!valid) {
+      this.logger.warn(
+        { userId },
+        'Change password failed: invalid current password',
+      );
       throw new UnauthorizedException('Invalid password');
     }
 
@@ -252,6 +295,7 @@ export class AuthService {
         where: { userId },
       }),
     ]);
+    this.logger.info({ userId }, 'Password changed successfully');
   }
 
   /* =========================
