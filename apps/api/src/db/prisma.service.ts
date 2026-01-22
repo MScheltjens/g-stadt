@@ -1,6 +1,6 @@
-import pkg from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
+import pkg from '@prisma/client';
 
 const { PrismaClient } = pkg;
 
