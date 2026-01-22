@@ -17,7 +17,6 @@ import { HeaderProps } from '@/components/layout/header';
 export function Navbar({ categories }: HeaderProps) {
   const locale = useLocale();
   const t = useTranslations('navbar');
-  console.log('Navbar categories:', categories);
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList>

@@ -33,6 +33,10 @@ export class CategoriesService {
           translations: { where: { locale } },
         },
       });
+      this.logger.log(
+        'Raw categories from Prisma:',
+        JSON.stringify(data, null, 2),
+      );
 
       // validate the returned data
       return CategoryListResponseSchema.parse(data);
