@@ -1,4 +1,4 @@
-import pkg from '@api/prisma/generated/client.js';
+import pkg from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 
