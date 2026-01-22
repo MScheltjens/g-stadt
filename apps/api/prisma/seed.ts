@@ -31,7 +31,7 @@ async function main() {
     // Service categories
     {
       code: 'CITIZEN_SERVICES',
-      type: CategoryType.SERVICE,
+      type: CategoryType.service,
       order: 1,
       icon: 'IdCard',
       translations: [
@@ -98,7 +98,7 @@ async function main() {
     },
     {
       code: 'CITY_ADMINISTRATION',
-      type: CategoryType.SERVICE,
+      type: CategoryType.service,
       order: 2,
       icon: 'Building',
       translations: [
@@ -168,7 +168,7 @@ async function main() {
     },
     {
       code: 'ENVIRONMENT',
-      type: CategoryType.SERVICE,
+      type: CategoryType.service,
       order: 3,
       icon: 'Leaf',
       translations: [
@@ -226,7 +226,7 @@ async function main() {
     },
     {
       code: 'CULTURE_SPORT',
-      type: CategoryType.SERVICE,
+      type: CategoryType.service,
       order: 4,
       icon: 'Trophy',
       translations: [
@@ -288,7 +288,7 @@ async function main() {
     // Contact categories
     {
       code: 'GENERAL_INQUIRY',
-      type: CategoryType.CONTACT,
+      type: CategoryType.contact,
       order: 5,
       icon: 'Mail',
       translations: [
@@ -336,7 +336,7 @@ async function main() {
     },
     {
       code: 'TECH_SUPPORT',
-      type: CategoryType.CONTACT,
+      type: CategoryType.contact,
       order: 6,
       icon: 'Settings',
       translations: [
@@ -384,7 +384,7 @@ async function main() {
     },
     {
       code: 'FEEDBACK',
-      type: CategoryType.CONTACT,
+      type: CategoryType.contact,
       order: 7,
       icon: 'MessageCircle',
       translations: [
@@ -420,7 +420,7 @@ async function main() {
     },
     {
       code: 'REPORT_ISSUE',
-      type: CategoryType.CONTACT,
+      type: CategoryType.contact,
       order: 8,
       icon: 'AlertCircle',
       translations: [
@@ -465,13 +465,13 @@ async function main() {
     const category = await prisma.category.upsert({
       where: { code: cat.code },
       update: {
-        type: cat.type as 'SERVICE' | 'CONTACT',
+        type: cat.type,
         order: cat.order,
         isActive: true,
       },
       create: {
         code: cat.code,
-        type: cat.type as 'SERVICE' | 'CONTACT',
+        type: cat.type,
         order: cat.order,
         isActive: true,
       },
@@ -499,7 +499,7 @@ async function main() {
       });
     }
 
-    if (cat.type === 'SERVICE' && cat.services) {
+    if (cat.type === 'service' && cat.services) {
       let serviceOrder = 1;
       for (const service of cat.services) {
         // Upsert service
@@ -554,7 +554,7 @@ async function main() {
       }
     }
 
-    if (cat.type === 'CONTACT' && cat.contacts) {
+    if (cat.type === 'contact' && cat.contacts) {
       let contactOrder = 1;
       for (const contact of cat.contacts) {
         // Upsert contact
