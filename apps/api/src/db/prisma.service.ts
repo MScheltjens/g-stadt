@@ -1,8 +1,6 @@
+import { PrismaClient } from '@api/prisma/generated/index.js';
 import { Injectable } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
-import pkg from '@prisma/client';
-
-const { PrismaClient } = pkg;
 
 import { getEnv } from '@/lib/env.js';
 
