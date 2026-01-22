@@ -4,7 +4,7 @@ import { Locale } from '@invicity/constants';
 import { JwtPayload } from '@invicity/contracts';
 import { MESSAGES, NextIntlClientProvider } from '@invicity/i18n';
 
-import { AuthProvider } from './auth-provider';
+import { AuthProvider } from './auth-provicer';
 
 export function Providers({
   children,

@@ -1,9 +1,9 @@
 import { getTranslations, redirect } from '@invicity/i18n';
 import { Metadata } from 'next';
 
-import { checkUserRole } from '@/lib/auth';
-import { env } from '@/lib/env';
+import { checkUserRole } from '@/authentication/jwt';
 import type { LayoutProps, MetadataProps } from '@/types';
+import { env } from '@/utils/env';
 
 export async function generateMetadata({
   params,

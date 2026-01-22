@@ -1,7 +1,7 @@
 import { COOKIE_NAMES } from '@invicity/constants';
 import { cookies } from 'next/headers';
 
-import { env } from '../env';
+import { env } from '@/utils/env';
 
 /**
  * Sets authentication tokens in HTTP-only cookies

@@ -2,7 +2,7 @@ import { getTranslations } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { Footer, Header } from '@/components/layout';
-import { getCategories } from '@/lib/api/categories.api';
+import { getCategories } from '@/lib/categories.api';
 import type { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({

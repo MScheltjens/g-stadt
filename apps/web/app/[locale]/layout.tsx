@@ -10,8 +10,8 @@ import {
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { Providers } from '@/components/providers';
-import { getUser } from '@/lib/auth';
+import { getUser } from '@/authentication/jwt';
+import { Providers } from '@/components/providers/provider-wrapper';
 import type { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({

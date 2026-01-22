@@ -17,7 +17,7 @@ import {
   RegisterResult,
 } from '@/types';
 
-import { safeFetch } from '../api';
+import { safeFetch } from '..';
 import { clearAuthCookies, getRefreshToken, setAuthCookies } from '../auth';
 import { env } from '../env';
 

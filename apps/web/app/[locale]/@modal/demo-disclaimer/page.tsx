@@ -5,7 +5,7 @@ import { useRouter, useTranslations } from '@invicity/i18n';
 import { Button } from '@invicity/ui/components/button';
 import { useCallback, useEffect } from 'react';
 
-import { Modal } from '@/components/ui/modal/modal';
+import { Modal } from '@/components/ui/modal';
 
 export default function DemoDisclaimerModalPage() {
   const router = useRouter();

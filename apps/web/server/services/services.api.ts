@@ -3,7 +3,7 @@ import {
   ServicesByCategoryResponseSchema,
 } from '@invicity/contracts';
 
-import { safeFetch } from './safe-fetch';
+import { safeFetch } from '../../utils/safe-fetch';
 
 // Fetch all services ordered by category and filtered by locale //
 

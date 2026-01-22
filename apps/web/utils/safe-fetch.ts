@@ -5,7 +5,7 @@
 import { cookies } from 'next/headers';
 import { ZodType } from 'zod';
 
-import { env } from '../env';
+import { env } from '@/utils/env';
 export async function safeFetch<T>(
   endpoint: string,
   schema: ZodType<T>,

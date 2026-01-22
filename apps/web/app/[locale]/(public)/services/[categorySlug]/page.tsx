@@ -4,7 +4,7 @@ import { Metadata } from 'next/types';
 import { PageHeading } from '@/components/layout';
 import { ComingSoon } from '@/components/marketing';
 import { Breadcrumbs } from '@/components/navigation';
-import { getCategoryWithServices } from '@/lib/api/categories.api';
+import { getCategoryWithServices } from '@/lib/categories.api';
 import { MetadataProps } from '@/types';
 
 type ServicesCategoryMetadataProps = MetadataProps<{

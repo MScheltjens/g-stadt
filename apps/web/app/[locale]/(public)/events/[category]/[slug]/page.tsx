@@ -1,4 +1,4 @@
-import { ComingSoon } from '@/components/marketing';
+import { ComingSoon } from '@/components/marketing/coming-soon';
 
 // type EventPageMetaDataProps = MetadataProps<{
 //   category: string;
