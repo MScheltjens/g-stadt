@@ -18,7 +18,7 @@ import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { register } from '@/lib/actions/auth.actions';
+import { register } from '@/server/actions/auth.actions';
 
 // Define the schema for the registration form
 // This is not a contract schema but a form-specific schema
