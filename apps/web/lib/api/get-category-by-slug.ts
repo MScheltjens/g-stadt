@@ -7,16 +7,14 @@ import {
 import { safeFetch } from './safe-fetch';
 
 export async function getCategoryBySlug(
-  locale: Locale,
   slug: string,
 ): Promise<CategoryResponse | undefined> {
   const categories = await safeFetch(
     `/categories?type=SERVICE`,
     CategoryListResponseSchema,
-    locale,
     { next: { revalidate: 60 * 60 } },
   );
   return categories.find((cat) =>
-    cat.translations.some((t) => t.slug === slug && t.locale === locale),
+    cat.translations.some((t) => t.slug === slug),
   );
 }
