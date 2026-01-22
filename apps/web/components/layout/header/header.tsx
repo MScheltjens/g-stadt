@@ -12,15 +12,8 @@ export type HeaderProps = {
 export async function Header({ categories }: HeaderProps) {
   return (
     <header className="w-full bg-background">
-      <div className="mx-auto max-w-7xl px-6  border-b border-border">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex gap-2 items-center">
-            <Link href={ROUTES.HOME} className="text-lg font-semibold">
-              G-Stadt
-            </Link>
-          </div>
-
+      <div className="mx-auto px-6  border-b border-border">
+        <div className="flex items-center justify-end">
           {/* Right cluster */}
           <div className="flex items-center">
             <Navbar categories={categories} />

@@ -5,14 +5,16 @@ import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
 import { BreadcrumbNav } from '@/components/navigation/breadcrumb';
+import { capitalizeWords } from '@invicity/ui/lib/utils';
 
 type BreadcrumbsProps = {
   slugToLabel?: Record<string, string>;
+  className?: string;
 };
 
 const HIDDEN: string[] = Object.values(LOCALES) as string[];
 
-export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
+export function Breadcrumbs({ slugToLabel, className }: BreadcrumbsProps) {
   const pathname = usePathname();
 
   const items = useMemo(() => {
@@ -22,10 +24,11 @@ export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
     const visibleSegments = segments.filter((seg) => !HIDDEN.includes(seg));
     const crumbs = visibleSegments.map((seg, idx) => {
       href += `/${seg}`;
-      const label =
+      const rawLabel =
         slugToLabel && slugToLabel[seg]
           ? slugToLabel[seg]
-          : seg.charAt(0).toUpperCase() + seg.slice(1);
+          : seg.replace(/[-_]/g, ' ');
+      const label = capitalizeWords(rawLabel);
       return {
         label,
         href,
@@ -37,5 +40,5 @@ export function Breadcrumbs({ slugToLabel }: BreadcrumbsProps) {
 
   if (items.length === 0) return null;
 
-  return <BreadcrumbNav items={items} />;
+  return <BreadcrumbNav items={items} className={className} />;
 }

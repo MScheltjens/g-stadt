@@ -1,8 +1,8 @@
 import { getTranslations } from '@invicity/i18n';
 
-import { PublicPageHeader } from '@/components/layout';
-import { Breadcrumbs } from '@/components/navigation/breadcrumb/Breadcrumbs';
+import { PageNavigation } from '@/components/navigation';
 import { getAllServicesByCategory } from '@/lib/api';
+import { PageHeading } from '@/components/layout';
 
 export default async function ServicesPage() {
   const t = await getTranslations('services');
@@ -10,9 +10,8 @@ export default async function ServicesPage() {
 
   return (
     <>
-      <Breadcrumbs slugToLabel={{ services: t('title') }} />
-      <PublicPageHeader title={t('title')} />
-      <pre>{JSON.stringify(servicesList, null, 2)}</pre>;
+      <PageNavigation slugToLabel={{ services: t('title') }} />
+      <PageHeading title={t('title')} description={t('description')} />
     </>
   );
 }

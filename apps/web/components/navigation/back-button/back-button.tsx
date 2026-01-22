@@ -3,7 +3,7 @@
 import { ROUTES } from '@invicity/constants';
 import { usePathname, useRouter, useTranslations } from '@invicity/i18n';
 import { Button } from '@invicity/ui/components/button';
-import { ArrowLeftIcon } from '@invicity/ui/components/icons';
+import { ChevronLeft } from '@invicity/ui/components/icons';
 
 export function BackButton({ className }: { className?: string }) {
   const t = useTranslations('backButton');
@@ -13,8 +13,8 @@ export function BackButton({ className }: { className?: string }) {
   if (pathname === ROUTES.HOME) return null;
 
   return (
-    <Button onClick={() => router.back()} className={className} variant="link">
-      <ArrowLeftIcon className="w-4 h-4 mr-2" aria-hidden="true" />
+    <Button onClick={() => router.back()} className={className} variant="ghost">
+      <ChevronLeft aria-hidden="true" />
       {t('label')}
     </Button>
   );

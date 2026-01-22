@@ -8,7 +8,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@invicity/ui/components/breadcrumb';
-import { cn } from '@invicity/ui/lib/utils';
 
 export interface BreadcrumbItem {
   label: string;
@@ -24,7 +23,7 @@ interface BreadcrumbProps {
 export function BreadcrumbNav({ items, className = '' }: BreadcrumbProps) {
   const t = useTranslations('breadcrumbs');
   return (
-    <Breadcrumb className={cn('py-4 pl-6', className)}>
+    <Breadcrumb className={className}>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href={ROUTES.HOME}>{t('home')}</BreadcrumbLink>
