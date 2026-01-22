@@ -11,9 +11,9 @@ datasource db {
 ////////////////////
 
 enum Role {
-    CITIZEN
-    STAFF
-    ADMIN
+    citizen
+    staff
+    admin
 }
 
 enum Locale {
@@ -23,8 +23,8 @@ enum Locale {
 }
 
 enum CategoryType {
-    SERVICE
-    CONTACT
+    service
+    contact
 }
 
 ////////////////////
@@ -35,7 +35,7 @@ model User {
     id           String   @id @default(uuid())
     email        String   @unique
     passwordHash String
-    role         Role     @default(CITIZEN)
+    role         Role     @default(citizen)
     isVerified   Boolean  @default(false)
     createdAt    DateTime @default(now())
 
