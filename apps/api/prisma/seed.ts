@@ -1,4 +1,5 @@
 import 'dotenv/config';
+
 import { CATEGORYTYPE, LOCALES } from '@kwh/constants';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';

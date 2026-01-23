@@ -1,8 +1,9 @@
 'use client';
 
-import { LOCALES, ROUTES, SUPPORTED_LOCALES } from '@kwh/constants';
+import { ROUTES, SUPPORTED_LOCALES } from '@kwh/constants';
 import { CategoryListResponse } from '@kwh/contracts';
 import { Link, useLocale, useTranslations } from '@kwh/i18n';
+import { usePathname } from '@kwh/i18n';
 import { Button, buttonVariants } from '@kwh/ui/components/button';
 import { CircleAlert, Globe, User } from '@kwh/ui/components/icons';
 import {
@@ -14,7 +15,6 @@ import {
 } from '@kwh/ui/components/navigation-menu';
 import { cn } from '@kwh/ui/lib/utils';
 import { useRouter } from 'next/navigation';
-import { usePathname } from '@kwh/i18n';
 import path from 'path';
 
 type TopNavProps = {
