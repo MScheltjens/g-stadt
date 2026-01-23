@@ -19,11 +19,17 @@ import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { register } from '@/server/actions/auth.actions';
+import z from 'zod';
 
 // Define the schema for the registration form
 // This is not a contract schema but a form-specific schema
-
-// Registration Form Component
+const RegisterInputFormSchema = RegisterInputSchema.extend({
+  confirmPassword: z.string().min(8),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: 'Passwords do not match',
+  path: ['confirmPassword'],
+});
+type RegisterInputForm = z.infer<typeof RegisterInputFormSchema>;
 
 export function RegisterForm() {
   const t = useTranslations('auth');
@@ -31,8 +37,8 @@ export function RegisterForm() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const form = useForm<RegisterInput>({
-    resolver: zodResolver(RegisterInputSchema),
+  const form = useForm<RegisterInputForm>({
+    resolver: zodResolver(RegisterInputFormSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -40,7 +46,7 @@ export function RegisterForm() {
     },
   });
 
-  async function onSubmit(data: Omit<RegisterInput, 'confirmPassword'>) {
+  async function onSubmit(data: RegisterInput) {
     setError('');
 
     startTransition(async () => {
