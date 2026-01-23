@@ -1,7 +1,7 @@
-import { Pathname } from '@invicity/constants';
-import { getTranslations, Link } from '@invicity/i18n';
-import { Badge } from '@invicity/ui/components/badge';
-import { buttonVariants } from '@invicity/ui/components/button';
+import { Pathname } from '@kwh/constants';
+import { getTranslations, Link } from '@kwh/i18n';
+import { Badge } from '@kwh/ui/components/badge';
+import { buttonVariants } from '@kwh/ui/components/button';
 import {
   Card,
   CardContent,
@@ -9,8 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@invicity/ui/components/card';
-import { ArrowRight } from '@invicity/ui/components/icons';
+} from '@kwh/ui/components/card';
+import { ArrowRight } from '@kwh/ui/components/icons';
 
 export type ItemCardProps = {
   title: string;

@@ -1,5 +1,5 @@
-import { Locale } from '@invicity/constants';
-import { type CategoryListResponse } from '@invicity/contracts';
+import { Locale } from '@kwh/constants';
+import { type CategoryListResponse } from '@kwh/contracts';
 import { Injectable, Logger } from '@nestjs/common';
 
 import { CategoriesService } from '@/content/categories/categories.service.js';

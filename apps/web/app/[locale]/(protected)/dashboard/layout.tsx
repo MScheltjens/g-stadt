@@ -1,5 +1,5 @@
-import { ROLES } from '@invicity/constants';
-import { getTranslations, redirect } from '@invicity/i18n';
+import { ROLES } from '@kwh/constants';
+import { getTranslations, redirect } from '@kwh/i18n';
 import { Metadata } from 'next';
 
 import { checkUserRole } from '@/authentication/jwt';

@@ -1,4 +1,4 @@
-import { AuthResponse, JwtPayloadSchema } from '@invicity/contracts';
+import { AuthResponse, JwtPayloadSchema } from '@kwh/contracts';
 import {
   Body,
   Controller,

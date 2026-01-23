@@ -1,5 +1,5 @@
 {
-    "extends": "@invicity/typescript-config/contracts.json",
+    "extends": "@kwh/typescript-config/contracts.json",
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist"

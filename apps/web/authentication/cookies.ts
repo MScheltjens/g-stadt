@@ -1,4 +1,4 @@
-import { COOKIE_NAMES } from '@invicity/constants';
+import { COOKIE_NAMES } from '@kwh/constants';
 import { cookies } from 'next/headers';
 
 import { env } from '@/utils/env';

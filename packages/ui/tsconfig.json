@@ -1,5 +1,5 @@
 {
-  "extends": "@invicity/typescript-config/ui.json",
+  "extends": "@kwh/typescript-config/ui.json",
   "compilerOptions": {
     "baseUrl": ".",
   },

@@ -1,4 +1,4 @@
-import { getTranslations } from '@invicity/i18n';
+import { getTranslations } from '@kwh/i18n';
 import { Metadata } from 'next';
 
 import { Footer } from '@/components/layout/footer';

@@ -1,5 +1,5 @@
 'use server';
-import { ROUTES } from '@invicity/constants';
+import { ROUTES } from '@kwh/constants';
 import {
   type AuthResponse,
   AuthResponseSchema,
@@ -7,7 +7,7 @@ import {
   RegisterInputSchema,
   type SignInInput,
   SignInInputSchema,
-} from '@invicity/contracts';
+} from '@kwh/contracts';
 import { redirect } from 'next/navigation';
 
 import {

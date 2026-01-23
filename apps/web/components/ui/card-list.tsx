@@ -1,14 +1,14 @@
 // card-list.tsx
 
-import { Button } from '@invicity/ui/components/button';
+import { Button } from '@kwh/ui/components/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@invicity/ui/components/card';
-import { cn } from '@invicity/ui/lib/utils';
+} from '@kwh/ui/components/card';
+import { cn } from '@kwh/ui/lib/utils';
 import { ComponentPropsWithoutRef } from 'react';
 
 import { ItemCard, ItemCardProps } from './item-card';

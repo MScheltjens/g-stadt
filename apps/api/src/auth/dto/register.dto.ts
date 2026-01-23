@@ -1,4 +1,4 @@
-import { RegisterInputSchema } from '@invicity/contracts';
+import { RegisterInputSchema } from '@kwh/contracts';
 import { createZodDto } from 'nestjs-zod';
 
 export class RegisterDto extends createZodDto(RegisterInputSchema) {}

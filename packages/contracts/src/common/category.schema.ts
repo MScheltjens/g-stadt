@@ -1,4 +1,4 @@
-import { CATEGORYTYPE } from '@invicity/constants';
+import { CATEGORYTYPE } from '@kwh/constants';
 import { z } from 'zod';
 
 import { LocaleSchema } from '../routing/locale.schema.js';

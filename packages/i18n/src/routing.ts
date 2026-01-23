@@ -2,7 +2,7 @@ import {
   DEFAULT_LOCALE,
   ROUTE_PATHNAMES,
   SUPPORTED_LOCALES,
-} from '@invicity/constants';
+} from '@kwh/constants';
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({

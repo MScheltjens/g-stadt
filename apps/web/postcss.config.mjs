@@ -1,1 +1,1 @@
-export { default } from "@invicity/ui/postcss.config";
+export { default } from "@kwh/ui/postcss.config";

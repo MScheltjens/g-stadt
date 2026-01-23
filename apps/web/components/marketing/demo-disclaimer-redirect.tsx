@@ -1,10 +1,10 @@
 'use client';
 
-import { ROUTES } from '@invicity/constants';
-import { useRouter } from '@invicity/i18n';
+import { ROUTES } from '@kwh/constants';
+import { useRouter } from '@kwh/i18n';
 import { useEffect } from 'react';
 
-const STORAGE_KEY = 'invicity-demo-disclaimer-v1';
+const STORAGE_KEY = 'knowhere-demo-disclaimer-v1';
 
 export function DemoDisclaimerRedirect() {
   const router = useRouter();

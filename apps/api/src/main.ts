@@ -19,8 +19,8 @@ async function bootstrap() {
   app.enableCors({
     origin:
       env.NODE_ENV === 'production'
-        ? 'https://invicity-web.vercel.app/'
-        : ['http://localhost:3000', 'https://invicity-web.vercel.app'], // production frontend only
+        ? 'https://knowhere-web.vercel.app/'
+        : ['http://localhost:3000', 'https://knowhere-web.vercel.app'], // production frontend only
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

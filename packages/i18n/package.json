@@ -1,5 +1,5 @@
 {
-  "name": "@invicity/i18n",
+  "name": "@kwh/i18n",
   "version": "0.0.0",
   "private": true,
   "main": "src/index.ts",
@@ -16,14 +16,14 @@
     "clean": "npx rimraf dist"
   },
   "devDependencies": {
-    "@invicity/eslint-config": "workspace:*",
-    "@invicity/typescript-config": "workspace:*",
+    "@kwh/eslint-config": "workspace:*",
+    "@kwh/typescript-config": "workspace:*",
     "@types/node": "^25.0.3",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3"
   },
   "dependencies": {
-    "@invicity/constants": "workspace:*",
+    "@kwh/constants": "workspace:*",
     "next-intl": "^4.7.0"
   },
   "peerDependencies": {

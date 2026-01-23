@@ -8,7 +8,7 @@
  * @module components/providers/auth-provider
  */
 
-import { JwtPayload } from '@invicity/contracts';
+import { JwtPayload } from '@kwh/contracts';
 import { createContext, ReactNode, useContext } from 'react';
 
 /**

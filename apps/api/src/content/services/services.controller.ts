@@ -1,4 +1,4 @@
-import { Locale } from '@invicity/constants';
+import { Locale } from '@kwh/constants';
 import {
   BadRequestException,
   Controller,

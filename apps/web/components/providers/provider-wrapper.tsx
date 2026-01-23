@@ -1,8 +1,8 @@
 'use client';
 
-import { Locale } from '@invicity/constants';
-import { JwtPayload } from '@invicity/contracts';
-import { MESSAGES, NextIntlClientProvider } from '@invicity/i18n';
+import { Locale } from '@kwh/constants';
+import { JwtPayload } from '@kwh/contracts';
+import { MESSAGES, NextIntlClientProvider } from '@kwh/i18n';
 
 import { AuthProvider } from './auth-provicer';
 

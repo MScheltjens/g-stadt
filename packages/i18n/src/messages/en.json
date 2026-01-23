@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Invicity",
-    "description": "Official application of the City of Invicity."
+    "title": "knowhere",
+    "description": "Official application of the City of knowhere."
   },
   "public": {
     "meta": {
-      "title": "Invicity",
+      "title": "knowhere",
       "description": "Official city portal for services, news, and events."
     }
   },
@@ -13,13 +13,13 @@
     "layout": {
       "meta": {
         "title": "Authentication",
-        "description": "Authenticate to access Invicity services."
+        "description": "Authenticate to access knowhere services."
       }
     },
     "login": {
       "meta": {
         "title": "Sign in",
-        "description": "Sign in to your Invicity account."
+        "description": "Sign in to your knowhere account."
       },
       "title": "Sign in to your account",
       "subtitle": "Or",
@@ -34,7 +34,7 @@
     "register": {
       "meta": {
         "title": "Register",
-        "description": "Create a new account with Invicity."
+        "description": "Create a new account with knowhere."
       },
       "title": "Create your account",
       "subtitle": "Or",
@@ -53,13 +53,13 @@
   "protected": {
     "meta": {
       "title": "Account",
-      "description": "Private area of your Invicity account."
+      "description": "Private area of your knowhere account."
     }
   },
   "dashboard": {
     "meta": {
       "title": "Dashboard",
-      "description": "Overview of your personal Invicity account."
+      "description": "Overview of your personal knowhere account."
     },
     "welcome": "Welcome to your dashboard",
     "loading": "Loading...",
@@ -74,12 +74,12 @@
   "home": {
     "meta": {
       "title": "Home",
-      "description": "Welcome to Invicity, your official city portal."
+      "description": "Welcome to knowhere, your official city portal."
     },
     "hero": {
       "badge": "Official city site",
       "title": "Welcome to",
-      "cityName": "Invicity",
+      "cityName": "knowhere",
       "description": "Live. Work. Shape the future – all information and services from your city in one place.",
       "actionServices": "Services",
       "actionNews": "News",
@@ -89,28 +89,28 @@
   "services": {
     "meta": {
       "title": "Services",
-      "description": "Explore the various services offered by Invicity to its residents."
+      "description": "Explore the various services offered by knowhere to its residents."
     },
     "title": "City services",
-    "description": "Explore the various services offered by Invicity to its residents.",
+    "description": "Explore the various services offered by knowhere to its residents.",
     "viewAll": "View all services"
   },
   "news": {
     "meta": {
       "title": "News",
-      "description": "Stay updated with the latest news and announcements from Invicity."
+      "description": "Stay updated with the latest news and announcements from knowhere."
     },
     "title": "Latest news",
-    "description": "Stay updated with the latest news and announcements from Invicity.",
+    "description": "Stay updated with the latest news and announcements from knowhere.",
     "viewAll": "View all news"
   },
   "events": {
     "meta": {
       "title": "Events",
-      "description": "Discover upcoming events and activities in Invicity."
+      "description": "Discover upcoming events and activities in knowhere."
     },
     "title": "Upcoming events",
-    "description": "Discover events happening in Invicity and participate in community activities.",
+    "description": "Discover events happening in knowhere and participate in community activities.",
     "viewAll": "View all events",
     "readMore": "Read more"
   },
@@ -178,7 +178,7 @@
   },
   "demoDisclaimerModal": {
     "title": "🚧 Demo Project",
-    "description": "InviCity is a fictive city platform built as a demo & portfolio project. Some features are incomplete or simulated.",
+    "description": "knowhere is a fictive city platform built as a demo & portfolio project. Some features are incomplete or simulated.",
     "continue": "Continue to demo"
   },
   "backButton": {

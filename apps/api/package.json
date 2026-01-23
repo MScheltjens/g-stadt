@@ -18,8 +18,8 @@
     "db:seed": "ts-node ./prisma/seed.ts"
   },
   "dependencies": {
-    "@invicity/constants": "workspace:*",
-    "@invicity/contracts": "workspace:*",
+    "@kwh/constants": "workspace:*",
+    "@kwh/contracts": "workspace:*",
     "@nestjs/common": "^11.0.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.0",

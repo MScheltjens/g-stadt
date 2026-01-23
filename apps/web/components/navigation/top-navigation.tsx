@@ -1,4 +1,4 @@
-import { CATEGORYTYPE } from '@invicity/constants';
+import { CATEGORYTYPE } from '@kwh/constants';
 
 import { TopNavbar } from '@/components/navigation/navbar';
 import { getCategories } from '@/server/services/categories.service';

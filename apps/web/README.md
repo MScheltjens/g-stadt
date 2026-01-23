@@ -1,33 +1,49 @@
-# Getting Started
+# Web Application
 
-First, run the development server:
+Next.js frontend for the **knowhere** digital city portal.
 
-```bash
+This application is the public-facing website used by residents and visitors
+to access city information, services, and content.
+
+---
+
+## Role in the Monorepo
+
+The web app is responsible for:
+
+- Rendering the user interface
+- Navigation and layout
+- Client-side interactions
+- Internationalized content
+
+It consumes the public API and shared packages from this repository.
+
+---
+
+## Shared Packages Used
+
+- @invicity/ui
+- @invicity/i18n
+- @invicity/contracts
+- @invicity/constants
+
+---
+
+## Development
+
+Start the development server:
+
 pnpm dev
-# Also works with NPM, YARN, BUN, ...
-```
 
-Browse [localhost:3001](http://localhost:3001) to see the result.
+yaml
+Copy code
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app runs at: http://localhost:3001
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Modals
+## Notes
 
-Modals in this project are implemented the native Next.js way, using Next.js routing and navigation patterns instead of traditional React modal state. This approach leverages route changes and browser history for modal management.
-
-## Learn More
-
-Learn more about `Next.js` with the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Uses Next.js App Router
+- Modals are implemented via routing
+- Locale is derived from the URL

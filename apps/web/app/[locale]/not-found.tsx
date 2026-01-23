@@ -1,4 +1,4 @@
-import { useTranslations } from '@invicity/i18n';
+import { useTranslations } from '@kwh/i18n';
 
 export default function NotFound() {
   const t = useTranslations('notFound');

@@ -1,5 +1,5 @@
-import { Skeleton } from '@invicity/ui/components/skeleton';
-import { cn } from '@invicity/ui/lib/utils';
+import { Skeleton } from '@kwh/ui/components/skeleton';
+import { cn } from '@kwh/ui/lib/utils';
 
 export function PageHeaderSkeleton({ className }: { className?: string }) {
   return (

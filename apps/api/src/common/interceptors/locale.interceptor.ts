@@ -1,12 +1,11 @@
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@invicity/constants';
-import { LocaleSchema } from '@invicity/contracts';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@kwh/constants';
+import { LocaleSchema } from '@kwh/contracts';
 import {
   CallHandler,
   ExecutionContext,
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { Locale } from '@prisma/client';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
 
@@ -37,7 +36,7 @@ export class LocaleInterceptor implements NestInterceptor {
       const acceptLang = req.headers['accept-language']
         .split(',')[0]
         .split('-')[0];
-      if (acceptLang && SUPPORTED_LOCALES.includes(acceptLang as Locale)) {
+      if (acceptLang && SUPPORTED_LOCALES.includes(acceptLang)) {
         rawLocale = acceptLang;
       }
     }

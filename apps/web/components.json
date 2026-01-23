@@ -4,8 +4,8 @@
         "components": "@/components",
         "hooks": "@/hooks",
         "lib": "@/lib",
-        "ui": "@invicity/ui/components",
-        "utils": "@invicity/ui/lib/utils"
+        "ui": "@kwh/ui/components",
+        "utils": "@kwh/ui/lib/utils"
     },
     "iconLibrary": "lucide",
     "rsc": true,

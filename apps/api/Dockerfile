@@ -14,8 +14,8 @@ RUN pnpm config set store-dir .pnpm
 RUN pnpm install --frozen-lockfile
 
 # Build shared packages
-RUN pnpm --filter @invicity/constants build
-RUN pnpm --filter @invicity/contracts build
+RUN pnpm --filter @kwh/constants build
+RUN pnpm --filter @kwh/contracts build
 
 # Build API
 RUN pnpm --filter api build

@@ -1,4 +1,4 @@
-import { getRequestConfig, hasLocale, MESSAGES, routing } from '@invicity/i18n';
+import { getRequestConfig, hasLocale, MESSAGES, routing } from '@kwh/i18n';
 
 export const requestConfig = getRequestConfig(async ({ requestLocale }) => {
   // Typically corresponds to the `[locale]` segment

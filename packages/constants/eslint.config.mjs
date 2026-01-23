@@ -1,3 +1,3 @@
-import { constantsConfig } from '@invicity/eslint-config/constants';
+import { constantsConfig } from '@kwh/eslint-config/constants';
 
 export default constantsConfig;

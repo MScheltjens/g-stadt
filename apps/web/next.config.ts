@@ -1,9 +1,9 @@
 import type { NextConfig } from 'next';
-import createNextIntlPlugin from '@invicity/i18n/plugin';
+import createNextIntlPlugin from '@kwh/i18n/plugin';
 
 const nextConfig = {
   allowedDevOrigins: ['http://localhost:3000'],
-  transpilePackages: ['@invicity/ui', '@invicity/i18n'],
+  transpilePackages: ['@kwh/ui', '@kwh/i18n'],
   output: 'standalone',
 } satisfies NextConfig;
 

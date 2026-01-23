@@ -1,4 +1,4 @@
-import { JwtPayload } from '@invicity/contracts';
+import { JwtPayload } from '@kwh/contracts';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';

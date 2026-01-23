@@ -1,4 +1,4 @@
-import { Skeleton } from '@invicity/ui/components/skeleton';
+import { Skeleton } from '@kwh/ui/components/skeleton';
 
 export function SectionSkeleton({ cardCount = 3 }: { cardCount?: number }) {
   return (

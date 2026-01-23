@@ -1,9 +1,9 @@
 'use client';
 
-import { ROUTES } from '@invicity/constants';
-import { usePathname, useRouter, useTranslations } from '@invicity/i18n';
-import { Button } from '@invicity/ui/components/button';
-import { ChevronLeft } from '@invicity/ui/components/icons';
+import { ROUTES } from '@kwh/constants';
+import { usePathname, useRouter, useTranslations } from '@kwh/i18n';
+import { Button } from '@kwh/ui/components/button';
+import { ChevronLeft } from '@kwh/ui/components/icons';
 
 export function BackButton({ className }: { className?: string }) {
   const t = useTranslations('backButton');

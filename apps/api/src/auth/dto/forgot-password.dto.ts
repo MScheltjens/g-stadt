@@ -1,4 +1,4 @@
-import { ForgotPasswordInputSchema } from '@invicity/contracts';
+import { ForgotPasswordInputSchema } from '@kwh/contracts';
 import { createZodDto } from 'nestjs-zod';
 
 export class ForgotPasswordDto extends createZodDto(

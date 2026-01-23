@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from '@invicity/i18n';
+import { useTranslations } from '@kwh/i18n';
 import { useEffect } from 'react';
 
 export default function Error({

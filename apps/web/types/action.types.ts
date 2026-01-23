@@ -1,4 +1,4 @@
-import { AuthResponse } from '@invicity/contracts';
+import { AuthResponse } from '@kwh/contracts';
 
 export type ActionError = {
   error: string;

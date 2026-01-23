@@ -1,8 +1,8 @@
 'use client';
 
-import { ROUTES, STORAGE_KEY } from '@invicity/constants';
-import { useRouter, useTranslations } from '@invicity/i18n';
-import { Button } from '@invicity/ui/components/button';
+import { ROUTES, STORAGE_KEY } from '@kwh/constants';
+import { useRouter, useTranslations } from '@kwh/i18n';
+import { Button } from '@kwh/ui/components/button';
 import { useCallback, useEffect } from 'react';
 
 import { Modal } from '@/components/ui/modal';

@@ -5,9 +5,9 @@
 
 'use client';
 
-import { Button } from '@invicity/ui/components/button';
-import { Card, CardContent } from '@invicity/ui/components/card';
-import { X } from '@invicity/ui/icons';
+import { Button } from '@kwh/ui/components/button';
+import { Card, CardContent } from '@kwh/ui/components/card';
+import { X } from '@kwh/ui/icons';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 

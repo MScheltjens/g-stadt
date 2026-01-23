@@ -1,11 +1,11 @@
-import { Locale } from '@invicity/constants';
+import { Locale } from '@kwh/constants';
 import {
   CategoryListResponse,
   CategoryListResponseSchema,
   CategoryType,
   ServiceCategoryResponse,
   ServiceCategoryResponseSchema,
-} from '@invicity/contracts';
+} from '@kwh/contracts';
 import { Injectable } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 

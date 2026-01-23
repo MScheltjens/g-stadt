@@ -1,11 +1,11 @@
 {
     "$schema": "https://ui.shadcn.com/schema.json",
     "aliases": {
-        "components": "@invicity/ui/components",
-        "hooks": "@invicity/ui/hooks",
-        "lib": "@invicity/ui/lib",
-        "ui": "@invicity/ui/components",
-        "utils": "@invicity/ui/lib/utils"
+        "components": "@kwh/ui/components",
+        "hooks": "@kwh/ui/hooks",
+        "lib": "@kwh/ui/lib",
+        "ui": "@kwh/ui/components",
+        "utils": "@kwh/ui/lib/utils"
     },
     "iconLibrary": "lucide",
     "rsc": true,

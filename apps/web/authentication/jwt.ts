@@ -1,4 +1,4 @@
-import { JwtPayloadSchema, type Role } from '@invicity/contracts';
+import { JwtPayloadSchema, type Role } from '@kwh/contracts';
 import { jwtDecode } from 'jwt-decode';
 
 import { getAccessToken } from './cookies';

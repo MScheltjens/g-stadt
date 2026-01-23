@@ -14,15 +14,15 @@ importers:
 
   .:
     devDependencies:
-      '@invicity/eslint-config':
-        specifier: workspace:*
-        version: link:configs/eslint-config
-      '@invicity/typescript-config':
-        specifier: workspace:*
-        version: link:configs/typescript-config
       '@jest/types':
         specifier: ^30.2.0
         version: 30.2.0
+      '@kwh/eslint-config':
+        specifier: workspace:*
+        version: link:configs/eslint-config
+      '@kwh/typescript-config':
+        specifier: workspace:*
+        version: link:configs/typescript-config
       '@types/jest':
         specifier: ^29.5.6
         version: 29.5.14
@@ -65,10 +65,10 @@ importers:
 
   apps/api:
     dependencies:
-      '@invicity/constants':
+      '@kwh/constants':
         specifier: workspace:*
         version: link:../../packages/constants
-      '@invicity/contracts':
+      '@kwh/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
       '@nestjs/common':
@@ -115,10 +115,10 @@ importers:
         version: 2.2.3
       nestjs-pino:
         specifier: ^4.5.0
-        version: 4.5.0(@nestjs/common@11.1.12)(pino-http@11.0.0)(pino@10.2.1)(rxjs@7.8.2)
+        version: 4.5.0(@nestjs/common@11.1.12)(pino-http@11.0.0)(pino@10.3.0)(rxjs@7.8.2)
       nestjs-zod:
         specifier: ^5.0.1
-        version: 5.1.1(@nestjs/common@11.1.12)(@nestjs/swagger@11.2.5)(rxjs@7.8.2)(zod@4.3.5)
+        version: 5.1.1(@nestjs/common@11.1.12)(@nestjs/swagger@11.2.5)(rxjs@7.8.2)(zod@4.3.6)
       passport:
         specifier: ^0.7.0
         version: 0.7.0
@@ -133,7 +133,7 @@ importers:
         version: 8.17.2
       pino:
         specifier: ^10.2.1
-        version: 10.2.1
+        version: 10.3.0
       pino-pretty:
         specifier: ^13.1.3
         version: 13.1.3
@@ -192,16 +192,16 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.71.1)
-      '@invicity/constants':
+      '@kwh/constants':
         specifier: workspace:*
         version: link:../../packages/constants
-      '@invicity/contracts':
+      '@kwh/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
-      '@invicity/i18n':
+      '@kwh/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
-      '@invicity/ui':
+      '@kwh/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       jwt-decode:
@@ -221,12 +221,12 @@ importers:
         version: 7.71.1(react@19.2.3)
       zod:
         specifier: ^4.3.5
-        version: 4.3.5
+        version: 4.3.6
     devDependencies:
-      '@invicity/eslint-config':
+      '@kwh/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@invicity/typescript-config':
+      '@kwh/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
@@ -286,32 +286,32 @@ importers:
 
   packages/constants:
     devDependencies:
-      '@invicity/eslint-config':
+      '@kwh/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@invicity/typescript-config':
+      '@kwh/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
 
   packages/contracts:
     dependencies:
-      '@invicity/constants':
+      '@kwh/constants':
         specifier: workspace:*
         version: link:../constants
       zod:
         specifier: ^4.3.5
-        version: 4.3.5
+        version: 4.3.6
     devDependencies:
-      '@invicity/eslint-config':
+      '@kwh/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@invicity/typescript-config':
+      '@kwh/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
 
   packages/i18n:
     dependencies:
-      '@invicity/constants':
+      '@kwh/constants':
         specifier: workspace:*
         version: link:../constants
       next:
@@ -327,10 +327,10 @@ importers:
         specifier: ^19.2.3
         version: 19.2.3(react@19.2.3)
     devDependencies:
-      '@invicity/eslint-config':
+      '@kwh/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@invicity/typescript-config':
+      '@kwh/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@types/node':
@@ -385,10 +385,10 @@ importers:
         specifier: ^1.3.6
         version: 1.4.0
     devDependencies:
-      '@invicity/eslint-config':
+      '@kwh/eslint-config':
         specifier: workspace:*
         version: link:../../configs/eslint-config
-      '@invicity/typescript-config':
+      '@kwh/typescript-config':
         specifier: workspace:*
         version: link:../../configs/typescript-config
       '@tailwindcss/postcss':
@@ -1761,7 +1761,7 @@ packages:
     resolution: {integrity: sha512-DmdYgtezMkh3cpU8/1uyXakv3tJRcmcXxBOcO0tbaozPwpmh4YMsnWrQm9ZmZMfa5ocbxzbFk6O4bDPEc/iAnA==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
     dependencies:
-      '@sinclair/typebox': 0.34.47
+      '@sinclair/typebox': 0.34.48
     dev: true
 
   /@jest/snapshot-utils@30.2.0:
@@ -2416,8 +2416,8 @@ packages:
       consola: 3.4.2
     dev: false
 
-  /@parcel/watcher-android-arm64@2.5.4:
-    resolution: {integrity: sha512-hoh0vx4v+b3BNI7Cjoy2/B0ARqcwVNrzN/n7DLq9ZB4I3lrsvhrkCViJyfTj/Qi5xM9YFiH4AmHGK6pgH1ss7g==}
+  /@parcel/watcher-android-arm64@2.5.6:
+    resolution: {integrity: sha512-YQxSS34tPF/6ZG7r/Ih9xy+kP/WwediEUsqmtf0cuCV5TPPKw/PQHRhueUo6JdeFJaqV3pyjm0GdYjZotbRt/A==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [android]
@@ -2425,8 +2425,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-darwin-arm64@2.5.4:
-    resolution: {integrity: sha512-kphKy377pZiWpAOyTgQYPE5/XEKVMaj6VUjKT5VkNyUJlr2qZAn8gIc7CPzx+kbhvqHDT9d7EqdOqRXT6vk0zw==}
+  /@parcel/watcher-darwin-arm64@2.5.6:
+    resolution: {integrity: sha512-Z2ZdrnwyXvvvdtRHLmM4knydIdU9adO3D4n/0cVipF3rRiwP+3/sfzpAwA/qKFL6i1ModaabkU7IbpeMBgiVEA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [darwin]
@@ -2434,8 +2434,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-darwin-x64@2.5.4:
-    resolution: {integrity: sha512-UKaQFhCtNJW1A9YyVz3Ju7ydf6QgrpNQfRZ35wNKUhTQ3dxJ/3MULXN5JN/0Z80V/KUBDGa3RZaKq1EQT2a2gg==}
+  /@parcel/watcher-darwin-x64@2.5.6:
+    resolution: {integrity: sha512-HgvOf3W9dhithcwOWX9uDZyn1lW9R+7tPZ4sug+NGrGIo4Rk1hAXLEbcH1TQSqxts0NYXXlOWqVpvS1SFS4fRg==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [darwin]
@@ -2443,8 +2443,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-freebsd-x64@2.5.4:
-    resolution: {integrity: sha512-Dib0Wv3Ow/m2/ttvLdeI2DBXloO7t3Z0oCp4bAb2aqyqOjKPPGrg10pMJJAQ7tt8P4V2rwYwywkDhUia/FgS+Q==}
+  /@parcel/watcher-freebsd-x64@2.5.6:
+    resolution: {integrity: sha512-vJVi8yd/qzJxEKHkeemh7w3YAn6RJCtYlE4HPMoVnCpIXEzSrxErBW5SJBgKLbXU3WdIpkjBTeUNtyBVn8TRng==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [freebsd]
@@ -2452,8 +2452,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-linux-arm-glibc@2.5.4:
-    resolution: {integrity: sha512-I5Vb769pdf7Q7Sf4KNy8Pogl/URRCKu9ImMmnVKYayhynuyGYMzuI4UOWnegQNa2sGpsPSbzDsqbHNMyeyPCgw==}
+  /@parcel/watcher-linux-arm-glibc@2.5.6:
+    resolution: {integrity: sha512-9JiYfB6h6BgV50CCfasfLf/uvOcJskMSwcdH1PHH9rvS1IrNy8zad6IUVPVUfmXr+u+Km9IxcfMLzgdOudz9EQ==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
@@ -2461,8 +2461,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-linux-arm-musl@2.5.4:
-    resolution: {integrity: sha512-kGO8RPvVrcAotV4QcWh8kZuHr9bXi9a3bSZw7kFarYR0+fGliU7hd/zevhjw8fnvIKG3J9EO5G6sXNGCSNMYPQ==}
+  /@parcel/watcher-linux-arm-musl@2.5.6:
+    resolution: {integrity: sha512-Ve3gUCG57nuUUSyjBq/MAM0CzArtuIOxsBdQ+ftz6ho8n7s1i9E1Nmk/xmP323r2YL0SONs1EuwqBp2u1k5fxg==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
@@ -2470,8 +2470,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-linux-arm64-glibc@2.5.4:
-    resolution: {integrity: sha512-KU75aooXhqGFY2W5/p8DYYHt4hrjHZod8AhcGAmhzPn/etTa+lYCDB2b1sJy3sWJ8ahFVTdy+EbqSBvMx3iFlw==}
+  /@parcel/watcher-linux-arm64-glibc@2.5.6:
+    resolution: {integrity: sha512-f2g/DT3NhGPdBmMWYoxixqYr3v/UXcmLOYy16Bx0TM20Tchduwr4EaCbmxh1321TABqPGDpS8D/ggOTaljijOA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
@@ -2479,8 +2479,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-linux-arm64-musl@2.5.4:
-    resolution: {integrity: sha512-Qx8uNiIekVutnzbVdrgSanM+cbpDD3boB1f8vMtnuG5Zau4/bdDbXyKwIn0ToqFhIuob73bcxV9NwRm04/hzHQ==}
+  /@parcel/watcher-linux-arm64-musl@2.5.6:
+    resolution: {integrity: sha512-qb6naMDGlbCwdhLj6hgoVKJl2odL34z2sqkC7Z6kzir8b5W65WYDpLB6R06KabvZdgoHI/zxke4b3zR0wAbDTA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
@@ -2488,8 +2488,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-linux-x64-glibc@2.5.4:
-    resolution: {integrity: sha512-UYBQvhYmgAv61LNUn24qGQdjtycFBKSK3EXr72DbJqX9aaLbtCOO8+1SkKhD/GNiJ97ExgcHBrukcYhVjrnogA==}
+  /@parcel/watcher-linux-x64-glibc@2.5.6:
+    resolution: {integrity: sha512-kbT5wvNQlx7NaGjzPFu8nVIW1rWqV780O7ZtkjuWaPUgpv2NMFpjYERVi0UYj1msZNyCzGlaCWEtzc+exjMGbQ==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
@@ -2497,8 +2497,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-linux-x64-musl@2.5.4:
-    resolution: {integrity: sha512-YoRWCVgxv8akZrMhdyVi6/TyoeeMkQ0PGGOf2E4omODrvd1wxniXP+DBynKoHryStks7l+fDAMUBRzqNHrVOpg==}
+  /@parcel/watcher-linux-x64-musl@2.5.6:
+    resolution: {integrity: sha512-1JRFeC+h7RdXwldHzTsmdtYR/Ku8SylLgTU/reMuqdVD7CtLwf0VR1FqeprZ0eHQkO0vqsbvFLXUmYm/uNKJBg==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
@@ -2506,8 +2506,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-win32-arm64@2.5.4:
-    resolution: {integrity: sha512-iby+D/YNXWkiQNYcIhg8P5hSjzXEHaQrk2SLrWOUD7VeC4Ohu0WQvmV+HDJokZVJ2UjJ4AGXW3bx7Lls9Ln4TQ==}
+  /@parcel/watcher-win32-arm64@2.5.6:
+    resolution: {integrity: sha512-3ukyebjc6eGlw9yRt678DxVF7rjXatWiHvTXqphZLvo7aC5NdEgFufVwjFfY51ijYEWpXbqF5jtrK275z52D4Q==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [win32]
@@ -2515,8 +2515,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-win32-ia32@2.5.4:
-    resolution: {integrity: sha512-vQN+KIReG0a2ZDpVv8cgddlf67J8hk1WfZMMP7sMeZmJRSmEax5xNDNWKdgqSe2brOKTQQAs3aCCUal2qBHAyg==}
+  /@parcel/watcher-win32-ia32@2.5.6:
+    resolution: {integrity: sha512-k35yLp1ZMwwee3Ez/pxBi5cf4AoBKYXj00CZ80jUz5h8prpiaQsiRPKQMxoLstNuqe2vR4RNPEAEcjEFzhEz/g==}
     engines: {node: '>= 10.0.0'}
     cpu: [ia32]
     os: [win32]
@@ -2524,8 +2524,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher-win32-x64@2.5.4:
-    resolution: {integrity: sha512-3A6efb6BOKwyw7yk9ro2vus2YTt2nvcd56AuzxdMiVOxL9umDyN5PKkKfZ/gZ9row41SjVmTVQNWQhaRRGpOKw==}
+  /@parcel/watcher-win32-x64@2.5.6:
+    resolution: {integrity: sha512-hbQlYcCq5dlAX9Qx+kFb0FHue6vbjlf0FrNzSKdYK2APUf7tGfGxQCk2ihEREmbR6ZMc0MVAD5RIX/41gpUzTw==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [win32]
@@ -2533,8 +2533,8 @@ packages:
     dev: false
     optional: true
 
-  /@parcel/watcher@2.5.4:
-    resolution: {integrity: sha512-WYa2tUVV5HiArWPB3ydlOc4R2ivq0IDrlqhMi3l7mVsFEXNcTfxYFPIHXHXIh/ca/y/V5N4E1zecyxdIBjYnkQ==}
+  /@parcel/watcher@2.5.6:
+    resolution: {integrity: sha512-tmmZ3lQxAe/k/+rNnXQRawJ4NjxO2hqiOLTHvWchtGZULp4RyFeh6aU4XdOYBFe2KE1oShQTv4AblOs2iOrNnQ==}
     engines: {node: '>= 10.0.0'}
     requiresBuild: true
     dependencies:
@@ -2543,19 +2543,19 @@ packages:
       node-addon-api: 7.1.1
       picomatch: 4.0.3
     optionalDependencies:
-      '@parcel/watcher-android-arm64': 2.5.4
-      '@parcel/watcher-darwin-arm64': 2.5.4
-      '@parcel/watcher-darwin-x64': 2.5.4
-      '@parcel/watcher-freebsd-x64': 2.5.4
-      '@parcel/watcher-linux-arm-glibc': 2.5.4
-      '@parcel/watcher-linux-arm-musl': 2.5.4
-      '@parcel/watcher-linux-arm64-glibc': 2.5.4
-      '@parcel/watcher-linux-arm64-musl': 2.5.4
-      '@parcel/watcher-linux-x64-glibc': 2.5.4
-      '@parcel/watcher-linux-x64-musl': 2.5.4
-      '@parcel/watcher-win32-arm64': 2.5.4
-      '@parcel/watcher-win32-ia32': 2.5.4
-      '@parcel/watcher-win32-x64': 2.5.4
+      '@parcel/watcher-android-arm64': 2.5.6
+      '@parcel/watcher-darwin-arm64': 2.5.6
+      '@parcel/watcher-darwin-x64': 2.5.6
+      '@parcel/watcher-freebsd-x64': 2.5.6
+      '@parcel/watcher-linux-arm-glibc': 2.5.6
+      '@parcel/watcher-linux-arm-musl': 2.5.6
+      '@parcel/watcher-linux-arm64-glibc': 2.5.6
+      '@parcel/watcher-linux-arm64-musl': 2.5.6
+      '@parcel/watcher-linux-x64-glibc': 2.5.6
+      '@parcel/watcher-linux-x64-musl': 2.5.6
+      '@parcel/watcher-win32-arm64': 2.5.6
+      '@parcel/watcher-win32-ia32': 2.5.6
+      '@parcel/watcher-win32-x64': 2.5.6
     dev: false
 
   /@pinojs/redact@0.4.0:
@@ -3330,8 +3330,8 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@sinclair/typebox@0.34.47:
-    resolution: {integrity: sha512-ZGIBQ+XDvO5JQku9wmwtabcVTHJsgSWAHYtVuM9pBNNR5E88v6Jcj/llpmsjivig5X8A8HHOb4/mbEKPS5EvAw==}
+  /@sinclair/typebox@0.34.48:
+    resolution: {integrity: sha512-kKJTNuK3AQOrgjjotVxMrCn1sUJwM76wMszfq1kdU4uYVJjvEWuFQ6HgvLt4Xz3fSmZlTOxJ/Ie13KnIcWQXFA==}
     dev: true
 
   /@sindresorhus/is@5.6.0:
@@ -5056,8 +5056,8 @@ packages:
     hasBin: true
     dependencies:
       baseline-browser-mapping: 2.9.17
-      caniuse-lite: 1.0.30001765
-      electron-to-chromium: 1.5.277
+      caniuse-lite: 1.0.30001766
+      electron-to-chromium: 1.5.278
       node-releases: 2.0.27
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
 
@@ -5189,8 +5189,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite@1.0.30001765:
-    resolution: {integrity: sha512-LWcNtSyZrakjECqmpP4qdg0MMGdN368D7X8XvvAqOcqMv0RxnlqVKZl2V6/mBR68oYMxOZPLw/gO7DuisMHUvQ==}
+  /caniuse-lite@1.0.30001766:
+    resolution: {integrity: sha512-4C0lfJ0/YPjJQHagaE9x2Elb69CIqEPZeG0anQt9SIvIoOH4a4uaRl73IavyO+0qZh6MDLH//DrXThEYKHkmYA==}
 
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -5854,8 +5854,8 @@ packages:
       fast-check: 3.23.2
     dev: false
 
-  /electron-to-chromium@1.5.277:
-    resolution: {integrity: sha512-wKXFZw4erWmmOz5N/grBoJ2XrNJGDFMu2+W5ACHza5rHtvsqrK4gb6rnLC7XxKB9WlJ+RmyQatuEXmtm86xbnw==}
+  /electron-to-chromium@1.5.278:
+    resolution: {integrity: sha512-dQ0tM1svDRQOwxnXxm+twlGTjr9Upvt8UFWAgmLsxEzFQxhbti4VwxmMjsDxVC51Zo84swW7FVCXEV+VAkhuPw==}
 
   /emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -6159,8 +6159,8 @@ packages:
       '@babel/parser': 7.28.6
       eslint: 9.39.2
       hermes-parser: 0.25.1
-      zod: 4.3.5
-      zod-validation-error: 4.0.2(zod@4.3.5)
+      zod: 4.3.6
+      zod-validation-error: 4.0.2(zod@4.3.6)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8803,7 +8803,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /nestjs-pino@4.5.0(@nestjs/common@11.1.12)(pino-http@11.0.0)(pino@10.2.1)(rxjs@7.8.2):
+  /nestjs-pino@4.5.0(@nestjs/common@11.1.12)(pino-http@11.0.0)(pino@10.3.0)(rxjs@7.8.2):
     resolution: {integrity: sha512-e54ChJMACSGF8gPYaHsuD07RW7l/OVoV6aI8Hqhpp0ZQ4WA8QY3eewL42JX7Z1U6rV7byNU7bGBV9l6d9V6PDQ==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -8813,12 +8813,12 @@ packages:
       rxjs: ^7.1.0
     dependencies:
       '@nestjs/common': 11.1.12(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      pino: 10.2.1
+      pino: 10.3.0
       pino-http: 11.0.0
       rxjs: 7.8.2
     dev: false
 
-  /nestjs-zod@5.1.1(@nestjs/common@11.1.12)(@nestjs/swagger@11.2.5)(rxjs@7.8.2)(zod@4.3.5):
+  /nestjs-zod@5.1.1(@nestjs/common@11.1.12)(@nestjs/swagger@11.2.5)(rxjs@7.8.2)(zod@4.3.6):
     resolution: {integrity: sha512-pXa9Jrdip7iedKvGxJTvvCFVRCoIcNENPCsHjpCefPH3PcFejRgkZkUcr3TYITRyxnUk7Zy5OsLpirZGLYBfBQ==}
     peerDependencies:
       '@nestjs/common': ^10.0.0 || ^11.0.0
@@ -8833,7 +8833,7 @@ packages:
       '@nestjs/swagger': 11.2.5(@nestjs/common@11.1.12)(@nestjs/core@11.1.12)(reflect-metadata@0.2.2)
       deepmerge: 4.3.1
       rxjs: 7.8.2
-      zod: 4.3.5
+      zod: 4.3.6
     dev: false
 
   /netmask@2.0.2:
@@ -8856,7 +8856,7 @@ packages:
         optional: true
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
-      '@parcel/watcher': 2.5.4
+      '@parcel/watcher': 2.5.6
       '@swc/core': 1.15.10
       negotiator: 1.0.0
       next: 16.0.10(@babel/core@7.28.6)(react-dom@19.2.3)(react@19.2.3)
@@ -8902,7 +8902,7 @@ packages:
     dependencies:
       '@next/env': 16.0.10
       '@swc/helpers': 0.5.15
-      caniuse-lite: 1.0.30001765
+      caniuse-lite: 1.0.30001766
       postcss: 8.4.31
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
@@ -9469,7 +9469,7 @@ packages:
     resolution: {integrity: sha512-wqg5XIAGRRIWtTk8qPGxkbrfiwEWz1lgedVLvhLALudKXvg1/L2lTFgTGPJ4Z2e3qcRmxoFxDuSdMdMGNM6I1g==}
     dependencies:
       get-caller-file: 2.0.5
-      pino: 10.2.1
+      pino: 10.3.0
       pino-std-serializers: 7.1.0
       process-warning: 5.0.0
     dev: false
@@ -9497,8 +9497,8 @@ packages:
     resolution: {integrity: sha512-BndPH67/JxGExRgiX1dX0w1FvZck5Wa4aal9198SrRhZjH3GxKQUKIBnYJTdj2HDN3UQAS06HlfcSbQj2OHmaw==}
     dev: false
 
-  /pino@10.2.1:
-    resolution: {integrity: sha512-Tjyv76gdUe2460dEhtcnA4fU/+HhGq2Kr7OWlo2R/Xxbmn/ZNKWavNWTD2k97IE+s755iVU7WcaOEIl+H3cq8w==}
+  /pino@10.3.0:
+    resolution: {integrity: sha512-0GNPNzHXBKw6U/InGe79A3Crzyk9bcSyObF9/Gfo9DLEf5qj5RF50RSjsu0W1rZ6ZqRGdzDFCRBQvi9/rSGPtA==}
     hasBin: true
     dependencies:
       '@pinojs/redact': 0.4.0
@@ -11600,14 +11600,14 @@ packages:
       grammex: 3.1.12
     dev: false
 
-  /zod-validation-error@4.0.2(zod@4.3.5):
+  /zod-validation-error@4.0.2(zod@4.3.6):
     resolution: {integrity: sha512-Q6/nZLe6jxuU80qb/4uJ4t5v2VEZ44lzQjPDhYJNztRQ4wyWc6VF3D3Kb/fAuPetZQnhS3hnajCf9CsWesghLQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
     dependencies:
-      zod: 4.3.5
+      zod: 4.3.6
     dev: true
 
-  /zod@4.3.5:
-    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
+  /zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}

@@ -1,5 +1,5 @@
 // packages/contracts/src/auth/role.schema.ts
-import { ROLES } from '@invicity/constants';
+import { ROLES } from '@kwh/constants';
 import { z } from 'zod';
 
 export const RoleSchema = z.enum([ROLES.ADMIN, ROLES.STAFF, ROLES.CITIZEN]);

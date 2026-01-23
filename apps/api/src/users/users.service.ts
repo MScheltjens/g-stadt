@@ -1,5 +1,5 @@
-import { ROLES } from '@invicity/constants';
-import { UserResponse, UserResponseSchema } from '@invicity/contracts';
+import { ROLES } from '@kwh/constants';
+import { UserResponse, UserResponseSchema } from '@kwh/contracts';
 import { Injectable } from '@nestjs/common';
 import { Role } from '@prisma/client';
 

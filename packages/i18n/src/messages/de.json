@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Invicity",
-    "description": "Offizielle Anwendung der Stadt Invicity."
+    "title": "knowhere",
+    "description": "Offizielle Anwendung der Stadt knowhere."
   },
   "public": {
     "meta": {
-      "title": "Invicity",
+      "title": "knowhere",
       "description": "Offizielles Stadtportal für Services, Nachrichten und Veranstaltungen."
     }
   },
@@ -13,13 +13,13 @@
     "layout": {
       "meta": {
         "title": "Authentifizierung",
-        "description": "Melden Sie sich an, um auf die Dienste von Invicity zuzugreifen."
+        "description": "Melden Sie sich an, um auf die Dienste von knowhere zuzugreifen."
       }
     },
     "login": {
       "meta": {
         "title": "Anmelden",
-        "description": "Melden Sie sich bei Ihrem Invicity-Konto an."
+        "description": "Melden Sie sich bei Ihrem knowhere-Konto an."
       },
       "title": "Melden Sie sich bei Ihrem Konto an",
       "subtitle": "Oder",
@@ -34,7 +34,7 @@
     "register": {
       "meta": {
         "title": "Registrieren",
-        "description": "Erstellen Sie ein neues Invicity-Konto."
+        "description": "Erstellen Sie ein neues knowhere-Konto."
       },
       "title": "Erstellen Sie Ihr Konto",
       "subtitle": "Oder",
@@ -53,13 +53,13 @@
   "protected": {
     "meta": {
       "title": "Konto",
-      "description": "Privater Bereich Ihres Invicity-Kontos."
+      "description": "Privater Bereich Ihres knowhere-Kontos."
     }
   },
   "dashboard": {
     "meta": {
       "title": "Dashboard",
-      "description": "Übersicht über Ihr persönliches Invicity-Konto."
+      "description": "Übersicht über Ihr persönliches knowhere-Konto."
     },
     "welcome": "Willkommen in Ihrem Dashboard",
     "loading": "Wird geladen...",
@@ -74,12 +74,12 @@
   "home": {
     "meta": {
       "title": "Startseite",
-      "description": "Willkommen bei Invicity, Ihrem offiziellen Stadtportal."
+      "description": "Willkommen bei knowhere, Ihrem offiziellen Stadtportal."
     },
     "hero": {
       "badge": "Offizielle Stadtseite",
       "title": "Willkommen in",
-      "cityName": "Invicity",
+      "cityName": "knowhere",
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Services Ihrer Stadt an einem Ort.",
       "actionServices": "Dienstleistungen",
       "actionNews": "Nachrichten",
@@ -89,28 +89,28 @@
   "services": {
     "meta": {
       "title": "Services",
-      "description": "Entdecken Sie die Dienstleistungen der Stadt Invicity."
+      "description": "Entdecken Sie die Dienstleistungen der Stadt knowhere."
     },
     "title": "Städtische Services",
-    "description": "Entdecken Sie die Dienstleistungen der Stadt Invicity.",
+    "description": "Entdecken Sie die Dienstleistungen der Stadt knowhere.",
     "viewAll": "Alle Services anzeigen"
   },
   "news": {
     "meta": {
       "title": "Nachrichten",
-      "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus Invicity informiert."
+      "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus knowhere informiert."
     },
     "title": "Aktuelle Nachrichten",
-    "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus Invicity informiert.",
+    "description": "Bleiben Sie über aktuelle Nachrichten und Bekanntmachungen aus knowhere informiert.",
     "viewAll": "Alle Nachrichten anzeigen"
   },
   "events": {
     "meta": {
       "title": "Veranstaltungen",
-      "description": "Entdecken Sie kommende Veranstaltungen und Aktivitäten in Invicity."
+      "description": "Entdecken Sie kommende Veranstaltungen und Aktivitäten in knowhere."
     },
     "title": "Bevorstehende Veranstaltungen",
-    "description": "Entdecken Sie Veranstaltungen in Invicity und nehmen Sie am Gemeinschaftsleben teil.",
+    "description": "Entdecken Sie Veranstaltungen in knowhere und nehmen Sie am Gemeinschaftsleben teil.",
     "viewAll": "Alle Veranstaltungen anzeigen",
     "readMore": "Mehr erfahren"
   },
@@ -178,7 +178,7 @@
   },
   "demoDisclaimerModal": {
     "title": "🚧 Demo-Projekt",
-    "description": "InviCity ist eine fiktive Stadtplattform, die als Demo- & Portfolio-Projekt erstellt wurde. Einige Funktionen sind unvollständig oder simuliert.",
+    "description": "knowhere ist eine fiktive Stadtplattform, die als Demo- & Portfolio-Projekt erstellt wurde. Einige Funktionen sind unvollständig oder simuliert.",
     "continue": "Zur Demo fortfahren"
   },
   "backButton": {

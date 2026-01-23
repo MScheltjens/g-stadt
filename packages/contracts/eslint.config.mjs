@@ -1,3 +1,3 @@
-import { contractsConfig } from '@invicity/eslint-config/contracts';
+import { contractsConfig } from '@kwh/eslint-config/contracts';
 
 export default contractsConfig;

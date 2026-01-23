@@ -1,12 +1,12 @@
-import '@invicity/ui/globals.css';
+import '@kwh/ui/globals.css';
 
-import { Locale, SUPPORTED_LOCALES } from '@invicity/constants';
+import { Locale, SUPPORTED_LOCALES } from '@kwh/constants';
 import {
   getTranslations,
   hasLocale,
   routing,
   setRequestLocale,
-} from '@invicity/i18n';
+} from '@kwh/i18n';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

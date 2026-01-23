@@ -1,11 +1,11 @@
-import { ROLES } from '@invicity/constants';
+import { ROLES } from '@kwh/constants';
 import {
   AuthResponse,
   AuthResponseSchema,
   AuthUserSchema,
   RegisterInput,
   SignInInput,
-} from '@invicity/contracts';
+} from '@kwh/contracts';
 import {
   ConflictException,
   Injectable,

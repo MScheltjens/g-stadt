@@ -1,5 +1,5 @@
-import { ROUTES } from '@invicity/constants';
-import { useTranslations } from '@invicity/i18n';
+import { ROUTES } from '@kwh/constants';
+import { useTranslations } from '@kwh/i18n';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,7 +7,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@invicity/ui/components/breadcrumb';
+} from '@kwh/ui/components/breadcrumb';
 
 export type BreadcrumbItem = {
   label: string;

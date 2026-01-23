@@ -1,5 +1,5 @@
 {
-    "name": "@invicity/constants",
+    "name": "@kwh/constants",
     "version": "0.0.1",
     "private": true,
     "type": "module",
@@ -18,7 +18,7 @@
         "lint:fix": "eslint . --fix --max-warnings 0"
     },
     "devDependencies": {
-        "@invicity/eslint-config": "workspace:*",
-        "@invicity/typescript-config": "workspace:*"
+        "@kwh/eslint-config": "workspace:*",
+        "@kwh/typescript-config": "workspace:*"
     }
 }

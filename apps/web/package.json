@@ -13,9 +13,9 @@
     "clean": "npx rimraf .next dist"
   },
   "dependencies": {
-    "@invicity/ui": "workspace:*",
-    "@invicity/i18n": "workspace:*",
-    "@invicity/contracts": "workspace:*",
+    "@kwh/ui": "workspace:*",
+    "@kwh/i18n": "workspace:*",
+    "@kwh/contracts": "workspace:*",
     "next": "16.0.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,11 +23,11 @@
     "jwt-decode": "^4.0.0",
     "react-hook-form": "^7.69.0",
     "@hookform/resolvers": "^5.2.2",
-    "@invicity/constants": "workspace:*"
+    "@kwh/constants": "workspace:*"
   },
   "devDependencies": {
-    "@invicity/eslint-config": "workspace:*",
-    "@invicity/typescript-config": "workspace:*",
+    "@kwh/eslint-config": "workspace:*",
+    "@kwh/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0"

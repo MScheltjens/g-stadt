@@ -1,18 +1,18 @@
 'use client';
 
-import { ROUTES, SUPPORTED_LOCALES } from '@invicity/constants';
-import { CategoryListResponse } from '@invicity/contracts';
-import { Link, useLocale, useTranslations } from '@invicity/i18n';
-import { Button, buttonVariants } from '@invicity/ui/components/button';
-import { CircleAlert, Globe, User } from '@invicity/ui/components/icons';
+import { ROUTES, SUPPORTED_LOCALES } from '@kwh/constants';
+import { CategoryListResponse } from '@kwh/contracts';
+import { Link, useLocale, useTranslations } from '@kwh/i18n';
+import { Button, buttonVariants } from '@kwh/ui/components/button';
+import { CircleAlert, Globe, User } from '@kwh/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@invicity/ui/components/navigation-menu';
-import { cn } from '@invicity/ui/lib/utils';
+} from '@kwh/ui/components/navigation-menu';
+import { cn } from '@kwh/ui/lib/utils';
 import { usePathname, useRouter } from 'next/navigation';
 import path from 'path';
 

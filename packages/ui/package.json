@@ -1,5 +1,5 @@
 {
-  "name": "@invicity/ui",
+  "name": "@kwh/ui",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -29,8 +29,8 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@invicity/eslint-config": "workspace:*",
-    "@invicity/typescript-config": "workspace:*",
+    "@kwh/eslint-config": "workspace:*",
+    "@kwh/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "@turbo/gen": "^2.5.5",
     "@types/node": "^20.19.9",

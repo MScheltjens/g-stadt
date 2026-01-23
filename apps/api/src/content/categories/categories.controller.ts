@@ -1,8 +1,8 @@
-import { Locale } from '@invicity/constants';
+import { Locale } from '@kwh/constants';
 import {
   type CategoryListResponse,
   type ServiceCategoryResponse,
-} from '@invicity/contracts';
+} from '@kwh/contracts';
 import {
   BadRequestException,
   Controller,

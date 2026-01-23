@@ -2,7 +2,7 @@ import {
   CategoryListResponseSchema,
   CategoryType,
   ServiceCategoryResponseSchema,
-} from '@invicity/contracts';
+} from '@kwh/contracts';
 
 import { safeFetch } from '@/utils/safe-fetch';
 

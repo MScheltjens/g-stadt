@@ -1,4 +1,4 @@
-import { libraryConfig } from '@invicity/eslint-config/library';
+import { libraryConfig } from '@kwh/eslint-config/library';
 import tsParser from '@typescript-eslint/parser';
 
 export default [

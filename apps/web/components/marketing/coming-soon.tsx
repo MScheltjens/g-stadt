@@ -1,4 +1,4 @@
-import { getTranslations } from '@invicity/i18n';
+import { getTranslations } from '@kwh/i18n';
 
 export async function ComingSoon() {
   const t = await getTranslations('comingSoon');

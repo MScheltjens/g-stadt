@@ -1,7 +1,7 @@
 'use client';
 
-import { capitalizeWords } from '@invicity/ui/lib/utils';
-import { SUPPORTED_LOCALES } from '@invicity/constants';
+import { SUPPORTED_LOCALES } from '@kwh/constants';
+import { capitalizeWords } from '@kwh/ui/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 

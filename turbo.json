@@ -52,7 +52,7 @@
       ],
       "outputs": []
     },
-    "@invicity/db#build": {
+    "@kwh/db#build": {
       "cache": false,
       "outputs": [
         "dist/**"

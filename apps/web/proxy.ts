@@ -7,9 +7,9 @@ import {
   Pathnames,
   PROTECTED_ROUTES,
   ROUTES,
-} from '@invicity/constants';
-import { routing } from '@invicity/i18n';
-import createIntlMiddleware from '@invicity/i18n/middleware';
+} from '@kwh/constants';
+import { routing } from '@kwh/i18n';
+import createIntlMiddleware from '@kwh/i18n/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
 /**

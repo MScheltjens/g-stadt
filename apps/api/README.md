@@ -1,26 +1,56 @@
-# With-NestJs | API
+# API Application
 
-## Getting Started
+NestJS backend API for the **knowhere** platform.
 
-First, run the development server:
+The API provides data and services consumed by the web application
+and defines the public backend interface of the platform.
 
-```bash
-pnpm run dev
-# Also works with NPM, YARN, BUN, ...
-```
+---
 
-By default, your server will run at [localhost:3000](http://localhost:3000). You can use your favorite API platform like [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/) to test your APIs
+## Role in the Monorepo
 
-You can start editing the demo **APIs** by modifying [linksService](./src/links/links.service.ts) provider.
+The API is responsible for:
 
-### Important Note 🚧
+- Business logic
+- Authentication and authorization
+- Data persistence
+- Public HTTP endpoints
 
-If you plan to `build` or `test` the app. Please make sure to build the `packages/*` first.
+---
 
-## Learn More
+## Shared Packages Used
 
-Learn more about `NestJs` with following resources:
+- @invicity/contracts
+- @invicity/constants
 
-- [Official Documentation](https://docs.nestjs.com) - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
-- [Official NestJS Courses](https://courses.nestjs.com) - Learn everything you need to master NestJS and tackle modern backend applications at any scale.
-- [GitHub Repo](https://github.com/nestjs/nest)
+---
+
+## Development
+
+Start the API in development mode:
+
+pnpm --filter api dev
+
+yaml
+Copy code
+
+The API runs at:
+http://localhost:3000
+
+---
+
+## Build Notes
+
+Before building or testing the API, shared packages must be built:
+
+pnpm build --filter ./packages/\*
+
+yaml
+Copy code
+
+---
+
+## Notes
+
+- Database models are not exposed to clients
+- All public data structures are defined in @invicity/contracts
