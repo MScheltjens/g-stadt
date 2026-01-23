@@ -2,7 +2,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ROUTES } from '@invicity/constants';
-import { Link, useTranslations } from '@invicity/i18n';
+import { type RegisterInput, RegisterInputSchema } from '@invicity/contracts';
+import { Link, useRouter, useTranslations } from '@invicity/i18n';
 import { Alert, AlertDescription } from '@invicity/ui/components/alert';
 import { Button } from '@invicity/ui/components/button';
 import {
@@ -16,25 +17,11 @@ import {
 import { Input } from '@invicity/ui/components/input';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { register } from '@/server/actions/auth.actions';
 
 // Define the schema for the registration form
 // This is not a contract schema but a form-specific schema
-
-const RegisterFormSchema = z
-  .object({
-    email: z.string().email(),
-    password: z.string().min(8),
-    confirmPassword: z.string().min(8),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
-  });
-
-type RegisterFormValues = z.infer<typeof RegisterFormSchema>;
 
 // Registration Form Component
 
@@ -42,9 +29,10 @@ export function RegisterForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
-  const form = useForm<RegisterFormValues>({
-    resolver: zodResolver(RegisterFormSchema),
+  const form = useForm<RegisterInput>({
+    resolver: zodResolver(RegisterInputSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -52,7 +40,7 @@ export function RegisterForm() {
     },
   });
 
-  async function onSubmit(data: RegisterFormValues) {
+  async function onSubmit(data: Omit<RegisterInput, 'confirmPassword'>) {
     setError('');
 
     startTransition(async () => {
@@ -64,7 +52,8 @@ export function RegisterForm() {
       if ('error' in result) {
         setError(result.error);
       } else {
-        window.location.href = '/dashboard';
+        // redirect to dashboard on successful registration
+        router.push(ROUTES.DASHBOARD);
       }
     });
   }

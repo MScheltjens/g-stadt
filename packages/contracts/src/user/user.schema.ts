@@ -8,17 +8,17 @@ import { RoleSchema } from '../auth/role.schema.js';
 
 // Create user (API-only, e.g. admin / internal)
 export const CreateUserSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  role: RoleSchema.optional().default('CITIZEN'),
+  email: z.email(),
+  passwordHash: z.string(),
+  role: RoleSchema.optional().default(RoleSchema.enum.citizen),
 });
 
 export type CreateUser = z.infer<typeof CreateUserSchema>;
 
-// Update user
+// Update user (API-only, e.g. admin / internal)
 export const UpdateUserSchema = z.object({
   email: z.email().optional(),
-  password: z.string().min(8).optional(),
+  passwordHash: z.string().optional(),
   role: RoleSchema.optional(),
   isVerified: z.boolean().optional(),
 });
@@ -35,7 +35,7 @@ export const UserResponseSchema = z.object({
   email: z.email(),
   role: RoleSchema,
   isVerified: z.boolean(),
-  createdAt: z.string().datetime(), // ISO string (important!)
+  createdAt: z.coerce.string(), // ISO string (important!)
 });
 
 export type UserResponse = z.infer<typeof UserResponseSchema>;

@@ -50,7 +50,9 @@ export async function signIn(data: SignInInput): Promise<LoginResult> {
 /* =========================
    REGISTER
    ========================= */
-export async function register(input: RegisterInput): Promise<RegisterResult> {
+export async function register(
+  input: Omit<RegisterInput, 'confirmPassword'>,
+): Promise<RegisterResult> {
   try {
     const validInput = RegisterInputSchema.parse(input);
     const authData = await safeFetch('/auth/register', AuthResponseSchema, {

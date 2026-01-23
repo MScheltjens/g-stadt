@@ -1,3 +1,4 @@
+import { ROLES } from '@invicity/constants';
 import {
   AuthResponse,
   AuthResponseSchema,
@@ -30,7 +31,9 @@ export class AuthService {
      REGISTER
      ========================= */
 
-  async register(input: RegisterInput): Promise<AuthResponse> {
+  async register(
+    input: Omit<RegisterInput, 'confirmPassword'>,
+  ): Promise<AuthResponse> {
     this.logger.info({ email: input.email }, 'Attempting user registration');
     const existing = await this.prisma.user.findUnique({
       where: { email: input.email },
@@ -50,7 +53,7 @@ export class AuthService {
       data: {
         email: input.email,
         passwordHash,
-        role: 'citizen',
+        role: ROLES.CITIZEN,
       },
     });
 

@@ -1,16 +1,10 @@
 import { z } from 'zod';
 
-import { LocaleSchema } from '../routing/locale.schema.js';
-
 /* =========================
    COMMON QUERY / PARAMS
    ========================= */
 
-export const LocaleQuerySchema = z.object({
-  locale: LocaleSchema.default('en'),
-});
-
-export type LocaleQuery = z.infer<typeof LocaleQuerySchema>;
+// Locale is extracted from the cookies (NEXT_LOCALE is set in the frontend, extracted in the backend)
 
 export const SlugParamSchema = z.object({
   slug: z.string().min(1),

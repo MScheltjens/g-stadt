@@ -15,6 +15,8 @@ export const ROUTES = {
   SERVICES_CATEGORY: `/services/${CATEGORY}`,
   SERVICES_ITEM: `/services/${CATEGORY}/${ITEM}`,
   CONTACT: '/contact',
+  CONTACT_CATEGORY: `/contact/${CATEGORY}`,
+  CONTACT_ITEM: `/contact/${CATEGORY}/${ITEM}`,
   PROFILE: '/profile',
   SETTINGS: '/settings',
   NEWS: '/news',
@@ -62,6 +64,16 @@ export const ROUTE_PATHNAMES = {
     en: '/contact',
     de: '/kontakt',
     fr: '/contact',
+  },
+  [ROUTES.CONTACT_CATEGORY]: {
+    en: '/contact/[categorySlug]',
+    de: '/kontakt/[categorySlug]',
+    fr: '/contact/[categorySlug]',
+  },
+  [ROUTES.CONTACT_ITEM]: {
+    en: '/contact/[categorySlug]/[itemSlug]',
+    de: '/kontakt/[categorySlug]/[itemSlug]',
+    fr: '/contact/[categorySlug]/[itemSlug]',
   },
   [ROUTES.SERVICES_ITEM]: {
     en: '/services/[categorySlug]/[itemSlug]',

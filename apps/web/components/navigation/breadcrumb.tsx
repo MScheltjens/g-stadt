@@ -9,16 +9,16 @@ import {
   BreadcrumbSeparator,
 } from '@invicity/ui/components/breadcrumb';
 
-export interface BreadcrumbItem {
+export type BreadcrumbItem = {
   label: string;
   href: string;
   isCurrent?: boolean;
-}
+};
 
-interface BreadcrumbCompProps {
+export type BreadcrumbCompProps = {
   items: BreadcrumbItem[];
   className?: string;
-}
+};
 
 export function BreadcrumbComp({ items, className = '' }: BreadcrumbCompProps) {
   const t = useTranslations('breadcrumbs');

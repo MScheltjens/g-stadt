@@ -1,18 +1,18 @@
 'use client';
 
-import { LOCALES } from '@invicity/constants';
 import { capitalizeWords } from '@invicity/ui/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
 import { BreadcrumbComp } from '@/components/navigation/breadcrumb';
+import { SUPPORTED_LOCALES } from '@invicity/constants';
 
 type BreadcrumbListProps = {
   slugToLabel?: Record<string, string>;
   className?: string;
 };
 
-const HIDDEN: string[] = Object.values(LOCALES) as string[];
+const HIDDEN: string[] = SUPPORTED_LOCALES as string[];
 
 export function Breadcrumbs({ slugToLabel, className }: BreadcrumbListProps) {
   const pathname = usePathname();

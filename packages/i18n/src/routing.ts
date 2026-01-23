@@ -1,8 +1,12 @@
-import { DEFAULT_LOCALE, LOCALES, ROUTE_PATHNAMES } from '@invicity/constants';
+import {
+  DEFAULT_LOCALE,
+  ROUTE_PATHNAMES,
+  SUPPORTED_LOCALES,
+} from '@invicity/constants';
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
-  locales: Object.values(LOCALES),
+  locales: SUPPORTED_LOCALES,
   defaultLocale: DEFAULT_LOCALE,
   localeDetection: true,
   localePrefix: 'as-needed',

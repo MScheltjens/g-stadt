@@ -1,6 +1,5 @@
 import '@invicity/ui/globals.css';
 
-import { LOCALES } from '@invicity/constants';
 import {
   getTranslations,
   hasLocale,
@@ -13,6 +12,7 @@ import { notFound } from 'next/navigation';
 import { getUser } from '@/authentication/jwt';
 import { Providers } from '@/components/providers/provider-wrapper';
 import type { LayoutProps, MetadataProps } from '@/types';
+import { Locale, SUPPORTED_LOCALES } from '@invicity/constants';
 
 export async function generateMetadata({
   params,
@@ -33,7 +33,7 @@ export async function generateMetadata({
 }
 
 export const generateStaticParams = () => {
-  return Object.values(LOCALES).map((locale) => ({ locale }));
+  return SUPPORTED_LOCALES.map((locale) => ({ locale }));
 };
 
 type LocaleLayoutProps = LayoutProps & {
@@ -61,7 +61,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
-        <Providers locale={locale} initialUser={user}>
+        <Providers locale={locale as Locale} initialUser={user}>
           {children}
           {auth}
           {modal}

@@ -1,9 +1,10 @@
 'use client';
 
-import { ROUTES } from '@invicity/constants';
+import { ROUTES, SUPPORTED_LOCALES } from '@invicity/constants';
+import { CategoryListResponse } from '@invicity/contracts';
 import { Link, useLocale, useTranslations } from '@invicity/i18n';
-import { buttonVariants } from '@invicity/ui/components/button';
-import { CircleAlert, User } from '@invicity/ui/components/icons';
+import { Button, buttonVariants } from '@invicity/ui/components/button';
+import { CircleAlert, Globe, User } from '@invicity/ui/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,72 +12,122 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@invicity/ui/components/navigation-menu';
+import { cn } from '@invicity/ui/lib/utils';
+import { usePathname, useRouter } from 'next/navigation';
+import path from 'path';
 
-import { HeaderProps } from '@/components/layout/header';
+type TopNavProps = {
+  contactCategories: CategoryListResponse;
+};
 
-export function Navbar({ categories }: HeaderProps) {
+export function TopNavbar({ contactCategories }: TopNavProps) {
   const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations('navbar');
+
   return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
-        {/* Contact Categories Dropdown */}
-        {categories?.length > 0 && (
-          <NavigationMenuItem>
-            <NavigationMenuTrigger
-              className={buttonVariants({
-                variant: 'ghost',
-                className:
-                  'tracking-wide font-semibold text-muted-foreground hover:text-foreground rounded-none border-r border-l',
-              })}
+        {/* Contact Menu Item */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger
+            className={buttonVariants({
+              variant: 'ghost',
+              className:
+                'tracking-wide font-semibold text-muted-foreground hover:text-foreground hover:bg-muted focus:bg-muted border-r-2 flex items-center border-l-2',
+            })}
+          >
+            <Link
+              href={ROUTES.CONTACT}
+              className="flex items-center hover:bg-muted focus:bg-muted rounded-none"
             >
               <CircleAlert size={20} />
               <span className="hidden sm:inline-block ml-2">
                 {t('contact')}
               </span>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="bg-white shadow-lg rounded-md mt-2 min-w-[200px] z-50">
-                {categories.map((cat) => {
-                  return (
-                    <Link
-                      key={cat.id}
-                      // @ts-expect-error -- TypeScript will validate that only known `params`
-                      // are used in combination with a given `pathname`. Since the two will
-                      // always match for the current route, we can skip runtime checks.
-                      href={
-                        cat.translations.filter(
-                          (translation) => translation.locale === locale,
-                        )[0]?.slug
-                          ? `/contact/${cat.translations.filter((translation) => translation.locale === locale)[0]?.slug}`
-                          : `/contact`
-                      }
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      {
-                        cat.translations.filter(
-                          (translation) => translation.locale === locale,
-                        )[0]?.label
-                      }
-                    </Link>
-                  );
-                })}
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        )}
+            </Link>
+          </NavigationMenuTrigger>
+
+          {/* aligned to END */}
+          <NavigationMenuContent className="right-0 min-w-[100px]">
+            <div className="bg-background min-w-[100px]">
+              {contactCategories.map((cat) => {
+                const translation = cat.translations.find(
+                  (t) => t.locale === locale,
+                );
+
+                return (
+                  <Link
+                    key={cat.id}
+                    href={{
+                      pathname: ROUTES.CONTACT_CATEGORY,
+                      params: { categorySlug: translation?.slug ?? '' },
+                    }}
+                    className="block px-4 py-2 hover:bg-muted focus:bg-muted"
+                  >
+                    {translation?.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* Sign In Menu Item */}
         <NavigationMenuItem>
           <Link
             href={ROUTES.SIGNIN}
             className={buttonVariants({
               variant: 'ghost',
               className:
-                ' tracking-wide font-semibold text-muted-foreground hover:text-foreground rounded-none border-r',
+                'tracking-wide font-semibold text-muted-foreground hover:text-foreground hover:bg-muted focus:bg-muted border-r-2 flex items-center',
             })}
           >
             <User size={20} />
-            <span className="hidden sm:inline-block ml-2">{t('signIn')}</span>
+            <span className="sr-only">{t('signIn')}</span>
+            <span className="hidden sm:inline-block">{t('signIn')}</span>
           </Link>
+        </NavigationMenuItem>
+
+        {/* Locale Switcher */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger
+            className={buttonVariants({
+              variant: 'ghost',
+              className:
+                'flex items-center gap-2 px-2 text-muted-foreground hover:text-foreground hover:bg-muted focus:bg-muted rounded-none min-w-[100px]',
+            })}
+          >
+            <span className="sr-only">{t('changeLanguage')}</span>
+            <Globe size={20} />
+            <span className="hidden sm:block text-sm font-semibold tracking-wide uppercase ml-2">
+              {locale}
+            </span>
+          </NavigationMenuTrigger>
+
+          <NavigationMenuContent className="right-0 min-w-[100px] w-[var(--radix-navigation-menu-trigger-width)]">
+            <div className="bg-background w-full z-50 min-w-[100px]">
+              {SUPPORTED_LOCALES.map((l) => (
+                <Button
+                  key={l}
+                  variant="ghost"
+                  onClick={() => {
+                    if (l === locale) return;
+                    router.replace(
+                      path.join('/', l, pathname.replace(`/${locale}`, '')),
+                    );
+                  }}
+                  className={cn(
+                    'block px-4 py-2 hover:bg-muted focus:bg-muted w-full text-left uppercase',
+                    l === locale && 'font-semibold text-primary',
+                  )}
+                >
+                  {l.toUpperCase()}
+                </Button>
+              ))}
+            </div>
+          </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

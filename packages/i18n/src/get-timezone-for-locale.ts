@@ -1,9 +1,5 @@
-import { DEFAULT_TIMEZONE, TIMEZONES } from '@invicity/constants';
+import { DEFAULT_TIMEZONE, Locale, TIMEZONES } from '@invicity/constants';
 
-import { routing } from './routing';
-
-export function getTimezoneForLocale(
-  locale: (typeof routing.locales)[number],
-): string {
+export function getTimezoneForLocale(locale: Locale): string {
   return TIMEZONES[locale] ?? DEFAULT_TIMEZONE;
 }

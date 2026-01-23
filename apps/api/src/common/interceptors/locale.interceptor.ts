@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALES } from '@invicity/constants';
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@invicity/constants';
 import { LocaleSchema } from '@invicity/contracts';
 import {
   CallHandler,
@@ -27,7 +27,7 @@ export class LocaleInterceptor implements NestInterceptor {
     // 2. Check locale in URL (e.g., /de/...) if not found in cookie
     if (!rawLocale && req.url) {
       const urlLocale = req.url.split('/')[1];
-      if (urlLocale && Object.values(LOCALES).includes(urlLocale as Locale)) {
+      if (urlLocale && SUPPORTED_LOCALES.includes(urlLocale as Locale)) {
         rawLocale = urlLocale;
       }
     }
@@ -37,7 +37,7 @@ export class LocaleInterceptor implements NestInterceptor {
       const acceptLang = req.headers['accept-language']
         .split(',')[0]
         .split('-')[0];
-      if (acceptLang && Object.values(LOCALES).includes(acceptLang as Locale)) {
+      if (acceptLang && SUPPORTED_LOCALES.includes(acceptLang as Locale)) {
         rawLocale = acceptLang;
       }
     }

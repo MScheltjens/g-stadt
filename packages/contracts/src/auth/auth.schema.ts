@@ -6,20 +6,34 @@ import { AuthUserSchema } from './auth-user.schema.js';
    INPUTS (COMMANDS)
    ========================= */
 
-export const SignInInputSchema = z.object({
+// Base auth input schema
+export const BaseAuthInputSchema = z.object({
   email: z.email(),
   password: z.string().min(8),
 });
+
+export type BaseAuthInput = z.infer<typeof BaseAuthInputSchema>;
+
+// Sign in existing user (public)
+export const SignInInputSchema = BaseAuthInputSchema;
 
 export type SignInInput = z.infer<typeof SignInInputSchema>;
 
-export const RegisterInputSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8),
-});
+// Register new user (public)
+export const RegisterInputSchema = z
+  .object({
+    email: z.email(),
+    password: z.string().min(8),
+    confirmPassword: z.string().min(8),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
 
 export type RegisterInput = z.infer<typeof RegisterInputSchema>;
 
+// Refresh token (authenticated user)
 export const RefreshTokenInputSchema = z.object({
   refreshToken: z.string().min(1),
 });
@@ -43,8 +57,8 @@ export const ResetPasswordInputSchema = z.object({
 export type ResetPasswordInput = z.infer<typeof ResetPasswordInputSchema>;
 
 // Forgot password (public)
-export const ForgotPasswordInputSchema = z.object({
-  email: z.string().email(),
+export const ForgotPasswordInputSchema = BaseAuthInputSchema.pick({
+  email: true,
 });
 
 export type ForgotPasswordInput = z.infer<typeof ForgotPasswordInputSchema>;
@@ -53,6 +67,7 @@ export type ForgotPasswordInput = z.infer<typeof ForgotPasswordInputSchema>;
    OUTPUTS (RESULTS)
    ========================= */
 
+// Auth tokens
 export const AuthTokensSchema = z.object({
   accessToken: z.string(),
   refreshToken: z.string().optional(),
@@ -60,6 +75,7 @@ export const AuthTokensSchema = z.object({
 
 export type AuthTokens = z.infer<typeof AuthTokensSchema>;
 
+// Auth response (user + tokens, public)
 export const AuthResponseSchema = z.object({
   user: AuthUserSchema,
   tokens: AuthTokensSchema,

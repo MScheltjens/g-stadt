@@ -3,7 +3,7 @@ import { getTranslations } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { Footer } from '@/components/layout/footer';
-import { Header } from '@/components/layout/header';
+import { TopNav } from '@/components/navigation/top-navigation';
 import { getCategories } from '@/server/services/categories.service';
 import type { LayoutProps, MetadataProps } from '@/types';
 
@@ -23,11 +23,9 @@ export async function generateMetadata({
 }
 
 export default async function PublicLayout({ children }: LayoutProps) {
-  const categories = await getCategories(CATEGORYTYPE.contact);
-
   return (
     <>
-      <Header categories={categories} />
+      <TopNav />
       <main className="flex-1">{children}</main>
       <Footer />
     </>

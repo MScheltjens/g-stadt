@@ -51,7 +51,7 @@ export async function Hero() {
           {t('description')}
         </p>
 
-        {/* News / Events */}
+        {/* services / news / events */}
         <div className="mt-8 flex flex-wrap items-center gap-5">
           <Link
             href={ROUTES.SERVICES}
@@ -64,10 +64,20 @@ export async function Hero() {
             href={ROUTES.NEWS}
             className={cn(
               buttonVariants({ size: 'lg' }),
-              'bg-transparent border border-border text-foreground hover:bg-background hover:border-ring',
+              'bg-transparent border border-primary text-foreground hover:bg-background hover:border-ring',
             )}
           >
             {t('actionNews')}
+          </Link>
+
+          <Link
+            href={ROUTES.EVENTS}
+            className={cn(
+              buttonVariants({ size: 'lg' }),
+              'bg-transparent border border-primary text-foreground hover:bg-background hover:border-ring',
+            )}
+          >
+            {t('actionEvents')}
           </Link>
         </div>
       </div>

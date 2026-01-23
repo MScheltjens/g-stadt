@@ -1,8 +1,11 @@
-import { Role } from '@invicity/constants';
+import { ROLES } from '@invicity/constants';
 import { UserResponse, UserResponseSchema } from '@invicity/contracts';
 import { Injectable } from '@nestjs/common';
+import { Role } from '@prisma/client';
 
 import { PrismaService } from '@/db/prisma.service.js';
+
+import { CreateUserDto } from './dto/create-user.dto.js';
 
 @Injectable()
 export class UsersService {
@@ -28,16 +31,12 @@ export class UsersService {
     return this.toUserResponse(user);
   }
 
-  async create(data: {
-    email: string;
-    passwordHash: string;
-    role?: Role;
-  }): Promise<UserResponse> {
+  async create(data: CreateUserDto): Promise<UserResponse> {
     const user = await this.prisma.user.create({
       data: {
         email: data.email,
         passwordHash: data.passwordHash,
-        role: data.role ?? 'CITIZEN',
+        role: data.role ?? ROLES.CITIZEN,
       },
     });
 
@@ -45,6 +44,8 @@ export class UsersService {
   }
 
   private toUserResponse(user: {
+    // not using Prisma.User type to avoid importing Prisma Client,
+    // creating another userSchema specifically for this purpose is obselete
     id: string;
     email: string;
     role: Role;

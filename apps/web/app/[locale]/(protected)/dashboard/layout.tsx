@@ -1,3 +1,4 @@
+import { ROLES } from '@invicity/constants';
 import { getTranslations, redirect } from '@invicity/i18n';
 import { Metadata } from 'next';
 
@@ -47,9 +48,9 @@ export default async function DashboardLayout({
         </div>
       )}
 
-      {role === 'ADMIN' && admin}
-      {role === 'STAFF' && staff}
-      {role === 'CITIZEN' && user}
+      {role === ROLES.ADMIN && admin}
+      {role === ROLES.STAFF && staff}
+      {role === ROLES.CITIZEN && user}
     </>
   );
 }

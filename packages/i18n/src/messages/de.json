@@ -82,7 +82,8 @@
       "cityName": "Invicity",
       "description": "Leben. Arbeiten. Zukunft gestalten – alle Informationen und Services Ihrer Stadt an einem Ort.",
       "actionServices": "Dienstleistungen",
-      "actionNews": "Nachrichten"
+      "actionNews": "Nachrichten",
+      "actionEvents": "Veranstaltungen"
     }
   },
   "services": {
@@ -159,9 +160,9 @@
     "retry": "Erneut versuchen"
   },
   "navbar": {
-    "home": "Startseite",
     "signIn": "Anmelden",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "changeLanguage": "Sprache wechseln"
   },
   "itemCard": {
     "readMore": "Mehr erfahren"

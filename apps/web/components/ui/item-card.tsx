@@ -12,7 +12,7 @@ import {
 } from '@invicity/ui/components/card';
 import { ArrowRight } from '@invicity/ui/components/icons';
 
-export interface ItemCardProps {
+export type ItemCardProps = {
   title: string;
   description?: string;
   date?: string;
@@ -21,7 +21,7 @@ export interface ItemCardProps {
   children?: React.ReactNode;
   itemSlug: string;
   pathname: Pathname;
-}
+};
 
 export async function ItemCard({
   title,

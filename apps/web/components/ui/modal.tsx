@@ -11,10 +11,10 @@ import { X } from '@invicity/ui/icons';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
 
-interface ModalProps {
+type ModalProps = {
   children: React.ReactNode;
   onClose?: () => void;
-}
+};
 
 export function Modal({ children, onClose }: ModalProps) {
   const router = useRouter();

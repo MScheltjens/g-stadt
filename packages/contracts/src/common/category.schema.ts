@@ -8,6 +8,7 @@ export const CategoryTypeSchema = z.enum([
   CATEGORYTYPE.service,
   CATEGORYTYPE.contact,
 ]);
+
 export type CategoryType = z.infer<typeof CategoryTypeSchema>;
 
 //  Category query schema
@@ -24,6 +25,7 @@ export const CategoryTranslationSchema = z.object({
   label: z.string(),
   slug: z.string(),
 });
+
 export type CategoryTranslation = z.infer<typeof CategoryTranslationSchema>;
 
 // Category schema

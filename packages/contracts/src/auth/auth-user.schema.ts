@@ -12,9 +12,10 @@ import { RoleSchema } from './role.schema.js';
  *
  * This is NOT the full User contract.
  */
+
 export const AuthUserSchema = z.object({
-  id: z.string().uuid(),
-  email: z.string().email(),
+  id: z.uuid(),
+  email: z.email(),
   role: RoleSchema,
   isVerified: z.boolean(),
 });

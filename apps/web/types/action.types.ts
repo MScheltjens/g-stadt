@@ -1,13 +1,13 @@
 import { AuthResponse } from '@invicity/contracts';
 
-export interface ActionError {
+export type ActionError = {
   error: string;
-}
+};
 
-export interface ActionSuccess {
+export type ActionSuccess = {
   success: boolean;
   user?: AuthResponse['user'];
-}
+};
 
 export type LoginResult = ActionSuccess | ActionError;
 export type RegisterResult = ActionSuccess | ActionError;

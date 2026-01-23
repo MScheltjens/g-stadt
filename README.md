@@ -44,7 +44,21 @@ For more details on each part of the monorepo, see their individual README files
 - [API README](apps/api/README.md)
 - [ESLint Config README](configs/eslint-config/README.md)
 
-## Packages Overview
+## Navigation Overview
+
+### Top Navigation
+
+The top navigation bar provides quick access to essential features for city website visitors:
+
+- **Sign In:** Direct link for users to log in.
+- **Locale Switcher:** Allows users to change the language of the site.
+- **Contact Link:** Prominently placed for easy access, as most visitors come to a city website to find contact information or services.
+
+### Breadcrumbs
+
+Breadcrumb navigation is generated based on the current URL (single source of truth). Instead of displaying raw slugs (which are not user-friendly and do not support translations well), the app uses the slug to look up the correct, localized label from the API response. This ensures breadcrumbs are always meaningful and properly translated for the user.
+
+---
 
 ### constants
 
