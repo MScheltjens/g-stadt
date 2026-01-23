@@ -1,9 +1,9 @@
 import { getTranslations } from '@kwh/i18n';
 import { Metadata } from 'next';
 
-import type { LayoutProps, MetadataProps } from '@/types';
-import { TopNav } from '@/components/navigation/top-navigation';
 import { Footer } from '@/components/layout/footer';
+import { TopNav } from '@/components/navigation/top-navigation';
+import type { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({
   params,
