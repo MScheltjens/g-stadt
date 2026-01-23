@@ -78,8 +78,12 @@
     },
     "hero": {
       "badge": "Site officiel de la ville",
-      "title": "Bienvenue à",
-      "cityName": "knowhere",
+      "welcomePrefix": "Bienvenue à",
+      "cityName": {
+        "prefix": "k",
+        "core": "now",
+        "suffix": "here"
+      },
       "description": "Vivre. Travailler. Construire l’avenir – toutes les informations et services de votre ville en un seul endroit.",
       "actionServices": "Services",
       "actionNews": "Actualités",
@@ -166,10 +170,6 @@
   },
   "itemCard": {
     "readMore": "En savoir plus"
-  },
-  "localeSwitcher": {
-    "label": "Changer de langue",
-    "locale": "{locale, select, de {Allemand} en {Anglais} fr {Français} other {Inconnu}}"
   },
   "comingSoon": {
     "title": "Bientôt disponible",

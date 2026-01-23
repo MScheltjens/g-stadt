@@ -78,8 +78,12 @@
     },
     "hero": {
       "badge": "Official city site",
-      "title": "Welcome to",
-      "cityName": "knowhere",
+      "welcomePrefix": "Welcome to",
+      "cityName": {
+        "prefix": "k",
+        "core": "now",
+        "suffix": "here"
+      },
       "description": "Live. Work. Shape the future – all information and services from your city in one place.",
       "actionServices": "Services",
       "actionNews": "News",
@@ -166,10 +170,6 @@
   },
   "itemCard": {
     "readMore": "Read more"
-  },
-  "localeSwitcher": {
-    "label": "Switch language",
-    "locale": "{locale, select, de {German} en {English} fr {French} other {Unknown}}"
   },
   "comingSoon": {
     "title": "Coming soon",

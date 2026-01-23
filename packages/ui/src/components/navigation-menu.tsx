@@ -18,7 +18,8 @@ function NavigationMenu({
       data-slot="navigation-menu"
       data-viewport={viewport}
       className={cn(
-        'group/navigation-menu relative flex max-w-max flex-1 items-center justify-center min-w-[100px]',
+        // Remove min-w for mobile, only apply for sm and up
+        'group/navigation-menu relative flex max-w-max flex-1 items-center justify-center sm:min-w-[100px]',
         className,
       )}
       {...props}
@@ -59,7 +60,8 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  'group inline-flex h-9 w-max items-center min-w-[120px]  justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-muted data-[state=open]:text-foreground data-[state=open]:focus:bg-muted data-[state=open]:bg-muted focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1',
+  // Remove min-w for mobile, only apply for sm and up
+  'group inline-flex h-9 w-max items-center sm:min-w-[120px] justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-muted data-[state=open]:text-foreground data-[state=open]:focus:bg-muted data-[state=open]:bg-muted focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1',
 );
 
 function NavigationMenuTrigger({
@@ -93,7 +95,7 @@ function NavigationMenuContent({
         'absolute top-full right-0 z-50',
 
         // Size: COMPACT
-        'w-max min-w-[160px]',
+        'w-max md:min-w-[100px]',
 
         // Visuals
         'border-2 bg-popover shadow-sm',

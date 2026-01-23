@@ -14,7 +14,7 @@ export async function Hero() {
       {/* Map background */}
       <Image
         src={homeHeroImg}
-        alt=""
+        alt="home hero image - abstract city map"
         fill
         priority
         aria-hidden
@@ -42,9 +42,17 @@ export async function Hero() {
 
         <h1 className="max-w-3xl text-4xl md:text-5xl font-semibold tracking-tight">
           <span className="block text-muted-foreground text-lg mb-1">
-            {t('title')}
+            {t('welcomePrefix')}
           </span>
-          <span className="text-primary">{t('cityName')}</span>
+          <span className="font-semibold tracking-tight">
+            {t('cityName.prefix')}
+            <span className="text-muted-foreground">.</span>
+
+            <span className="text-primary">{t('cityName.core')}</span>
+
+            <span className="text-muted-foreground">.</span>
+            {t('cityName.suffix')}
+          </span>
         </h1>
 
         <p className="mt-5 max-w-2xl text-base md:text-lg text-muted-foreground">
