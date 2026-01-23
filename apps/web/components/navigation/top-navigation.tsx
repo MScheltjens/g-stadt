@@ -1,8 +1,7 @@
-import { CategoryListResponse } from '@invicity/contracts';
+import { CATEGORYTYPE } from '@invicity/constants';
 
 import { TopNavbar } from '@/components/navigation/navbar';
 import { getCategories } from '@/server/services/categories.service';
-import { CATEGORYTYPE } from '@invicity/constants';
 
 export async function TopNav() {
   const contactCategories = await getCategories(CATEGORYTYPE.contact);

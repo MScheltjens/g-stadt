@@ -1,10 +1,8 @@
-import { CATEGORYTYPE } from '@invicity/constants';
 import { getTranslations } from '@invicity/i18n';
 import { Metadata } from 'next';
 
 import { Footer } from '@/components/layout/footer';
 import { TopNav } from '@/components/navigation/top-navigation';
-import { getCategories } from '@/server/services/categories.service';
 import type { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({
