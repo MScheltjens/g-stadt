@@ -6,11 +6,11 @@ import { getCategories } from '@/server/services/categories.service';
 export async function TopNav() {
   const contactCategories = await getCategories(CATEGORYTYPE.contact);
   return (
-    <nav
-      className="w-full bg-background border-2 flex items-end justify-end"
+    <div
+      className="flex items-center justify-end border-b-2"
       aria-label="Top navigation"
     >
       <TopNavbar contactCategories={contactCategories} />
-    </nav>
+    </div>
   );
 }

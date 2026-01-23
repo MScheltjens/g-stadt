@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ROUTES } from '@kwh/constants';
 import { type RegisterInput, RegisterInputSchema } from '@kwh/contracts';
-import { Link, useRouter, useTranslations } from '@kwh/i18n';
+import { Link, useTranslations } from '@kwh/i18n';
 import { Alert, AlertDescription } from '@kwh/ui/components/alert';
 import { Button } from '@kwh/ui/components/button';
 import {
@@ -17,9 +17,9 @@ import {
 import { Input } from '@kwh/ui/components/input';
 import { useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
+import z from 'zod';
 
 import { register } from '@/server/actions/auth.actions';
-import z from 'zod';
 
 // Define the schema for the registration form
 // This is not a contract schema but a form-specific schema
@@ -35,7 +35,6 @@ export function RegisterForm() {
   const t = useTranslations('auth');
   const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
-  const router = useRouter();
 
   const form = useForm<RegisterInputForm>({
     resolver: zodResolver(RegisterInputFormSchema),
@@ -59,7 +58,7 @@ export function RegisterForm() {
         setError(result.error);
       } else {
         // redirect to dashboard on successful registration
-        router.push(ROUTES.DASHBOARD);
+        window.location.href = ROUTES.DASHBOARD;
       }
     });
   }

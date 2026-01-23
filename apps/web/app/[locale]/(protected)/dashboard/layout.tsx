@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 
 import { checkUserRole } from '@/authentication/jwt';
 import type { LayoutProps, MetadataProps } from '@/types';
-import { env } from '@/utils/env';
 
 export async function generateMetadata({
   params,
@@ -42,12 +41,6 @@ export default async function DashboardLayout({
 
   return (
     <>
-      {env.NODE_ENV === 'development' && (
-        <div style={{ background: '#ffe', padding: 8, marginBottom: 8 }}>
-          <strong>Debug:</strong> Role detected: {role}
-        </div>
-      )}
-
       {role === ROLES.ADMIN && admin}
       {role === ROLES.STAFF && staff}
       {role === ROLES.CITIZEN && user}

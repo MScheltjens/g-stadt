@@ -1,6 +1,6 @@
 import '@kwh/ui/globals.css';
 
-import { Locale, SUPPORTED_LOCALES } from '@kwh/constants';
+import { SUPPORTED_LOCALES } from '@kwh/constants';
 import {
   getTranslations,
   hasLocale,
@@ -61,7 +61,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50">
-        <Providers locale={locale as Locale} initialUser={user}>
+        <Providers locale={locale} initialUser={user}>
           {children}
           {auth}
           {modal}
