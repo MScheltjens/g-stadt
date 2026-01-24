@@ -186,5 +186,15 @@
   },
   "breadcrumbs": {
     "home": "Startseite"
+  },
+  "authBtn": {
+    "signIn": "Anmelden",
+    "logout": "Abmelden"
+  },
+  "localeSwitcher": {
+    "label": "Sprache wechseln"
+  },
+  "contactMenu": {
+    "label": "Kontakt"
   }
 }

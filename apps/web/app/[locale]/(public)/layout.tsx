@@ -2,7 +2,7 @@ import { getTranslations } from '@kwh/i18n';
 import { Metadata } from 'next';
 
 import { Footer } from '@/components/layout/footer';
-import { TopNav } from '@/components/navigation/top-navigation';
+import { TopMenuBar } from '@/components/navigation/top-menu';
 import type { LayoutProps, MetadataProps } from '@/types';
 
 export async function generateMetadata({
@@ -23,7 +23,7 @@ export async function generateMetadata({
 export default async function PublicLayout({ children }: LayoutProps) {
   return (
     <>
-      <TopNav />
+      <TopMenuBar />
       <main className="flex-1">{children}</main>
       <Footer />
     </>

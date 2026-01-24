@@ -78,7 +78,7 @@ LOGOUT
 
 const API_URL = env.NEXT_PUBLIC_API_URL;
 
-export async function logout(redirectTo: string = ROUTES.SIGNIN) {
+export async function logout(redirectTo: string = ROUTES.HOME) {
   try {
     await fetch(`${API_URL}/auth/logout`, {
       method: 'POST',

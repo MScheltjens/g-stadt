@@ -4,7 +4,7 @@ import { Locale } from '@kwh/constants';
 import { JwtPayload } from '@kwh/contracts';
 import { MESSAGES, NextIntlClientProvider } from '@kwh/i18n';
 
-import { AuthProvider } from './auth-provicer';
+import { AuthProvider } from './auth-provider';
 
 export function Providers({
   children,
