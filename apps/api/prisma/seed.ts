@@ -29,273 +29,12 @@ async function main() {
 
   // --- CATEGORIES + SERVICES + CONTACTS ---
   const categories = [
-    // Service categories
-    {
-      code: 'CITIZEN_SERVICES',
-      type: CATEGORYTYPE.service,
-      order: 1,
-      icon: 'IdCard',
-      translations: [
-        {
-          locale: LOCALES.DE,
-          label: 'Bürgerservices',
-          slug: 'buergerservices',
-        },
-        {
-          locale: LOCALES.EN,
-          label: 'Citizen Services',
-          slug: 'citizen-services',
-        },
-        {
-          locale: LOCALES.FR,
-          label: 'Services aux citoyens',
-          slug: 'services-citoyens',
-        },
-      ],
-      services: [
-        {
-          requiresAuth: true,
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Personalausweis beantragen',
-              description: 'Beantragen Sie Ihren Ausweis.',
-              slug: 'personalausweis-beantragen',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Apply for ID card',
-              description: 'Apply for your ID card.',
-              slug: 'apply-id-card',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Demander une carte d’identité',
-              description: 'Demandez votre carte d’identité.',
-              slug: 'demander-carte-identite',
-            },
-          ],
-        },
-        {
-          requiresAuth: false,
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Meldebescheinigung anfordern',
-              description: 'Fordern Sie eine Meldebescheinigung an.',
-              slug: 'meldebescheinigung-anfordern',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Request registration certificate',
-              description: 'Request your registration certificate.',
-              slug: 'request-registration-certificate',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Demander un certificat d’enregistrement',
-              description: 'Demandez votre certificat d’enregistrement.',
-              slug: 'demander-certificat-enregistrement',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      code: 'CITY_ADMINISTRATION',
-      type: CATEGORYTYPE.service,
-      order: 2,
-      icon: 'Building',
-      translations: [
-        {
-          locale: LOCALES.DE,
-          label: 'Stadtverwaltung',
-          slug: 'stadtverwaltung',
-        },
-        {
-          locale: LOCALES.EN,
-          label: 'City Administration',
-          slug: 'city-administration',
-        },
-        {
-          locale: LOCALES.FR,
-          label: 'Administration municipale',
-          slug: 'administration-municipale',
-        },
-      ],
-      services: [
-        {
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Rathaus Kontakt',
-              description: 'Kontakt und Öffnungszeiten des Rathauses.',
-              slug: 'rathaus-kontakt',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'City Hall Contact',
-              description: 'Contact and opening hours of city hall.',
-              slug: 'city-hall-contact',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Contact de la mairie',
-              description: 'Contact et horaires de la mairie.',
-              slug: 'contact-mairie',
-            },
-          ],
-        },
-        {
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Bürgermeistersprechstunde',
-              description:
-                'Vereinbaren Sie einen Termin mit dem Bürgermeister.',
-              slug: 'buergermeistersprechstunde',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Mayor’s office hours',
-              description: 'Book an appointment with the mayor.',
-              slug: 'mayors-office-hours',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Heures de permanence du maire',
-              description: 'Prenez rendez-vous avec le maire.',
-              slug: 'permanence-maire',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      code: 'ENVIRONMENT',
-      type: CATEGORYTYPE.service,
-      order: 3,
-      icon: 'Leaf',
-      translations: [
-        { locale: LOCALES.DE, label: 'Umwelt', slug: 'umwelt' },
-        { locale: LOCALES.EN, label: 'Environment', slug: 'environment' },
-        { locale: LOCALES.FR, label: 'Environnement', slug: 'environnement' },
-      ],
-      services: [
-        {
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Müllabfuhrplan',
-              description: 'Sehen Sie den aktuellen Müllabfuhrplan ein.',
-              slug: 'muellabfuhrplan',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Garbage collection schedule',
-              description: 'View the current garbage collection schedule.',
-              slug: 'garbage-collection-schedule',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Calendrier de collecte des déchets',
-              description:
-                'Consultez le calendrier actuel de collecte des déchets.',
-              slug: 'calendrier-collecte-dechets',
-            },
-          ],
-        },
-        {
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Baumspende',
-              description: 'Spenden Sie einen Baum für die Stadt.',
-              slug: 'baumspende',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Tree donation',
-              description: 'Donate a tree to the city.',
-              slug: 'tree-donation',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Don d’arbre',
-              description: 'Faites don d’un arbre à la ville.',
-              slug: 'don-arbre',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      code: 'CULTURE_SPORT',
-      type: CATEGORYTYPE.service,
-      order: 4,
-      icon: 'Trophy',
-      translations: [
-        { locale: LOCALES.DE, label: 'Kultur & Sport', slug: 'kultur-sport' },
-        { locale: LOCALES.EN, label: 'Culture & Sport', slug: 'culture-sport' },
-        {
-          locale: LOCALES.FR,
-          label: 'Culture et sport',
-          slug: 'culture-sport-fr',
-        },
-      ],
-      services: [
-        {
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Sportstätten buchen',
-              description: 'Buchen Sie städtische Sportstätten.',
-              slug: 'sportstaetten-buchen',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Book sports facilities',
-              description: 'Book city sports facilities.',
-              slug: 'book-sports-facilities',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Réserver des installations sportives',
-              description: 'Réservez des installations sportives municipales.',
-              slug: 'reserver-installations-sportives',
-            },
-          ],
-        },
-        {
-          translations: [
-            {
-              locale: LOCALES.DE,
-              title: 'Kulturveranstaltungen',
-              description: 'Finden Sie aktuelle Kulturveranstaltungen.',
-              slug: 'kulturveranstaltungen',
-            },
-            {
-              locale: LOCALES.EN,
-              title: 'Cultural events',
-              description: 'Find current cultural events.',
-              slug: 'cultural-events',
-            },
-            {
-              locale: LOCALES.FR,
-              title: 'Événements culturels',
-              description: 'Trouvez les événements culturels en cours.',
-              slug: 'evenements-culturels',
-            },
-          ],
-        },
-      ],
-    },
     // Contact categories
     {
       code: 'GENERAL_INQUIRY',
       type: CATEGORYTYPE.contact,
       order: 5,
-      icon: 'Mail',
+      // icon removed
       translations: [
         {
           locale: LOCALES.DE,
@@ -314,29 +53,29 @@ async function main() {
         },
       ],
       contacts: [
-        {
+        ...[1, 2, 3].map((i) => ({
           requiresAuth: false,
           translations: [
             {
               locale: LOCALES.DE,
-              title: 'Kontaktformular',
-              description: 'Senden Sie uns Ihre allgemeine Anfrage.',
-              slug: 'kontaktformular',
+              title: `Kontakt ${i}`,
+              description: `Beschreibung Kontakt ${i} (DE)`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.EN,
-              title: 'Contact Form',
-              description: 'Send us your general inquiry.',
-              slug: 'contact-form',
+              title: `Contact ${i}`,
+              description: `Description contact ${i} (EN)`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.FR,
-              title: 'Formulaire de contact',
-              description: 'Envoyez-nous votre demande générale.',
-              slug: 'formulaire-contact',
+              title: `Contact ${i}`,
+              description: `Description contact ${i} (FR)`,
+              slug: `contact-${i}`,
             },
           ],
-        },
+        })),
       ],
     },
     {
@@ -362,29 +101,29 @@ async function main() {
         },
       ],
       contacts: [
-        {
+        ...[1, 2, 3].map((i) => ({
           requiresAuth: false,
           translations: [
             {
               locale: LOCALES.DE,
-              title: 'Technische Hilfe',
-              description: 'Erhalten Sie technische Unterstützung.',
-              slug: 'technische-hilfe',
+              title: `Technische Hilfe ${i}`,
+              description: `Beschreibung Technische Hilfe ${i} (DE)`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.EN,
-              title: 'Technical Help',
-              description: 'Get technical support.',
-              slug: 'technical-help',
+              title: `Technical Help ${i}`,
+              description: `Description technical help ${i} (EN)`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.FR,
-              title: 'Aide technique',
-              description: 'Obtenez de l’aide technique.',
-              slug: 'aide-technique',
+              title: `Aide technique ${i}`,
+              description: `Description aide technique ${i} (FR)`,
+              slug: `contact-${i}`,
             },
           ],
-        },
+        })),
       ],
     },
     {
@@ -398,29 +137,29 @@ async function main() {
         { locale: LOCALES.FR, label: 'Retour', slug: 'retour' },
       ],
       contacts: [
-        {
+        ...[1, 2, 3].map((i) => ({
           requiresAuth: false,
           translations: [
             {
               locale: LOCALES.DE,
-              title: 'Feedback geben',
-              description: 'Teilen Sie uns Ihr Feedback mit.',
-              slug: 'feedback-geben',
+              title: `Feedback geben ${i}`,
+              description: `Teilen Sie uns Ihr Feedback mit.${i}`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.EN,
-              title: 'Give Feedback',
-              description: 'Share your feedback with us.',
-              slug: 'give-feedback',
+              title: `Give Feedback ${i}`,
+              description: `Share your feedback with us.${i}`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.FR,
-              title: 'Donner un retour',
-              description: 'Partagez votre retour avec nous.',
-              slug: 'donner-retour',
+              title: `Donner un retour ${i}`,
+              description: `Partagez votre retour avec nous.${i}`,
+              slug: `contact-${i}`,
             },
           ],
-        },
+        })),
       ],
     },
     {
@@ -438,29 +177,448 @@ async function main() {
         },
       ],
       contacts: [
-        {
+        ...[1, 2, 3].map((i) => ({
           requiresAuth: false,
           translations: [
             {
               locale: LOCALES.DE,
-              title: 'Problem melden',
-              description: 'Melden Sie ein Problem mit der Stadt.',
-              slug: 'problem-melden',
+              title: `Problem melden ${i}`,
+              description: `Melden Sie ein Problem mit der Stadt.${i}`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.EN,
-              title: 'Report a Problem',
-              description: 'Report a problem with the city.',
-              slug: 'report-problem',
+              title: `Report a Problem ${i}`,
+              description: `Report a problem with the city.${i}`,
+              slug: `contact-${i}`,
             },
             {
               locale: LOCALES.FR,
-              title: 'Signaler un problème',
-              description: 'Signalez un problème à la ville.',
-              slug: 'signaler-probleme',
+              title: `Signaler un problème ${i}`,
+              description: `Signalez un problème à la ville.${i}`,
+              slug: `contact-${i}`,
             },
           ],
+        })),
+      ],
+    },
+    {
+      code: 'PERSON_LIFE_EVENTS',
+      type: CATEGORYTYPE.service,
+      order: 100,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Person and life events',
+          slug: 'person-life-events',
         },
+        {
+          locale: LOCALES.FR,
+          label: 'Personne et moments de vie',
+          slug: 'personne-moments-vie',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Person und Lebensereignisse',
+          slug: 'person-lebensereignisse',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'JOBS_ENTREPRENEURSHIP',
+      type: CATEGORYTYPE.service,
+      order: 101,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Jobs and entrepreneurship',
+          slug: 'jobs-entrepreneurship',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Emplois et entreprendre',
+          slug: 'emplois-entreprendre',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Jobs und Unternehmertum',
+          slug: 'jobs-unternehmertum',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'LIVING_BUILDING',
+      type: CATEGORYTYPE.service,
+      order: 102,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Living and building',
+          slug: 'living-building',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Habiter et construire',
+          slug: 'habiter-construire',
+        },
+        { locale: LOCALES.DE, label: 'Wohnen und Bauen', slug: 'wohnen-bauen' },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'WASTE_NATURE_ENVIRONMENT',
+      type: CATEGORYTYPE.service,
+      order: 103,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Waste, nature and environment',
+          slug: 'waste-nature-environment',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Déchets, nature et environnement',
+          slug: 'dechets-nature-environnement',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Abfall, Natur und Umwelt',
+          slug: 'abfall-natur-umwelt',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'LEISURE_SPORT_CULTURE',
+      type: CATEGORYTYPE.service,
+      order: 104,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Leisure, sport and culture',
+          slug: 'leisure-sport-culture',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Loisirs, sport et culture',
+          slug: 'loisirs-sport-culture',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Freizeit, Sport und Kultur',
+          slug: 'freizeit-sport-kultur',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'CHILDCARE_LEARNING',
+      type: CATEGORYTYPE.service,
+      order: 105,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Childcare and learning',
+          slug: 'childcare-learning',
+        },
+        {
+          locale: LOCALES.FR,
+          label: "Garde d'enfants et apprentissage",
+          slug: 'garde-enfants-apprentissage',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Kinderbetreuung und Lernen',
+          slug: 'kinderbetreuung-lernen',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'PARKING_MOBILITY',
+      type: CATEGORYTYPE.service,
+      order: 106,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Parking and mobility',
+          slug: 'parking-mobility',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Stationnement et mobilité',
+          slug: 'stationnement-mobilite',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Parken und Mobilität',
+          slug: 'parken-mobilitaet',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'SOCIAL_ASSISTANCE_WELFARE_CARE',
+      type: CATEGORYTYPE.service,
+      order: 107,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'Social assistance, welfare and care',
+          slug: 'social-assistance-welfare-care',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Aide sociale, bien-être et soins',
+          slug: 'aide-sociale-bien-etre-soins',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Sozialhilfe, Wohlbefinden und Pflege',
+          slug: 'sozialhilfe-wohlbefinden-pflege',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
+      ],
+    },
+    {
+      code: 'CITY_DISTRICTS',
+      type: CATEGORYTYPE.service,
+      order: 108,
+      translations: [
+        {
+          locale: LOCALES.EN,
+          label: 'City and districts',
+          slug: 'city-districts',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Ville et districts',
+          slug: 'ville-districts',
+        },
+        {
+          locale: LOCALES.DE,
+          label: 'Stadt und Bezirke',
+          slug: 'stadt-bezirke',
+        },
+      ],
+      services: [
+        ...[1, 2, 3].map((i) => ({
+          requiresAuth: false,
+          translations: [
+            {
+              locale: LOCALES.DE,
+              title: `Dienstleistung ${i}`,
+              description: `Beschreibung Dienstleistung ${i} (DE)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.EN,
+              title: `Service ${i}`,
+              description: `Description service ${i} (EN)`,
+              slug: `service-${i}`,
+            },
+            {
+              locale: LOCALES.FR,
+              title: `Service ${i}`,
+              description: `Description service ${i} (FR)`,
+              slug: `service-${i}`,
+            },
+          ],
+        })),
       ],
     },
   ];
@@ -517,14 +675,12 @@ async function main() {
             },
           },
           update: {
-            icon: cat.icon,
             isActive: true,
             requiresAuth:
               'requiresAuth' in service ? !!service.requiresAuth : false,
           },
           create: {
             categoryId: category.id,
-            icon: cat.icon,
             order: serviceOrder,
             isActive: true,
             requiresAuth:
@@ -532,8 +688,9 @@ async function main() {
           },
         });
 
-        // Upsert service translations
+        // Upsert service translations with unique slug
         for (const t of service.translations) {
+          const uniqueSlug = `${cat.code.toLowerCase()}-${t.slug}`;
           await prisma.serviceTranslation.upsert({
             where: {
               serviceId_locale: {
@@ -544,14 +701,14 @@ async function main() {
             update: {
               title: t.title,
               description: t.description,
-              slug: t.slug,
+              slug: uniqueSlug,
             },
             create: {
               serviceId: serviceRecord.id,
               locale: t.locale,
               title: t.title,
               description: t.description,
-              slug: t.slug,
+              slug: uniqueSlug,
             },
           });
         }
@@ -572,14 +729,12 @@ async function main() {
             },
           },
           update: {
-            icon: cat.icon,
             isActive: true,
             requiresAuth:
               'requiresAuth' in contact ? !!contact.requiresAuth : false,
           },
           create: {
             categoryId: category.id,
-            icon: cat.icon,
             order: contactOrder,
             isActive: true,
             requiresAuth:
@@ -587,8 +742,9 @@ async function main() {
           },
         });
 
-        // Upsert contact translations
+        // Upsert contact translations with unique slug
         for (const t of contact.translations) {
+          const uniqueSlug = `${cat.code.toLowerCase()}-${t.slug}`;
           await prisma.contactTranslation.upsert({
             where: {
               contactId_locale: {
@@ -599,14 +755,14 @@ async function main() {
             update: {
               title: t.title,
               description: t.description,
-              slug: t.slug,
+              slug: uniqueSlug,
             },
             create: {
               contactId: contactRecord.id,
               locale: t.locale,
               title: t.title,
               description: t.description,
-              slug: t.slug,
+              slug: uniqueSlug,
             },
           });
         }

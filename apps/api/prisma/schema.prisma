@@ -98,7 +98,6 @@ model CategoryTranslation {
 model Service {
     id           String   @id @default(uuid())
     categoryId   String
-    icon         String
     externalUrl  String?
     order        Int      @default(0)
     isActive     Boolean  @default(true)
@@ -131,7 +130,7 @@ model ServiceTranslation {
 model Contact {
     id           String   @id @default(uuid())
     categoryId   String
-    icon         String
+    // icon removed
     externalUrl  String?
     order        Int      @default(0)
     isActive     Boolean  @default(true)
