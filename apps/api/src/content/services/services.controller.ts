@@ -27,7 +27,7 @@ export class ServicesController {
   /**
    * Get all services ordered by category and filtered by locale
    */
-  @Get()
+  @Get('by-category')
   @ApiResponse({
     status: 200,
     description: 'List of services by category',

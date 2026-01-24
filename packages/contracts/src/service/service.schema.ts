@@ -96,3 +96,12 @@ export const ServiceListResponseSchema = z.object({
 });
 
 export type ServiceListResponse = z.infer<typeof ServiceListResponseSchema>;
+
+// Query parameters for services listing in api
+export const ServicesQuerySchema = z.object({
+  page: z.number().int().min(1).default(1),
+  pagesize: z.number().int().min(1).max(50).default(10),
+  query: z.string().optional().default(''),
+});
+
+export type ServicesQuery = z.infer<typeof ServicesQuerySchema>;
