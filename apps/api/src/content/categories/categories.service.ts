@@ -26,7 +26,10 @@ export class CategoriesService {
     locale: Locale,
     type?: CategoryType,
   ): Promise<CategoryListResponse> {
-    this.logger.info({ locale, type }, 'Fetching all categories');
+    this.logger.info(
+      { locale, type },
+      'Fetching all categories with type: ' + type,
+    );
     try {
       const data = await this.prisma.category.findMany({
         where: {

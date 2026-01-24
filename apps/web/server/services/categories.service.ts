@@ -8,6 +8,7 @@ import { safeFetch } from '@/utils/safe-fetch';
 
 // Fetch all categories, optionally filtered by type, and by locale.
 export async function getCategories(type?: CategoryType) {
+  console.log('Fetching categories with type:', type);
   return await safeFetch(
     `/categories${type ? `?type=${type}` : ''}`,
     CategoryListResponseSchema,

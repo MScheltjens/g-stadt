@@ -34,9 +34,9 @@
   --muted: oklch(0.93 0.02 255);
   --muted-foreground: oklch(0.42 0.05 255);
 
-  /* Accent – restrained sandstone */
-  --accent: oklch(0.95 0.08 85);
-  --accent-foreground: oklch(0.28 0.08 85);
+--accent: oklch(0.92 0.04 250);
+--accent-foreground: oklch(0.32 0.08 250);
+
 
   /* Destructive */
   --destructive: oklch(0.60 0.25 25);
