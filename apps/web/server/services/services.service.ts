@@ -23,7 +23,7 @@ export async function getServiceList({
   query,
 }: ServicesSearchParams): Promise<ServiceListResponse> {
   return safeFetch(
-    `/services/list?page=${page}&pagesize=${pagesize}&query=${query}`,
+    `/services?page=${page}&pagesize=${pagesize}&query=${query}`,
     ServiceListResponseSchema,
     {
       cache: 'no-store', // cache 1h

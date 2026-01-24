@@ -9,5 +9,5 @@ export * from './env/base.env.schema.js';
 export * from './env/web.env.schema.js';
 export * from './routing/locale.schema.js';
 export * from './service/service.schema.js';
-export * from './user/user.schema.js';
 export * from './service/services-searchparams.schema.js';
+export * from './user/user.schema.js';

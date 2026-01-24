@@ -38,7 +38,6 @@ export type ServiceCategoryTranslation = z.infer<
 
 export const ServiceSchema = z.object({
   id: z.uuid(),
-  icon: z.string(),
   externalUrl: z.url().nullable(),
   requiresAuth: z.boolean(),
   role: RoleSchema.nullable(),
@@ -99,8 +98,16 @@ export type ServiceListResponse = z.infer<typeof ServiceListResponseSchema>;
 
 // Query parameters for services listing in api
 export const ServicesQuerySchema = z.object({
-  page: z.number().int().min(1).default(1),
-  pagesize: z.number().int().min(1).max(50).default(10),
+  page: z.preprocess((v) => {
+    if (v === undefined || v === null || v === '') return 1;
+    const n = Number(v);
+    return isNaN(n) ? 1 : n;
+  }, z.number().int().min(1).default(1)),
+  pagesize: z.preprocess((v) => {
+    if (v === undefined || v === null || v === '') return 10;
+    const n = Number(v);
+    return isNaN(n) ? 10 : n;
+  }, z.number().int().min(1).max(50).default(10)),
   query: z.string().optional().default(''),
 });
 

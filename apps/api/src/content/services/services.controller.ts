@@ -1,9 +1,10 @@
+import { ServicesQueryDto } from '@api/src/content/services/dto/services-query.dto.js';
 import { Locale } from '@kwh/constants';
 import {
   BadRequestException,
   Controller,
   Get,
-  InternalServerErrorException,
+  Query,
   Req,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -34,23 +35,25 @@ export class ServicesController {
     type: Object,
   })
   async getAllServicesByCategory(@Req() req: Request & { locale?: Locale }) {
-    this.logger.info('Get all services by category endpoint called');
-    if (!req.locale) {
-      this.logger.warn('Missing locale in request');
-      throw new BadRequestException('Locale is required');
-    }
-    try {
-      return await this.servicesService.getAllServicesByCategory(req.locale);
-    } catch (error) {
-      if (error instanceof Error) {
-        this.logger.error('Failed to get services by category', error.stack);
-      } else {
-        this.logger.error(
-          'Failed to get services by category',
-          JSON.stringify(error),
-        );
-      }
-      throw new InternalServerErrorException('Failed to fetch services');
-    }
+    if (!req.locale) throw new BadRequestException('Locale is required');
+    return this.servicesService.getAllServicesByCategory(req.locale);
+  }
+
+  @Get()
+  @ApiResponse({
+    status: 200,
+    description: 'List of all services',
+    type: Object,
+  })
+  async getServiceList(
+    @Req() req: Request & { locale?: Locale },
+    @Query() query: ServicesQueryDto,
+  ) {
+    if (!req.locale)
+      throw new BadRequestException('Locale is required in request context');
+    return this.servicesService.getServiceList({
+      locale: req.locale,
+      ...query,
+    });
   }
 }
