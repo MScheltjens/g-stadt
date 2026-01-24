@@ -23,7 +23,7 @@ export async function generateMetadata({
 
 export default function AuthLayout({ children }: LayoutProps) {
   return (
-    <div className="max-w-md mx-auto my-10 p-6 bg-white rounded-md shadow-md">
+    <div className="max-w-md p-6 mx-auto my-10 bg-white rounded-md shadow-md">
       {children}
     </div>
   );

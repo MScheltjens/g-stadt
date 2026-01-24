@@ -89,3 +89,10 @@ export const ServiceCategoriesResponseSchema = z.array(
 export type ServiceCategoriesResponse = z.infer<
   typeof ServiceCategoriesResponseSchema
 >;
+
+export const ServiceListResponseSchema = z.object({
+  services: z.array(ServiceSchema),
+  total: z.number(),
+});
+
+export type ServiceListResponse = z.infer<typeof ServiceListResponseSchema>;

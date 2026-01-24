@@ -6,9 +6,11 @@ import type { ReactNode } from 'react';
  * Always type them as possibly async.
  */
 
-type PageParams<T extends object = object> = {
-  locale: string;
-} & T;
+type PageParams<T extends object = object> = Promise<
+  {
+    locale: string;
+  } & T
+>;
 
 type SearchParams = { [key: string]: string | string[] | undefined };
 
