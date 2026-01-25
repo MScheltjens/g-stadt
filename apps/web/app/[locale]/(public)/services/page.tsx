@@ -1,10 +1,10 @@
 import { ServicesSearchParamsSchema } from '@kwh/contracts';
 import { getTranslations } from '@kwh/i18n';
-import { notFound } from 'next/navigation';
 
 import { PageHeading } from '@/components/layout/page-heading';
+import { ComingSoon } from '@/components/marketing/coming-soon';
 import { PageNavigation } from '@/components/navigation/page-navigation';
-import { getServiceList } from '@/server/services/services.service';
+import { getAllServicesByCategory } from '@/server/services/services.service';
 import type { PageProps } from '@/types';
 
 export default async function ServicesPage({ searchParams }: PageProps) {
@@ -15,12 +15,10 @@ export default async function ServicesPage({ searchParams }: PageProps) {
   if (!result.success) {
     console.error('Invalid search params', result.error);
     // fallback values
-    return notFound(); // or redirect / default render
+    return <ComingSoon />; // render the coming soon if api does not work
   }
 
-  const { page, pagesize, query } = result.data;
-
-  const data = await getServiceList({ page, pagesize, query });
+  const data = await getAllServicesByCategory(result.data);
 
   return (
     <>

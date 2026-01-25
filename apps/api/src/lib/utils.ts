@@ -1,5 +1,3 @@
-import { CategoryListResponse } from '@kwh/contracts';
-
 // Slugify a string to create URL-friendly slugs
 export const slugify = (text: string): string =>
   text
@@ -13,9 +11,9 @@ export const slugify = (text: string): string =>
 
 // Group categories by their type
 
-export function mapCategoriesByType(categories: CategoryListResponse) {
-  return {
-    service: categories.filter((cat) => cat.type === 'SERVICE'),
-    contact: categories.filter((cat) => cat.type === 'CONTACT'),
-  };
-}
+// export function mapCategoriesByType(categories: CategoryListResponse) {
+//   return {
+//     service: categories.filter((cat) => cat.type === CATEGORYTYPE.service),
+//     contact: categories.filter((cat) => cat.type === CATEGORYTYPE.contact),
+//   };
+// }

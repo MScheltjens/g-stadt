@@ -2,7 +2,7 @@
 
 import { ROUTES } from '@kwh/constants';
 import { CategoryListResponse } from '@kwh/contracts';
-import { Link, useLocale, useTranslations } from '@kwh/i18n';
+import { Link, useTranslations } from '@kwh/i18n';
 import { Button } from '@kwh/ui/components/button';
 import {
   DropdownMenu,
@@ -17,7 +17,6 @@ export function ContactMenu({
 }: {
   contactCategories: CategoryListResponse;
 }) {
-  const locale = useLocale();
   const t = useTranslations('contactMenu');
 
   return (
@@ -25,26 +24,24 @@ export function ContactMenu({
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="border-l-2">
           <CircleAlert size={20} />
-          <span className="hidden sm:inline-block text-sm text-muted-foreground font-semibold">
+          <span className="hidden text-sm font-semibold sm:inline-block text-muted-foreground">
             {t('label')}
           </span>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="min-w-[180px]">
+      <DropdownMenuContent align="end" className="min-w-45">
         {contactCategories.map((cat) => {
-          const translation = cat.translations.find((t) => t.locale === locale);
-
           return (
             <DropdownMenuItem key={cat.id} asChild>
               <Link
                 href={{
                   pathname: ROUTES.CONTACT_CATEGORY,
-                  params: { categorySlug: translation?.slug ?? '' },
+                  params: { categorySlug: cat.slug },
                 }}
                 className="w-full"
               >
-                {translation?.label}
+                {cat.label}
               </Link>
             </DropdownMenuItem>
           );

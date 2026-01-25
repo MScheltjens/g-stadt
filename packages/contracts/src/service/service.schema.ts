@@ -1,6 +1,8 @@
+import { CATEGORYTYPE } from '@kwh/constants';
 import { z } from 'zod';
 
 import { RoleSchema } from '../auth/role.schema.js';
+import { CategoryResponseSchema } from '../common/category.schema.js';
 import { LocaleSchema } from '../routing/locale.schema.js';
 
 /* =========================
@@ -41,7 +43,11 @@ export const ServiceSchema = z.object({
   externalUrl: z.url().nullable(),
   requiresAuth: z.boolean(),
   role: RoleSchema.nullable(),
-  translations: z.array(ServiceTranslationSchema),
+  // Flattened translation fields
+  locale: LocaleSchema,
+  title: z.string(),
+  description: z.string(),
+  slug: z.string(),
 });
 
 export type Service = z.infer<typeof ServiceSchema>;
@@ -53,7 +59,10 @@ export const ServiceCategoryResponseSchema = z.object({
   code: z.string(),
   order: z.number(),
   isActive: z.boolean(),
-  translations: z.array(ServiceCategoryTranslationSchema),
+  // Flattened translation fields
+  locale: LocaleSchema,
+  label: z.string(),
+  slug: z.string(),
   services: z.array(ServiceSchema),
 });
 
@@ -62,11 +71,10 @@ export type ServiceCategoryResponse = z.infer<
 >;
 
 // All categories with their services (factory to avoid circular dependency)
-import { CategoryResponseSchema } from '../common/category.schema.js';
+
 export const ServicesByCategoryResponseSchema = z.array(
-  CategoryResponseSchema.extend({
-    type: z.literal('SERVICE'),
-    services: z.array(ServiceSchema),
+  ServiceCategoryResponseSchema.extend({
+    type: z.literal(CATEGORYTYPE.service),
   }),
 );
 
@@ -75,13 +83,17 @@ export type ServicesByCategoryResponse = z.infer<
 >;
 
 // Categories only
+
 export const ServiceCategoriesResponseSchema = z.array(
   z.object({
     id: z.uuid(),
     code: z.string(),
     order: z.number(),
     isActive: z.boolean(),
-    translations: z.array(ServiceCategoryTranslationSchema),
+    // Flattened translation fields
+    locale: LocaleSchema,
+    label: z.string(),
+    slug: z.string(),
   }),
 );
 
@@ -90,7 +102,11 @@ export type ServiceCategoriesResponse = z.infer<
 >;
 
 export const ServiceListResponseSchema = z.object({
-  services: z.array(ServiceSchema),
+  services: z.array(
+    ServiceSchema.extend({
+      category: CategoryResponseSchema,
+    }),
+  ),
   total: z.number(),
 });
 

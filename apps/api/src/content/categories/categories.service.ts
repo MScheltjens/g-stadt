@@ -43,8 +43,26 @@ export class CategoriesService {
       });
       this.logger.info('Fetched categories count:', data.length);
 
+      const mapped = data
+        .map((category) => {
+          const translation = category.translations[0];
+          if (!translation) return null;
+          return {
+            id: category.id,
+            code: category.code,
+            order: category.order,
+            isActive: category.isActive,
+            type: category.type,
+            locale: translation.locale,
+            label: translation.label,
+            slug: translation.slug,
+          };
+        })
+        .filter(Boolean);
       // validate the returned data
-      return CategoryListResponseSchema.parse(data);
+      const validated = CategoryListResponseSchema.parse(mapped);
+      this.logger.info('Validated categories count:', validated.length);
+      return validated;
     } catch (error) {
       this.logger.error('Database error in getCategories', error);
       throw error;

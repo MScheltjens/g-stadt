@@ -36,7 +36,10 @@ export const CategoryResponseSchema = z.object({
   type: CategoryTypeSchema,
   order: z.number(),
   isActive: z.literal(true),
-  translations: z.array(CategoryTranslationSchema),
+  // Flattened translation fields
+  locale: LocaleSchema,
+  label: z.string(),
+  slug: z.string(),
 });
 
 export type CategoryResponse = z.infer<typeof CategoryResponseSchema>;

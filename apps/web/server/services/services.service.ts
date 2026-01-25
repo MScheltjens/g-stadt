@@ -9,10 +9,16 @@ import {
 import { safeFetch } from '@/utils/safe-fetch';
 
 // Fetch all services ordered by category and filtered by locale //
-export async function getAllServicesByCategory(): Promise<ServicesByCategoryResponse> {
-  return safeFetch(`/services/by-category`, ServicesByCategoryResponseSchema, {
-    next: { revalidate: 60 * 60 }, // cache 1h
-  });
+export async function getAllServicesByCategory(
+  query: ServicesSearchParams,
+): Promise<ServicesByCategoryResponse> {
+  return safeFetch(
+    `/services/by-category?page=${query.page}&pagesize=${query.pagesize}&query=${query.query}`,
+    ServicesByCategoryResponseSchema,
+    {
+      next: { revalidate: 60 * 60 }, // cache 1h
+    },
+  );
 }
 
 // Fetch a list of all services for the locale

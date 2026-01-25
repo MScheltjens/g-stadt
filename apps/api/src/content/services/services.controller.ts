@@ -34,26 +34,15 @@ export class ServicesController {
     description: 'List of services by category',
     type: Object,
   })
-  async getAllServicesByCategory(@Req() req: Request & { locale?: Locale }) {
-    if (!req.locale) throw new BadRequestException('Locale is required');
-    return this.servicesService.getAllServicesByCategory(req.locale);
-  }
-
-  @Get()
-  @ApiResponse({
-    status: 200,
-    description: 'List of all services',
-    type: Object,
-  })
-  async getServiceList(
+  async getAllServicesByCategory(
     @Req() req: Request & { locale?: Locale },
     @Query() query: ServicesQueryDto,
   ) {
-    if (!req.locale)
-      throw new BadRequestException('Locale is required in request context');
-    return this.servicesService.getServiceList({
-      locale: req.locale,
-      ...query,
-    });
+    if (!req.locale) throw new BadRequestException('Locale is required');
+    this.logger.info(
+      { locale: req.locale, query },
+      'getAllServicesByCategory endpoint called',
+    );
+    return this.servicesService.getAllServicesByCategory(req.locale, query);
   }
 }
