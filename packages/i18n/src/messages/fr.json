@@ -95,6 +95,11 @@
       "title": "Services",
       "description": "Découvrez les services proposés par la ville de knowhere."
     },
+    "list": {
+      "filter": {
+        "title": "Filtrer les services"
+      }
+    },
     "title": "Services municipaux",
     "description": "Découvrez les services proposés par la ville de knowhere.",
     "viewAll": "Voir tous les services"

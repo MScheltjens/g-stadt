@@ -20,32 +20,30 @@ export function LocaleSwitcher() {
 
   if (pathname !== ROUTES.HOME) return null;
 
+  const currentLocale = useLocale();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="border-l-2">
         <Button variant="ghost">
           <span className="sr-only">{t('label')}</span>
           <Globe size={20} />
-          <span className="hidden sm:inline-block text-sm text-muted-foreground font-semibold">
+          <span className="hidden text-sm font-semibold sm:inline-block text-muted-foreground">
             {locale.toUpperCase()}
           </span>
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="min-w-[100px] d">
-        {SUPPORTED_LOCALES.map((l) => (
+        {SUPPORTED_LOCALES.map((locale) => (
           <DropdownMenuItem
-            key={l}
+            key={locale}
             onClick={() => {
-              if (l === locale) return;
-              router.push(pathname, { locale: l });
+              router.push(pathname, { locale });
             }}
-            className={cn(
-              'uppercase cursor-pointer',
-              l === locale && 'font-semibold text-primary',
-            )}
+            className="font-semibold uppercase cursor-pointer text-primary"
+            disabled={locale === currentLocale}
           >
-            {l}
+            {locale.toUpperCase()}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
