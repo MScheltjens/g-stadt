@@ -22,9 +22,9 @@
     "db:studio": "turbo run db:studio"
   },
   "devDependencies": {
+    "@jest/types": "^30.2.0",
     "@kwh/eslint-config": "workspace:*",
     "@kwh/typescript-config": "workspace:*",
-    "@jest/types": "^30.2.0",
     "@types/jest": "^29.5.6",
     "eslint": "^9.31.0",
     "eslint-plugin-import": "^2.32.0",
@@ -36,7 +36,7 @@
     "next": "16.0.10",
     "prettier": "^3.7.4",
     "rimraf": "^6.1.2",
-    "turbo": "^2.7.4",
+    "turbo": "^2.8.1",
     "typescript": "5.5.4"
   },
   "lint-staged": {
