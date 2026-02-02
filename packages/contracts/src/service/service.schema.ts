@@ -1,15 +1,11 @@
-import { CATEGORYTYPE } from '@kwh/constants';
 import { z } from 'zod';
 
 import { RoleSchema } from '../auth/role.schema.js';
-import { CategoryResponseSchema } from '../common/category.schema.js';
 import { LocaleSchema } from '../routing/locale.schema.js';
 
-/* =========================
-   TRANSLATIONS
-   ========================= */
+//// BASE SCHEMAS ////
 
-// Service Translation schema
+// Service Translation schema //
 
 export const ServiceTranslationSchema = z.object({
   locale: LocaleSchema,
@@ -20,111 +16,33 @@ export const ServiceTranslationSchema = z.object({
 
 export type ServiceTranslation = z.infer<typeof ServiceTranslationSchema>;
 
-// Service Category Translation schema
+// Service base schema //
 
-export const ServiceCategoryTranslationSchema = z.object({
-  locale: LocaleSchema,
-  label: z.string(),
-  slug: z.string(),
-});
-
-export type ServiceCategoryTranslation = z.infer<
-  typeof ServiceCategoryTranslationSchema
->;
-
-/* =========================
-    MAIN SCHEMAS
-    ========================= */
-
-// Service schema
-
-export const ServiceSchema = z.object({
+export const ServiceBaseSchema = z.object({
   id: z.uuid(),
-  externalUrl: z.url().nullable(),
+  externalUrl: z.url().nullable().optional(),
   requiresAuth: z.boolean(),
-  role: RoleSchema.nullable(),
-  // Flattened translation fields
-  locale: LocaleSchema,
-  title: z.string(),
-  description: z.string(),
-  slug: z.string(),
+  role: RoleSchema.nullable().optional(),
 });
 
-export type Service = z.infer<typeof ServiceSchema>;
+export type ServiceBase = z.infer<typeof ServiceBaseSchema>;
 
-// One category with its services
+// Service with translations key schema //
 
-export const ServiceCategoryResponseSchema = z.object({
-  id: z.uuid(),
-  code: z.string(),
-  order: z.number(),
-  isActive: z.boolean(),
-  // Flattened translation fields
-  locale: LocaleSchema,
-  label: z.string(),
-  slug: z.string(),
-  services: z.array(ServiceSchema),
+export const ServiceWithTranslationsSchema = ServiceBaseSchema.extend({
+  translations: z.array(ServiceTranslationSchema),
 });
 
-export type ServiceCategoryResponse = z.infer<
-  typeof ServiceCategoryResponseSchema
+export type ServiceWithTranslations = z.infer<
+  typeof ServiceWithTranslationsSchema
 >;
 
-// All categories with their services (factory to avoid circular dependency)
+// Service list response schema with flattened translations //
 
-export const ServicesByCategoryResponseSchema = z.array(
-  ServiceCategoryResponseSchema.extend({
-    type: z.literal(CATEGORYTYPE.service),
+export const ServiceListResponseSchema = z.array(
+  ServiceBaseSchema.extend({
+    ...ServiceTranslationSchema.shape,
   }),
 );
-
-export type ServicesByCategoryResponse = z.infer<
-  typeof ServicesByCategoryResponseSchema
->;
-
-// Categories only
-
-export const ServiceCategoriesResponseSchema = z.array(
-  z.object({
-    id: z.uuid(),
-    code: z.string(),
-    order: z.number(),
-    isActive: z.boolean(),
-    // Flattened translation fields
-    locale: LocaleSchema,
-    label: z.string(),
-    slug: z.string(),
-  }),
-);
-
-export type ServiceCategoriesResponse = z.infer<
-  typeof ServiceCategoriesResponseSchema
->;
-
-export const ServiceListResponseSchema = z.object({
-  services: z.array(
-    ServiceSchema.extend({
-      category: CategoryResponseSchema,
-    }),
-  ),
-  total: z.number(),
-});
 
 export type ServiceListResponse = z.infer<typeof ServiceListResponseSchema>;
-
-// Query parameters for services listing in api
-export const ServicesQuerySchema = z.object({
-  page: z.preprocess((v) => {
-    if (v === undefined || v === null || v === '') return 1;
-    const n = Number(v);
-    return isNaN(n) ? 1 : n;
-  }, z.number().int().min(1).default(1)),
-  pagesize: z.preprocess((v) => {
-    if (v === undefined || v === null || v === '') return 10;
-    const n = Number(v);
-    return isNaN(n) ? 10 : n;
-  }, z.number().int().min(1).max(50).default(10)),
-  query: z.string().optional().default(''),
-});
-
-export type ServicesQuery = z.infer<typeof ServicesQuerySchema>;

@@ -1,8 +1,4 @@
-import {
-  CategoryListResponseSchema,
-  CategoryType,
-  ServiceCategoryResponseSchema,
-} from '@kwh/contracts';
+import { CategoryListResponseSchema, CategoryType } from '@kwh/contracts';
 
 import { safeFetch } from '@/utils/safe-fetch';
 
@@ -16,11 +12,4 @@ export async function getCategories(type?: CategoryType) {
       next: { revalidate: 60 * 60 }, // cache 1h
     },
   );
-}
-
-// Fetch a single service category with its services, filtered by locale.
-export async function getCategoryWithServices(slug: string) {
-  return await safeFetch(`/categories/${slug}`, ServiceCategoryResponseSchema, {
-    next: { revalidate: 60 * 60 }, // cache 1h
-  });
 }

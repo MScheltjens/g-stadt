@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@kwh/constants';
+import { DEFAULT_LOCALE, Locale } from '@kwh/constants';
 import { LocaleSchema } from '@kwh/contracts';
 import {
   CallHandler,
@@ -18,30 +18,17 @@ export class LocaleInterceptor implements NestInterceptor {
 
     let rawLocale: string | undefined;
 
-    // 1. Check NEXT_LOCALE cookie (set in safeFetch and proxy) first
+    // 1. Check NEXT_LOCALE cookie
     if (req.cookies && req.cookies.NEXT_LOCALE) {
       rawLocale = req.cookies.NEXT_LOCALE;
     }
 
-    // 2. Check locale in URL (e.g., /de/...) if not found in cookie
-    if (!rawLocale && req.url) {
-      const urlLocale = req.url.split('/')[1];
-      if (urlLocale && SUPPORTED_LOCALES.includes(urlLocale as Locale)) {
-        rawLocale = urlLocale;
-      }
+    // 2. Fallback to x-locale header
+    if (!rawLocale && req.headers['x-locale']) {
+      rawLocale = req.headers['x-locale'] as string;
     }
 
-    // 3. Check Accept-Language header if not found in cookie or URL
-    if (!rawLocale && req.headers['accept-language']) {
-      const acceptLang = req.headers['accept-language']
-        .split(',')[0]
-        .split('-')[0];
-      if (acceptLang && SUPPORTED_LOCALES.includes(acceptLang)) {
-        rawLocale = acceptLang;
-      }
-    }
-
-    // 4. Fallback to DEFAULT_LOCALE
+    // 3. Fallback to default
     if (!rawLocale) {
       rawLocale = DEFAULT_LOCALE;
     }
@@ -49,7 +36,7 @@ export class LocaleInterceptor implements NestInterceptor {
     // Validate locale
     const parseResult = LocaleSchema.safeParse(rawLocale);
     req.locale = parseResult.success
-      ? parseResult.data
+      ? (parseResult.data as Locale)
       : (DEFAULT_LOCALE as Locale);
 
     return next.handle();

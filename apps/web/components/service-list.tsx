@@ -1,8 +1,9 @@
-export function ServiceList() {
+import { ServiceListResponse } from '@kwh/contracts';
+
+export function ServiceList(services: ServiceListResponse) {
   return (
     <div>
-      <h2>Service List Component</h2>
-      {/* Add service list UI elements here */}
+      <pre>{JSON.stringify(services, null, 2)}</pre>
     </div>
   );
 }

@@ -3,8 +3,6 @@ import {
   CategoryListResponse,
   CategoryListResponseSchema,
   CategoryType,
-  ServiceCategoryResponse,
-  ServiceCategoryResponseSchema,
 } from '@kwh/contracts';
 import { Injectable } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
@@ -65,47 +63,6 @@ export class CategoriesService {
       return validated;
     } catch (error) {
       this.logger.error('Database error in getCategories', error);
-      throw error;
-    }
-  }
-  /**
-   * Fetch a single service category with its services, filtered by locale.
-   */
-  async getCategoryWithServices(
-    slug: string,
-    locale: Locale,
-  ): Promise<ServiceCategoryResponse> {
-    this.logger.info({ slug, locale }, 'Fetching category with services');
-    try {
-      // Step 1: Find the category translation for the given slug and locale
-      const translation = await this.prisma.categoryTranslation.findUnique({
-        where: { locale_slug: { locale, slug } },
-        select: { categoryId: true },
-      });
-      if (!translation) {
-        this.logger.warn({ slug, locale }, 'Category translation not found');
-        return null;
-      }
-
-      // Step 2: Fetch the category with its services and translations
-      const data = await this.prisma.category.findUnique({
-        where: { id: translation.categoryId },
-        include: {
-          translations: { where: { locale } },
-          services: {
-            where: { isActive: true },
-            orderBy: { order: 'asc' },
-            include: {
-              translations: { where: { locale } },
-            },
-          },
-        },
-      });
-      this.logger.info('Fetched category with services:', !!data);
-      // validate the returned data
-      return ServiceCategoryResponseSchema.parse(data);
-    } catch (error) {
-      this.logger.error('Database error in getCategoryWithServices', error);
       throw error;
     }
   }

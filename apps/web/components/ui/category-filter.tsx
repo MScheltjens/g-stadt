@@ -1,11 +1,10 @@
-import { CategoryListResponse, CategoryType } from '@kwh/contracts';
 import { useTranslations } from '@kwh/i18n';
 import { Input } from '@kwh/ui/components/input';
 import {
   Select,
-  SelectTrigger,
   SelectContent,
   SelectItem,
+  SelectTrigger,
 } from '@kwh/ui/components/select';
 
 type CategoryFilterProps = {

@@ -2,7 +2,7 @@ export * from './auth/auth.schema.js';
 export * from './auth/auth-user.schema.js';
 export * from './auth/jwt.schema.js';
 export * from './auth/role.schema.js';
-export * from './common/category.schema.js';
+export * from './category/category.schema.js';
 export * from './common/params.schema.js';
 export * from './env/api.env.schema.js';
 export * from './env/base.env.schema.js';

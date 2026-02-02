@@ -1,12 +1,6 @@
-import { ServicesQueryDto } from '@api/src/content/services/dto/services-query.dto.js';
-import { Locale } from '@kwh/constants';
-import {
-  BadRequestException,
-  Controller,
-  Get,
-  Query,
-  Req,
-} from '@nestjs/common';
+import { Locale, SUPPORTED_LOCALES } from '@kwh/constants';
+import { CategoryWithServicesListResponse } from '@kwh/contracts';
+import { BadRequestException, Controller, Get, Req } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
@@ -24,25 +18,22 @@ export class ServicesController {
     @InjectPinoLogger(ServicesController.name)
     private readonly logger: PinoLogger,
   ) {}
-
-  /**
-   * Get all services ordered by category and filtered by locale
-   */
   @Get('by-category')
   @ApiResponse({
     status: 200,
-    description: 'List of services by category',
-    type: Object,
+    description: 'Retrieve a list of services grouped by their categories.',
   })
-  async getAllServicesByCategory(
-    @Req() req: Request & { locale?: Locale },
-    @Query() query: ServicesQueryDto,
-  ) {
-    if (!req.locale) throw new BadRequestException('Locale is required');
+  async getServicesByCategory(
+    @Req() req: Request & { locale: Locale },
+  ): Promise<CategoryWithServicesListResponse> {
     this.logger.info(
-      { locale: req.locale, query },
-      'getAllServicesByCategory endpoint called',
+      `Received request to fetch services by category for locale: ${req.locale}`,
     );
-    return this.servicesService.getAllServicesByCategory(req.locale, query);
+
+    if (!SUPPORTED_LOCALES.includes(req.locale)) {
+      this.logger.error(`Unsupported locale received: ${req.locale}`);
+      throw new BadRequestException('Unsupported locale');
+    }
+    return this.servicesService.getServicesByCategory(req.locale);
   }
 }

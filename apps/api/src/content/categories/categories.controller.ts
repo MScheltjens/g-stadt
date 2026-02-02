@@ -1,14 +1,9 @@
 import { Locale } from '@kwh/constants';
-import {
-  type CategoryListResponse,
-  type ServiceCategoryResponse,
-} from '@kwh/contracts';
+import { type CategoryListResponse } from '@kwh/contracts';
 import {
   BadRequestException,
   Controller,
   Get,
-  NotFoundException,
-  Param,
   Query,
   Req,
 } from '@nestjs/common';
@@ -31,6 +26,8 @@ export class CategoriesController {
     private readonly logger: PinoLogger,
   ) {}
 
+  // Get all categories, optionally filtered by type
+
   @Get()
   @ApiOperation({ summary: 'Get all categories' })
   @ApiResponse({ status: 200, description: 'List of categories', type: Object }) // Replace Object with a DTO/class if available
@@ -46,51 +43,5 @@ export class CategoriesController {
     }
     // Pass type to service if provided
     return this.categoriesService.getCategories(req.locale, query?.type);
-  }
-
-  // Get a service category by slug with its services
-  @Get(':slug')
-  @ApiOperation({ summary: 'Get service category with its services' })
-  @ApiResponse({
-    status: 200,
-    description: 'One category with its services',
-    type: Object,
-  }) // Replace Object with a DTO/class if available
-  async getCategoryWithServices(
-    @Param('slug') slug: string,
-    @Req() req: Request & { locale?: Locale },
-  ): Promise<ServiceCategoryResponse> {
-    this.logger.info({ slug }, 'Get category with services endpoint called');
-
-    if (
-      !slug ||
-      typeof slug !== 'string' ||
-      slug.length < 2 ||
-      slug.length > 64
-    ) {
-      this.logger.warn('Invalid slug parameter');
-      throw new BadRequestException('Invalid slug');
-    }
-
-    // Use NEXT_LOCALE cookie, fallback to URL or Accept-Language for SSR
-    const locale = req.locale;
-
-    if (!locale) {
-      this.logger.warn('Missing locale in cookies, URL, and Accept-Language');
-      throw new BadRequestException('Locale is required');
-    }
-    const category = await this.categoriesService.getCategoryWithServices(
-      slug,
-      locale,
-    );
-
-    if (!category) {
-      this.logger.warn(
-        `Category not found for slug: ${slug} and locale: ${locale}`,
-      );
-      throw new NotFoundException('Category not found');
-    }
-
-    return category;
   }
 }

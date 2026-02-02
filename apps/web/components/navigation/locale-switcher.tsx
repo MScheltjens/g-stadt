@@ -10,17 +10,15 @@ import {
   DropdownMenuTrigger,
 } from '@kwh/ui/components/dropdown-menu';
 import { Globe } from '@kwh/ui/components/icons';
-import { cn } from '@kwh/ui/lib/utils';
 
 export function LocaleSwitcher() {
-  const locale = useLocale();
+  const currentLocale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations('localeSwitcher');
 
   if (pathname !== ROUTES.HOME) return null;
 
-  const currentLocale = useLocale();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="border-l-2">
@@ -28,12 +26,12 @@ export function LocaleSwitcher() {
           <span className="sr-only">{t('label')}</span>
           <Globe size={20} />
           <span className="hidden text-sm font-semibold sm:inline-block text-muted-foreground">
-            {locale.toUpperCase()}
+            {currentLocale.toUpperCase()}
           </span>
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="min-w-[100px] d">
+      <DropdownMenuContent align="end" className="min-w-25 d">
         {SUPPORTED_LOCALES.map((locale) => (
           <DropdownMenuItem
             key={locale}
