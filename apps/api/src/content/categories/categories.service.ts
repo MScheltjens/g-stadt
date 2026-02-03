@@ -39,7 +39,7 @@ export class CategoriesService {
           translations: { where: { locale } },
         },
       });
-      this.logger.info('Fetched categories count:', data.length);
+      this.logger.info('Fetched categories count:', JSON.stringify(data));
 
       const mapped = data
         .map((category) => {

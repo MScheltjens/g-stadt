@@ -1,6 +1,7 @@
 'use client';
 
 import { ROUTES } from '@kwh/constants';
+import { CategoryListResponse } from '@kwh/contracts';
 import { useRouter, useTranslations } from '@kwh/i18n';
 import { cn } from '@kwh/ui/lib/utils';
 import { useSearchParams } from 'next/navigation';
@@ -11,7 +12,7 @@ import { SearchInput } from '@/components/ui/search-input';
 import { useDebounce } from '@/utils/hooks/useDebounce';
 
 type ServiceFilterProps = {
-  categories: { label: string; id: string }[];
+  categories: CategoryListResponse;
   className?: string;
 };
 
@@ -27,13 +28,13 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
   const debouncedSearch = useDebounce(searchInput, 400);
 
   // Multi-select: derive selectedCategoryIds from searchParams
-  const categoryIdParam = searchParams.get('categoryId');
+  const categoriesParam = searchParams.get('categories');
   let derivedSelectedCategoryIds: string[] = [];
-  if (categoryIdParam && categoryIdParam !== 'all') {
-    derivedSelectedCategoryIds = decodeURIComponent(categoryIdParam)
+  if (categoriesParam && categoriesParam !== 'all') {
+    derivedSelectedCategoryIds = decodeURIComponent(categoriesParam)
       .split(',')
       .filter(Boolean);
-  } else if (categoryIdParam === 'all' || !categoryIdParam) {
+  } else if (categoriesParam === 'all' || !categoriesParam) {
     derivedSelectedCategoryIds = [];
   }
 
@@ -43,7 +44,7 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
     if (debouncedSearch) {
       params.set('search', debouncedSearch);
       params.set('page', '1'); // Reset page to 1 on new search
-      params.delete('categoryId'); // Keep category filter
+      params.delete('categories'); // Keep category filter
     } else {
       params.delete('search');
       params.set('page', '1'); // Also reset page if search is cleared
@@ -56,18 +57,16 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
   }, [debouncedSearch]);
 
   // Handler for category change (multi-select)
-  const handleCategoryChange = (categoryIds: string[]) => {
+  const handleCategoryChange = (categories: string[]) => {
     const params = new URLSearchParams(searchParams.toString());
     if (searchInput) {
       params.set('search', searchInput);
     } else {
       params.delete('search');
     }
-    params.delete('categoryId');
-    if (categoryIds.length > 0) {
-      params.set('categoryId', categoryIds.join(','));
-    } else {
-      params.set('categoryId', 'all');
+    params.delete('categories');
+    if (categories.length > 0) {
+      params.set('categories', categories.join(','));
     }
     params.set('page', '1');
     router.replace({

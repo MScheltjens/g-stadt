@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import { Footer } from '@/components/layout/footer';
 import { TopMenuBar } from '@/components/navigation/top-menu';
 import type { LayoutProps, MetadataProps } from '@/types';
-import { KnowhereLogo } from '@/components/svg/knowhere.logo';
 
 export async function generateMetadata({
   params,

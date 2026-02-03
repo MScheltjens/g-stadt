@@ -23,14 +23,67 @@ export class ServicesService {
     this.logger.info(
       `Fetching all services for locale ${locale} and query ${JSON.stringify(query)}`,
     );
-    const page = query.page ?? 1;
-    const limit = query.limit ?? 10;
-    const { categoryId } = query;
-    const search = query.search?.trim();
+
+    const { page = 1, limit = 10, categories, search } = query;
+
+    console.log('Received getServices request with parameters:', {
+      page,
+      limit,
+      categories,
+      search,
+    });
+    this.logger.info('Parsed query parameters:', {
+      page,
+      limit,
+      categories,
+      search,
+    });
+
+    let categoryFilter = undefined;
+    if (categories) {
+      // Only accept slugs
+      let categorySlugs: string[] = [];
+      if (Array.isArray(categories)) {
+        categorySlugs = categories;
+      } else if (typeof categories === 'string' && categories.includes(',')) {
+        categorySlugs = categories.split(',').filter(Boolean);
+      } else if (typeof categories === 'string') {
+        categorySlugs = [categories];
+      }
+
+      this.logger.info(
+        `Filtering services by category slugs: ${JSON.stringify(categorySlugs)}`,
+      );
+
+      console.log({ categorySlugs });
+      console.log({ categories });
+      if (categorySlugs.length > 0) {
+        // Look up ids for these slugs and locale, only keep categories with a matching translation
+        const categoriesWithTranslation = await this.prisma.category.findMany({
+          where: {
+            translations: {
+              some: {
+                locale,
+                slug: { in: categorySlugs },
+              },
+            },
+          },
+        });
+
+        this.logger.info(
+          `Found categories for filtering: ${JSON.stringify(categoriesWithTranslation)}`,
+        );
+
+        const ids = categoriesWithTranslation.map((c) => c.id);
+        if (ids.length > 0) {
+          categoryFilter = { in: ids };
+        }
+      }
+    }
 
     const where: any = {
       isActive: true,
-      ...(categoryId && { categoryId }),
+      categoryId: categoryFilter,
       ...(search && {
         translations: {
           some: {
@@ -43,6 +96,7 @@ export class ServicesService {
         },
       }),
     };
+
     const [total, services] = await this.prisma.$transaction([
       this.prisma.service.count({ where }),
       this.prisma.service.findMany({

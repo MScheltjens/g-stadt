@@ -1,5 +1,3 @@
-import { logout } from '@/server/actions';
-
 type KnowhereLogoProps = React.SVGProps<SVGSVGElement> & {
   title?: string;
   logo?: boolean;

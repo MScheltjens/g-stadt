@@ -1,11 +1,11 @@
-import { useTranslations } from '@kwh/i18n';
+import { CategoryListResponse } from '@kwh/contracts';
 import { Input } from '@kwh/ui/components/input';
 import { Label } from '@kwh/ui/components/label';
 
 type CategorySelectProps = {
-  categories: { label: string; id: string }[];
-  value: string[];
-  onChange: (value: string[]) => void;
+  categories: CategoryListResponse;
+  value: string[]; // array of slugs
+  onChange: (value: string[]) => void; // array of slugs
   label: string;
 };
 
@@ -15,51 +15,29 @@ export function CategorySelect({
   onChange,
   label,
 }: CategorySelectProps) {
-  const t = useTranslations('services.filter');
-
-  const allSelected = value.length === categories.length;
-
-  const handleCheckboxChange = (id: string) => {
-    if (value.includes(id)) {
-      onChange(value.filter((v) => v !== id));
+  const handleCheckboxChange = (slug: string) => {
+    if (value.includes(slug)) {
+      const newValue = value.filter((v) => v !== slug);
+      onChange(newValue);
     } else {
-      onChange([...value, id]);
-    }
-  };
-
-  const handleAllChange = () => {
-    if (allSelected) {
-      onChange([]);
-    } else {
-      onChange(categories.map((c) => c.id));
+      onChange([...value, slug]);
     }
   };
 
   return (
     <fieldset className="flex flex-col gap-2 mt-4 ">
       <legend className="mb-4 font-semibold">{label}</legend>
-      <Label className="flex items-center justify-between font-normal cursor-pointer">
-        {t('all')}
-        <Input
-          type="checkbox"
-          name="category-all"
-          checked={allSelected}
-          onChange={handleAllChange}
-          className="size-4"
-        />
-      </Label>
-
       {categories.map((category) => (
         <Label
-          key={category.id}
+          key={category.slug}
           className="flex items-center justify-between mt-2 font-normal cursor-pointer"
         >
           {category.label}
           <Input
             type="checkbox"
-            name={`category-${category.id}`}
-            checked={value.includes(category.id)}
-            onChange={() => handleCheckboxChange(category.id)}
+            name={`categories-${category.slug}`}
+            checked={value.includes(category.slug)}
+            onChange={() => handleCheckboxChange(category.slug)}
             className="size-4"
           />
         </Label>

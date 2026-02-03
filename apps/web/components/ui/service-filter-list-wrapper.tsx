@@ -1,14 +1,18 @@
-import { ServiceListPaginatedResponse } from '@kwh/contracts';
+import {
+  CategoryListResponse,
+  ServiceListPaginatedResponse,
+} from '@kwh/contracts';
+
+import { ServiceList } from '@/components/ui/service-list';
 
 import { ServiceFilter } from './service-filter';
-import { ServiceList } from '@/components/ui/service-list';
 
 // Wrapper for ServiceFilter and ServiceList with layout
 export function ServiceFilterListWrapper({
   categories,
   services,
 }: {
-  categories: { label: string; id: string }[];
+  categories: CategoryListResponse;
   services: ServiceListPaginatedResponse;
 }) {
   return (
