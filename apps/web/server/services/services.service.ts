@@ -13,8 +13,6 @@ export async function getServices(
 ): Promise<ServiceListPaginatedResponse> {
   const params = new URLSearchParams();
 
-  console.log({ query });
-
   if (query?.categories) {
     if (Array.isArray(query.categories)) {
       if (query.categories.length > 0) {
@@ -28,8 +26,6 @@ export async function getServices(
   if (query?.page) params.append('page', String(query.page));
   if (query?.limit) params.append('limit', String(query.limit));
   if (query?.search) params.append('search', query.search);
-
-  console.log('Fetching services with params:', params.toString());
 
   const queryString = params.toString();
 

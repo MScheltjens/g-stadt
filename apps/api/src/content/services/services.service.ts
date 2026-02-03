@@ -26,12 +26,6 @@ export class ServicesService {
 
     const { page = 1, limit = 10, categories, search } = query;
 
-    console.log('Received getServices request with parameters:', {
-      page,
-      limit,
-      categories,
-      search,
-    });
     this.logger.info('Parsed query parameters:', {
       page,
       limit,
@@ -55,8 +49,6 @@ export class ServicesService {
         `Filtering services by category slugs: ${JSON.stringify(categorySlugs)}`,
       );
 
-      console.log({ categorySlugs });
-      console.log({ categories });
       if (categorySlugs.length > 0) {
         // Look up ids for these slugs and locale, only keep categories with a matching translation
         const categoriesWithTranslation = await this.prisma.category.findMany({
@@ -127,6 +119,7 @@ export class ServicesService {
         locale: t.locale,
       };
     });
+
     return ServiceListPaginatedResponseSchema.parse({
       items,
       total,
