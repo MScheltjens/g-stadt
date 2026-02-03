@@ -7,10 +7,17 @@ import { CategoryFilter } from '@/components/ui/category-filter';
 import { getCategories } from '@/server/services/categories.service';
 import { getServices } from '@/server/services/services.service';
 
-export default async function ServicesPage() {
-  const t = await getTranslations('services');
+type ServicesPageProps = {
+  searchParams: Promise<{ category: string | undefined }>;
+};
 
-  const services = await getServices();
+export default async function ServicesPage({
+  searchParams,
+}: ServicesPageProps) {
+  const { category } = await searchParams;
+
+  const t = await getTranslations('services');
+  const services = await getServices(category);
   const categories = await getCategories();
 
   // get list of all services
@@ -20,7 +27,7 @@ export default async function ServicesPage() {
       <PageNavigation slugToLabel={{ services: t('title') }} />
       <PageHeading title={t('title')} description={t('description')} />
       <div className="flex">
-        <CategoryFilter categories={categories} />
+        <CategoryFilter categories={categories} selectedCategoryId={category} />
         <ServiceList services={services} />
       </div>
     </>

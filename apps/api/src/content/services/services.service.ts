@@ -12,12 +12,18 @@ export class ServicesService {
     @InjectPinoLogger(ServicesService.name) private readonly logger: PinoLogger,
   ) {}
 
-  async getAllServices(
+  async getServices(
     locale: Locale = DEFAULT_LOCALE,
+    categoryId?: string,
   ): Promise<ServiceListResponse> {
+    this.logger.info(
+      `Fetching all services for locale ${locale} and categoryId ${categoryId}`,
+    );
+
     const services = await this.prisma.service.findMany({
       where: {
         isActive: true,
+        ...(categoryId ? { categoryId } : {}),
       },
       include: {
         translations: {
@@ -32,6 +38,7 @@ export class ServicesService {
     // Flatten translation fields into top-level service object, including all required fields
     const flattened = services.map((service) => {
       const translation = service.translations[0];
+
       if (!translation) {
         throw new BadRequestException(
           `Missing translation for service ${service.id} and locale ${locale}`,
@@ -61,7 +68,6 @@ export class ServicesService {
         locale: translationLocale,
       };
     });
-    // console.log(flattened);
 
     return ServiceListResponseSchema.parse(flattened);
   }

@@ -1,14 +1,18 @@
 import { Locale, SUPPORTED_LOCALES } from '@kwh/constants';
+import { ServiceListResponse } from '@kwh/contracts';
 import {
-  CategoryWithServicesListResponse,
-  ServiceWithCategoryListResponse,
-} from '@kwh/contracts';
-import { BadRequestException, Controller, Get, Req } from '@nestjs/common';
+  BadRequestException,
+  Controller,
+  Get,
+  Query,
+  Req,
+} from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { Public } from '@/common/decorators/public.decorator.js';
+import { ServicesQueryDto } from '@/content/services/dto/service.query.dto.js';
 
 import { ServicesService } from './services.service.js';
 
@@ -29,9 +33,10 @@ export class ServicesController {
     status: 200,
     description: 'Retrieve a list of all active services.',
   })
-  async getAllServices(
+  async getServices(
     @Req() req: Request & { locale: Locale },
-  ): Promise<ServiceWithCategoryListResponse> {
+    @Query() query: ServicesQueryDto,
+  ): Promise<ServiceListResponse> {
     this.logger.info(
       'Received request to fetch all services with locale: ' + req.locale,
     );
@@ -41,28 +46,6 @@ export class ServicesController {
       throw new BadRequestException('Unsupported locale');
     }
 
-    return this.servicesService.getAllServices(req.locale);
-  }
-
-  // Get services by their category //
-
-  @Get('by-category')
-  @ApiResponse({
-    status: 200,
-    description:
-      'Retrieve a list of services grouped by their categories with locale.',
-  })
-  async getServicesByCategory(
-    @Req() req: Request & { locale: Locale },
-  ): Promise<CategoryWithServicesListResponse> {
-    this.logger.info(
-      `Received request to fetch services by category for locale: ${req.locale}`,
-    );
-
-    if (!SUPPORTED_LOCALES.includes(req.locale)) {
-      this.logger.error(`Unsupported locale received: ${req.locale}`);
-      throw new BadRequestException('Unsupported locale');
-    }
-    return this.servicesService.getServicesByCategory(req.locale);
+    return this.servicesService.getServices(req.locale, query.categoryId);
   }
 }

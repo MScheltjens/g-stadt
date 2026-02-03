@@ -10,5 +10,6 @@ export * from './env/api.env.schema.js';
 export * from './env/base.env.schema.js';
 export * from './env/web.env.schema.js';
 export * from './service/service.schema.js';
-export * from './service/services-searchparams.schema.js';
+export * from './service/services.query.schema.js';
+export * from './service/services.query.schema.js';
 export * from './user/user.schema.js';

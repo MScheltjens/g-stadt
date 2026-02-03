@@ -12,8 +12,7 @@ type PageParams<T extends object = object> = Promise<
   } & T
 >;
 
-type SearchParams = { [key: string]: string | string[] | undefined };
-
+type SearchParams = Record<string, string | string[] | undefined>;
 /* -----------------------------
    Page Props
 ------------------------------ */
