@@ -23,99 +23,58 @@ export class ServicesService {
     this.logger.info(
       `Fetching all services for locale ${locale} and query ${JSON.stringify(query)}`,
     );
-
     const page = query.page ?? 1;
     const limit = query.limit ?? 10;
-    const categoryId = query.categoryId;
-    const searchString = query.search?.trim();
+    const { categoryId } = query;
+    const search = query.search?.trim();
 
-    // Build Prisma 'where' filter
     const where: any = {
       isActive: true,
-      ...(categoryId ? { categoryId } : {}),
-    };
-    if (searchString) {
-      where.translations = {
-        some: {
-          OR: [
-            { title: { contains: searchString, mode: 'insensitive' } },
-            { description: { contains: searchString, mode: 'insensitive' } },
-            { slug: { contains: searchString, mode: 'insensitive' } },
-          ],
+      ...(categoryId && { categoryId }),
+      ...(search && {
+        translations: {
+          some: {
+            OR: [
+              { title: { contains: search, mode: 'insensitive' } },
+              { description: { contains: search, mode: 'insensitive' } },
+              { slug: { contains: search, mode: 'insensitive' } },
+            ],
+          },
         },
-      };
-    }
-
+      }),
+    };
     const [total, services] = await this.prisma.$transaction([
       this.prisma.service.count({ where }),
       this.prisma.service.findMany({
-        where: {
-          isActive: true,
-          ...(categoryId ? { categoryId } : {}),
-          translations: {
-            some: {
-              OR: [
-                { title: { contains: searchString, mode: 'insensitive' } },
-                {
-                  description: {
-                    contains: searchString,
-                    mode: 'insensitive',
-                  },
-                },
-                { slug: { contains: searchString, mode: 'insensitive' } },
-              ],
-            },
-          },
-        },
-        include: {
-          translations: {
-            where: { locale },
-          },
-        },
-        orderBy: {
-          order: 'asc',
-        },
+        where,
+        include: { translations: { where: { locale } } },
+        orderBy: { order: 'asc' },
         skip: (page - 1) * limit,
         take: limit,
       }),
     ]);
 
-    // Flatten translation fields into top-level service object, including all required fields
-    const flattened = services.map((service) => {
-      const translation = service.translations[0];
-
-      if (!translation) {
+    const items = services.map(({ translations, ...service }) => {
+      const t = translations[0];
+      if (!t)
         throw new BadRequestException(
           `Missing translation for service ${service.id} and locale ${locale}`,
         );
-      }
-
-      const {
-        title,
-        description,
-        slug,
-        locale: translationLocale,
-      } = translation;
-
       return {
-        id: service.id,
-        categoryId: service.categoryId,
+        ...service,
         externalUrl: service.externalUrl ?? null,
-        order: service.order,
-        isActive: service.isActive,
         requiresAuth: service.requiresAuth ?? false,
         role: service.role ?? null,
         createdAt: service.createdAt?.toISOString(),
         updatedAt: service.updatedAt?.toISOString(),
-        title,
-        description,
-        slug,
-        locale: translationLocale,
+        title: t.title,
+        description: t.description,
+        slug: t.slug,
+        locale: t.locale,
       };
     });
-
     return ServiceListPaginatedResponseSchema.parse({
-      items: flattened,
+      items,
       total,
       page,
       limit,

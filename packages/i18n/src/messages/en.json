@@ -95,10 +95,18 @@
       "title": "Services",
       "description": "Explore the various services offered by knowhere to its residents."
     },
-    "list": {
-      "filter": {
-        "title": "Filter services"
-      }
+    "filter": {
+      "title": "Filter services",
+      "searchPlaceholder": "Search services...",
+      "search": "Search",
+      "filterTheme": "Filter by theme",
+      "all": "All themes"
+    },
+    "results": {
+      "titleWithTotal": "Services ({total})",
+      "result": "{count} service | {count} services",
+      "pagination": "Page {page} of {pageCount} ({total} services)",
+      "noResults": "No services found."
     },
     "title": "City services",
     "description": "Explore the various services offered by knowhere to its residents.",

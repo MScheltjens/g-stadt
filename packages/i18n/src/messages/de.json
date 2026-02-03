@@ -95,10 +95,18 @@
       "title": "Services",
       "description": "Entdecken Sie die Dienstleistungen der Stadt knowhere."
     },
-    "list": {
-      "filter": {
-        "title": "Dienstleistungen filtern"
-      }
+    "filter": {
+      "title": "Dienstleistungen filtern",
+      "searchPlaceholder": "Dienstleistungen suchen...",
+      "search": "Suchen",
+      "filterTheme": "Nach Thema filtern",
+      "all": "Alle Themen"
+    },
+    "results": {
+      "titleWithTotal": "Suchergebnisse ({total})",
+      "result": "{count} Dienstleistung | {count} Dienstleistungen",
+      "pagination": "Seite {page} von {pageCount} ({total} Dienstleistungen)",
+      "noResults": "Keine Dienstleistungen gefunden."
     },
     "title": "Städtische Services",
     "description": "Entdecken Sie die Dienstleistungen der Stadt knowhere.",

@@ -95,10 +95,18 @@
       "title": "Services",
       "description": "Découvrez les services proposés par la ville de knowhere."
     },
-    "list": {
-      "filter": {
-        "title": "Filtrer les services"
-      }
+    "filter": {
+      "title": "Filtres des services",
+      "searchPlaceholder": "Rechercher des services...",
+      "search": "Rechercher",
+      "filterTheme": "Filtrer par thème",
+      "all": "Tous les thèmes"
+    },
+    "results": {
+      "titleWithTotal": "Services ({total})",
+      "result": "{count} service | {count} services",
+      "pagination": "Page {page} sur {pageCount} ({total} services)",
+      "noResults": "Aucun service trouvé."
     },
     "title": "Services municipaux",
     "description": "Découvrez les services proposés par la ville de knowhere.",

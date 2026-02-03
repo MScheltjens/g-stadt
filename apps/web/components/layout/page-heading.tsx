@@ -1,17 +1,20 @@
 type PageHeadingProps = {
   title: string;
   description?: string;
+  className?: string;
 };
 
-export function PageHeading({ title, description }: PageHeadingProps) {
+export function PageHeading({
+  title,
+  description,
+  className,
+}: PageHeadingProps) {
   return (
-    <header>
-      <div className="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold">{title}</h1>
-        {description && (
-          <p className="mt-2 text-lg text-muted-foreground">{description}</p>
-        )}
-      </div>
+    <header className={className}>
+      <h1 className="text-3xl font-bold">{title}</h1>
+      {description && (
+        <p className="mt-2 text-lg text-muted-foreground">{description}</p>
+      )}
     </header>
   );
 }
