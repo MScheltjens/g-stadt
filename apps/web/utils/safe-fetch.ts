@@ -2,15 +2,14 @@
  * Safe fetch wrapper with Zod validation
  */
 
-import { Locale } from '@kwh/constants';
 import { cookies } from 'next/headers';
 import { ZodType } from 'zod';
 
 import { env } from '@/utils/env';
+
 export async function safeFetch<T>(
   endpoint: string,
   schema: ZodType<T>,
-  locale?: Locale,
   options?: RequestInit,
 ): Promise<T> {
   const url = `${env.NEXT_PUBLIC_API_URL}${endpoint}`;
@@ -25,7 +24,6 @@ export async function safeFetch<T>(
       Cookie: cookieHeader,
       'Content-Type': 'application/json',
       // add cookie extra in headers if provided
-      'x-locale': locale || '',
       ...(options?.headers || {}),
     },
   });
