@@ -25,9 +25,11 @@ export function SearchInput({
         aria-label={ariaLabel}
         className="relative pr-10"
       />
-      <span className="absolute -translate-y-1/2 pointer-events-none right-3 top-1/2 text-muted-foreground">
-        <Search size={18} />
-      </span>
+
+      <Search
+        size={18}
+        className="absolute -translate-y-1/2 pointer-events-none right-3 top-1/2 text-muted-foreground"
+      />
     </div>
   );
 }

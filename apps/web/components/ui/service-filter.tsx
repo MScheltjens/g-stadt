@@ -90,6 +90,7 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
           categories={categories}
           value={derivedSelectedCategoryId}
           onChange={handleCategoryChange}
+          label={t('filterTheme')}
         />
       </section>
     </Suspense>
