@@ -38,7 +38,10 @@ export class ServicesController {
     @Query() query: ServicesQueryDto,
   ): Promise<ServiceListPaginatedResponse> {
     this.logger.info(
-      'Received request to fetch all services with locale: ' + req.locale,
+      'Received request to fetch all services with locale: ' +
+        req.locale +
+        ' and query: ' +
+        JSON.stringify(query),
     );
 
     if (!SUPPORTED_LOCALES.includes(req.locale)) {

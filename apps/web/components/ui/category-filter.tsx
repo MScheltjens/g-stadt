@@ -25,6 +25,7 @@ export function CategoryFilter({
 
   const handleChange = (categoryId: string) => {
     const params = new URLSearchParams(searchParams.toString());
+
     if (categoryId === 'all') {
       params.delete('categoryId');
     } else {
@@ -32,7 +33,7 @@ export function CategoryFilter({
     }
     router.replace({
       pathname: '/services',
-      query: { ...Object.fromEntries(params) },
+      query: Object.fromEntries(params),
     });
   };
 

@@ -6,8 +6,8 @@ import {
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
-import { PrismaService } from '@/db/prisma.service.js';
 import { ServicesQueryDto } from '@/content/services/dto/service.query.dto.js';
+import { PrismaService } from '@/db/prisma.service.js';
 
 @Injectable()
 export class ServicesService {
@@ -27,34 +27,46 @@ export class ServicesService {
     const page = query.page ?? 1;
     const limit = query.limit ?? 10;
     const categoryId = query.categoryId;
-    const q = query.query?.trim();
+    const searchString = query.search?.trim();
 
     // Build Prisma 'where' filter
     const where: any = {
       isActive: true,
       ...(categoryId ? { categoryId } : {}),
     };
-    if (q) {
+    if (searchString) {
       where.translations = {
         some: {
           OR: [
-            { title: { contains: q, mode: 'insensitive' } },
-            { description: { contains: q, mode: 'insensitive' } },
-            { slug: { contains: q, mode: 'insensitive' } },
+            { title: { contains: searchString, mode: 'insensitive' } },
+            { description: { contains: searchString, mode: 'insensitive' } },
+            { slug: { contains: searchString, mode: 'insensitive' } },
           ],
         },
       };
     }
 
     const [total, services] = await this.prisma.$transaction([
-      this.prisma.service.count({
+      this.prisma.service.count({ where }),
+      this.prisma.service.findMany({
         where: {
           isActive: true,
           ...(categoryId ? { categoryId } : {}),
+          translations: {
+            some: {
+              OR: [
+                { title: { contains: searchString, mode: 'insensitive' } },
+                {
+                  description: {
+                    contains: searchString,
+                    mode: 'insensitive',
+                  },
+                },
+                { slug: { contains: searchString, mode: 'insensitive' } },
+              ],
+            },
+          },
         },
-      }),
-      this.prisma.service.findMany({
-        where,
         include: {
           translations: {
             where: { locale },

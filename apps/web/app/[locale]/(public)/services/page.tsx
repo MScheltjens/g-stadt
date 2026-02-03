@@ -1,11 +1,12 @@
+import { ServicesQuery } from '@kwh/contracts';
 import { getTranslations } from '@kwh/i18n';
+
 import { PageHeading } from '@/components/layout/page-heading';
 import { PageNavigation } from '@/components/navigation/page-navigation';
 import { ServiceList } from '@/components/service-list';
 import { CategoryFilter } from '@/components/ui/category-filter';
 import { getCategories } from '@/server/services/categories.service';
 import { getServices } from '@/server/services/services.service';
-import { ServicesQuery, ServicesQuerySchema } from '@kwh/contracts';
 
 type ServicesPageProps = {
   searchParams: Promise<ServicesQuery>;
