@@ -1,5 +1,5 @@
 import { Locale, SUPPORTED_LOCALES } from '@kwh/constants';
-import { ServiceListResponse } from '@kwh/contracts';
+import { ServiceListPaginatedResponse } from '@kwh/contracts';
 import {
   BadRequestException,
   Controller,
@@ -36,7 +36,7 @@ export class ServicesController {
   async getServices(
     @Req() req: Request & { locale: Locale },
     @Query() query: ServicesQueryDto,
-  ): Promise<ServiceListResponse> {
+  ): Promise<ServiceListPaginatedResponse> {
     this.logger.info(
       'Received request to fetch all services with locale: ' + req.locale,
     );
@@ -46,6 +46,6 @@ export class ServicesController {
       throw new BadRequestException('Unsupported locale');
     }
 
-    return this.servicesService.getServices(req.locale, query.categoryId);
+    return this.servicesService.getServices(req.locale, query);
   }
 }

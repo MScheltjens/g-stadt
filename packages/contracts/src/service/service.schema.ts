@@ -43,4 +43,13 @@ export const ServiceListResponseSchema = z.array(
   }),
 );
 
-export type ServiceListResponse = z.infer<typeof ServiceListResponseSchema>;
+export const ServiceListPaginatedResponseSchema = z.object({
+  items: ServiceListResponseSchema,
+  total: z.number().int().nonnegative(),
+  page: z.number().int().min(1),
+  limit: z.number().int().min(1),
+});
+
+export type ServiceListPaginatedResponse = z.infer<
+  typeof ServiceListPaginatedResponseSchema
+>;

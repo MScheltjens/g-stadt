@@ -26,9 +26,9 @@ export function CategoryFilter({
   const handleChange = (categoryId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     if (categoryId === 'all') {
-      params.delete('category');
+      params.delete('categoryId');
     } else {
-      params.set('category', categoryId);
+      params.set('categoryId', categoryId);
     }
     router.replace({
       pathname: '/services',

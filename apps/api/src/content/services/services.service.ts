@@ -1,9 +1,13 @@
 import { DEFAULT_LOCALE, Locale } from '@kwh/constants';
-import { ServiceListResponse, ServiceListResponseSchema } from '@kwh/contracts';
+import {
+  ServiceListPaginatedResponse,
+  ServiceListPaginatedResponseSchema,
+} from '@kwh/contracts';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
 import { PrismaService } from '@/db/prisma.service.js';
+import { ServicesQueryDto } from '@/content/services/dto/service.query.dto.js';
 
 @Injectable()
 export class ServicesService {
@@ -14,26 +18,55 @@ export class ServicesService {
 
   async getServices(
     locale: Locale = DEFAULT_LOCALE,
-    categoryId?: string,
-  ): Promise<ServiceListResponse> {
+    query: ServicesQueryDto,
+  ): Promise<ServiceListPaginatedResponse> {
     this.logger.info(
-      `Fetching all services for locale ${locale} and categoryId ${categoryId}`,
+      `Fetching all services for locale ${locale} and query ${JSON.stringify(query)}`,
     );
 
-    const services = await this.prisma.service.findMany({
-      where: {
-        isActive: true,
-        ...(categoryId ? { categoryId } : {}),
-      },
-      include: {
-        translations: {
-          where: { locale },
+    const page = query.page ?? 1;
+    const limit = query.limit ?? 10;
+    const categoryId = query.categoryId;
+    const q = query.query?.trim();
+
+    // Build Prisma 'where' filter
+    const where: any = {
+      isActive: true,
+      ...(categoryId ? { categoryId } : {}),
+    };
+    if (q) {
+      where.translations = {
+        some: {
+          OR: [
+            { title: { contains: q, mode: 'insensitive' } },
+            { description: { contains: q, mode: 'insensitive' } },
+            { slug: { contains: q, mode: 'insensitive' } },
+          ],
         },
-      },
-      orderBy: {
-        order: 'asc',
-      },
-    });
+      };
+    }
+
+    const [total, services] = await this.prisma.$transaction([
+      this.prisma.service.count({
+        where: {
+          isActive: true,
+          ...(categoryId ? { categoryId } : {}),
+        },
+      }),
+      this.prisma.service.findMany({
+        where,
+        include: {
+          translations: {
+            where: { locale },
+          },
+        },
+        orderBy: {
+          order: 'asc',
+        },
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+    ]);
 
     // Flatten translation fields into top-level service object, including all required fields
     const flattened = services.map((service) => {
@@ -69,6 +102,11 @@ export class ServicesService {
       };
     });
 
-    return ServiceListResponseSchema.parse(flattened);
+    return ServiceListPaginatedResponseSchema.parse({
+      items: flattened,
+      total,
+      page,
+      limit,
+    });
   }
 }
