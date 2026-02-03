@@ -26,13 +26,15 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
   );
   const debouncedSearch = useDebounce(searchInput, 400);
 
-  // Always derive selectedCategoryId from searchParams
+  // Multi-select: derive selectedCategoryIds from searchParams
   const categoryIdParam = searchParams.get('categoryId');
-  let derivedSelectedCategoryId: string = 'all';
+  let derivedSelectedCategoryIds: string[] = [];
   if (categoryIdParam && categoryIdParam !== 'all') {
-    derivedSelectedCategoryId = decodeURIComponent(categoryIdParam);
-  } else if (categoryIdParam === 'all') {
-    derivedSelectedCategoryId = 'all';
+    derivedSelectedCategoryIds = decodeURIComponent(categoryIdParam)
+      .split(',')
+      .filter(Boolean);
+  } else if (categoryIdParam === 'all' || !categoryIdParam) {
+    derivedSelectedCategoryIds = [];
   }
 
   // Update URL when debounced value changes
@@ -53,8 +55,8 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
-  // Handler for category change (single select)
-  const handleCategoryChange = (categoryId: string) => {
+  // Handler for category change (multi-select)
+  const handleCategoryChange = (categoryIds: string[]) => {
     const params = new URLSearchParams(searchParams.toString());
     if (searchInput) {
       params.set('search', searchInput);
@@ -62,8 +64,10 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
       params.delete('search');
     }
     params.delete('categoryId');
-    if (categoryId && categoryId !== 'all') {
-      params.set('categoryId', categoryId);
+    if (categoryIds.length > 0) {
+      params.set('categoryId', categoryIds.join(','));
+    } else {
+      params.set('categoryId', 'all');
     }
     params.set('page', '1');
     router.replace({
@@ -88,7 +92,7 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
 
         <CategorySelect
           categories={categories}
-          value={derivedSelectedCategoryId}
+          value={derivedSelectedCategoryIds}
           onChange={handleCategoryChange}
           label={t('filterTheme')}
         />

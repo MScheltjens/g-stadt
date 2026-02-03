@@ -4,8 +4,8 @@ import { Label } from '@kwh/ui/components/label';
 
 type CategorySelectProps = {
   categories: { label: string; id: string }[];
-  value: string;
-  onChange: (value: string) => void;
+  value: string[];
+  onChange: (value: string[]) => void;
   label: string;
 };
 
@@ -17,8 +17,22 @@ export function CategorySelect({
 }: CategorySelectProps) {
   const t = useTranslations('services.filter');
 
-  const handleRadioChange = (id: string) => {
-    onChange(id);
+  const allSelected = value.length === categories.length;
+
+  const handleCheckboxChange = (id: string) => {
+    if (value.includes(id)) {
+      onChange(value.filter((v) => v !== id));
+    } else {
+      onChange([...value, id]);
+    }
+  };
+
+  const handleAllChange = () => {
+    if (allSelected) {
+      onChange([]);
+    } else {
+      onChange(categories.map((c) => c.id));
+    }
   };
 
   return (
@@ -27,10 +41,10 @@ export function CategorySelect({
       <Label className="flex items-center justify-between font-normal cursor-pointer">
         {t('all')}
         <Input
-          type="radio"
-          name="category"
-          checked={value === 'all' || !value}
-          onChange={() => handleRadioChange('all')}
+          type="checkbox"
+          name="category-all"
+          checked={allSelected}
+          onChange={handleAllChange}
           className="size-4"
         />
       </Label>
@@ -42,10 +56,10 @@ export function CategorySelect({
         >
           {category.label}
           <Input
-            type="radio"
-            name="category"
-            checked={value === category.id}
-            onChange={() => handleRadioChange(category.id)}
+            type="checkbox"
+            name={`category-${category.id}`}
+            checked={value.includes(category.id)}
+            onChange={() => handleCheckboxChange(category.id)}
             className="size-4"
           />
         </Label>

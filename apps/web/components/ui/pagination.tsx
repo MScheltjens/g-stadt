@@ -23,6 +23,7 @@ export function Pagination({
         >
           <ChevronLeftIcon className="size-4" />
         </Button>
+
         {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
           <Button
             key={p}
@@ -34,6 +35,7 @@ export function Pagination({
             {p}
           </Button>
         ))}
+
         <Button
           onClick={() => onPageChange?.(page + 1)}
           disabled={page === pageCount}

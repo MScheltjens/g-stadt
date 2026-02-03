@@ -1,6 +1,6 @@
 import { ServiceListPaginatedResponse } from '@kwh/contracts';
 
-import { ServiceFilter } from '@/components/ui/service-filter';
+import { ServiceFilter } from './service-filter';
 import { ServiceList } from '@/components/ui/service-list';
 
 // Wrapper for ServiceFilter and ServiceList with layout
