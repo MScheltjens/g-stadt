@@ -1,8 +1,7 @@
 import { CATEGORYTYPE } from '@kwh/constants';
 import { z } from 'zod';
 
-import { LocaleSchema } from '../routing/locale.schema.js';
-import { ServiceListResponseSchema } from '../service/service.schema.js';
+import { LocaleSchema } from '../common/locale.schema.js';
 
 //// CATEGORY SCHEMAS ////
 
@@ -47,48 +46,12 @@ export type CategoryWithTranslations = z.infer<
   typeof CategoryWithTranslationsSchema
 >;
 
-//// RESPONSE SCHEMAS ////
+// category list schema with flattened translations //
 
-// Category response schema with flattened translations //
-
-export const CategoryResponseSchema = CategoryBaseSchema.extend({
-  ...CategoryTranslationSchema.shape,
-});
-
-export type CategoryResponse = z.infer<typeof CategoryResponseSchema>;
-
-// Category list response schema //
-
-export const CategoryListResponseSchema = CategoryResponseSchema.array();
-
-export type CategoryListResponse = z.infer<typeof CategoryListResponseSchema>;
-
-// Category with services response schema //
-
-export const CategoryWithServicesResponseSchema = CategoryResponseSchema.extend(
-  {
-    services: ServiceListResponseSchema, // Placeholder, replace with actual ServiceResponseSchema when needed
-  },
+export const CategoryListResponseSchema = z.array(
+  CategoryBaseSchema.extend({
+    ...CategoryTranslationSchema.shape,
+  }),
 );
 
-export type CategoryWithServicesResponse = z.infer<
-  typeof CategoryWithServicesResponseSchema
->;
-
-// Category with services list response schema //
-
-export const CategoryWithServicesListResponseSchema =
-  CategoryWithServicesResponseSchema.array();
-
-export type CategoryWithServicesListResponse = z.infer<
-  typeof CategoryWithServicesListResponseSchema
->;
-
-//// QUERY SCHEMAS ////
-
-//  Category query schema
-export const CategoryQuerySchema = z.object({
-  type: z.optional(CategoryTypeSchema),
-});
-
-export type CategoryQuery = z.infer<typeof CategoryQuerySchema>;
+export type CategoryListResponse = z.infer<typeof CategoryListResponseSchema>;

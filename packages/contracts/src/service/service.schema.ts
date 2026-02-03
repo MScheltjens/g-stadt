@@ -1,9 +1,6 @@
 import { z } from 'zod';
 
-import { RoleSchema } from '../auth/role.schema.js';
-import { LocaleSchema } from '../routing/locale.schema.js';
-
-//// BASE SCHEMAS ////
+import { LocaleSchema } from '../common/locale.schema.js';
 
 // Service Translation schema //
 
@@ -16,17 +13,18 @@ export const ServiceTranslationSchema = z.object({
 
 export type ServiceTranslation = z.infer<typeof ServiceTranslationSchema>;
 
-// Service base schema //
-
 export const ServiceBaseSchema = z.object({
   id: z.uuid(),
-  externalUrl: z.url().nullable().optional(),
-  requiresAuth: z.boolean(),
-  role: RoleSchema.nullable().optional(),
+  categoryId: z.uuid(),
+  externalUrl: z.string().nullable().optional(),
+  order: z.number(),
+  isActive: z.boolean(),
+  requiresAuth: z.boolean().optional(),
+  createdAt: z.string().optional(),
+  updatedAt: z.string().optional(),
 });
 
 export type ServiceBase = z.infer<typeof ServiceBaseSchema>;
-
 // Service with translations key schema //
 
 export const ServiceWithTranslationsSchema = ServiceBaseSchema.extend({
