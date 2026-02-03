@@ -85,6 +85,7 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
           ariaLabel={t('search')}
           className="mt-4"
         />
+
         <CategorySelect
           categories={categories}
           value={derivedSelectedCategoryId}

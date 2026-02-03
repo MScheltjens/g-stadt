@@ -25,9 +25,10 @@ export function CategorySelect({
   };
 
   return (
-    <fieldset className="flex flex-col gap-2">
-      <legend className="mb-1 font-medium">{t('filterTheme')}</legend>
-      <Label className="flex items-center gap-2 font-normal cursor-pointer">
+    <fieldset className="flex flex-col gap-2 mt-4 ">
+      <legend className="mb-4 font-semibold">{t('filterTheme')}</legend>
+      <Label className="flex items-center justify-between font-normal cursor-pointer">
+        {t('all')}
         <Input
           type="radio"
           name="category"
@@ -35,13 +36,13 @@ export function CategorySelect({
           onChange={() => handleRadioChange('all')}
           className="size-4"
         />
-        {t('all')}
       </Label>
       {categories.map((category) => (
         <Label
           key={category.id}
-          className="flex items-center gap-2 font-normal cursor-pointer"
+          className="flex items-center justify-between mt-2 font-normal cursor-pointer"
         >
+          {category.label}
           <Input
             type="radio"
             name="category"
@@ -49,7 +50,6 @@ export function CategorySelect({
             onChange={() => handleRadioChange(category.id)}
             className="size-4"
           />
-          {category.label}
         </Label>
       ))}
     </fieldset>

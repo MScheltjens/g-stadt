@@ -5,7 +5,6 @@ export function Pagination({
   pageCount,
   page,
   onPageChange,
-  info,
 }: {
   pageCount: number;
   page: number;
@@ -14,38 +13,36 @@ export function Pagination({
 }) {
   if (pageCount > 1) {
     return (
-      <div className="flex flex-col">
-        <div className="flex items-center gap-2 mt-2">
+      <div className="flex items-center mt-2">
+        <Button
+          onClick={() => onPageChange?.(page - 1)}
+          disabled={page === 1}
+          size="icon-sm"
+          aria-label="Previous page"
+          variant="ghost"
+        >
+          <ChevronLeftIcon className="size-4" />
+        </Button>
+        {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
           <Button
-            onClick={() => onPageChange?.(page - 1)}
-            disabled={page === 1}
+            key={p}
+            onClick={() => onPageChange?.(p)}
+            disabled={p === page}
             size="icon-sm"
-            aria-label="Previous page"
-            variant="ghost"
+            variant="link"
           >
-            <ChevronLeftIcon className="size-4" />
+            {p}
           </Button>
-          {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
-            <Button
-              key={p}
-              onClick={() => onPageChange?.(p)}
-              disabled={p === page}
-              size="icon-sm"
-            >
-              {p}
-            </Button>
-          ))}
-          <Button
-            onClick={() => onPageChange?.(page + 1)}
-            disabled={page === pageCount}
-            size="icon-sm"
-            aria-label="Next page"
-            variant="ghost"
-          >
-            <ChevronRightIcon className="size-4" />
-          </Button>
-        </div>
-        {info && <p className="my-2 text-sm text-muted-foreground">{info}</p>}
+        ))}
+        <Button
+          onClick={() => onPageChange?.(page + 1)}
+          disabled={page === pageCount}
+          size="icon-sm"
+          aria-label="Next page"
+          variant="ghost"
+        >
+          <ChevronRightIcon className="size-4" />
+        </Button>
       </div>
     );
   }

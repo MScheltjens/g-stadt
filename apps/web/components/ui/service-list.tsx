@@ -31,7 +31,7 @@ export function ServiceList({ services, className }: Props) {
 
   return (
     <section className={className}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between">
         <h2 className="text-xl font-semibold text-accent-foreground">
           {t('titleWithTotal', { total })}
         </h2>
@@ -51,12 +51,14 @@ export function ServiceList({ services, className }: Props) {
         }))}
       />
 
-      <Pagination
-        pageCount={pageCount}
-        page={page}
-        onPageChange={onPageChange}
-        info={t('pagination', { page, pageCount, total })}
-      />
+      <div className="flex justify-between">
+        <div />
+        <Pagination
+          pageCount={pageCount}
+          page={page}
+          onPageChange={onPageChange}
+        />
+      </div>
     </section>
   );
 }
