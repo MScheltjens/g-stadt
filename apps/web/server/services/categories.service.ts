@@ -8,8 +8,8 @@ export async function getCategories(type?: CategoryType) {
   return await safeFetch(
     `/categories${type ? `?type=${type}` : ''}`,
     CategoryListResponseSchema,
-    {
-      next: { revalidate: 60 * 60 }, // cache 1h
-    },
+    // {
+    //   next: { revalidate: 60 * 60 }, // cache 1h
+    // },
   );
 }

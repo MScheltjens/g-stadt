@@ -34,28 +34,25 @@ export default async function ServicesPage({
         .split(',')
         .filter(Boolean);
     }
-
-    // Pass slugs directly to getServices as 'category'
-    const services = await getServices({
-      ...searchParamsResolved,
-      categories: categorySlugs,
-    });
-
-    return (
-      <>
-        <PageNavigation slugToLabel={{ services: t('title') }} />
-        <div className="container px-12 mx-auto">
-          <PageHeading
-            title={t('title')}
-            description={t('description')}
-            className="py-4 "
-          />
-          <ServiceFilterListWrapper
-            categories={categories}
-            services={services}
-          />
-        </div>
-      </>
-    );
   }
+
+  // Always fetch services, filtered by categories if present
+  const services = await getServices({
+    ...searchParamsResolved,
+    categories: categorySlugs,
+  });
+
+  return (
+    <>
+      <PageNavigation slugToLabel={{ services: t('title') }} />
+      <div className="container px-12 mx-auto">
+        <PageHeading
+          title={t('title')}
+          description={t('description')}
+          className="py-4 "
+        />
+        <ServiceFilterListWrapper categories={categories} services={services} />
+      </div>
+    </>
+  );
 }
