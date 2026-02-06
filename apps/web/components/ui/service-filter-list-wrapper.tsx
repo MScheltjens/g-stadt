@@ -1,12 +1,12 @@
 'use client';
-
 import {
   CategoryListResponse,
   ServiceListPaginatedResponse,
 } from '@kwh/contracts';
+import { useSearchParams } from 'next/navigation';
 
 import { ServiceList } from '@/components/ui/service-list';
-import { useSearchParams } from 'next/navigation';
+import { extractSearchParams } from '@/utils/search-params';
 
 import { ServiceFilter } from './service-filter';
 
@@ -19,13 +19,15 @@ export function ServiceFilterListWrapper({
   services: ServiceListPaginatedResponse;
 }) {
   const searchParams = useSearchParams();
-  const categoriesParam = searchParams.get('categories');
+  const { categories: categoriesParam } = extractSearchParams(searchParams);
+
   let selectedCategorySlugs: string[] = [];
   if (categoriesParam && categoriesParam !== 'all') {
     selectedCategorySlugs = decodeURIComponent(categoriesParam)
       .split(',')
       .filter(Boolean);
   }
+
   return (
     <div className="flex flex-col flex-1 gap-8 mt-4 md:mt-8 md:flex-row md:items-start">
       <ServiceFilter

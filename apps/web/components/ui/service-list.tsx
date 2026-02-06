@@ -2,15 +2,15 @@
 
 import { ROUTES } from '@kwh/constants';
 import { ServiceListPaginatedResponse } from '@kwh/contracts';
+import { CategoryListResponse } from '@kwh/contracts';
 import { useRouter, useTranslations } from '@kwh/i18n';
 import { useSearchParams } from 'next/navigation';
 
+import { SectionHeading } from '@/components/layout/section-heading';
 import { CardList } from '@/components/ui/card-list';
 import { Pagination } from '@/components/ui/pagination';
-import { SectionHeading } from '@/components/layout/section-heading';
-
-import { CategoryListResponse } from '@kwh/contracts';
 import { SelectedCategoryBadges } from '@/components/ui/selected-category-badges';
+import { extractSearchParams, setSearchParam } from '@/utils/search-params';
 
 type Props = {
   services: ServiceListPaginatedResponse;
@@ -33,11 +33,10 @@ export function ServiceList({
   const pageCount = total > 0 ? Math.ceil(total / limit) : 1;
 
   const onPageChange = (p: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('page', p.toString());
+    const params = setSearchParam(searchParams, 'page', p.toString());
     router.push({
       pathname: ROUTES.SERVICES,
-      query: Object.fromEntries(params.entries()),
+      query: extractSearchParams(params),
     });
   };
 

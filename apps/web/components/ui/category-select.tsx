@@ -7,7 +7,7 @@ type CategorySelectProps = {
   categories: CategoryListResponse;
   value: string[]; // array of slugs
   onChange: (value: string[]) => void; // array of slugs
-  label: string;
+
   className: string;
 };
 
@@ -15,7 +15,6 @@ export function CategorySelect({
   categories,
   value,
   onChange,
-  label,
   className,
 }: CategorySelectProps) {
   const handleCheckboxChange = (slug: string) => {

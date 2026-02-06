@@ -4,8 +4,8 @@ import { buttonVariants } from '@kwh/ui/components/button';
 import { cn } from '@kwh/ui/lib/utils';
 import Image from 'next/image';
 
-import homeHeroImg from '@/public/images/g-stadt.png';
 import { KnowhereLogo } from '@/components/svg/knowhere.logo';
+import homeHeroImg from '@/public/images/g-stadt.png';
 
 export async function Hero() {
   const t = await getTranslations('home.hero');
@@ -23,7 +23,7 @@ export async function Hero() {
       />
 
       {/* Color & contrast overlay */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-background/40 via-background/20 to-accent/10" />
+      <div className="absolute inset-0 pointer-events-none bg-linear-to-br from-background/40 via-background/20 to-accent/10" />
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl px-6 py-20 mx-auto md:py-24">

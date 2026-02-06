@@ -1,5 +1,3 @@
-import { cn } from '@kwh/ui/lib/utils';
-
 type PageHeadingProps = {
   title: string;
   description?: string;

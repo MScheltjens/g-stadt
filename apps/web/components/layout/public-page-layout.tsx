@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { PageNavigation } from '@/components/navigation/page-navigation';
+
 import { PageHeading } from '@/components/layout/page-heading';
+import { PageNavigation } from '@/components/navigation/page-navigation';
 
 interface PublicPageLayoutProps {
   title: string;

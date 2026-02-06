@@ -1,10 +1,12 @@
+import { ROUTES } from '@kwh/constants';
 import { CategoryListResponse } from '@kwh/contracts';
-import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@kwh/i18n';
 import { Badge } from '@kwh/ui/components/badge';
 import { Button } from '@kwh/ui/components/button';
-import { ROUTES } from '@kwh/constants';
 import { XCircle } from '@kwh/ui/components/icons';
+import { useSearchParams } from 'next/navigation';
+
+import { extractSearchParams, setSearchParam } from '@/utils/search-params';
 
 type SelectedCategoryBadgesProps = {
   categories?: CategoryListResponse;
@@ -40,16 +42,15 @@ export function SelectedCategoryBadges({
                 const newSelected = selectedCategorySlugs.filter(
                   (slug) => slug !== cat.slug,
                 );
-                const params = new URLSearchParams(searchParams.toString());
-                if (newSelected.length > 0) {
-                  params.set('categories', newSelected.join(','));
-                } else {
-                  params.delete('categories');
-                }
-                params.set('page', '1'); // Reset to first page on filter change
+                let params = setSearchParam(
+                  searchParams,
+                  'categories',
+                  newSelected.length > 0 ? newSelected : undefined,
+                );
+                params = setSearchParam(params, 'page', '1'); // Reset to first page on filter change
                 router.push({
                   pathname: ROUTES.SERVICES,
-                  query: Object.fromEntries(params.entries()),
+                  query: extractSearchParams(params),
                 });
               }}
             >

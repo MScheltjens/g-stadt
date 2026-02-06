@@ -1,17 +1,14 @@
 'use client';
-
 import { ROUTES } from '@kwh/constants';
 import { CategoryListResponse } from '@kwh/contracts';
 import { useRouter, useTranslations } from '@kwh/i18n';
-import { cn } from '@kwh/ui/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 
 import { CategorySelect } from '@/components/ui/category-select';
 import { SearchInput } from '@/components/ui/search-input';
-import { SectionHeading } from '@/components/layout/section-heading';
 import { useDebounce } from '@/utils/hooks/useDebounce';
-import { Label } from '@kwh/ui/components/label';
+import { extractSearchParams, setSearchParam } from '@/utils/search-params';
 
 type ServiceFilterProps = {
   categories: CategoryListResponse;
@@ -42,38 +39,39 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
 
   // Update URL when debounced value changes
   useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    let params = setSearchParam(
+      searchParams,
+      'search',
+      debouncedSearch || undefined,
+    );
+    params = setSearchParam(params, 'page', '1');
     if (debouncedSearch) {
-      params.set('search', debouncedSearch);
-      params.set('page', '1'); // Reset page to 1 on new search
-      params.delete('categories'); // Keep category filter
-    } else {
-      params.delete('search');
-      params.set('page', '1'); // Also reset page if search is cleared
+      params.delete('categories');
     }
     router.replace({
       pathname: ROUTES.SERVICES,
-      query: Object.fromEntries(params),
+      query: extractSearchParams(params),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
   // Handler for category change (multi-select)
   const handleCategoryChange = (categories: string[]) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (searchInput) {
-      params.set('search', searchInput);
-    } else {
-      params.delete('search');
-    }
+    let params = setSearchParam(
+      searchParams,
+      'search',
+      searchInput || undefined,
+    );
     params.delete('categories');
-    if (categories.length > 0) {
-      params.set('categories', categories.join(','));
-    }
-    params.set('page', '1');
+    params = setSearchParam(
+      params,
+      'categories',
+      categories.length > 0 ? categories : undefined,
+    );
+    params = setSearchParam(params, 'page', '1');
     router.replace({
       pathname: ROUTES.SERVICES,
-      query: Object.fromEntries(params),
+      query: extractSearchParams(params),
     });
   };
 
