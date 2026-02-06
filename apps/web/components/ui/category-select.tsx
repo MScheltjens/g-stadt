@@ -39,7 +39,8 @@ export function CategorySelect({
             name={`categories-${category.slug}`}
             checked={value.includes(category.slug)}
             onChange={() => handleCheckboxChange(category.slug)}
-            className="size-4"
+            className="w-5 h-5 min-w-5 min-h-5 max-w-5 max-h-5 align-middle"
+            style={{ minWidth: 20, minHeight: 20, maxWidth: 20, maxHeight: 20 }}
           />
         </Label>
       ))}

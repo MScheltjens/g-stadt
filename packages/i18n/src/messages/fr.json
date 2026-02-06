@@ -100,7 +100,8 @@
       "searchPlaceholder": "Rechercher des services...",
       "search": "Rechercher",
       "filterTheme": "Filtrer par thème",
-      "all": "Tous les thèmes"
+      "all": "Tous les thèmes",
+      "filterButton": "Filtrer"
     },
     "results": {
       "titleWithTotal": "Services ({total})",

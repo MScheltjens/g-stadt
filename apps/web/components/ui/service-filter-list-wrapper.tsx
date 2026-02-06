@@ -4,6 +4,7 @@ import {
   CategoryListResponse,
   ServiceListPaginatedResponse,
 } from '@kwh/contracts';
+import { useTranslations } from '@kwh/i18n';
 import { Button } from '@kwh/ui/components/button';
 import { Filter } from '@kwh/ui/components/icons';
 import {
@@ -29,6 +30,7 @@ export function ServiceFilterListWrapper({
   services: ServiceListPaginatedResponse;
 }) {
   const searchParams = useSearchParams();
+  const t = useTranslations('services.filter');
   const { categories: categoriesParam } = extractSearchParams(searchParams);
 
   let selectedCategorySlugs: string[] = [];
@@ -40,7 +42,8 @@ export function ServiceFilterListWrapper({
 
   return (
     <div className="flex flex-col flex-1 gap-8 mt-4 md:mt-8 md:flex-row md:items-start">
-      {/* Mobile filter sheet */}
+      {/* Mobile filter sheet
+      In case more sheets follow, extract to reusable component */}
       <div className="mb-4 md:hidden">
         <Sheet>
           <SheetTrigger asChild>
@@ -49,12 +52,12 @@ export function ServiceFilterListWrapper({
               className="flex items-center w-full gap-2"
             >
               <Filter className="size-4" />
-              Filter
+              {t('filterButton')}
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="px-2">
             <SheetHeader>
-              <SheetTitle>Filter</SheetTitle>
+              <SheetTitle>{t('filterButton')}</SheetTitle>
             </SheetHeader>
             <ServiceFilter categories={categories} className="p-0" />
           </SheetContent>
