@@ -1,8 +1,18 @@
 'use client';
+
 import {
   CategoryListResponse,
   ServiceListPaginatedResponse,
 } from '@kwh/contracts';
+import { Button } from '@kwh/ui/components/button';
+import { Filter } from '@kwh/ui/components/icons';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@kwh/ui/components/sheet';
 import { useSearchParams } from 'next/navigation';
 
 import { ServiceList } from '@/components/ui/service-list';
@@ -30,13 +40,35 @@ export function ServiceFilterListWrapper({
 
   return (
     <div className="flex flex-col flex-1 gap-8 mt-4 md:mt-8 md:flex-row md:items-start">
+      {/* Mobile filter sheet */}
+      <div className="mb-4 md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              className="flex items-center w-full gap-2"
+            >
+              <Filter className="size-4" />
+              Filter
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="px-2">
+            <SheetHeader>
+              <SheetTitle>Filter</SheetTitle>
+            </SheetHeader>
+            <ServiceFilter categories={categories} className="p-0" />
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      {/* Desktop sidebar filter */}
       <ServiceFilter
         categories={categories}
-        className="hidden w-1/3 max-w-sm p-6 md:block min-w-65 bg-muted/40 rounded-xl"
+        className="hidden w-1/3 max-w-sm p-4 pb-0 md:block min-w-65 bg-muted/40 rounded-xl"
       />
       <ServiceList
         services={services}
-        className="flex-1 py-6 pl-8md:w-2/3"
+        className="flex-1 pl-2 md:pl-8 md:w-2/3"
         categories={categories}
         selectedCategorySlugs={selectedCategorySlugs}
       />
