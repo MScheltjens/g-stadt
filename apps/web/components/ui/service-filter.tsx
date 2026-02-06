@@ -9,7 +9,9 @@ import { Suspense, useEffect, useState } from 'react';
 
 import { CategorySelect } from '@/components/ui/category-select';
 import { SearchInput } from '@/components/ui/search-input';
+import { SectionHeading } from '@/components/layout/section-heading';
 import { useDebounce } from '@/utils/hooks/useDebounce';
+import { Label } from '@kwh/ui/components/label';
 
 type ServiceFilterProps = {
   categories: CategoryListResponse;
@@ -77,23 +79,21 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
 
   return (
     <Suspense fallback={<div>Loading filters...</div>}>
-      <section className={cn('flex flex-col gap-2', className)}>
-        <h2 className="text-xl font-semibold text-accent-foreground">
-          {t('title')}
-        </h2>
+      <section className={className}>
+        {/* <SectionHeading title='Search' className='text-xl' /> */}
         <SearchInput
           placeholder={t('searchPlaceholder')}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           ariaLabel={t('search')}
-          className="mt-4"
+          className="mb-6 md:mb-8"
         />
-
         <CategorySelect
           categories={categories}
           value={derivedSelectedCategoryIds}
           onChange={handleCategoryChange}
           label={t('filterTheme')}
+          className="mt-2"
         />
       </section>
     </Suspense>

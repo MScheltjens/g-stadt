@@ -1,12 +1,14 @@
 import { CategoryListResponse } from '@kwh/contracts';
 import { Input } from '@kwh/ui/components/input';
 import { Label } from '@kwh/ui/components/label';
+import { cn } from '@kwh/ui/lib/utils';
 
 type CategorySelectProps = {
   categories: CategoryListResponse;
   value: string[]; // array of slugs
   onChange: (value: string[]) => void; // array of slugs
   label: string;
+  className: string;
 };
 
 export function CategorySelect({
@@ -14,6 +16,7 @@ export function CategorySelect({
   value,
   onChange,
   label,
+  className,
 }: CategorySelectProps) {
   const handleCheckboxChange = (slug: string) => {
     if (value.includes(slug)) {
@@ -25,8 +28,7 @@ export function CategorySelect({
   };
 
   return (
-    <fieldset className="flex flex-col gap-2 mt-4 ">
-      <legend className="mb-4 font-semibold">{label}</legend>
+    <fieldset className={cn('flex flex-col space-y-2', className)}>
       {categories.map((category) => (
         <Label
           key={category.slug}

@@ -5,6 +5,7 @@ import { cn } from '@kwh/ui/lib/utils';
 import Image from 'next/image';
 
 import homeHeroImg from '@/public/images/g-stadt.png';
+import { KnowhereLogo } from '@/components/svg/knowhere.logo';
 
 export async function Hero() {
   const t = await getTranslations('home.hero');
@@ -18,49 +19,26 @@ export async function Hero() {
         fill
         priority
         aria-hidden
-        className="
-          object-cover object-right
-          opacity-90
-          pointer-events-none select-none
-        "
+        className="object-cover object-right pointer-events-none select-none opacity-90"
       />
 
       {/* Color & contrast overlay */}
-      <div
-        className="absolute inset-0 bg-gradient-to-br
-        from-background/40
-        via-background/20
-        to-accent/10
-        pointer-events-none"
-      />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-background/40 via-background/20 to-accent/10" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 md:py-24">
-        <p className="mb-4 text-sm font-medium uppercase tracking-wide text-muted-foreground">
+      <div className="relative z-10 max-w-6xl px-6 py-20 mx-auto md:py-24">
+        <p className="mb-4 text-sm font-medium tracking-wide uppercase text-muted-foreground">
           {t('badge')}
         </p>
 
-        <h1 className="max-w-3xl text-4xl md:text-5xl font-semibold tracking-tight">
-          <span className="block text-muted-foreground text-lg mb-1">
-            {t('welcomePrefix')}
-          </span>
-          <span className="font-semibold tracking-tight">
-            {t('cityName.prefix')}
-            <span className="text-muted-foreground">.</span>
+        <KnowhereLogo className="h-20 mb-4 md:h-36" />
 
-            <span className="text-primary">{t('cityName.core')}</span>
-
-            <span className="text-muted-foreground">.</span>
-            {t('cityName.suffix')}
-          </span>
-        </h1>
-
-        <p className="mt-5 max-w-2xl text-base md:text-lg text-muted-foreground">
+        <p className="max-w-2xl mt-5 text-base md:text-lg text-muted-foreground">
           {t('description')}
         </p>
 
         {/* services / news / events */}
-        <div className="mt-8 flex flex-wrap items-center gap-5">
+        <div className="flex flex-wrap items-center gap-5 mt-8">
           <Link
             href={ROUTES.SERVICES}
             className={buttonVariants({ variant: 'default', size: 'lg' })}

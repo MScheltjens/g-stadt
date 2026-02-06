@@ -7,17 +7,29 @@ import { useSearchParams } from 'next/navigation';
 
 import { CardList } from '@/components/ui/card-list';
 import { Pagination } from '@/components/ui/pagination';
+import { SectionHeading } from '@/components/layout/section-heading';
+
+import { CategoryListResponse } from '@kwh/contracts';
+import { SelectedCategoryBadges } from '@/components/ui/selected-category-badges';
 
 type Props = {
   services: ServiceListPaginatedResponse;
   className?: string;
+  categories?: CategoryListResponse;
+  selectedCategorySlugs?: string[];
 };
 
-export function ServiceList({ services, className }: Props) {
+export function ServiceList({
+  services,
+  className,
+  categories,
+  selectedCategorySlugs,
+}: Props) {
   const t = useTranslations('services.results');
   const searchParams = useSearchParams();
   const router = useRouter();
   const { items, total, page, limit } = services;
+
   const pageCount = total > 0 ? Math.ceil(total / limit) : 1;
 
   const onPageChange = (p: number) => {
@@ -31,17 +43,12 @@ export function ServiceList({ services, className }: Props) {
 
   return (
     <section className={className}>
-      <div className="flex items-start justify-between">
-        <h2 className="text-xl font-semibold text-accent-foreground">
-          {t('titleWithTotal', { total })}
-        </h2>
+      <SectionHeading title={t('titleWithTotal', { total })} />
 
-        <Pagination
-          pageCount={pageCount}
-          page={page}
-          onPageChange={onPageChange}
-        />
-      </div>
+      <SelectedCategoryBadges
+        categories={categories}
+        selectedCategorySlugs={selectedCategorySlugs}
+      />
 
       <CardList
         items={items.map((item) => ({

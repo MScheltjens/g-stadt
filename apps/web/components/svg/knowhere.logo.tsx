@@ -4,13 +4,13 @@ type KnowhereLogoProps = React.SVGProps<SVGSVGElement> & {
 };
 
 export function KnowhereLogo({
-  title = 'knowhere',
+  title = 'Knowhere',
   logo = false,
   ...props
 }: KnowhereLogoProps) {
   return (
     <svg
-      viewBox={`0 0 ${logo ? 35 : 135} 40`}
+      viewBox={`0 0 ${logo ? 35 : 140} 40`}
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label={title}
@@ -38,7 +38,7 @@ export function KnowhereLogo({
           stroke="currentColor"
           strokeWidth="2"
         />
-        <circle cx="20" cy="12" r="2" fill="currentColor" />
+        <circle cx="20" cy="12" r="2" fill="#3b82f6" />
       </g>
 
       {/* Wordmark */}
@@ -51,7 +51,11 @@ export function KnowhereLogo({
           fontWeight="500"
           fill="currentColor"
         >
-          knowhere
+          <tspan>K.</tspan>
+          <tspan className="text-primary" fill="#3b82f6">
+            now
+          </tspan>
+          <tspan>.here</tspan>
         </text>
       )}
     </svg>

@@ -13,7 +13,7 @@ export function Pagination({
 }) {
   if (pageCount > 1) {
     return (
-      <div className="flex items-center mt-2">
+      <div className="items-center md:flex">
         <Button
           onClick={() => onPageChange?.(page - 1)}
           disabled={page === 1}
@@ -24,17 +24,19 @@ export function Pagination({
           <ChevronLeftIcon className="size-4" />
         </Button>
 
-        {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
-          <Button
-            key={p}
-            onClick={() => onPageChange?.(p)}
-            disabled={p === page}
-            size="icon-sm"
-            variant="link"
-          >
-            {p}
-          </Button>
-        ))}
+        <div className="hidden lg:block">
+          {Array.from({ length: pageCount }, (_, i) => i + 1).map((p) => (
+            <Button
+              key={p}
+              onClick={() => onPageChange?.(p)}
+              disabled={p === page}
+              size="icon-sm"
+              variant="link"
+            >
+              {p}
+            </Button>
+          ))}
+        </div>
 
         <Button
           onClick={() => onPageChange?.(page + 1)}

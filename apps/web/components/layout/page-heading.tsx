@@ -1,19 +1,18 @@
+import { cn } from '@kwh/ui/lib/utils';
+
 type PageHeadingProps = {
   title: string;
   description?: string;
-  className?: string;
 };
 
-export function PageHeading({
-  title,
-  description,
-  className,
-}: PageHeadingProps) {
+export function PageHeading({ title, description }: PageHeadingProps) {
   return (
-    <header className={className}>
-      <h1 className="text-3xl font-bold">{title}</h1>
+    <header>
+      <h1 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h1>
       {description && (
-        <p className="mt-2 text-lg text-muted-foreground">{description}</p>
+        <p className="mb-4 text-lg md:text-xl text-muted-foreground md:mb-12">
+          {description}
+        </p>
       )}
     </header>
   );
