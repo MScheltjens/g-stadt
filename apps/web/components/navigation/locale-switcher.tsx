@@ -1,6 +1,6 @@
 'use client';
 
-import { ROUTES, SUPPORTED_LOCALES } from '@kwh/constants';
+import { SUPPORTED_LOCALES } from '@kwh/constants';
 import { useLocale, usePathname, useRouter, useTranslations } from '@kwh/i18n';
 import { Button } from '@kwh/ui/components/button';
 import {
@@ -10,14 +10,13 @@ import {
   DropdownMenuTrigger,
 } from '@kwh/ui/components/dropdown-menu';
 import { Globe } from '@kwh/ui/components/icons';
+import { useParams } from 'next/navigation';
 
 export function LocaleSwitcher() {
   const currentLocale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
   const t = useTranslations('localeSwitcher');
-
-  if (pathname !== ROUTES.HOME) return null;
 
   return (
     <DropdownMenu>
@@ -35,9 +34,10 @@ export function LocaleSwitcher() {
         {SUPPORTED_LOCALES.map((locale) => (
           <DropdownMenuItem
             key={locale}
-            onClick={() => {
-              router.push(pathname, { locale });
-            }}
+            // @ts-expect-error -- TypeScript will validate that only known `params`
+            // are used in combination with a given `pathname`. Since the two will
+            // always match for the current route, we can skip runtime checks.
+            onClick={() => router.replace(pathname, { locale })}
             className="font-semibold uppercase cursor-pointer text-primary"
             disabled={locale === currentLocale}
           >
