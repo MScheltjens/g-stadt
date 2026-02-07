@@ -67,7 +67,7 @@ export function ServiceFilterListWrapper({
       {/* Desktop sidebar filter */}
       <ServiceFilter
         categories={categories}
-        className="hidden w-1/3 max-w-sm p-4 pb-0 md:block min-w-65 bg-muted/40 rounded-xl"
+        className="hidden w-1/3 max-w-sm p-4 md:block min-w-65 bg-muted/40 rounded-xl"
       />
       <ServiceList
         services={services}

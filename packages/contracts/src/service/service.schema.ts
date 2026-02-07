@@ -8,7 +8,9 @@ export const ServiceTranslationSchema = z.object({
   locale: LocaleSchema,
   title: z.string(),
   description: z.string(),
-  slug: z.string(),
+  slug: z.string(), // legacy combined slug
+  categorySlug: z.string(),
+  serviceSlug: z.string(),
 });
 
 export type ServiceTranslation = z.infer<typeof ServiceTranslationSchema>;

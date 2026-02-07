@@ -1,5 +1,7 @@
 import { DEFAULT_LOCALE, Locale } from '@kwh/constants';
 import {
+  CategoryWithServicesResponse,
+  CategoryWithServicesResponseSchema,
   ServiceListPaginatedResponse,
   ServiceListPaginatedResponseSchema,
 } from '@kwh/contracts';
@@ -100,25 +102,40 @@ export class ServicesService {
       }),
     ]);
 
-    const items = services.map(({ translations, ...service }) => {
-      const t = translations[0];
-      if (!t)
-        throw new BadRequestException(
-          `Missing translation for service ${service.id} and locale ${locale}`,
-        );
-      return {
-        ...service,
-        externalUrl: service.externalUrl ?? null,
-        requiresAuth: service.requiresAuth ?? false,
-        role: service.role ?? null,
-        createdAt: service.createdAt?.toISOString(),
-        updatedAt: service.updatedAt?.toISOString(),
-        title: t.title,
-        description: t.description,
-        slug: t.slug,
-        locale: t.locale,
-      };
-    });
+    const items = await Promise.all(
+      services.map(async ({ translations, ...service }) => {
+        const t = translations[0];
+        if (!t)
+          throw new BadRequestException(
+            `Missing translation for service ${service.id} and locale ${locale}`,
+          );
+        // Fetch the category translation for this service
+        // (Assumes service.categoryId is available and category translations are loaded elsewhere if needed)
+        // For this paginated endpoint, you may need to join category translations in the query for efficiency
+        // Here, we'll fetch it per item for clarity
+        const categorySlug = await this.prisma.categoryTranslation
+          .findFirst({
+            where: { categoryId: service.categoryId, locale },
+            select: { slug: true },
+          })
+          .then((ct) => ct?.slug ?? '');
+
+        return {
+          ...service,
+          externalUrl: service.externalUrl ?? null,
+          requiresAuth: service.requiresAuth ?? false,
+          role: service.role ?? null,
+          createdAt: service.createdAt?.toISOString(),
+          updatedAt: service.updatedAt?.toISOString(),
+          title: t.title,
+          description: t.description,
+          slug: t.slug, // legacy combined slug if present
+          locale: t.locale,
+          categorySlug,
+          serviceSlug: t.slug,
+        };
+      }),
+    );
 
     return ServiceListPaginatedResponseSchema.parse({
       items,
@@ -126,5 +143,79 @@ export class ServicesService {
       page,
       limit,
     });
+  }
+
+  async getServicesByCategory(
+    locale: Locale,
+    categorySlug: string,
+  ): Promise<CategoryWithServicesResponse> {
+    this.logger.info(
+      `Fetching services for category ${categorySlug} and locale ${locale}`,
+    );
+    const category = await this.prisma.category.findFirst({
+      where: {
+        translations: { some: { slug: categorySlug, locale } },
+      },
+      include: {
+        translations: { where: { locale } },
+        services: {
+          where: { isActive: true },
+          include: { translations: { where: { locale } } },
+          orderBy: { order: 'asc' },
+        },
+      },
+    });
+
+    if (!category) {
+      this.logger.warn(
+        `Category not found for slug ${categorySlug} and locale ${locale}`,
+      );
+      throw new BadRequestException('Category not found');
+    }
+
+    const t = category.translations[0];
+    if (!t) {
+      this.logger.error(
+        `Missing translation for category ${category.id} and locale ${locale}`,
+      );
+      throw new BadRequestException('Missing category translation');
+    }
+
+    const services = category.services.map(({ translations, ...service }) => {
+      const st = translations[0];
+      if (!st) {
+        this.logger.error(
+          `Missing translation for service ${service.id} and locale ${locale}`,
+        );
+        throw new BadRequestException(
+          `Missing translation for service ${service.id}`,
+        );
+      }
+      return {
+        ...service,
+        externalUrl: service.externalUrl ?? null,
+        requiresAuth: service.requiresAuth ?? false,
+        role: service.role ?? null,
+        createdAt: service.createdAt?.toISOString(),
+        updatedAt: service.updatedAt?.toISOString(),
+        title: st.title,
+        description: st.description,
+        slug: st.slug,
+        locale: st.locale,
+      };
+    });
+
+    const data = {
+      id: category.id,
+      code: category.code,
+      type: category.type,
+      order: category.order,
+      isActive: category.isActive,
+      label: t.label,
+      slug: t.slug,
+      locale: t.locale,
+      services,
+    };
+    return CategoryWithServicesResponseSchema.parse(data);
   }
 }

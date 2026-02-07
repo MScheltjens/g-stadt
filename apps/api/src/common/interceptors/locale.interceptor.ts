@@ -14,19 +14,12 @@ export class LocaleInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context
       .switchToHttp()
-      .getRequest<Request & { locale?: string }>();
+      .getRequest<Request & { locale: Locale }>();
 
-    let rawLocale: string | undefined;
+    let rawLocale: Locale | undefined;
 
-    // 1. Check NEXT_LOCALE cookie
-    if (req.cookies && req.cookies.NEXT_LOCALE) {
-      console.log('Cookies:', req.cookies);
-      rawLocale = req.cookies.NEXT_LOCALE;
-    }
-
-    // 2. Fallback to x-locale header
-    if (!rawLocale && req.headers['x-locale']) {
-      rawLocale = req.headers['x-locale'] as string;
+    if (req.headers['x-locale']) {
+      rawLocale = req.headers['x-locale'] as Locale;
     }
 
     // 3. Fallback to default

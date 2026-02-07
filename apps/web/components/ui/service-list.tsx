@@ -51,7 +51,12 @@ export function ServiceList({
 
       <CardList
         items={items.map((item) => ({
-          itemSlug: item.slug,
+          href: {
+            pathname: ROUTES.SERVICES_ITEM,
+            params: { categorySlug: item.categorySlug, itemSlug: item.slug },
+          },
+          title: item.title,
+          description: item.description,
           itemTitle: item.title,
           itemDescription: item.description,
         }))}

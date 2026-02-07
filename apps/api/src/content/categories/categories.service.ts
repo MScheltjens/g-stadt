@@ -54,6 +54,7 @@ export class CategoriesService {
             locale: translation.locale,
             label: translation.label,
             slug: translation.slug,
+            description: translation.description,
           };
         })
         .filter(Boolean);

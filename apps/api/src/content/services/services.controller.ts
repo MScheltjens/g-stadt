@@ -1,9 +1,13 @@
 import { Locale, SUPPORTED_LOCALES } from '@kwh/constants';
-import { ServiceListPaginatedResponse } from '@kwh/contracts';
+import {
+  CategoryWithServicesResponse,
+  ServiceListPaginatedResponse,
+} from '@kwh/contracts';
 import {
   BadRequestException,
   Controller,
   Get,
+  Param,
   Query,
   Req,
 } from '@nestjs/common';
@@ -50,5 +54,30 @@ export class ServicesController {
     }
 
     return this.servicesService.getServices(req.locale, query);
+  }
+
+  // Get services by category slug //
+  @Get('/category/:slug')
+  @ApiResponse({
+    status: 200,
+    description: 'Retrieve a list of services for a specific category.',
+  })
+  async getServicesByCategory(
+    @Req() req: Request & { locale: Locale },
+    @Param('slug') categorySlug: string,
+  ): Promise<CategoryWithServicesResponse> {
+    this.logger.info(
+      'Received request to fetch services by category with locale: ' +
+        req.locale +
+        ' and param: ' +
+        categorySlug,
+    );
+
+    if (!SUPPORTED_LOCALES.includes(req.locale)) {
+      this.logger.error(`Unsupported locale received: ${req.locale}`);
+      throw new BadRequestException('Unsupported locale');
+    }
+
+    return this.servicesService.getServicesByCategory(req.locale, categorySlug);
   }
 }

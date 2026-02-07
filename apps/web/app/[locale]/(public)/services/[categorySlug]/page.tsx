@@ -1,22 +1,43 @@
-import { ComingSoon } from '@/components/marketing/coming-soon';
+import { Metadata } from 'next';
 
-// export async function generateMetadata({
-//   params,
-// }: ServicesCategoryMetadataProps): Promise<Metadata> {
-//   const { categorySlug } = await params;
-//   const categoryData = await getCategoryWithServices(categorySlug);
+import { PublicPageLayout } from '@/components/layout/public-page-layout';
+import { getCategoryServices } from '@/server/services/services.service';
 
-//   return {
-//     title: categoryData.translations[0]?.label || 'Services',
-//   };
-// }
+type CategoryServicesPageProps = {
+  params: Promise<{
+    categorySlug: string;
+  }>;
+};
 
-export default async function ServicesCategoryPage() {
+export async function generateMetadata({
+  params,
+}: CategoryServicesPageProps): Promise<Metadata> {
+  const { categorySlug } = await params;
+  const data = await getCategoryServices(categorySlug);
+
+  return {
+    title: data ? `Services in ${data.label} category` : 'Services',
+    description: data
+      ? `Explore our services in the ${data.label} category. Find the right service for your needs and get the help you deserve.`
+      : 'Explore our services. Find the right service for your needs and get the help you deserve.',
+  };
+}
+
+export default async function ServicesCategoryPage({
+  params,
+}: CategoryServicesPageProps) {
+  const { categorySlug } = await params;
+  console.log('CategorySlug:', categorySlug);
+  const data = await getCategoryServices(categorySlug);
+  const slugToLabel = { [categorySlug]: data.label };
+
   return (
-    <>
-      {/* <Breadcrumbs slugToLabel={slugToLabel} />
-      <PageHeading title={slugToLabel[categorySlug] || 'Services'} /> */}
-      <ComingSoon />
-    </>
+    <PublicPageLayout
+      title={data.label}
+      description={data.description}
+      slugToLabel={slugToLabel}
+    >
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </PublicPageLayout>
   );
 }

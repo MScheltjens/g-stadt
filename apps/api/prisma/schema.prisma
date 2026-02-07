@@ -82,12 +82,12 @@ model Category {
 }
 
 model CategoryTranslation {
-    id         String @id @default(uuid())
-    categoryId String
-    locale     Locale
-
-    label String
-    slug  String
+    id          String @id @default(uuid())
+    categoryId  String
+    locale      Locale
+    description String
+    label       String
+    slug        String
 
     category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 

@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import cookieParser from 'cookie-parser';
 import { ZodValidationPipe } from 'nestjs-zod';
 
 import { AppModule } from './app.module.js';
@@ -12,9 +11,6 @@ async function bootstrap() {
   const env = getEnv();
 
   app.useGlobalInterceptors(new LocaleInterceptor());
-
-  // make cookies accessible (for locale detection)
-  app.use(cookieParser());
 
   app.enableCors({
     origin:

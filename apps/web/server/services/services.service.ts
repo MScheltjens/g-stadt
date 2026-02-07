@@ -1,8 +1,10 @@
 import {
+  CategoryWithServicesResponseSchema,
   ServiceListPaginatedResponse,
   ServiceListPaginatedResponseSchema,
   ServicesQuery,
 } from '@kwh/contracts';
+import { getLocale } from '@kwh/i18n';
 
 import { safeFetch } from '@/utils/safe-fetch';
 
@@ -11,8 +13,8 @@ import { safeFetch } from '@/utils/safe-fetch';
 export async function getServices(
   query?: ServicesQuery,
 ): Promise<ServiceListPaginatedResponse> {
+  const locale = await getLocale();
   const params = new URLSearchParams();
-
   if (query?.categories) {
     if (Array.isArray(query.categories)) {
       if (query.categories.length > 0) {
@@ -32,5 +34,23 @@ export async function getServices(
   return await safeFetch(
     `/services${queryString ? `?${queryString}` : ''}`,
     ServiceListPaginatedResponseSchema,
+    {
+      locale,
+      next: { revalidate: 60 * 60 }, // cache 1h
+    },
+  );
+}
+
+// get services by category slug //
+
+export async function getCategoryServices(categorySlug: string) {
+  const locale = await getLocale();
+  return await safeFetch(
+    `/services/category/${categorySlug}`,
+    CategoryWithServicesResponseSchema,
+    {
+      locale,
+      next: { revalidate: 60 * 60 }, // cache 1h
+    },
   );
 }

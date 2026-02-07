@@ -2,6 +2,7 @@ import { CATEGORYTYPE } from '@kwh/constants';
 import { z } from 'zod';
 
 import { LocaleSchema } from '../common/locale.schema.js';
+import { ServiceListResponseSchema } from '../service/service.schema.js';
 
 //// CATEGORY SCHEMAS ////
 
@@ -19,6 +20,7 @@ export type CategoryType = z.infer<typeof CategoryTypeSchema>;
 export const CategoryTranslationSchema = z.object({
   locale: LocaleSchema,
   label: z.string(),
+  description: z.string(),
   slug: z.string(),
 });
 
@@ -55,3 +57,14 @@ export const CategoryListResponseSchema = z.array(
 );
 
 export type CategoryListResponse = z.infer<typeof CategoryListResponseSchema>;
+
+// category with services schema //
+
+export const CategoryWithServicesResponseSchema = CategoryBaseSchema.extend({
+  ...CategoryTranslationSchema.shape,
+  services: ServiceListResponseSchema,
+});
+
+export type CategoryWithServicesResponse = z.infer<
+  typeof CategoryWithServicesResponseSchema
+>;

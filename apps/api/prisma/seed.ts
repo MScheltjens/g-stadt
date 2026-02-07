@@ -40,16 +40,19 @@ async function main() {
           locale: LOCALES.DE,
           label: 'Allgemeine Anfrage',
           slug: 'allgemeine-anfrage',
+          description: 'Allgemeine Anfragen und Kontaktaufnahmen.',
         },
         {
           locale: LOCALES.EN,
           label: 'General Inquiry',
           slug: 'general-inquiry',
+          description: 'General inquiries and contact requests.',
         },
         {
           locale: LOCALES.FR,
           label: 'Demande générale',
           slug: 'demande-generale',
+          description: 'Demandes générales et prises de contact.',
         },
       ],
       contacts: [
@@ -88,16 +91,19 @@ async function main() {
           locale: LOCALES.DE,
           label: 'Technischer Support',
           slug: 'technischer-support',
+          description: 'Technische Unterstützung und Hilfe.',
         },
         {
           locale: LOCALES.EN,
           label: 'Technical Support',
           slug: 'technical-support',
+          description: 'Technical support and assistance.',
         },
         {
           locale: LOCALES.FR,
           label: 'Support technique',
           slug: 'support-technique',
+          description: 'Assistance et support technique.',
         },
       ],
       contacts: [
@@ -132,9 +138,24 @@ async function main() {
       order: 7,
       icon: 'MessageCircle',
       translations: [
-        { locale: LOCALES.DE, label: 'Feedback', slug: 'feedback' },
-        { locale: LOCALES.EN, label: 'Feedback', slug: 'feedback' },
-        { locale: LOCALES.FR, label: 'Retour', slug: 'retour' },
+        {
+          locale: LOCALES.DE,
+          label: 'Feedback',
+          slug: 'feedback',
+          description: 'Feedback und Rückmeldungen.',
+        },
+        {
+          locale: LOCALES.EN,
+          label: 'Feedback',
+          slug: 'feedback',
+          description: 'Feedback and suggestions.',
+        },
+        {
+          locale: LOCALES.FR,
+          label: 'Retour',
+          slug: 'retour',
+          description: 'Retour et suggestions.',
+        },
       ],
       contacts: [
         ...[1, 2, 3].map((i) => ({
@@ -168,12 +189,23 @@ async function main() {
       order: 8,
       icon: 'AlertCircle',
       translations: [
-        { locale: LOCALES.DE, label: 'Problem melden', slug: 'problem-melden' },
-        { locale: LOCALES.EN, label: 'Report an Issue', slug: 'report-issue' },
+        {
+          locale: LOCALES.DE,
+          label: 'Problem melden',
+          slug: 'problem-melden',
+          description: 'Probleme und Störungen melden.',
+        },
+        {
+          locale: LOCALES.EN,
+          label: 'Report an Issue',
+          slug: 'report-issue',
+          description: 'Report issues and problems.',
+        },
         {
           locale: LOCALES.FR,
           label: 'Signaler un problème',
           slug: 'signaler-probleme',
+          description: 'Signaler des problèmes et des dysfonctionnements.',
         },
       ],
       contacts: [
@@ -211,16 +243,20 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Person and life events',
           slug: 'person-life-events',
+          description: 'Services related to personal and life events.',
         },
         {
           locale: LOCALES.FR,
           label: 'Personne et moments de vie',
           slug: 'personne-moments-vie',
+          description: 'Services liés aux personnes et aux moments de vie.',
         },
         {
           locale: LOCALES.DE,
           label: 'Person und Lebensereignisse',
           slug: 'person-lebensereignisse',
+          description:
+            'Dienstleistungen rund um Personen und Lebensereignisse.',
         },
       ],
       services: [
@@ -361,21 +397,26 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Jobs and entrepreneurship',
           slug: 'jobs-entrepreneurship',
+          description: 'Find jobs and resources for entrepreneurs.',
         },
         {
           locale: LOCALES.FR,
           label: 'Emplois et entreprendre',
           slug: 'emplois-entreprendre',
+          description:
+            'Trouvez des emplois et des ressources pour entreprendre.',
         },
         {
           locale: LOCALES.DE,
           label: 'Jobs und Unternehmertum',
           slug: 'jobs-unternehmertum',
+          description: 'Jobs und Ressourcen für Unternehmer.',
         },
       ],
       services: [
         {
           requiresAuth: false,
+          findIndex: true,
           translations: [
             {
               locale: LOCALES.EN,
@@ -463,13 +504,20 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Living and building',
           slug: 'living-building',
+          description: 'Housing, construction, and living services.',
         },
         {
           locale: LOCALES.FR,
           label: 'Habiter et construire',
           slug: 'habiter-construire',
+          description: 'Services liés au logement et à la construction.',
         },
-        { locale: LOCALES.DE, label: 'Wohnen und Bauen', slug: 'wohnen-bauen' },
+        {
+          locale: LOCALES.DE,
+          label: 'Wohnen und Bauen',
+          slug: 'wohnen-bauen',
+          description: 'Dienstleistungen rund ums Wohnen und Bauen.',
+        },
       ],
       services: [
         {
@@ -557,16 +605,19 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Waste, nature and environment',
           slug: 'waste-nature-environment',
+          description: 'Waste management and environmental services.',
         },
         {
           locale: LOCALES.FR,
           label: 'Déchets, nature et environnement',
           slug: 'dechets-nature-environnement',
+          description: 'Gestion des déchets et services environnementaux.',
         },
         {
           locale: LOCALES.DE,
           label: 'Abfall, Natur und Umwelt',
           slug: 'abfall-natur-umwelt',
+          description: 'Abfallentsorgung und Umweltdienstleistungen.',
         },
       ],
       services: [
@@ -656,16 +707,19 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Leisure, sport and culture',
           slug: 'leisure-sport-culture',
+          description: 'Activities, sports, and cultural events.',
         },
         {
           locale: LOCALES.FR,
           label: 'Loisirs, sport et culture',
           slug: 'loisirs-sport-culture',
+          description: 'Activités, sports et événements culturels.',
         },
         {
           locale: LOCALES.DE,
           label: 'Freizeit, Sport und Kultur',
           slug: 'freizeit-sport-kultur',
+          description: 'Freizeit, Sport und kulturelle Veranstaltungen.',
         },
       ],
       services: [
@@ -758,16 +812,20 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Childcare and learning',
           slug: 'childcare-learning',
+          description: 'Childcare, schools, and learning opportunities.',
         },
         {
           locale: LOCALES.FR,
           label: "Garde d'enfants et apprentissage",
           slug: 'garde-enfants-apprentissage',
+          description:
+            "Garde d'enfants, écoles et opportunités d'apprentissage.",
         },
         {
           locale: LOCALES.DE,
           label: 'Kinderbetreuung und Lernen',
           slug: 'kinderbetreuung-lernen',
+          description: 'Kinderbetreuung, Schulen und Lernmöglichkeiten.',
         },
       ],
       services: [
@@ -858,16 +916,19 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Parking and mobility',
           slug: 'parking-mobility',
+          description: 'Parking, transport, and mobility services.',
         },
         {
           locale: LOCALES.FR,
           label: 'Stationnement et mobilité',
           slug: 'stationnement-mobilite',
+          description: 'Services de stationnement et de mobilité.',
         },
         {
           locale: LOCALES.DE,
           label: 'Parken und Mobilität',
           slug: 'parken-mobilitaet',
+          description: 'Parken, Transport und Mobilitätsdienste.',
         },
       ],
       services: [
@@ -957,16 +1018,19 @@ async function main() {
           locale: LOCALES.EN,
           label: 'Social assistance, welfare and care',
           slug: 'social-assistance-welfare-care',
+          description: 'Social assistance, welfare, and care services.',
         },
         {
           locale: LOCALES.FR,
           label: 'Aide sociale, bien-être et soins',
           slug: 'aide-sociale-bien-etre-soins',
+          description: 'Aide sociale, bien-être et services de soins.',
         },
         {
           locale: LOCALES.DE,
           label: 'Sozialhilfe, Wohlbefinden und Pflege',
           slug: 'sozialhilfe-wohlbefinden-pflege',
+          description: 'Sozialhilfe, Wohlbefinden und Pflegedienste.',
         },
       ],
       services: [
@@ -1057,16 +1121,20 @@ async function main() {
           locale: LOCALES.EN,
           label: 'City and districts',
           slug: 'city-districts',
+          description: 'Information and services for city districts.',
         },
         {
           locale: LOCALES.FR,
           label: 'Ville et districts',
           slug: 'ville-districts',
+          description:
+            'Informations et services pour les districts de la ville.',
         },
         {
           locale: LOCALES.DE,
           label: 'Stadt und Bezirke',
           slug: 'stadt-bezirke',
+          description: 'Informationen und Dienstleistungen für Stadtbezirke.',
         },
       ],
       services: [
@@ -1180,10 +1248,12 @@ async function main() {
         },
         update: {
           label: t.label,
+          description: t.description,
           slug: t.slug,
         },
         create: {
           categoryId: category.id,
+          description: t.description,
           locale: t.locale,
           label: t.label,
           slug: t.slug,
@@ -1219,7 +1289,11 @@ async function main() {
 
         // Upsert service translations with unique slug
         for (const t of service.translations) {
-          const uniqueSlug = `${cat.code.toLowerCase()}-${t.slug}`;
+          // Ensure description is not missing or empty
+          const safeDescription =
+            t.description && t.description.trim() !== ''
+              ? t.description
+              : 'No description available';
           await prisma.serviceTranslation.upsert({
             where: {
               serviceId_locale: {
@@ -1229,15 +1303,15 @@ async function main() {
             },
             update: {
               title: t.title,
-              description: t.description,
-              slug: uniqueSlug,
+              description: safeDescription,
+              slug: t.slug,
             },
             create: {
               serviceId: serviceRecord.id,
               locale: t.locale,
               title: t.title,
-              description: t.description,
-              slug: uniqueSlug,
+              description: safeDescription,
+              slug: t.slug,
             },
           });
         }
