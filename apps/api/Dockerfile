@@ -34,18 +34,16 @@ COPY apps/api/prisma.config.ts ./prisma.config.ts
 COPY --from=builder /app/packages ../../packages
 COPY --from=builder /app/configs ../../configs
 
-# Install production deps for API and all its dependencies
-RUN pnpm install --prod --filter api...
+
+# Install production dependencies for API
+RUN pnpm install --prod
+
 
 # Set a dummy DATABASE_URL for build-time Prisma commands
 ENV DATABASE_URL="postgresql://user:pass@localhost:5432/db"
 
-
-# Generate Prisma client for production (for app runtime)
+# Generate Prisma client for production (for app runtime and seeding)
 RUN pnpm exec prisma generate
-
-# Generate Prisma client for seeding (for ts-node seed script)
-RUN pnpm exec prisma generate --schema=./prisma/schema.prisma
 
 # Copy built artifacts
 COPY --from=builder /app/apps/api/dist ./dist
