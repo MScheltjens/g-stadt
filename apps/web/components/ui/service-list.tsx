@@ -4,12 +4,19 @@ import { ROUTES } from '@kwh/constants';
 import { ServiceListPaginatedResponse } from '@kwh/contracts';
 import { CategoryListResponse } from '@kwh/contracts';
 import { useRouter, useTranslations } from '@kwh/i18n';
+import { cn } from '@kwh/ui/lib/utils';
 import { useSearchParams } from 'next/navigation';
+import { ReactNode } from 'react';
 
 import { SectionHeading } from '@/components/layout/section-heading';
 import { CardList } from '@/components/ui/card-list';
 import { Pagination } from '@/components/ui/pagination';
 import { SelectedCategoryBadges } from '@/components/ui/selected-category-badges';
+import {
+  createCategoryColorHelpers,
+  normalizeBadgeLabel,
+  withAlpha,
+} from '@/utils/category-colors';
 import { extractSearchParams, setSearchParam } from '@/utils/search-params';
 
 type Props = {
@@ -17,6 +24,7 @@ type Props = {
   className?: string;
   categories?: CategoryListResponse;
   selectedCategorySlugs?: string[];
+  headerAction?: ReactNode;
 };
 
 export function ServiceList({
@@ -24,6 +32,7 @@ export function ServiceList({
   className,
   categories,
   selectedCategorySlugs,
+  headerAction,
 }: Props) {
   const t = useTranslations('services.results');
   const searchParams = useSearchParams();
@@ -31,6 +40,12 @@ export function ServiceList({
   const { items, total, page, limit } = services;
 
   const pageCount = total > 0 ? Math.ceil(total / limit) : 1;
+
+  const categoryBySlug = new Map(
+    categories?.map((category) => [category.slug, category]) ?? [],
+  );
+
+  const { getColorById } = createCategoryColorHelpers(categories);
 
   const onPageChange = (p: number) => {
     const params = setSearchParam(searchParams, 'page', p.toString());
@@ -41,12 +56,20 @@ export function ServiceList({
   };
 
   return (
-    <section className={className}>
-      <SectionHeading title={t('titleWithTotal', { total })} />
+    <section className={cn('flex flex-col', className)}>
+      <div className="flex items-baseline justify-between gap-3 md:block">
+        <SectionHeading
+          title={t('titleWithTotal', { total })}
+          className="block mb-4 md:mb-6"
+          accentClassName="mb-4 bg-primary/70"
+        />
+        <div className="md:hidden">{headerAction}</div>
+      </div>
 
       <SelectedCategoryBadges
         categories={categories}
         selectedCategorySlugs={selectedCategorySlugs}
+        className="hidden md:flex"
       />
 
       <CardList
@@ -59,6 +82,30 @@ export function ServiceList({
           description: item.description,
           itemTitle: item.title,
           itemDescription: item.description,
+          badge: item.categorySlug
+            ? (() => {
+                const category = categoryBySlug.get(item.categorySlug);
+                if (!category) return undefined;
+                const color = getColorById(category.id);
+                return {
+                  label: normalizeBadgeLabel(category.label),
+                  className: 'border border-current',
+                  style: {
+                    borderColor: color,
+                    backgroundColor: withAlpha(color, 0.12),
+                    color,
+                  },
+                };
+              })()
+            : undefined,
+          accentStyle: item.categorySlug
+            ? (() => {
+                const category = categoryBySlug.get(item.categorySlug);
+                if (!category) return undefined;
+                const color = getColorById(category.id);
+                return { backgroundColor: color };
+              })()
+            : undefined,
         }))}
       />
 
@@ -68,6 +115,7 @@ export function ServiceList({
           pageCount={pageCount}
           page={page}
           onPageChange={onPageChange}
+          className="justify-end mt-6"
         />
       </div>
     </section>

@@ -4,18 +4,9 @@ import {
   CategoryListResponse,
   ServiceListPaginatedResponse,
 } from '@kwh/contracts';
-import { useTranslations } from '@kwh/i18n';
-import { Button } from '@kwh/ui/components/button';
-import { Filter } from '@kwh/ui/components/icons';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@kwh/ui/components/sheet';
 import { useSearchParams } from 'next/navigation';
 
+import { ServiceFilterMobile } from '@/components/ui/service-filter.mobile';
 import { ServiceList } from '@/components/ui/service-list';
 import { extractSearchParams } from '@/utils/search-params';
 
@@ -30,7 +21,6 @@ export function ServiceFilterListWrapper({
   services: ServiceListPaginatedResponse;
 }) {
   const searchParams = useSearchParams();
-  const t = useTranslations('services.filter');
   const { categories: categoriesParam } = extractSearchParams(searchParams);
 
   let selectedCategorySlugs: string[] = [];
@@ -41,39 +31,27 @@ export function ServiceFilterListWrapper({
   }
 
   return (
-    <div className="flex flex-col flex-1 gap-8 mt-4 md:mt-8 md:flex-row md:items-start">
-      {/* Mobile filter sheet
-      In case more sheets follow, extract to reusable component */}
-      <div className="mb-4 md:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="outline"
-              className="flex items-center w-full gap-2"
-            >
-              <Filter className="size-4" />
-              {t('filterButton')}
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="px-2">
-            <SheetHeader>
-              <SheetTitle>{t('filterButton')}</SheetTitle>
-            </SheetHeader>
-            <ServiceFilter categories={categories} className="p-0" />
-          </SheetContent>
-        </Sheet>
-      </div>
-
+    <div className="flex flex-col flex-1 gap-6 mt-4 md:flex-row md:items-start md:gap-8 md:bg-muted/30 md:px-6 md:py-5">
       {/* Desktop sidebar filter */}
+
       <ServiceFilter
         categories={categories}
-        className="hidden w-1/3 max-w-sm p-4 md:block min-w-65 bg-muted/40 rounded-xl"
+        className="hidden md:block md:w-1/3"
       />
+
+      <div className="self-stretch hidden w-px bg-primary/30 md:block" />
+
       <ServiceList
         services={services}
-        className="flex-1 pl-2 md:pl-8 md:w-2/3"
+        className="flex-1 md:w-2/3"
         categories={categories}
         selectedCategorySlugs={selectedCategorySlugs}
+        headerAction={
+          <ServiceFilterMobile
+            categories={categories}
+            selectedCategorySlugs={selectedCategorySlugs}
+          />
+        }
       />
     </div>
   );

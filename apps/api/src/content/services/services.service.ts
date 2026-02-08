@@ -96,7 +96,9 @@ export class ServicesService {
       this.prisma.service.findMany({
         where,
         include: { translations: { where: { locale } } },
-        orderBy: { order: 'asc' },
+        orderBy: {
+          order: 'asc',
+        },
         skip: (page - 1) * limit,
         take: limit,
       }),

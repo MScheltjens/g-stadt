@@ -1,19 +1,23 @@
 import { Button } from '@kwh/ui/components/button';
 import { ChevronLeftIcon, ChevronRightIcon } from '@kwh/ui/components/icons';
+import { cn } from '@kwh/ui/lib/utils';
+
+type PaginationProps = {
+  pageCount: number;
+  page: number;
+  onPageChange?: (page: number) => void;
+  className?: string;
+};
 
 export function Pagination({
   pageCount,
   page,
   onPageChange,
-}: {
-  pageCount: number;
-  page: number;
-  onPageChange?: (page: number) => void;
-  info?: string;
-}) {
+  className,
+}: PaginationProps) {
   if (pageCount > 1) {
     return (
-      <div className="items-center md:flex">
+      <div className={cn('items-center md:flex', className)}>
         <Button
           onClick={() => onPageChange?.(page - 1)}
           disabled={page === 1}

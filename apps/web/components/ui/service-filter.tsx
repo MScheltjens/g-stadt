@@ -5,6 +5,7 @@ import { useRouter, useTranslations } from '@kwh/i18n';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 
+import { SectionHeading } from '@/components/layout/section-heading';
 import { CategorySelect } from '@/components/ui/category-select';
 import { SearchInput } from '@/components/ui/search-input';
 import { useDebounce } from '@/utils/hooks/useDebounce';
@@ -28,6 +29,8 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
 
   // Multi-select: derive selectedCategoryIds from searchParams
   const categoriesParam = searchParams.get('categories');
+
+  // If categoriesParam is 'all' or not present, we treat it as no specific category filter (empty array)
   let derivedSelectedCategoryIds: string[] = [];
   if (categoriesParam && categoriesParam !== 'all') {
     derivedSelectedCategoryIds = decodeURIComponent(categoriesParam)
@@ -78,13 +81,17 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
   return (
     <Suspense fallback={<div>Loading filters...</div>}>
       <section className={className}>
-        {/* <SectionHeading title='Search' className='text-xl' /> */}
+        <div className="hidden w-10 h-1 mb-4 rounded-full bg-primary/70 md:block" />
+        <SectionHeading
+          title={t('title')}
+          className="mb-4 md:mb-6"
+          titleClassName="text-base md:text-xl"
+        />
         <SearchInput
           placeholder={t('searchPlaceholder')}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           ariaLabel={t('search')}
-          className="mb-6 md:mb-8"
         />
         <CategorySelect
           categories={categories}

@@ -23,7 +23,7 @@ export function SearchInput({
         value={value}
         onChange={onChange}
         aria-label={ariaLabel}
-        className="relative pr-10 bg-white"
+        className="relative pr-10 text-sm rounded-sm bg-background border-primary/30 focus:border-primary/60 focus:ring-2 focus:ring-primary/40 focus:ring-offset-2 focus:ring-offset-background md:text-md"
       />
       <Search
         size={18}

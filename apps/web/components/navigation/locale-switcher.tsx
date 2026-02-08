@@ -10,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from '@kwh/ui/components/dropdown-menu';
 import { Globe } from '@kwh/ui/components/icons';
-import { useParams } from 'next/navigation';
 
 export function LocaleSwitcher() {
   const currentLocale = useLocale();
