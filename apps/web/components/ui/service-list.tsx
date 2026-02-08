@@ -6,14 +6,6 @@ import { CategoryListResponse } from '@kwh/contracts';
 import { useRouter, useTranslations } from '@kwh/i18n';
 import { Button } from '@kwh/ui/components/button';
 import { SearchX } from '@kwh/ui/components/icons';
-import { Label } from '@kwh/ui/components/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@kwh/ui/components/select';
 import { cn } from '@kwh/ui/lib/utils';
 import { useSearchParams } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -22,6 +14,7 @@ import { SectionHeading } from '@/components/layout/section-heading';
 import { CardList } from '@/components/ui/card-list';
 import { Pagination } from '@/components/ui/pagination';
 import { SelectedCategoryBadges } from '@/components/ui/selected-category-badges';
+import { ServiceSortSelect } from '@/components/ui/service-sort-select';
 import {
   createCategoryColorHelpers,
   normalizeBadgeLabel,
@@ -129,38 +122,19 @@ export function ServiceList({
             className="block mb-2 md:mb-4"
             accentClassName="mb-4 bg-primary/70"
           />
+
           <div className="flex flex-col gap-2 mb-3 md:mb-5 md:flex-row md:items-center md:justify-between">
             <p className="text-xs text-muted-foreground">
               {resultsDescription}
             </p>
-            <Label className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span>{t('results.sortLabel')}</span>
-              <Select value={currentSort} onValueChange={onSortChange}>
-                <SelectTrigger
-                  size="sm"
-                  className="h-8 text-xs border-border/60"
-                >
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent
-                  position="popper"
-                  align="end"
-                  className="min-w-(--radix-select-trigger-width)"
-                >
-                  <SelectItem value={SERVICE_SORT.ORDER}>
-                    {t('results.sortDefault')}
-                  </SelectItem>
-                  <SelectItem value={SERVICE_SORT.TITLE_ASC}>
-                    {t('results.sortAZ')}
-                  </SelectItem>
-                  <SelectItem value={SERVICE_SORT.TITLE_DESC}>
-                    {t('results.sortZA')}
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </Label>
+
+            <ServiceSortSelect
+              value={currentSort}
+              onChangeAction={onSortChange}
+            />
           </div>
         </div>
+
         <div className="md:hidden">{headerAction}</div>
       </div>
 
