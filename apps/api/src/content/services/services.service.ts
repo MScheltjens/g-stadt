@@ -1,14 +1,14 @@
-import { DEFAULT_LOCALE, Locale } from '@kwh/constants';
+import { DEFAULT_LOCALE, Locale, SERVICE_SORT } from '@kwh/constants';
 import {
   CategoryWithServicesResponse,
   CategoryWithServicesResponseSchema,
   ServiceListPaginatedResponse,
   ServiceListPaginatedResponseSchema,
+  ServicesQuery,
 } from '@kwh/contracts';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
-import { ServicesQueryDto } from '@/content/services/dto/service.query.dto.js';
 import { PrismaService } from '@/db/prisma.service.js';
 
 @Injectable()
@@ -20,19 +20,20 @@ export class ServicesService {
 
   async getServices(
     locale: Locale = DEFAULT_LOCALE,
-    query: ServicesQueryDto,
+    query: ServicesQuery,
   ): Promise<ServiceListPaginatedResponse> {
     this.logger.info(
       `Fetching all services for locale ${locale} and query ${JSON.stringify(query)}`,
     );
 
-    const { page = 1, limit = 10, categories, search } = query;
+    const { page = 1, limit = 10, categories, search, sort } = query;
 
     this.logger.info('Parsed query parameters:', {
       page,
       limit,
       categories,
       search,
+      sort,
     });
 
     let categoryFilter = undefined;
@@ -91,14 +92,77 @@ export class ServicesService {
       }),
     };
 
+    if (sort === SERVICE_SORT.TITLE_ASC || sort === SERVICE_SORT.TITLE_DESC) {
+      const translationWhere: any = {
+        locale,
+        service: {
+          isActive: true,
+          ...(categoryFilter && { categoryId: categoryFilter }),
+        },
+        ...(search && {
+          OR: [
+            { title: { contains: search, mode: 'insensitive' } },
+            { description: { contains: search, mode: 'insensitive' } },
+            { slug: { contains: search, mode: 'insensitive' } },
+          ],
+        }),
+      };
+
+      const [total, translations] = await this.prisma.$transaction([
+        this.prisma.serviceTranslation.count({ where: translationWhere }),
+        this.prisma.serviceTranslation.findMany({
+          where: translationWhere,
+          orderBy: {
+            title: sort === SERVICE_SORT.TITLE_DESC ? 'desc' : 'asc',
+          },
+          include: { service: true },
+          skip: (page - 1) * limit,
+          take: limit,
+        }),
+      ]);
+
+      const items = await Promise.all(
+        translations.map(async ({ service, ...translation }) => {
+          const categorySlug = await this.prisma.categoryTranslation
+            .findFirst({
+              where: { categoryId: service.categoryId, locale },
+              select: { slug: true },
+            })
+            .then((ct) => ct?.slug ?? '');
+
+          return {
+            ...service,
+            externalUrl: service.externalUrl ?? null,
+            requiresAuth: service.requiresAuth ?? false,
+            role: service.role ?? null,
+            createdAt: service.createdAt?.toISOString(),
+            updatedAt: service.updatedAt?.toISOString(),
+            title: translation.title,
+            description: translation.description,
+            slug: translation.slug,
+            locale: translation.locale,
+            categorySlug,
+            serviceSlug: translation.slug,
+          };
+        }),
+      );
+
+      return ServiceListPaginatedResponseSchema.parse({
+        items,
+        total,
+        page,
+        limit,
+      });
+    }
+
+    const orderBy: { order: 'asc' } = { order: 'asc' };
+
     const [total, services] = await this.prisma.$transaction([
       this.prisma.service.count({ where }),
       this.prisma.service.findMany({
         where,
         include: { translations: { where: { locale } } },
-        orderBy: {
-          order: 'asc',
-        },
+        orderBy,
         skip: (page - 1) * limit,
         take: limit,
       }),

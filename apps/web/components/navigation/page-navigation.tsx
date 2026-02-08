@@ -13,8 +13,11 @@ export function PageNavigation({ slugToLabel = {} }: PageNavigationProps) {
       aria-label="Public page navigation"
       className="flex items-center w-full mx-auto max-w-7xl md:px-8 bg-accent-foreground/5"
     >
-      <KnowhereLogo className="hidden w-auto h-15 md:block" logo />
-      <span className="hidden mx-4 md:inline">|</span>
+      <KnowhereLogo className="hidden w-auto h-12 md:block" logo />
+      <span
+        className="hidden w-px h-6 mx-4 bg-primary md:inline"
+        aria-hidden="true"
+      />
       <BackButton className="md:hidden" />
       <Breadcrumbs slugToLabel={slugToLabel} className="hidden md:block" />
     </nav>

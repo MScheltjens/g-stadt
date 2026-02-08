@@ -91,7 +91,9 @@ export function ServiceFilter({ categories, className }: ServiceFilterProps) {
           placeholder={t('searchPlaceholder')}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
+          onClear={() => setSearchInput('')}
           ariaLabel={t('search')}
+          clearLabel={t('clearSearch')}
         />
         <CategorySelect
           categories={categories}

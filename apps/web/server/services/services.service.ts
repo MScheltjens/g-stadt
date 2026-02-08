@@ -28,6 +28,7 @@ export async function getServices(
   if (query?.page) params.append('page', String(query.page));
   if (query?.limit) params.append('limit', String(query.limit));
   if (query?.search) params.append('search', query.search);
+  if (query?.sort) params.append('sort', query.sort);
 
   const queryString = params.toString();
 

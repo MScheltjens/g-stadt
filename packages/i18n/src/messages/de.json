@@ -99,6 +99,7 @@
       "title": "Dienstleistungen filtern",
       "searchPlaceholder": "Dienstleistungen suchen...",
       "search": "Suchen",
+      "clearSearch": "Suche löschen",
       "filterTheme": "Nach Thema filtern",
       "all": "Alle Themen",
       "filterButton": "Filtern"
@@ -107,7 +108,12 @@
       "titleWithTotal": "Suchergebnisse ({total})",
       "result": "{count} Dienstleistung | {count} Dienstleistungen",
       "pagination": "Seite {page} von {pageCount} ({total} Dienstleistungen)",
-      "noResults": "Keine Dienstleistungen gefunden."
+      "sortLabel": "Sortieren",
+      "sortDefault": "Standard",
+      "sortAZ": "A–Z",
+      "sortZA": "Z–A",
+      "noResults": "Keine Dienstleistungen gefunden.",
+      "resetFilters": "Filter zuruecksetzen"
     },
     "title": "Städtische Services",
     "description": "Entdecken Sie die Dienstleistungen der Stadt knowhere.",

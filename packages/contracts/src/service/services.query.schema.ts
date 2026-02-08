@@ -1,3 +1,4 @@
+import { SERVICE_SORT } from '@kwh/constants';
 import z from 'zod';
 
 export const ServicesQuerySchema = z.object({
@@ -14,6 +15,7 @@ export const ServicesQuerySchema = z.object({
     ])
     .optional(),
   search: z.string().min(1).optional(),
+  sort: z.enum(SERVICE_SORT).optional(),
 });
 
 export type ServicesQuery = z.infer<typeof ServicesQuerySchema>;

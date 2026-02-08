@@ -99,6 +99,7 @@
       "title": "Filtres des services",
       "searchPlaceholder": "Rechercher des services...",
       "search": "Rechercher",
+      "clearSearch": "Effacer la recherche",
       "filterTheme": "Filtrer par thème",
       "all": "Tous les thèmes",
       "filterButton": "Filtrer"
@@ -107,7 +108,12 @@
       "titleWithTotal": "Services ({total})",
       "result": "{count} service | {count} services",
       "pagination": "Page {page} sur {pageCount} ({total} services)",
-      "noResults": "Aucun service trouvé."
+      "sortLabel": "Trier",
+      "sortDefault": "Par defaut",
+      "sortAZ": "A–Z",
+      "sortZA": "Z–A",
+      "noResults": "Aucun service trouvé.",
+      "resetFilters": "Reinitialiser les filtres"
     },
     "title": "Services municipaux",
     "description": "Découvrez les services proposés par la ville de knowhere.",

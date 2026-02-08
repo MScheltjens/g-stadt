@@ -99,6 +99,7 @@
       "title": "Filter services",
       "searchPlaceholder": "Search services...",
       "search": "Search",
+      "clearSearch": "Clear search",
       "filterTheme": "Filter by theme",
       "all": "All themes",
       "filterButton": "Filter"
@@ -107,7 +108,12 @@
       "titleWithTotal": "Services ({total})",
       "result": "{count} service | {count} services",
       "pagination": "Page {page} of {pageCount} ({total} services)",
-      "noResults": "No services found."
+      "sortLabel": "Sort",
+      "sortDefault": "Default",
+      "sortAZ": "A–Z",
+      "sortZA": "Z–A",
+      "noResults": "No services found.",
+      "resetFilters": "Reset filters"
     },
     "title": "City services",
     "description": "Explore the various services offered by knowhere to its residents.",

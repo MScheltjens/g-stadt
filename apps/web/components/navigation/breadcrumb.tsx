@@ -30,7 +30,7 @@ export function BreadcrumbComp({ items, className = '' }: BreadcrumbCompProps) {
         </BreadcrumbItem>
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-2">
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className="text-primary" />
             <BreadcrumbItem key={index}>
               {item.isCurrent ? (
                 <BreadcrumbPage>{item.label}</BreadcrumbPage>

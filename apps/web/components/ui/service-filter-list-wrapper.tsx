@@ -36,7 +36,7 @@ export function ServiceFilterListWrapper({
 
       <ServiceFilter
         categories={categories}
-        className="hidden md:block md:w-1/3"
+        className="hidden md:block md:w-1/3 md:sticky md:top-6 md:self-start md:h-fit"
       />
 
       <div className="self-stretch hidden w-px bg-primary/30 md:block" />
