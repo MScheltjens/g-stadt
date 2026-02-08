@@ -34,7 +34,7 @@ export function ServiceList({
   selectedCategorySlugs,
   headerAction,
 }: Props) {
-  const t = useTranslations('services.results');
+  const t = useTranslations('services');
   const searchParams = useSearchParams();
   const router = useRouter();
   const { items, total, page, limit } = services;
@@ -55,11 +55,19 @@ export function ServiceList({
     });
   };
 
+  const resultsText = t('results.result', { count: total });
+  const [singular, plural] = resultsText.split('|').map((part) => part.trim());
+  const resultsDescription =
+    total === 1
+      ? (singular ?? resultsText)
+      : (plural ?? singular ?? resultsText);
+
   return (
     <section className={cn('flex flex-col', className)}>
       <div className="flex items-baseline justify-between gap-3 md:block">
         <SectionHeading
-          title={t('titleWithTotal', { total })}
+          title={t('title')}
+          description={resultsDescription}
           className="block mb-4 md:mb-6"
           accentClassName="mb-4 bg-primary/70"
         />
